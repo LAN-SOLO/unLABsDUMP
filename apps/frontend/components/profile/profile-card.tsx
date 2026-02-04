@@ -8,6 +8,7 @@ import { WalletAddress } from './wallet-address'
 import { BalanceDisplay } from './balance-display'
 import { useAuth } from '@/components/providers/auth-provider'
 import { User, Calendar, Clock, ShoppingBag, ExternalLink } from 'lucide-react'
+import { QRCodeSVG } from 'qrcode.react'
 
 interface PlayerProfile {
   id: string
@@ -108,6 +109,22 @@ export function ProfileCard() {
               Wallet Address
             </label>
             <WalletAddress address={profile.wallet_address} showFull />
+          </div>
+
+          {/* Wallet QR Code */}
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+              Wallet QR
+            </label>
+            <div className="inline-block rounded-lg border border-slate-800 bg-slate-800/40 p-2">
+              <QRCodeSVG
+                value={profile.wallet_address}
+                size={80}
+                bgColor="transparent"
+                fgColor="#94a3b8"
+                level="M"
+              />
+            </div>
           </div>
 
           {/* Player ID */}

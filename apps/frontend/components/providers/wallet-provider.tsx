@@ -12,6 +12,11 @@ import { clusterApiUrl } from '@solana/web3.js'
 // Import wallet adapter styles
 import '@solana/wallet-adapter-react-ui/styles.css'
 
+// Note: Backpack, Sollet, and other Wallet Standard compatible wallets are
+// automatically detected by the wallet adapter at runtime. There is no need
+// to manually instantiate adapters for them — they will appear in the wallet
+// list as long as the user has the browser extension installed.
+
 interface WalletProviderProps {
   children: React.ReactNode
 }
@@ -25,7 +30,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
   return (
     <ConnectionProvider endpoint={endpoint}>
-      <SolanaWalletProvider wallets={wallets} autoConnect={false}>
+      <SolanaWalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>{children}</WalletModalProvider>
       </SolanaWalletProvider>
     </ConnectionProvider>

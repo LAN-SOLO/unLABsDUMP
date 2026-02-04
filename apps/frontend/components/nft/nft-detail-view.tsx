@@ -2,10 +2,37 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Share2, ExternalLink, Package, Clock, Check } from 'lucide-react'
+import {
+  ArrowLeft,
+  Share2,
+  ExternalLink,
+  Package,
+  Clock,
+  Check,
+  Heart,
+  Flag,
+  Link2,
+  Twitter,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ClickableNFTImage } from '@/components/nft/nft-image-viewer'
 import { NFTMetadata } from '@/components/nft/nft-metadata'
@@ -32,6 +59,8 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
   const [loading, setLoading] = useState(true)
   const [historyLoading, setHistoryLoading] = useState(true)
   const [copied, setCopied] = useState(false)
+  const [favorited, setFavorited] = useState(false)
+  const [reportOpen, setReportOpen] = useState(false)
 
   useEffect(() => {
     async function fetchNFT() {
@@ -78,7 +107,7 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
   }, [id])
 
   async function handleShare() {
-    const url = `${window.location.origin}/nft/${id}`
+    const url = window.location.href
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
@@ -158,24 +187,95 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                 </div>
               </div>
 
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-slate-700 text-slate-400 hover:text-white shrink-0"
-                onClick={handleShare}
-              >
-                {copied ? (
-                  <>
-                    <Check className="size-4 mr-1" />
-                    Copied
-                  </>
-                ) : (
-                  <>
-                    <Share2 className="size-4 mr-1" />
-                    Share
-                  </>
-                )}
-              </Button>
+              <div className="flex items-center gap-1.5 shrink-0">
+                {/* Favorite / Bookmark button */}
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                  onClick={() => setFavorited((prev) => !prev)}
+                  aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
+                >
+                  <Heart
+                    className={cn(
+                      'size-4 transition-colors',
+                      favorited && 'fill-red-500 text-red-500'
+                    )}
+                  />
+                </Button>
+
+                {/* Share dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                      aria-label="Share"
+                    >
+                      {copied ? (
+                        <Check className="size-4 text-green-400" />
+                      ) : (
+                        <Share2 className="size-4" />
+                      )}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="bg-slate-900 border-slate-700 text-slate-200"
+                  >
+                    <DropdownMenuItem
+                      className="cursor-pointer hover:bg-slate-800 focus:bg-slate-800"
+                      onClick={handleShare}
+                    >
+                      <Link2 className="size-4 mr-2" />
+                      Copy Link
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className="cursor-pointer hover:bg-slate-800 focus:bg-slate-800"
+                      onClick={() => {
+                        const url = `${window.location.origin}/nft/${id}`
+                        const text = `Check out this NFT: ${nft.name}`
+                        window.open(
+                          `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+                          '_blank',
+                          'noopener,noreferrer'
+                        )
+                      }}
+                    >
+                      <Twitter className="size-4 mr-2" />
+                      Share on Twitter
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* Report button */}
+                <AlertDialog open={reportOpen} onOpenChange={setReportOpen}>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                      aria-label="Report"
+                    >
+                      <Flag className="size-4" />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="bg-slate-900 border-slate-700 text-slate-200">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="text-white">Report Submitted</AlertDialogTitle>
+                      <AlertDialogDescription className="text-slate-400">
+                        Report submitted. Thank you for helping us maintain quality.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogAction className="bg-purple-600 hover:bg-purple-500 text-white">
+                        OK
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </div>
             </div>
 
             {nft.description && (

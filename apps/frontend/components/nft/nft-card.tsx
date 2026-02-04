@@ -76,7 +76,8 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 className={cn(
                   'object-cover transition-transform duration-300 group-hover:scale-105',
-                  !imageLoaded && 'opacity-0'
+                  !imageLoaded && 'opacity-0',
+                  nft.status === 'ready' && 'blur-sm'
                 )}
                 loading="lazy"
                 onLoad={() => setImageLoaded(true)}

@@ -1,7 +1,8 @@
 'use client'
 
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Package, Coins, ImageIcon, Sparkles, AlertTriangle } from 'lucide-react'
+import { Package, Coins, ImageIcon, Sparkles, AlertTriangle, Clock } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -25,6 +26,41 @@ export interface PackageCardProps {
   sold_count: number
   featured: boolean
   category: string | null
+  bestValue?: boolean
+  is_featured?: boolean
+  stock?: number
+  sale_ends_at?: string | null
+}
+
+function useCountdown(targetDate: string | null | undefined) {
+  const [timeLeft, setTimeLeft] = useState('')
+
+  useEffect(() => {
+    if (!targetDate) return
+
+    function calc() {
+      const diff = new Date(targetDate!).getTime() - Date.now()
+      if (diff <= 0) {
+        setTimeLeft('Ended')
+        return
+      }
+      const d = Math.floor(diff / 86400000)
+      const h = Math.floor((diff % 86400000) / 3600000)
+      const m = Math.floor((diff % 3600000) / 60000)
+      const s = Math.floor((diff % 60000) / 1000)
+      if (d > 0) {
+        setTimeLeft(`${d}d ${h}h ${m}m`)
+      } else {
+        setTimeLeft(`${h}h ${m}m ${s}s`)
+      }
+    }
+
+    calc()
+    const interval = setInterval(calc, 1000)
+    return () => clearInterval(interval)
+  }, [targetDate])
+
+  return timeLeft
 }
 
 export function PackageCard({
@@ -38,30 +74,48 @@ export function PackageCard({
   total_supply,
   sold_count,
   featured,
+  bestValue,
+  is_featured,
+  stock,
+  sale_ends_at,
 }: PackageCardProps) {
   const remaining = total_supply != null ? total_supply - sold_count : null
-  const isSoldOut = remaining !== null && remaining <= 0
-  const isLowStock = remaining !== null && remaining > 0 && remaining <= 10
+  const computedStock = stock ?? remaining
+  const isSoldOut = computedStock !== null && computedStock !== undefined && computedStock <= 0
+  const isLowStock =
+    computedStock !== null &&
+    computedStock !== undefined &&
+    computedStock > 0 &&
+    computedStock <= 10
+  const showBestValue = bestValue || is_featured || featured
   const priceNum = parseFloat(price_sol)
   const unscNum = parseFloat(unsc_amount || '0')
   // Rough USD estimate placeholder: 1 SOL ~ $150
   const usdEstimate = (priceNum * 150).toFixed(2)
+  const countdown = useCountdown(sale_ends_at)
 
   return (
     <Card
       className={`group relative overflow-hidden border transition-all duration-300 py-0 gap-0 ${
-        featured
-          ? 'border-purple-500/50 glow-purple'
+        showBestValue
+          ? 'border-amber-500/50 glow-purple'
           : 'border-slate-800 hover:border-purple-500/50'
-      } bg-slate-900 hover:shadow-lg hover:shadow-purple-500/10`}
+      } bg-slate-900 ${isSoldOut ? 'opacity-75 pointer-events-none' : 'hover:shadow-lg hover:shadow-purple-500/10'}`}
     >
-      {/* Featured badge */}
-      {featured && (
-        <div className="absolute top-3 right-3 z-10">
-          <Badge className="bg-gradient-to-r from-purple-600 to-cyan-500 text-white border-0 gap-1">
+      {/* Best Value badge */}
+      {showBestValue && (
+        <div className="absolute top-3 left-3 z-10">
+          <Badge className="bg-amber-500 text-black border-0 gap-1 font-semibold shadow-lg">
             <Sparkles className="size-3" />
             Best Value
           </Badge>
+        </div>
+      )}
+
+      {/* Sold Out overlay */}
+      {isSoldOut && (
+        <div className="absolute inset-0 z-20 bg-slate-900/70 flex items-center justify-center rounded-lg">
+          <span className="text-xl font-bold text-red-400 tracking-wider uppercase">Sold Out</span>
         </div>
       )}
 
@@ -141,8 +195,21 @@ export function PackageCard({
         {isLowStock && (
           <div className="flex items-center gap-1 text-amber-400 text-sm">
             <AlertTriangle className="size-3.5" />
-            <span>{remaining} remaining</span>
+            <span>{computedStock} remaining</span>
           </div>
+        )}
+
+        {/* Sale countdown */}
+        {sale_ends_at && countdown && countdown !== 'Ended' && (
+          <div className="flex items-center gap-1.5 text-sm text-cyan-400">
+            <Clock className="size-3.5" />
+            <span>Sale ends in {countdown}</span>
+          </div>
+        )}
+        {sale_ends_at && countdown === 'Ended' && (
+          <Badge variant="secondary" className="w-fit bg-slate-800 text-slate-500 border-slate-700">
+            Sale Ended
+          </Badge>
         )}
 
         {/* Price section */}
