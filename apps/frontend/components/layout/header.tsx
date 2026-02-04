@@ -11,6 +11,7 @@ import { useRealtime } from '@/components/providers/realtime-provider'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { WalletButton } from '@/components/wallet/wallet-button'
+import { NotificationDropdown } from '@/components/notifications/notification-dropdown'
 import { MobileNav } from './mobile-nav'
 
 const publicLinks = [
@@ -22,6 +23,7 @@ const publicLinks = [
 const authenticatedLinks = [
   { href: '/inventory', label: 'Inventory' },
   { href: '/history', label: 'History' },
+  { href: '/profile', label: 'Profile' },
 ]
 
 export function Header() {
@@ -29,6 +31,7 @@ export function Header() {
   const { isAuthenticated } = useAuth()
   const { unreadCount } = useRealtime()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
 
   const allLinks = isAuthenticated ? [...publicLinks, ...authenticatedLinks] : publicLinks
 
@@ -79,21 +82,27 @@ export function Header() {
           {/* Right side actions */}
           <div className="ml-auto flex items-center gap-2">
             {/* Notification bell */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative text-slate-400 hover:text-slate-200"
-            >
-              <Bell className="size-5" />
-              {unreadCount > 0 && (
-                <Badge className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center p-0 text-[10px] bg-purple-600 text-white border-0">
-                  {unreadCount > 9 ? '9+' : unreadCount}
-                </Badge>
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative text-slate-400 hover:text-slate-200"
+                onClick={() => setNotificationsOpen((prev) => !prev)}
+              >
+                <Bell className="size-5" />
+                {unreadCount > 0 && (
+                  <Badge className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center p-0 text-[10px] bg-purple-600 text-white border-0">
+                    {unreadCount > 9 ? '9+' : unreadCount}
+                  </Badge>
+                )}
+                <span className="sr-only">
+                  Notifications{unreadCount > 0 ? ` (${unreadCount} unread)` : ''}
+                </span>
+              </Button>
+              {notificationsOpen && (
+                <NotificationDropdown onClose={() => setNotificationsOpen(false)} />
               )}
-              <span className="sr-only">
-                Notifications{unreadCount > 0 ? ` (${unreadCount} unread)` : ''}
-              </span>
-            </Button>
+            </div>
 
             {/* Wallet button */}
             <WalletButton />

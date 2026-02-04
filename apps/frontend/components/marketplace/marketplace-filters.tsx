@@ -20,6 +20,7 @@ export interface MarketplaceFilterValues {
   tier: string
   era: string
   sort: string
+  seller: string
 }
 
 interface MarketplaceFiltersProps {
@@ -46,6 +47,7 @@ export const defaultMarketplaceFilters: MarketplaceFilterValues = {
   tier: 'All',
   era: 'All',
   sort: 'created-desc',
+  seller: '',
 }
 
 export function MarketplaceFilters({ filters, onFilterChange, onReset }: MarketplaceFiltersProps) {
@@ -55,7 +57,8 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
     filters.maxPrice !== '' ||
     filters.color !== 'All' ||
     filters.tier !== 'All' ||
-    filters.era !== 'All'
+    filters.era !== 'All' ||
+    filters.seller !== ''
 
   const updateFilter = (key: keyof MarketplaceFilterValues, value: string) => {
     onFilterChange({ ...filters, [key]: value })
@@ -165,6 +168,17 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
               ))}
             </SelectContent>
           </Select>
+        </div>
+
+        {/* Seller address */}
+        <div className="space-y-1">
+          <label className="text-xs font-medium text-slate-400">Seller</label>
+          <Input
+            placeholder="Wallet address..."
+            value={filters.seller}
+            onChange={(e) => updateFilter('seller', e.target.value.trim())}
+            className="h-8 w-36 border-slate-700 bg-slate-800 text-xs font-mono text-slate-200 placeholder:text-slate-500 focus-visible:border-purple-500 focus-visible:ring-purple-500/20"
+          />
         </div>
 
         {hasActiveFilters && (

@@ -8,12 +8,14 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 import { NotificationList } from '@/components/notifications/notification-list'
 import { useRealtime } from '@/components/realtime/realtime-provider'
+import { type NotificationType, NOTIFICATION_TYPE_LABELS } from '@/lib/notifications/types'
 
 export default function NotificationsPage() {
   const { notifications, unreadCount, markAsRead, markAllAsRead, clearNotifications } =
     useRealtime()
 
   const [activeTab, setActiveTab] = useState<'all' | 'unread'>('all')
+  const [typeFilter, setTypeFilter] = useState<NotificationType | 'all'>('all')
 
   const handleMarkAsRead = useCallback(
     (id: string) => {
@@ -50,11 +52,15 @@ export default function NotificationsPage() {
   }, [clearNotifications])
 
   const filteredNotifications = useMemo(() => {
+    let result = notifications
     if (activeTab === 'unread') {
-      return notifications.filter((n) => !n.read)
+      result = result.filter((n) => !n.read)
     }
-    return notifications
-  }, [notifications, activeTab])
+    if (typeFilter !== 'all') {
+      result = result.filter((n) => n.type === typeFilter)
+    }
+    return result
+  }, [notifications, activeTab, typeFilter])
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
@@ -126,6 +132,35 @@ export default function NotificationsPage() {
                 )}
               </TabsTrigger>
             </TabsList>
+          </div>
+
+          {/* Type filter */}
+          <div className="flex flex-wrap gap-1.5 border-b border-slate-800 px-4 pb-3">
+            <button
+              onClick={() => setTypeFilter('all')}
+              className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
+                typeFilter === 'all'
+                  ? 'bg-purple-600/20 text-purple-400'
+                  : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800'
+              }`}
+            >
+              All Types
+            </button>
+            {(Object.entries(NOTIFICATION_TYPE_LABELS) as [NotificationType, string][]).map(
+              ([type, label]) => (
+                <button
+                  key={type}
+                  onClick={() => setTypeFilter(type)}
+                  className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
+                    typeFilter === type
+                      ? 'bg-purple-600/20 text-purple-400'
+                      : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            )}
           </div>
 
           <Separator className="bg-slate-800" />

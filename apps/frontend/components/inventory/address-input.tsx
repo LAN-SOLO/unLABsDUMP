@@ -3,7 +3,14 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Input } from '@/components/ui/input'
 import { validateRecipientAddress } from '@/lib/transfer/validate'
-import { CheckCircle, XCircle, Loader2, Wallet } from 'lucide-react'
+import { CheckCircle, XCircle, Loader2, Wallet, AlertTriangle } from 'lucide-react'
+
+const KNOWN_EXCHANGE_ADDRESSES = [
+  'FWznbcNXWQuHTawe9RBvDQNH2BGED1YtFDxMb83Kpa1p', // Binance
+  'H8sMJSCQxfKfEQ7ZrFJ9GiXYbAGn3cD6EP5GFr8K6TVN', // FTX
+  '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM', // Coinbase
+  '5tzFkiKscjHK98cFqw2Fg3q1DXwY3VJuq9nsMtMXUiYz', // Kraken
+]
 
 interface AddressInputProps {
   value: string
@@ -48,6 +55,7 @@ export function AddressInput({ value, onChange, senderAddress, onValidation }: A
   }, [value, validate])
 
   const truncatedAddress = value.length > 8 ? `${value.slice(0, 4)}...${value.slice(-4)}` : value
+  const isExchangeAddress = KNOWN_EXCHANGE_ADDRESSES.includes(value.trim())
 
   return (
     <div className="space-y-2">
@@ -86,6 +94,20 @@ export function AddressInput({ value, onChange, senderAddress, onValidation }: A
           <CheckCircle className="h-3.5 w-3.5 text-green-500" />
           <span className="font-mono text-xs text-slate-300">{truncatedAddress}</span>
           <span className="text-xs text-slate-500">Valid Solana address</span>
+        </div>
+      )}
+
+      {/* Exchange address warning */}
+      {isExchangeAddress && validation?.valid && (
+        <div className="flex items-start gap-2 rounded-md border border-amber-600/30 bg-amber-950/30 px-3 py-2">
+          <AlertTriangle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-400" />
+          <div>
+            <p className="text-xs font-medium text-amber-300">Exchange address detected</p>
+            <p className="text-xs text-amber-400/80">
+              Sending NFTs to exchange wallets may result in permanent loss. Exchange wallets
+              typically do not support NFT deposits. Please verify this is the correct address.
+            </p>
+          </div>
         </div>
       )}
     </div>

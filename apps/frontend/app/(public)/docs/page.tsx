@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Book, Key, Box, Shield, Radio, AlertTriangle, Gauge } from 'lucide-react'
+import { Book, Key, Box, Shield, Radio, AlertTriangle, Gauge, Download } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
@@ -17,6 +17,7 @@ const SECTIONS = [
   { id: 'websocket', label: 'WebSocket Events', icon: Radio },
   { id: 'errors', label: 'Error Handling', icon: AlertTriangle },
   { id: 'rate-limits', label: 'Rate Limits', icon: Gauge },
+  { id: 'sdk', label: 'SDK & Downloads', icon: Download },
 ] as const
 
 export default function DocsPage() {
@@ -732,6 +733,80 @@ Retry-After: 45`}
   throw new Error('Max retries exceeded');
 }`}
                 language="typescript"
+              />
+            </div>
+          </section>
+
+          <Separator className="my-12 bg-slate-800" />
+
+          {/* SDK & Downloads */}
+          <section id="sdk" className="mb-16">
+            <h2 className="mb-4 text-2xl font-bold text-white">SDK & Downloads</h2>
+            <p className="mb-6 text-slate-400">
+              Download the OpenAPI specification to generate client SDKs in any language, or use our
+              pre-built TypeScript SDK for quick integration.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Card className="border-slate-800 bg-slate-900/50 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-purple-600/20">
+                    <Download className="size-5 text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-base font-semibold text-white">OpenAPI Spec</h3>
+                    <p className="mt-1 text-sm text-slate-400">
+                      Download the OpenAPI 3.0.3 specification file. Use it to auto-generate client
+                      SDKs with tools like openapi-generator.
+                    </p>
+                    <a
+                      href="/api/docs"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-slate-800 px-3 py-1.5 text-sm font-medium text-purple-400 transition-colors hover:bg-slate-700 hover:text-purple-300"
+                    >
+                      <Download className="size-3.5" />
+                      Download JSON
+                    </a>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="border-slate-800 bg-slate-900/50 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-cyan-600/20">
+                    <Box className="size-5 text-cyan-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-base font-semibold text-white">TypeScript SDK</h3>
+                    <p className="mt-1 text-sm text-slate-400">
+                      Type-safe client with built-in retry logic and error handling. Install via
+                      npm.
+                    </p>
+                    <CodeBlock code="npm install @unstablelabs/game-sdk" language="bash" />
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="mb-3 text-lg font-semibold text-white">Generate SDK from OpenAPI</h3>
+              <CodeBlock
+                code={`# Install the OpenAPI generator
+npm install -g @openapitools/openapi-generator-cli
+
+# Generate a TypeScript SDK
+openapi-generator-cli generate \\
+  -i https://your-domain.com/api/docs \\
+  -g typescript-fetch \\
+  -o ./generated-sdk
+
+# Generate a Python SDK
+openapi-generator-cli generate \\
+  -i https://your-domain.com/api/docs \\
+  -g python \\
+  -o ./python-sdk`}
+                language="bash"
               />
             </div>
           </section>

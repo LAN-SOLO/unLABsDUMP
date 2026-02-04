@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Separator } from '@/components/ui/separator'
 import { formatSol } from '@/lib/trading/fees'
-import { ArrowRight, History } from 'lucide-react'
+import { ArrowRight, History, TrendingUp, TrendingDown, Minus } from 'lucide-react'
 
 export interface RecentSale {
   id: string
@@ -20,6 +20,33 @@ export interface RecentSale {
 interface RecentSalesProps {
   sales: RecentSale[]
   isLoading: boolean
+  floorPrice?: number
+}
+
+function TrendIndicator({ sales }: { sales: RecentSale[] }) {
+  if (sales.length < 2) return null
+  const latest = sales[0].priceInSol
+  const previous = sales[1].priceInSol
+  const diff = latest - previous
+  const pct = previous > 0 ? ((diff / previous) * 100).toFixed(1) : '0'
+
+  if (Math.abs(diff) < 0.001) {
+    return (
+      <span className="flex items-center gap-1 text-xs text-slate-500">
+        <Minus className="h-3 w-3" /> Stable
+      </span>
+    )
+  }
+
+  return diff > 0 ? (
+    <span className="flex items-center gap-1 text-xs text-green-400">
+      <TrendingUp className="h-3 w-3" /> +{pct}%
+    </span>
+  ) : (
+    <span className="flex items-center gap-1 text-xs text-red-400">
+      <TrendingDown className="h-3 w-3" /> {pct}%
+    </span>
+  )
 }
 
 function timeAgo(dateStr: string): string {
@@ -33,7 +60,7 @@ function timeAgo(dateStr: string): string {
   return `${days}d ago`
 }
 
-export function RecentSales({ sales, isLoading }: RecentSalesProps) {
+export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) {
   if (isLoading) {
     return (
       <Card className="border-slate-800 bg-slate-900">
@@ -78,10 +105,18 @@ export function RecentSales({ sales, isLoading }: RecentSalesProps) {
   return (
     <Card className="border-slate-800 bg-slate-900">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-sm text-slate-300">
-          <History className="h-4 w-4" />
-          Recent Sales
+        <CardTitle className="flex items-center justify-between text-sm text-slate-300">
+          <span className="flex items-center gap-2">
+            <History className="h-4 w-4" />
+            Recent Sales
+          </span>
+          <TrendIndicator sales={sales} />
         </CardTitle>
+        {floorPrice !== undefined && (
+          <p className="text-xs text-slate-500">
+            Floor: <span className="font-semibold text-slate-400">{formatSol(floorPrice)} SOL</span>
+          </p>
+        )}
       </CardHeader>
       <CardContent className="space-y-0">
         {sales.map((sale, index) => (
@@ -109,7 +144,17 @@ export function RecentSales({ sales, isLoading }: RecentSalesProps) {
               {/* Price and time */}
               <div className="text-right">
                 <p className="text-sm font-semibold text-white">{formatSol(sale.priceInSol)} SOL</p>
-                <p className="text-[10px] text-slate-500">{timeAgo(sale.completedAt)}</p>
+                <div className="flex items-center justify-end gap-1">
+                  <p className="text-[10px] text-slate-500">{timeAgo(sale.completedAt)}</p>
+                  {floorPrice !== undefined && floorPrice > 0 && (
+                    <span
+                      className={`text-[10px] ${sale.priceInSol >= floorPrice ? 'text-green-500' : 'text-red-400'}`}
+                    >
+                      {sale.priceInSol >= floorPrice ? '+' : ''}
+                      {(((sale.priceInSol - floorPrice) / floorPrice) * 100).toFixed(0)}%
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
             {index < sales.length - 1 && <Separator className="bg-slate-800" />}
