@@ -1,0 +1,97 @@
+'use client'
+
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+import { X } from 'lucide-react'
+
+import { cn } from '@/lib/utils'
+import { useAuth } from '@/components/providers/auth-provider'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from '@/components/ui/sheet'
+import { Separator } from '@/components/ui/separator'
+import { WalletStatus } from '@/components/wallet/wallet-status'
+import { WalletButton } from '@/components/wallet/wallet-button'
+
+const publicLinks = [
+  { href: '/browse', label: 'Browse' },
+  { href: '/packages', label: 'Packages' },
+  { href: '/marketplace', label: 'Marketplace' },
+]
+
+const authenticatedLinks = [
+  { href: '/inventory', label: 'Inventory' },
+  { href: '/history', label: 'History' },
+]
+
+interface MobileNavProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+export function MobileNav({ open, onOpenChange }: MobileNavProps) {
+  const pathname = usePathname()
+  const { isAuthenticated } = useAuth()
+
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
+        side="left"
+        className="w-72 bg-slate-950 border-slate-800"
+        showCloseButton={false}
+      >
+        <SheetHeader className="border-b border-slate-800">
+          <div className="flex items-center justify-between">
+            <SheetTitle className="text-gradient font-bold text-lg">UnstableLabs</SheetTitle>
+            <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
+              <X className="size-4" />
+              <span className="sr-only">Close</span>
+            </SheetClose>
+          </div>
+        </SheetHeader>
+
+        <nav className="flex flex-col gap-1 px-4 py-4">
+          {publicLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => onOpenChange(false)}
+              className={cn(
+                'flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
+                pathname === link.href
+                  ? 'bg-purple-600/15 text-purple-400'
+                  : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          {isAuthenticated && (
+            <>
+              <Separator className="my-2 bg-slate-800" />
+              {authenticatedLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => onOpenChange(false)}
+                  className={cn(
+                    'flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
+                    pathname === link.href
+                      ? 'bg-purple-600/15 text-purple-400'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </>
+          )}
+        </nav>
+
+        <div className="mt-auto border-t border-slate-800 p-4 flex flex-col gap-3">
+          <WalletStatus />
+          <WalletButton />
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}
