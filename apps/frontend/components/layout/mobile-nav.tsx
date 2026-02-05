@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -37,10 +38,18 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
         <SheetHeader className="border-b border-[#0D3B1E]">
           <div className="flex items-center justify-between">
             <SheetTitle
-              className="text-[#00FF41] font-bold text-lg"
+              className="flex items-center gap-2 text-[#00FF41] font-bold text-lg"
               style={{ textShadow: '0 0 5px #00FF41' }}
             >
-              _unOS
+              <Image
+                src="/logo.gif"
+                alt="_unstablecoins logo"
+                width={32}
+                height={32}
+                unoptimized
+                className="rounded-sm"
+              />
+              _unstablecoins
             </SheetTitle>
             <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
               <X className="size-4 text-[#00FF41]" />

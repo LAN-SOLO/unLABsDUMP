@@ -38,7 +38,7 @@ export default function LoginPage() {
           <span className="w-3 h-3 rounded-full bg-[#00FF41]" />
         </div>
         <span className="text-xs text-[#1A6B35] font-mono uppercase tracking-widest ml-2">
-          _unOS // AUTH_TERMINAL
+          _unstablecoins // AUTH_TERMINAL
         </span>
       </div>
 
@@ -81,7 +81,7 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center">
           <p className="text-xs text-[#1A6B35] uppercase tracking-widest font-mono">
-            [Secured by _unOS Protocol]
+            [Secured by _unstablecoins Protocol]
           </p>
         </div>
       </CardContent>

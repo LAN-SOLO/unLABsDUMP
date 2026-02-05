@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const bootLines = [
-  { text: '[OK] _unOS Terminal v2.0 initialized', delay: 0 },
+  { text: '[OK] _unstablecoins Terminal v2.0 initialized', delay: 0 },
   { text: '[OK] Solana RPC established', delay: 400 },
   { text: '[OK] NFT Registry: 12,400 assets loaded', delay: 800 },
   { text: '> SYSTEM READY', delay: 1200 },
@@ -54,6 +55,23 @@ export default function Home() {
             aria-hidden="true"
           />
 
+          <div
+            className="relative mb-10 border-2 border-[#00FF41]/60 rounded-sm p-1 bg-black/80"
+            style={{
+              boxShadow:
+                '0 0 15px rgba(0,255,65,0.3), 0 0 40px rgba(0,255,65,0.15), inset 0 0 15px rgba(0,255,65,0.1)',
+            }}
+          >
+            <Image
+              src="/logo.gif"
+              alt="_unstablecoins logo"
+              width={256}
+              height={256}
+              unoptimized
+              className="relative block"
+            />
+          </div>
+
           <h1 className="relative text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl uppercase">
             <span
               className="inline-block text-[#00FF41]"
@@ -62,13 +80,13 @@ export default function Home() {
                   '0 0 10px #00FF41, 0 0 20px rgba(0,255,65,0.5), 0 0 40px rgba(0,255,65,0.3)',
               }}
             >
-              _unOS NFT Platform
+              _unstablecoins
             </span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-[#00AA2A] sm:text-xl">
             Collect, trade, and play with unique NFT card packs on the Solana blockchain. Open
-            packs, discover rare cards, and compete in the _unOS gaming ecosystem.
+            packs, discover rare cards, and compete in the _unstablecoins gaming ecosystem.
           </p>
 
           {/* CTA Buttons - terminal command style */}
@@ -169,8 +187,8 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-[#00FF41] uppercase tracking-wider">Play</h3>
               <p className="mt-2 text-[#00AA2A]">
-                Use your NFT cards in the _unOS game. Battle other players, complete challenges, and
-                earn rewards through game integration.
+                Use your NFT cards in the _unstablecoins game. Battle other players, complete
+                challenges, and earn rewards through game integration.
               </p>
             </div>
           </div>
@@ -232,7 +250,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="border-t border-[#0D3B1E]/60 py-8 text-center text-sm text-[#1A6B35] font-mono">
-          <p>&copy; {new Date().getFullYear()} _unOS. Built on Solana.</p>
+          <p>&copy; {new Date().getFullYear()} _unstablecoins. Built on Solana.</p>
         </footer>
       </div>
     </div>

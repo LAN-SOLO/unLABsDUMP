@@ -51,13 +51,13 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* _unOS brand colors */
+  /* _unstablecoins brand colors */
   --color-brand-green: #00FF41;
   --color-brand-cyan: #00FFFF;
   --color-brand-black: #000000;
 }
 
-/* ── Root – _unOS Terminal palette ── */
+/* ── Root – _unstablecoins Terminal palette ── */
 :root {
   --radius: 0.125rem;
 

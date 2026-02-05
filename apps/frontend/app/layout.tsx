@@ -11,9 +11,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: '_unOS NFT Platform',
+  title: '_unstablecoins',
   description:
-    'Open, buy, and trade NFT card packs in the _unOS gaming ecosystem. Collect rare cards, build your deck, and compete on Solana.',
+    'Open, buy, and trade NFT card packs in the _unstablecoins gaming ecosystem. Collect rare cards, build your deck, and compete on Solana.',
   icons: {
     icon: '/favicon.ico',
   },

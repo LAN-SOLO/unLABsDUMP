@@ -1,5 +1,6 @@
 'use client'
 
+import NextImage from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -92,17 +93,13 @@ export function Sidebar({ className }: SidebarProps) {
       {/* Logo */}
       <div className="p-6 border-b border-[#0D3B1E]">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <span className="led-offline" />
-            <span className="led-standby" />
-            <span className="led-online" />
-          </div>
+          <NextImage src="/logo.gif" alt="_unstablecoins logo" width={32} height={32} unoptimized />
           <div>
             <h1
               className="text-lg font-bold text-[#00FF41] uppercase tracking-wider"
               style={{ textShadow: '0 0 5px #00FF41' }}
             >
-              _unOS
+              _unstablecoins
             </h1>
             <p className="text-[10px] text-[#1A6B35] font-mono uppercase tracking-widest">
               Terminal

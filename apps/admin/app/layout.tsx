@@ -9,8 +9,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: '_unOS Admin Terminal',
-  description: '_unOS NFT Platform Administration',
+  title: '_unstablecoins Admin',
+  description: '_unstablecoins NFT Platform Administration',
 }
 
 export default function RootLayout({

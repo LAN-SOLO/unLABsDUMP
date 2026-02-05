@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Bell, Menu } from 'lucide-react'
 
@@ -57,11 +58,19 @@ export function Header() {
               <span className="led-standby" />
               <span className="led-online" />
             </div>
+            <Image
+              src="/logo.gif"
+              alt="_unstablecoins logo"
+              width={32}
+              height={32}
+              unoptimized
+              className="rounded-sm"
+            />
             <span
               className="text-[#00FF41] font-bold"
               style={{ textShadow: '0 0 5px #00FF41, 0 0 10px rgba(0,255,65,0.5)' }}
             >
-              _unOS
+              _unstablecoins
             </span>
           </Link>
 

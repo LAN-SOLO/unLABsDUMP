@@ -63,7 +63,7 @@ export function Footer() {
             <span>UPTIME: 99.9%</span>
           </div>
           <p className="text-[10px] text-[#1A6B35] font-mono uppercase tracking-widest">
-            &copy; 2026 _unOS. Built on Solana.
+            &copy; 2026 _unstablecoins. Built on Solana.
           </p>
         </div>
       </div>
