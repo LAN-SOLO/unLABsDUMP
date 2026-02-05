@@ -21,7 +21,7 @@ function LoadingSkeleton() {
   return (
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {Array.from({ length: 8 }).map((_, i) => (
-        <div key={i} className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900">
+        <div key={i} className="overflow-hidden rounded-sm border border-[#0D3B1E] bg-[#0D1117]">
           <Skeleton className="aspect-square w-full" />
           <div className="space-y-2 p-3">
             <Skeleton className="h-4 w-3/4" />
@@ -39,20 +39,20 @@ function LoadingSkeleton() {
 
 function EmptyState() {
   return (
-    <div className="flex min-h-[400px] flex-col items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-900/50 px-6 py-12">
-      <div className="mb-4 rounded-full bg-slate-800 p-4">
-        <Package className="h-8 w-8 text-slate-500" />
+    <div className="flex min-h-[400px] flex-col items-center justify-center rounded-sm border border-dashed border-[#1A3A2A] bg-[#0D1117]/50 px-6 py-12">
+      <div className="mb-4 rounded-full bg-[#111318] p-4">
+        <Package className="h-8 w-8 text-[#1A6B35]" />
       </div>
-      <h3 className="mb-2 text-lg font-semibold text-white">No NFTs yet</h3>
-      <p className="mb-6 max-w-sm text-center text-sm text-slate-400">
+      <h3 className="mb-2 text-lg font-semibold text-[#00FF41]">No NFTs yet</h3>
+      <p className="mb-6 max-w-sm text-center text-sm text-[#00AA2A]">
         Your inventory is empty. Open packages to start your collection or browse the marketplace
         for available NFTs.
       </p>
       <div className="flex gap-3">
-        <Button asChild className="bg-purple-600 hover:bg-purple-700">
+        <Button asChild className="bg-[#00FF41] text-black hover:bg-[#00CC33]">
           <Link href="/packages">Open Packages</Link>
         </Button>
-        <Button asChild variant="outline" className="border-slate-700 text-slate-200">
+        <Button asChild variant="outline" className="border-[#1A3A2A] text-[#00FF41]">
           <Link href="/marketplace">Browse Marketplace</Link>
         </Button>
       </div>

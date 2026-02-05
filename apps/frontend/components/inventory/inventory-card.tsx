@@ -41,17 +41,17 @@ interface InventoryCardProps {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'bg-slate-600 text-slate-200',
-  uncommon: 'bg-green-900/60 text-green-300 border-green-700/50',
-  rare: 'bg-blue-900/60 text-blue-300 border-blue-700/50',
-  epic: 'bg-purple-900/60 text-purple-300 border-purple-700/50',
-  legendary: 'bg-amber-900/60 text-amber-300 border-amber-700/50',
+  common: 'bg-[#0D3B1E]/40 text-[#00FF41]',
+  uncommon: 'bg-[#0D3B1E]/40 text-[#00CC33] border-[#00FF41]/30',
+  rare: 'bg-[#00FFFF]/15 text-[#00FFFF] border-[#00FFFF]/30',
+  epic: 'bg-[#0D3B1E]/60 text-[#00CC33] border-[#1A3A2A]',
+  legendary: 'bg-[#FFB000]/15 text-[#FFB000] border-[#FFB000]/30',
 }
 
 const rarityGlow: Record<string, string> = {
-  legendary: 'shadow-amber-500/20 shadow-lg',
-  epic: 'shadow-purple-500/15 shadow-md',
-  rare: 'shadow-blue-500/10 shadow-md',
+  legendary: 'shadow-[#FFB000]/20 shadow-lg',
+  epic: 'shadow-[#00FF41]/15 shadow-md',
+  rare: 'shadow-[#00FFFF]/10 shadow-md',
   uncommon: '',
   common: '',
 }
@@ -77,9 +77,9 @@ export function InventoryCard({
 
   return (
     <Card
-      className={`group relative border-slate-800 bg-slate-900 transition-all hover:border-slate-700 ${
+      className={`group relative border-[#0D3B1E] bg-[#0D1117] transition-all hover:border-[#1A3A2A] ${
         rarityGlow[nft.rarity] || ''
-      } ${isSelected ? 'ring-2 ring-purple-500 border-purple-500' : ''}`}
+      } ${isSelected ? 'ring-2 ring-[#00FF41] border-[#00FF41]' : ''}`}
     >
       {/* Selection checkbox */}
       {selectMode && (
@@ -87,22 +87,22 @@ export function InventoryCard({
           <Checkbox
             checked={isSelected}
             onCheckedChange={() => onSelect(nft.id)}
-            className="border-slate-500 bg-slate-800/80 backdrop-blur-sm data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+            className="border-[#1A6B35] bg-[#111318]/80 backdrop-blur-sm data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
           />
         </div>
       )}
 
       {/* Badges */}
       <div className="absolute right-3 top-3 z-10 flex flex-col gap-1">
-        {isNew && <Badge className="bg-cyan-500 text-white text-[10px] px-1.5 py-0">NEW</Badge>}
+        {isNew && <Badge className="bg-[#00FFFF] text-black text-[10px] px-1.5 py-0">NEW</Badge>}
         {nft.isListed && (
-          <Badge className="bg-amber-600 text-white text-[10px] px-1.5 py-0">LISTED</Badge>
+          <Badge className="bg-[#FFB000] text-black text-[10px] px-1.5 py-0">LISTED</Badge>
         )}
       </div>
 
       {/* NFT Image */}
       <div
-        className="relative aspect-square w-full cursor-pointer overflow-hidden rounded-t-xl bg-slate-800"
+        className="relative aspect-square w-full cursor-pointer overflow-hidden rounded-t-sm bg-[#111318]"
         onClick={() => !selectMode && onViewDetails(nft)}
       >
         <Image
@@ -118,7 +118,7 @@ export function InventoryCard({
         {/* Name and Actions */}
         <div className="flex items-start justify-between gap-1">
           <div className="min-w-0 flex-1">
-            <h3 className="truncate text-sm font-semibold text-white">{nft.name}</h3>
+            <h3 className="truncate text-sm font-semibold text-[#00FF41]">{nft.name}</h3>
             <Badge
               variant="outline"
               className={`mt-1 text-[10px] capitalize ${rarityColors[nft.rarity] || ''}`}
@@ -133,15 +133,15 @@ export function InventoryCard({
                 <Button
                   variant="ghost"
                   size="icon-xs"
-                  className="shrink-0 text-slate-400 hover:text-white"
+                  className="shrink-0 text-[#00AA2A] hover:text-[#00FF41]"
                 >
                   <MoreVertical className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="border-slate-700 bg-slate-800">
+              <DropdownMenuContent align="end" className="border-[#1A3A2A] bg-[#111318]">
                 <DropdownMenuItem
                   onClick={() => onViewDetails(nft)}
-                  className="text-slate-200 hover:text-white focus:text-white"
+                  className="text-[#00FF41] hover:text-[#00FF41] focus:text-[#00FF41]"
                 >
                   <Eye className="mr-2 h-4 w-4" />
                   View Details
@@ -149,7 +149,7 @@ export function InventoryCard({
                 {!nft.isListed && (
                   <DropdownMenuItem
                     onClick={() => onListForSale(nft)}
-                    className="text-slate-200 hover:text-white focus:text-white"
+                    className="text-[#00FF41] hover:text-[#00FF41] focus:text-[#00FF41]"
                   >
                     <Tag className="mr-2 h-4 w-4" />
                     List for Sale
@@ -157,18 +157,18 @@ export function InventoryCard({
                 )}
                 <DropdownMenuItem
                   onClick={() => onTransfer(nft)}
-                  className="text-slate-200 hover:text-white focus:text-white"
+                  className="text-[#00FF41] hover:text-[#00FF41] focus:text-[#00FF41]"
                 >
                   <Send className="mr-2 h-4 w-4" />
                   Transfer
                 </DropdownMenuItem>
-                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuSeparator className="bg-[#1A3A2A]" />
                 <DropdownMenuItem asChild>
                   <a
                     href={explorerUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-slate-200 hover:text-white focus:text-white"
+                    className="text-[#00FF41] hover:text-[#00FF41] focus:text-[#00FF41]"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
                     View on Explorer
@@ -184,7 +184,7 @@ export function InventoryCard({
           {Object.entries(nft.traits).map(([key, value]) => (
             <span
               key={key}
-              className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400"
+              className="rounded bg-[#111318] px-1.5 py-0.5 text-[10px] text-[#00AA2A]"
             >
               {value}
             </span>
@@ -193,7 +193,7 @@ export function InventoryCard({
 
         {/* Listed price */}
         {nft.isListed && nft.listingPrice && (
-          <div className="flex items-center gap-1 text-xs text-amber-400">
+          <div className="flex items-center gap-1 text-xs text-[#FFB000]">
             <Tag className="h-3 w-3" />
             {nft.listingPrice} SOL
           </div>

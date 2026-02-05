@@ -65,7 +65,7 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -83,8 +83,8 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-white">Burn Details</h1>
-          <p className="text-slate-400 mt-1 font-mono text-sm">{burn.id}</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Burn Details</h1>
+          <p className="text-[#00AA2A] mt-1 font-mono text-sm">{burn.id}</p>
         </div>
       </div>
 
@@ -92,17 +92,17 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Amount Card */}
-          <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900 border-purple-500/30">
+          <Card className="bg-gradient-to-br from-[#0D3B1E]/50 to-[#0D1117] border-[#00FF41]/30">
             <CardContent className="py-8">
               <div className="flex items-center justify-center gap-4">
-                <div className="h-16 w-16 rounded-full bg-purple-600/30 flex items-center justify-center">
-                  <Flame className="h-8 w-8 text-purple-400" />
+                <div className="h-16 w-16 rounded-full bg-[#0D3B1E]/30 flex items-center justify-center">
+                  <Flame className="h-8 w-8 text-[#00FF41]" />
                 </div>
                 <div className="text-center">
-                  <p className="text-slate-400">Amount Burned</p>
-                  <p className="text-4xl font-bold text-white">
+                  <p className="text-[#00AA2A]">Amount Burned</p>
+                  <p className="text-4xl font-bold text-[#00FF41]">
                     {formatNumber(burn.amount)}{' '}
-                    <span className="text-purple-400 text-2xl">{burn.token_type}</span>
+                    <span className="text-[#00FF41] text-2xl">{burn.token_type}</span>
                   </p>
                 </div>
               </div>
@@ -111,25 +111,25 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
 
           {/* Reason */}
           {burn.reason && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Reason</CardTitle>
+                <CardTitle className="text-[#00FF41]">Reason</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-300">{burn.reason}</p>
+                <p className="text-[#00CC33]">{burn.reason}</p>
               </CardContent>
             </Card>
           )}
 
           {/* Transaction */}
           {burn.transaction_signature && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Transaction</CardTitle>
+                <CardTitle className="text-[#00FF41]">Transaction</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2">
-                  <code className="flex-1 text-sm text-slate-300 bg-slate-800 p-3 rounded truncate">
+                  <code className="flex-1 text-sm text-[#00CC33] bg-[#111318] p-3 rounded truncate">
                     {burn.transaction_signature}
                   </code>
                   <Button
@@ -138,7 +138,7 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
                     onClick={() => copyToClipboard(burn.transaction_signature!)}
                   >
                     {copied ? (
-                      <Check className="h-4 w-4 text-green-500" />
+                      <Check className="h-4 w-4 text-[#00FF41]" />
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
@@ -161,16 +161,16 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Status */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Status</CardTitle>
+              <CardTitle className="text-[#00FF41]">Status</CardTitle>
             </CardHeader>
             <CardContent>
               <Badge
                 className={
                   burn.status === 'completed'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-yellow-500 text-white'
+                    ? 'bg-[#00FF41] text-[#00FF41]'
+                    : 'bg-[#FFB000] text-[#00FF41]'
                 }
               >
                 {burn.status}
@@ -179,9 +179,9 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
           </Card>
 
           {/* Player Info */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-[#00FF41] flex items-center gap-2">
                 <User className="h-5 w-5" />
                 Player
               </CardTitle>
@@ -190,32 +190,32 @@ export default function BurnDetailPage({ params }: { params: Promise<{ id: strin
               {burn.player ? (
                 <>
                   <div>
-                    <p className="text-sm text-slate-400">Username</p>
-                    <p className="text-white">{burn.player.username || 'Not set'}</p>
+                    <p className="text-sm text-[#00AA2A]">Username</p>
+                    <p className="text-[#00FF41]">{burn.player.username || 'Not set'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Wallet</p>
-                    <p className="text-white font-mono text-sm break-all">
+                    <p className="text-sm text-[#00AA2A]">Wallet</p>
+                    <p className="text-[#00FF41] font-mono text-sm break-all">
                       {burn.player.wallet_address}
                     </p>
                   </div>
                 </>
               ) : (
-                <p className="text-slate-400">Player not found</p>
+                <p className="text-[#00AA2A]">Player not found</p>
               )}
             </CardContent>
           </Card>
 
           {/* Timestamp */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-[#00FF41] flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 Date
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-white">{new Date(burn.created_at).toLocaleString()}</p>
+              <p className="text-[#00FF41]">{new Date(burn.created_at).toLocaleString()}</p>
             </CardContent>
           </Card>
         </div>

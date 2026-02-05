@@ -57,7 +57,7 @@ export function PackagePurchaseButton({
       <Button
         disabled
         size="lg"
-        className={`w-full bg-slate-700 text-slate-400 cursor-not-allowed ${className}`}
+        className={`w-full bg-[#1A3A2A] text-[#00AA2A] cursor-not-allowed ${className}`}
       >
         Sold Out
       </Button>
@@ -67,7 +67,7 @@ export function PackagePurchaseButton({
   // Success state
   if (purchaseState === 'success') {
     return (
-      <Button disabled size="lg" className={`w-full bg-green-600 text-white ${className}`}>
+      <Button disabled size="lg" className={`w-full bg-[#00FF41] text-black ${className}`}>
         <Check className="size-5 mr-2" />
         Purchase Complete!
       </Button>
@@ -77,7 +77,7 @@ export function PackagePurchaseButton({
   // Processing state
   if (purchaseState === 'processing') {
     return (
-      <Button disabled size="lg" className={`w-full bg-purple-600 text-white ${className}`}>
+      <Button disabled size="lg" className={`w-full bg-[#00FF41] text-black ${className}`}>
         <Loader2 className="size-5 mr-2 animate-spin" />
         Processing...
       </Button>
@@ -90,7 +90,7 @@ export function PackagePurchaseButton({
       <Button
         size="lg"
         onClick={() => setVisible(true)}
-        className={`w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white glow-button ${className}`}
+        className={`w-full bg-[#00FF41] hover:bg-[#00CC33] text-black glow-button ${className}`}
       >
         <Wallet className="size-5 mr-2" />
         Connect Wallet
@@ -101,7 +101,7 @@ export function PackagePurchaseButton({
   // Balance loading
   if (balanceLoading) {
     return (
-      <Button disabled size="lg" className={`w-full bg-slate-700 text-slate-300 ${className}`}>
+      <Button disabled size="lg" className={`w-full bg-[#1A3A2A] text-[#00CC33] ${className}`}>
         <Loader2 className="size-5 mr-2 animate-spin" />
         Checking balance...
       </Button>
@@ -115,12 +115,12 @@ export function PackagePurchaseButton({
         <Button
           disabled
           size="lg"
-          className="w-full bg-slate-700 text-slate-400 cursor-not-allowed"
+          className="w-full bg-[#1A3A2A] text-[#00AA2A] cursor-not-allowed"
         >
           <AlertCircle className="size-5 mr-2" />
           Insufficient Balance
         </Button>
-        <p className="text-xs text-slate-500 mt-1.5 text-center">
+        <p className="text-xs text-[#1A6B35] mt-1.5 text-center">
           Need {formatSol(priceInSol)} SOL &middot; You have {formatSol(balance ?? 0)} SOL
         </p>
       </div>
@@ -132,7 +132,7 @@ export function PackagePurchaseButton({
     <Button
       size="lg"
       onClick={onPurchase}
-      className={`w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold glow-button ${className}`}
+      className={`w-full bg-[#00FF41] hover:bg-[#00CC33] text-black font-semibold glow-button ${className}`}
     >
       Purchase for {formatSol(priceInSol)} SOL
     </Button>

@@ -55,10 +55,10 @@ export function PriceInput({
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-slate-200">Price in SOL</label>
+      <label className="text-sm font-medium text-[#00FF41]">Price in SOL</label>
       <div className="relative">
         <div className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
-          <span className="text-sm font-semibold text-purple-400">SOL</span>
+          <span className="text-sm font-semibold text-[#00FF41]">SOL</span>
         </div>
         <Input
           type="text"
@@ -67,26 +67,26 @@ export function PriceInput({
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="0.00"
-          className={`border-slate-700 bg-slate-800 pl-14 text-right text-lg font-mono text-white placeholder:text-slate-600 ${
+          className={`border-[#1A3A2A] bg-[#111318] pl-14 text-right text-lg font-mono text-[#00FF41] placeholder:text-[#1A6B35] ${
             error
-              ? 'border-red-600 focus-visible:border-red-500 focus-visible:ring-red-500/20'
-              : 'focus-visible:border-purple-500 focus-visible:ring-purple-500/20'
+              ? 'border-[#FF3333] focus-visible:border-[#FF3333] focus-visible:ring-[#FF3333]/20'
+              : 'focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20'
           }`}
         />
       </div>
 
       {/* USD estimate placeholder */}
       {value !== null && value > 0 && (
-        <p className="flex items-center gap-1 text-xs text-slate-500">
+        <p className="flex items-center gap-1 text-xs text-[#1A6B35]">
           <DollarSign className="h-3 w-3" />
           USD estimate unavailable
         </p>
       )}
 
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-[#FF3333]">{error}</p>}
 
       {/* Range info */}
-      <p className="text-[10px] text-slate-600">
+      <p className="text-[10px] text-[#1A6B35]">
         Min: {min} SOL | Max: {max.toLocaleString()} SOL
       </p>
     </div>

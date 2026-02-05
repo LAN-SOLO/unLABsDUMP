@@ -84,10 +84,10 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Filter className="size-4 text-slate-400" />
-          <h3 className="text-sm font-semibold text-white">Filters</h3>
+          <Filter className="size-4 text-[#00AA2A]" />
+          <h3 className="text-sm font-semibold text-[#00FF41]">Filters</h3>
           {activeFilterCount > 0 && (
-            <Badge variant="default" className="bg-purple-600 text-white text-xs px-1.5 py-0">
+            <Badge variant="default" className="bg-[#00FF41] text-black text-xs px-1.5 py-0">
               {activeFilterCount}
             </Badge>
           )}
@@ -96,7 +96,7 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
           <Button
             variant="ghost"
             size="xs"
-            className="text-slate-400 hover:text-white"
+            className="text-[#00AA2A] hover:text-[#00FF41]"
             onClick={handleClearFilters}
           >
             <X className="size-3 mr-1" />
@@ -105,11 +105,11 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
         )}
       </div>
 
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
 
       {/* Status Filter */}
       <div className="space-y-3">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</h4>
+        <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider">Status</h4>
         <div className="space-y-2">
           {STATUS_OPTIONS.map((option) => (
             <label key={option.value} className="flex items-center gap-2 cursor-pointer group">
@@ -117,20 +117,20 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
                 className={cn(
                   'w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center transition-colors',
                   filters.status === option.value
-                    ? 'border-purple-500'
-                    : 'border-slate-600 group-hover:border-slate-500'
+                    ? 'border-[#00FF41]'
+                    : 'border-[#1A3A2A] group-hover:border-[#1A3A2A]'
                 )}
               >
                 {filters.status === option.value && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FF41]" />
                 )}
               </div>
               <span
                 className={cn(
                   'text-sm transition-colors',
                   filters.status === option.value
-                    ? 'text-white'
-                    : 'text-slate-400 group-hover:text-slate-300'
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] group-hover:text-[#00FF41]'
                 )}
               >
                 {option.label}
@@ -140,11 +140,11 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
         </div>
       </div>
 
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
 
       {/* Color Filter */}
       <div className="space-y-3">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider">
           Wavelength
         </h4>
         <div className="space-y-2">
@@ -153,7 +153,7 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
               <Checkbox
                 checked={filters.colors.includes(color)}
                 onCheckedChange={() => handleColorToggle(color)}
-                className="border-slate-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                className="border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
               />
               <div
                 className="w-3 h-3 rounded-full border border-white/20"
@@ -163,8 +163,8 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
                 className={cn(
                   'text-sm transition-colors',
                   filters.colors.includes(color)
-                    ? 'text-white'
-                    : 'text-slate-400 group-hover:text-slate-300'
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] group-hover:text-[#00FF41]'
                 )}
               >
                 {color}
@@ -174,25 +174,25 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
         </div>
       </div>
 
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
 
       {/* Tier Filter */}
       <div className="space-y-3">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Tier</h4>
+        <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider">Tier</h4>
         <div className="space-y-2">
           {NFT_TIERS.map((tier) => (
             <label key={tier} className="flex items-center gap-2 cursor-pointer group">
               <Checkbox
                 checked={filters.tiers.includes(tier)}
                 onCheckedChange={() => handleTierToggle(tier)}
-                className="border-slate-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                className="border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
               />
               <span
                 className={cn(
                   'text-sm transition-colors',
                   filters.tiers.includes(tier)
-                    ? 'text-white'
-                    : 'text-slate-400 group-hover:text-slate-300'
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] group-hover:text-[#00FF41]'
                 )}
               >
                 T{tier} - {TIER_LABELS[tier]}
@@ -202,25 +202,25 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
         </div>
       </div>
 
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
 
       {/* Era Filter */}
       <div className="space-y-3">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Era</h4>
+        <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider">Era</h4>
         <div className="space-y-2">
           {NFT_ERAS.map((era) => (
             <label key={era} className="flex items-center gap-2 cursor-pointer group">
               <Checkbox
                 checked={filters.eras.includes(era)}
                 onCheckedChange={() => handleEraToggle(era)}
-                className="border-slate-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                className="border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
               />
               <span
                 className={cn(
                   'text-sm transition-colors',
                   filters.eras.includes(era)
-                    ? 'text-white'
-                    : 'text-slate-400 group-hover:text-slate-300'
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] group-hover:text-[#00FF41]'
                 )}
               >
                 {era}
@@ -230,11 +230,11 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
         </div>
       </div>
 
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
 
       {/* Rotation Filter */}
       <div className="space-y-3">
-        <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider">
           Rotation (_I/O)
         </h4>
         <div className="space-y-2">
@@ -243,14 +243,14 @@ export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProp
               <Checkbox
                 checked={filters.rotations.includes(rotation)}
                 onCheckedChange={() => handleRotationToggle(rotation)}
-                className="border-slate-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+                className="border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
               />
               <span
                 className={cn(
                   'text-sm transition-colors',
                   filters.rotations.includes(rotation)
-                    ? 'text-white'
-                    : 'text-slate-400 group-hover:text-slate-300'
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] group-hover:text-[#00FF41]'
                 )}
               >
                 {rotation} ({ROTATION_LABELS[rotation]})

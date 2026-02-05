@@ -8,11 +8,11 @@ import { CodeBlock } from './code-block'
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 const METHOD_COLORS: Record<HttpMethod, string> = {
-  GET: 'bg-green-600/20 text-green-400 border-green-600/30',
-  POST: 'bg-blue-600/20 text-blue-400 border-blue-600/30',
-  PUT: 'bg-yellow-600/20 text-yellow-400 border-yellow-600/30',
-  DELETE: 'bg-red-600/20 text-red-400 border-red-600/30',
-  PATCH: 'bg-orange-600/20 text-orange-400 border-orange-600/30',
+  GET: 'bg-[#00FF41]/20 text-[#00FF41] border-[#00FF41]/30',
+  POST: 'bg-[#00FFFF]/20 text-[#00FFFF] border-[#00FFFF]/30',
+  PUT: 'bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30',
+  DELETE: 'bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30',
+  PATCH: 'bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30',
 }
 
 interface Parameter {
@@ -43,9 +43,9 @@ export function EndpointCard({
   className,
 }: EndpointCardProps) {
   return (
-    <Card className={cn('border-slate-800 bg-slate-900/50 overflow-hidden', className)}>
+    <Card className={cn('border-[#0D3B1E] bg-[#0D1117]/50 overflow-hidden', className)}>
       {/* Header */}
-      <div className="border-b border-slate-800 px-6 py-4">
+      <div className="border-b border-[#0D3B1E] px-6 py-4">
         <div className="flex items-center gap-3">
           <Badge
             className={cn(
@@ -55,48 +55,48 @@ export function EndpointCard({
           >
             {method}
           </Badge>
-          <code className="text-sm font-medium text-white">{path}</code>
+          <code className="text-sm font-medium text-[#00FF41]">{path}</code>
         </div>
-        <p className="mt-2 text-sm text-slate-400">{description}</p>
+        <p className="mt-2 text-sm text-[#00AA2A]">{description}</p>
       </div>
 
       {/* Parameters */}
       {parameters && parameters.length > 0 && (
-        <div className="border-b border-slate-800 px-6 py-4">
-          <h4 className="mb-3 text-sm font-semibold text-slate-200">Parameters</h4>
+        <div className="border-b border-[#0D3B1E] px-6 py-4">
+          <h4 className="mb-3 text-sm font-semibold text-[#00FF41]">Parameters</h4>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="pb-2 pr-4 text-left font-medium text-slate-400">Name</th>
-                  <th className="pb-2 pr-4 text-left font-medium text-slate-400">Type</th>
-                  <th className="pb-2 pr-4 text-left font-medium text-slate-400">In</th>
-                  <th className="pb-2 pr-4 text-left font-medium text-slate-400">Required</th>
-                  <th className="pb-2 text-left font-medium text-slate-400">Description</th>
+                <tr className="border-b border-[#0D3B1E]">
+                  <th className="pb-2 pr-4 text-left font-medium text-[#00AA2A]">Name</th>
+                  <th className="pb-2 pr-4 text-left font-medium text-[#00AA2A]">Type</th>
+                  <th className="pb-2 pr-4 text-left font-medium text-[#00AA2A]">In</th>
+                  <th className="pb-2 pr-4 text-left font-medium text-[#00AA2A]">Required</th>
+                  <th className="pb-2 text-left font-medium text-[#00AA2A]">Description</th>
                 </tr>
               </thead>
               <tbody>
                 {parameters.map((param) => (
-                  <tr key={param.name} className="border-b border-slate-800/50 last:border-0">
+                  <tr key={param.name} className="border-b border-[#0D3B1E]/50 last:border-0">
                     <td className="py-2 pr-4">
-                      <code className="rounded bg-slate-800 px-1.5 py-0.5 text-xs text-purple-400">
+                      <code className="rounded bg-[#111318] px-1.5 py-0.5 text-xs text-[#00FF41]">
                         {param.name}
                       </code>
                     </td>
                     <td className="py-2 pr-4">
-                      <span className="text-cyan-400">{param.type}</span>
+                      <span className="text-[#00FFFF]">{param.type}</span>
                     </td>
                     <td className="py-2 pr-4">
-                      <span className="text-slate-400">{param.location}</span>
+                      <span className="text-[#00AA2A]">{param.location}</span>
                     </td>
                     <td className="py-2 pr-4">
                       {param.required ? (
-                        <span className="text-red-400">Required</span>
+                        <span className="text-[#FF3333]">Required</span>
                       ) : (
-                        <span className="text-slate-500">Optional</span>
+                        <span className="text-[#1A6B35]">Optional</span>
                       )}
                     </td>
-                    <td className="py-2 text-slate-300">{param.description}</td>
+                    <td className="py-2 text-[#00CC33]">{param.description}</td>
                   </tr>
                 ))}
               </tbody>
@@ -107,8 +107,8 @@ export function EndpointCard({
 
       {/* Request Example */}
       {requestExample && (
-        <div className="border-b border-slate-800 px-6 py-4">
-          <h4 className="mb-3 text-sm font-semibold text-slate-200">Example Request</h4>
+        <div className="border-b border-[#0D3B1E] px-6 py-4">
+          <h4 className="mb-3 text-sm font-semibold text-[#00FF41]">Example Request</h4>
           <CodeBlock code={requestExample} language="typescript" />
         </div>
       )}
@@ -116,7 +116,7 @@ export function EndpointCard({
       {/* Response Example */}
       {responseExample && (
         <div className="px-6 py-4">
-          <h4 className="mb-3 text-sm font-semibold text-slate-200">Example Response</h4>
+          <h4 className="mb-3 text-sm font-semibold text-[#00FF41]">Example Response</h4>
           <CodeBlock code={responseExample} language="json" />
         </div>
       )}

@@ -95,9 +95,9 @@ export default function TwoFactorSetupPage() {
 
   if (isLoading) {
     return (
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
         </CardContent>
       </Card>
     )
@@ -105,7 +105,7 @@ export default function TwoFactorSetupPage() {
 
   if (error && !setupData) {
     return (
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="py-8">
           <Alert variant="destructive">
             <AlertDescription>{error}</AlertDescription>
@@ -119,17 +119,17 @@ export default function TwoFactorSetupPage() {
   }
 
   return (
-    <Card className="bg-slate-900 border-slate-800">
+    <Card className="bg-[#0D1117] border-[#0D3B1E]">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-600/20">
-          <Shield className="h-6 w-6 text-purple-500" />
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#0D3B1E]/30">
+          <Shield className="h-6 w-6 text-[#00FF41]" />
         </div>
-        <CardTitle className="text-xl text-white">
+        <CardTitle className="text-xl text-[#00FF41]">
           {step === 'qr' && 'Set Up Two-Factor Authentication'}
           {step === 'backup' && 'Save Your Backup Codes'}
           {step === 'verify' && 'Verify Setup'}
         </CardTitle>
-        <CardDescription className="text-slate-400">
+        <CardDescription className="text-[#00AA2A]">
           {step === 'qr' && 'Scan the QR code with your authenticator app'}
           {step === 'backup' && "Store these codes safely - you'll need them if you lose access"}
           {step === 'verify' && 'Enter the code from your authenticator app'}
@@ -139,22 +139,22 @@ export default function TwoFactorSetupPage() {
         {step === 'qr' && setupData && (
           <>
             <div className="flex justify-center">
-              <div className="rounded-lg bg-white p-4">
+              <div className="rounded-sm bg-[#F0F0F0] p-4">
                 <QRCodeSVG value={setupData.uri} size={200} />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label className="text-slate-400">Can't scan? Enter this code manually:</Label>
+              <Label className="text-[#00AA2A]">Can't scan? Enter this code manually:</Label>
               <div className="flex gap-2">
                 <Input
                   value={setupData.secret}
                   readOnly
-                  className="bg-slate-800 border-slate-700 font-mono text-sm"
+                  className="bg-[#111318] border-[#1A3A2A] font-mono text-sm"
                 />
                 <Button variant="outline" size="icon" onClick={copySecret} className="shrink-0">
                   {copied ? (
-                    <Check className="h-4 w-4 text-green-500" />
+                    <Check className="h-4 w-4 text-[#00FF41]" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
@@ -164,7 +164,7 @@ export default function TwoFactorSetupPage() {
 
             <Button
               onClick={() => setStep('backup')}
-              className="w-full bg-purple-600 hover:bg-purple-700"
+              className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               Continue
             </Button>
@@ -173,10 +173,10 @@ export default function TwoFactorSetupPage() {
 
         {step === 'backup' && setupData && (
           <>
-            <div className="rounded-lg bg-slate-800 p-4">
+            <div className="rounded-sm bg-[#111318] p-4">
               <div className="grid grid-cols-2 gap-2">
                 {setupData.backupCodes.map((code, i) => (
-                  <code key={i} className="text-center font-mono text-sm text-slate-300">
+                  <code key={i} className="text-center font-mono text-sm text-[#00CC33]">
                     {code}
                   </code>
                 ))}
@@ -186,7 +186,7 @@ export default function TwoFactorSetupPage() {
             <Button variant="outline" onClick={copyBackupCodes} className="w-full">
               {backupCodesCopied ? (
                 <>
-                  <Check className="mr-2 h-4 w-4 text-green-500" />
+                  <Check className="mr-2 h-4 w-4 text-[#00FF41]" />
                   Copied!
                 </>
               ) : (
@@ -197,15 +197,15 @@ export default function TwoFactorSetupPage() {
               )}
             </Button>
 
-            <Alert className="border-yellow-600/50 bg-yellow-600/10">
-              <AlertDescription className="text-yellow-200">
+            <Alert className="border-[#FFB000]/50 bg-[#FFB000]/10">
+              <AlertDescription className="text-[#FFB000]">
                 Each backup code can only be used once. Store them in a safe place.
               </AlertDescription>
             </Alert>
 
             <Button
               onClick={() => setStep('verify')}
-              className="w-full bg-purple-600 hover:bg-purple-700"
+              className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               I've Saved My Backup Codes
             </Button>
@@ -231,14 +231,14 @@ export default function TwoFactorSetupPage() {
                 placeholder="000000"
                 value={verificationCode}
                 onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))}
-                className="bg-slate-800 border-slate-700 text-center font-mono text-2xl tracking-widest"
+                className="bg-[#111318] border-[#1A3A2A] text-center font-mono text-2xl tracking-widest"
               />
             </div>
 
             <Button
               onClick={handleVerify}
               disabled={verificationCode.length !== 6 || isVerifying}
-              className="w-full bg-purple-600 hover:bg-purple-700"
+              className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               {isVerifying ? (
                 <>
@@ -250,7 +250,7 @@ export default function TwoFactorSetupPage() {
               )}
             </Button>
 
-            <Button variant="ghost" onClick={() => setStep('qr')} className="w-full text-slate-400">
+            <Button variant="ghost" onClick={() => setStep('qr')} className="w-full text-[#00AA2A]">
               Back to QR Code
             </Button>
           </>

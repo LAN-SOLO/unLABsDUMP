@@ -19,26 +19,26 @@ const EVENT_CONFIG: Record<
   mint: {
     icon: Coins,
     label: 'Minted',
-    color: 'text-cyan-400',
-    dotColor: 'bg-cyan-500',
+    color: 'text-[#00FFFF]',
+    dotColor: 'bg-[#00FFFF]',
   },
   transfer: {
     icon: ArrowRight,
     label: 'Transferred',
-    color: 'text-blue-400',
-    dotColor: 'bg-blue-500',
+    color: 'text-[#00FFFF]',
+    dotColor: 'bg-[#00FFFF]',
   },
   sale: {
     icon: ShoppingCart,
     label: 'Sold',
-    color: 'text-green-400',
-    dotColor: 'bg-green-500',
+    color: 'text-[#00FF41]',
+    dotColor: 'bg-[#00FF41]',
   },
   deliver: {
     icon: Send,
     label: 'Delivered',
-    color: 'text-purple-400',
-    dotColor: 'bg-purple-500',
+    color: 'text-[#00FF41]',
+    dotColor: 'bg-[#00FF41]',
   },
 }
 
@@ -62,7 +62,7 @@ export function NFTHistory({ history, loading, className }: NFTHistoryProps) {
   if (loading) {
     return (
       <div className={cn('space-y-4', className)}>
-        <h3 className="text-sm font-semibold text-white">Ownership History</h3>
+        <h3 className="text-sm font-semibold text-[#00FF41]">Ownership History</h3>
         <div className="space-y-4">
           {Array.from({ length: 3 }).map((_, i) => (
             <div key={i} className="flex gap-3">
@@ -81,19 +81,19 @@ export function NFTHistory({ history, loading, className }: NFTHistoryProps) {
   if (history.length === 0) {
     return (
       <div className={cn('space-y-3', className)}>
-        <h3 className="text-sm font-semibold text-white">Ownership History</h3>
-        <p className="text-slate-500 text-sm">No ownership history available yet.</p>
+        <h3 className="text-sm font-semibold text-[#00FF41]">Ownership History</h3>
+        <p className="text-[#1A6B35] text-sm">No ownership history available yet.</p>
       </div>
     )
   }
 
   return (
     <div className={cn('space-y-3', className)}>
-      <h3 className="text-sm font-semibold text-white">Ownership History</h3>
+      <h3 className="text-sm font-semibold text-[#00FF41]">Ownership History</h3>
 
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-4 top-6 bottom-2 w-px bg-slate-800" />
+        <div className="absolute left-4 top-6 bottom-2 w-px bg-[#0D3B1E]" />
 
         <div className="space-y-0">
           {history.map((record, index) => {
@@ -111,7 +111,7 @@ export function NFTHistory({ history, loading, className }: NFTHistoryProps) {
                   <div
                     className={cn(
                       'w-8 h-8 rounded-full flex items-center justify-center',
-                      isLatest ? 'bg-slate-800 ring-2 ring-purple-500/50' : 'bg-slate-800'
+                      isLatest ? 'bg-[#111318] ring-2 ring-[#00FF41]/50' : 'bg-[#111318]'
                     )}
                   >
                     <Icon className={cn('size-3.5', config.color)} />
@@ -123,13 +123,13 @@ export function NFTHistory({ history, loading, className }: NFTHistoryProps) {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={cn('text-sm font-medium', config.color)}>{config.label}</span>
                     {record.price !== undefined && record.price > 0 && (
-                      <span className="text-xs text-slate-400">for {record.price} SOL</span>
+                      <span className="text-xs text-[#00AA2A]">for {record.price} SOL</span>
                     )}
                   </div>
 
                   <div className="flex items-center gap-2 mt-1">
-                    <Wallet className="size-3 text-slate-600" />
-                    <span className="text-xs text-slate-400 font-mono">
+                    <Wallet className="size-3 text-[#1A6B35]" />
+                    <span className="text-xs text-[#00AA2A] font-mono">
                       {record.display_name || formatWallet(record.wallet_address)}
                     </span>
                   </div>
@@ -139,13 +139,13 @@ export function NFTHistory({ history, loading, className }: NFTHistoryProps) {
                       href={`https://solscan.io/tx/${record.transaction_hash}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-purple-400 hover:text-purple-300 mt-1 inline-block"
+                      className="text-xs text-[#00FF41] hover:text-[#00CC33] mt-1 inline-block"
                     >
                       View Transaction
                     </a>
                   )}
 
-                  <div className="text-xs text-slate-600 mt-1">{formatDate(record.timestamp)}</div>
+                  <div className="text-xs text-[#1A6B35] mt-1">{formatDate(record.timestamp)}</div>
                 </div>
               </div>
             )

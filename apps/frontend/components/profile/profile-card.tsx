@@ -47,14 +47,14 @@ export function ProfileCard() {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
-            <Skeleton className="h-6 w-40 bg-slate-800" />
+            <Skeleton className="h-6 w-40 bg-[#111318]" />
           </CardHeader>
           <CardContent className="space-y-4">
-            <Skeleton className="h-5 w-64 bg-slate-800" />
-            <Skeleton className="h-5 w-48 bg-slate-800" />
-            <Skeleton className="h-5 w-56 bg-slate-800" />
+            <Skeleton className="h-5 w-64 bg-[#111318]" />
+            <Skeleton className="h-5 w-48 bg-[#111318]" />
+            <Skeleton className="h-5 w-56 bg-[#111318]" />
           </CardContent>
         </Card>
       </div>
@@ -63,9 +63,9 @@ export function ProfileCard() {
 
   if (!profile) {
     return (
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="py-8 text-center">
-          <p className="text-slate-400">Unable to load profile data.</p>
+          <p className="text-[#00AA2A]">Unable to load profile data.</p>
         </CardContent>
       </Card>
     )
@@ -90,14 +90,14 @@ export function ProfileCard() {
   return (
     <div className="space-y-6">
       {/* Player Info Card */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-white flex items-center gap-2">
-              <User className="h-5 w-5 text-purple-500" />
+            <CardTitle className="text-[#00FF41] flex items-center gap-2">
+              <User className="h-5 w-5 text-[#00FF41]" />
               Player Profile
             </CardTitle>
-            <Badge variant="outline" className="border-cyan-500/30 text-cyan-400 bg-cyan-500/10">
+            <Badge variant="outline" className="border-[#00FFFF]/30 text-[#00FFFF] bg-[#00FFFF]/10">
               Active
             </Badge>
           </div>
@@ -105,7 +105,7 @@ export function ProfileCard() {
         <CardContent className="space-y-5">
           {/* Wallet Address */}
           <div className="space-y-1">
-            <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+            <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider">
               Wallet Address
             </label>
             <WalletAddress address={profile.wallet_address} showFull />
@@ -113,10 +113,10 @@ export function ProfileCard() {
 
           {/* Wallet QR Code */}
           <div className="space-y-1">
-            <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+            <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider">
               Wallet QR
             </label>
-            <div className="inline-block rounded-lg border border-slate-800 bg-slate-800/40 p-2">
+            <div className="inline-block rounded-sm border border-[#0D3B1E] bg-[#111318]/40 p-2">
               <QRCodeSVG
                 value={profile.wallet_address}
                 size={80}
@@ -129,58 +129,60 @@ export function ProfileCard() {
 
           {/* Player ID */}
           <div className="space-y-1">
-            <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+            <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider">
               Player ID
             </label>
-            <p className="font-mono text-sm text-slate-300">{profile.id}</p>
+            <p className="font-mono text-sm text-[#00CC33]">{profile.id}</p>
           </div>
 
           {/* Member Since */}
           <div className="flex items-center gap-6">
             <div className="space-y-1">
-              <label className="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider flex items-center gap-1">
                 <Calendar className="h-3 w-3" />
                 Member Since
               </label>
-              <p className="text-sm text-slate-200">{memberSince}</p>
+              <p className="text-sm text-[#00FF41]">{memberSince}</p>
             </div>
 
             <div className="space-y-1">
-              <label className="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1">
+              <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider flex items-center gap-1">
                 <Clock className="h-3 w-3" />
                 Last Login
               </label>
-              <p className="text-sm text-slate-200">{lastLogin}</p>
+              <p className="text-sm text-[#00FF41]">{lastLogin}</p>
             </div>
           </div>
 
           {/* Purchase History Summary */}
-          <div className="pt-3 border-t border-slate-800">
+          <div className="pt-3 border-t border-[#0D3B1E]">
             <div className="flex items-center gap-6">
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider flex items-center gap-1">
                   <ShoppingBag className="h-3 w-3" />
                   Total Purchases
                 </label>
-                <p className="text-lg font-semibold text-white">{profile.total_purchases ?? 0}</p>
+                <p className="text-lg font-semibold text-[#00FF41]">
+                  {profile.total_purchases ?? 0}
+                </p>
               </div>
 
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider">
                   NFTs Owned (on-chain)
                 </label>
-                <p className="text-lg font-semibold text-white">{profile.nft_count ?? 0}</p>
+                <p className="text-lg font-semibold text-[#00FF41]">{profile.nft_count ?? 0}</p>
               </div>
             </div>
           </div>
 
           {/* Solana Explorer Link */}
-          <div className="pt-3 border-t border-slate-800">
+          <div className="pt-3 border-t border-[#0D3B1E]">
             <a
               href={`https://explorer.solana.com/address/${profile.wallet_address}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-purple-400 hover:text-purple-300 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm text-[#00FF41] hover:text-[#00FF41] transition-colors"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               View on Solana Explorer

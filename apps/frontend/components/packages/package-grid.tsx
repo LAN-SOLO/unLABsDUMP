@@ -11,22 +11,22 @@ interface PackageGridProps {
 
 function PackageCardSkeleton() {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900 overflow-hidden">
-      <Skeleton className="h-40 w-full bg-slate-800" />
+    <div className="rounded-sm border border-[#0D3B1E] bg-[#0D1117] overflow-hidden">
+      <Skeleton className="h-40 w-full bg-[#111318]" />
       <div className="p-4 space-y-3">
-        <Skeleton className="h-6 w-3/4 bg-slate-800" />
-        <Skeleton className="h-4 w-full bg-slate-800" />
-        <Skeleton className="h-4 w-2/3 bg-slate-800" />
+        <Skeleton className="h-6 w-3/4 bg-[#111318]" />
+        <Skeleton className="h-4 w-full bg-[#111318]" />
+        <Skeleton className="h-4 w-2/3 bg-[#111318]" />
         <div className="flex gap-3">
-          <Skeleton className="h-4 w-20 bg-slate-800" />
-          <Skeleton className="h-4 w-24 bg-slate-800" />
+          <Skeleton className="h-4 w-20 bg-[#111318]" />
+          <Skeleton className="h-4 w-24 bg-[#111318]" />
         </div>
-        <div className="pt-3 border-t border-slate-800 flex items-end justify-between">
+        <div className="pt-3 border-t border-[#0D3B1E] flex items-end justify-between">
           <div className="space-y-1">
-            <Skeleton className="h-8 w-24 bg-slate-800" />
-            <Skeleton className="h-3 w-16 bg-slate-800" />
+            <Skeleton className="h-8 w-24 bg-[#111318]" />
+            <Skeleton className="h-3 w-16 bg-[#111318]" />
           </div>
-          <Skeleton className="h-8 w-24 rounded-md bg-slate-800" />
+          <Skeleton className="h-8 w-24 rounded-md bg-[#111318]" />
         </div>
       </div>
     </div>
@@ -54,9 +54,9 @@ export function PackageGrid({ packages, featuredPackage, isLoading }: PackageGri
   if (packages.length === 0 && !featuredPackage) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-full bg-[#111318] flex items-center justify-center mb-4">
           <svg
-            className="size-8 text-slate-500"
+            className="size-8 text-[#1A6B35]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,8 +69,8 @@ export function PackageGrid({ packages, featuredPackage, isLoading }: PackageGri
             />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-white mb-1">No packages found</h3>
-        <p className="text-slate-400 text-sm max-w-md">
+        <h3 className="text-lg font-semibold text-[#00FF41] mb-1">No packages found</h3>
+        <p className="text-[#00AA2A] text-sm max-w-md">
           Try adjusting your filters or check back later for new packages.
         </p>
       </div>
@@ -82,7 +82,7 @@ export function PackageGrid({ packages, featuredPackage, isLoading }: PackageGri
       {/* Featured package - larger card at top */}
       {featuredPackage && (
         <div className="relative">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-xl opacity-30 blur-sm" />
+          <div className="absolute -inset-0.5 bg-[#00FF41] rounded-sm opacity-30 blur-sm" />
           <div className="relative max-w-2xl mx-auto">
             <PackageCard {...featuredPackage} />
           </div>

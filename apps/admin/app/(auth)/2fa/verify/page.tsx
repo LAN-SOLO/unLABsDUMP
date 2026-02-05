@@ -56,7 +56,7 @@ function TwoFactorVerifyContent() {
 
   if (!adminId) {
     return (
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="py-8">
           <Alert variant="destructive">
             <AlertDescription>Invalid session. Please log in again.</AlertDescription>
@@ -70,19 +70,19 @@ function TwoFactorVerifyContent() {
   }
 
   return (
-    <Card className="bg-slate-900 border-slate-800">
+    <Card className="bg-[#0D1117] border-[#0D3B1E]">
       <CardHeader className="text-center">
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-600/20">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#0D3B1E]/30">
           {useBackupCode ? (
-            <KeyRound className="h-6 w-6 text-purple-500" />
+            <KeyRound className="h-6 w-6 text-[#00FF41]" />
           ) : (
-            <Shield className="h-6 w-6 text-purple-500" />
+            <Shield className="h-6 w-6 text-[#00FF41]" />
           )}
         </div>
-        <CardTitle className="text-xl text-white">
+        <CardTitle className="text-xl text-[#00FF41]">
           {useBackupCode ? 'Enter Backup Code' : 'Two-Factor Authentication'}
         </CardTitle>
-        <CardDescription className="text-slate-400">
+        <CardDescription className="text-[#00AA2A]">
           {useBackupCode
             ? 'Enter one of your backup codes to sign in'
             : 'Enter the 6-digit code from your authenticator app'}
@@ -110,14 +110,14 @@ function TwoFactorVerifyContent() {
                 useBackupCode ? e.target.value.toUpperCase() : e.target.value.replace(/\D/g, '')
               )
             }
-            className="bg-slate-800 border-slate-700 text-center font-mono text-2xl tracking-widest"
+            className="bg-[#111318] border-[#1A3A2A] text-center font-mono text-2xl tracking-widest"
           />
         </div>
 
         <Button
           onClick={handleVerify}
           disabled={(useBackupCode ? code.length !== 8 : code.length !== 6) || isLoading}
-          className="w-full bg-purple-600 hover:bg-purple-700"
+          className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
         >
           {isLoading ? (
             <>
@@ -137,7 +137,7 @@ function TwoFactorVerifyContent() {
               setCode('')
               setError(null)
             }}
-            className="text-slate-400 hover:text-purple-400"
+            className="text-[#00AA2A] hover:text-[#00FF41]"
           >
             {useBackupCode ? 'Use authenticator app instead' : 'Use a backup code instead'}
           </Button>
@@ -147,7 +147,7 @@ function TwoFactorVerifyContent() {
           <Button
             variant="ghost"
             onClick={() => router.push('/login')}
-            className="text-slate-500 text-sm"
+            className="text-[#1A6B35] text-sm"
           >
             Back to login
           </Button>
@@ -161,9 +161,9 @@ export default function TwoFactorVerifyPage() {
   return (
     <Suspense
       fallback={
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardContent className="flex items-center justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+            <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
           </CardContent>
         </Card>
       }

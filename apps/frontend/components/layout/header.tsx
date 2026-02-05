@@ -37,22 +37,32 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-xl supports-[backdrop-filter]:bg-slate-950/60">
+      <header className="sticky top-0 z-50 w-full border-b border-[#0D3B1E] bg-black/80 backdrop-blur-xl supports-[backdrop-filter]:bg-black/60">
         <div className="mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
           {/* Mobile hamburger */}
           <Button
             variant="ghost"
             size="icon"
-            className="mr-2 lg:hidden text-slate-300 hover:text-white"
+            className="mr-2 lg:hidden text-[#00AA2A] hover:text-[#00FF41]"
             onClick={() => setMobileOpen(true)}
           >
             <Menu className="size-5" />
             <span className="sr-only">Open menu</span>
           </Button>
 
-          {/* Logo */}
-          <Link href="/" className="mr-6 flex items-center gap-2 font-bold text-lg">
-            <span className="text-gradient">UnstableLabs</span>
+          {/* Traffic light dots + Logo */}
+          <Link href="/" className="mr-6 flex items-center gap-3 font-bold text-lg">
+            <div className="hidden sm:flex items-center gap-1.5">
+              <span className="led-offline" />
+              <span className="led-standby" />
+              <span className="led-online" />
+            </div>
+            <span
+              className="text-[#00FF41] font-bold"
+              style={{ textShadow: '0 0 5px #00FF41, 0 0 10px rgba(0,255,65,0.5)' }}
+            >
+              _unOS
+            </span>
           </Link>
 
           {/* Desktop nav links */}
@@ -64,15 +74,20 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'relative px-3 py-2 text-sm font-medium transition-colors rounded-md',
+                    'relative px-3 py-2 text-sm font-medium transition-colors rounded-sm uppercase tracking-wider',
                     isActive
-                      ? 'text-white'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                      ? 'text-[#00FF41]'
+                      : 'text-[#00AA2A] hover:text-[#00FF41] hover:bg-[#0D3B1E]/50'
                   )}
+                  style={isActive ? { textShadow: '0 0 5px #00FF41' } : undefined}
                 >
+                  {isActive && <span className="mr-1">&gt;</span>}
                   {link.label}
                   {isActive && (
-                    <span className="absolute inset-x-3 -bottom-[13px] h-0.5 rounded-full bg-purple-500" />
+                    <span
+                      className="absolute inset-x-3 -bottom-[13px] h-0.5 bg-[#00FF41]"
+                      style={{ boxShadow: '0 0 4px #00FF41' }}
+                    />
                   )}
                 </Link>
               )
@@ -86,12 +101,12 @@ export function Header() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="relative text-slate-400 hover:text-slate-200"
+                className="relative text-[#00AA2A] hover:text-[#00FF41]"
                 onClick={() => setNotificationsOpen((prev) => !prev)}
               >
                 <Bell className="size-5" />
                 {unreadCount > 0 && (
-                  <Badge className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center p-0 text-[10px] bg-purple-600 text-white border-0">
+                  <Badge className="absolute -top-0.5 -right-0.5 flex size-4 items-center justify-center p-0 text-[10px] bg-[#00FF41] text-black border-0">
                     {unreadCount > 9 ? '9+' : unreadCount}
                   </Badge>
                 )}

@@ -30,11 +30,11 @@ interface ListingCardProps {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'text-slate-400',
-  uncommon: 'text-green-400',
-  rare: 'text-blue-400',
-  epic: 'text-purple-400',
-  legendary: 'text-amber-400',
+  common: 'text-[#00AA2A]',
+  uncommon: 'text-[#00FF41]',
+  rare: 'text-[#00FFFF]',
+  epic: 'text-[#00FF41]',
+  legendary: 'text-[#FFB000]',
 }
 
 export function ListingCard({ listing, onBuy }: ListingCardProps) {
@@ -42,9 +42,9 @@ export function ListingCard({ listing, onBuy }: ListingCardProps) {
   const truncatedSeller = `${listing.sellerAddress.slice(0, 4)}...${listing.sellerAddress.slice(-4)}`
 
   return (
-    <Card className="group border-slate-800 bg-slate-900 transition-all hover:border-slate-700 hover:shadow-lg hover:shadow-purple-500/5">
+    <Card className="group border-[#0D3B1E] bg-[#0D1117] transition-all hover:border-[#1A3A2A] hover:shadow-lg hover:shadow-[#00FF41]/5">
       {/* NFT Image */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-t-xl bg-slate-800">
+      <div className="relative aspect-square w-full overflow-hidden rounded-t-sm bg-[#111318]">
         <img
           src={listing.nftImage || '/placeholder-nft.png'}
           alt={listing.nftName}
@@ -52,19 +52,19 @@ export function ListingCard({ listing, onBuy }: ListingCardProps) {
         />
 
         {/* Price overlay */}
-        <div className="absolute bottom-2 left-2 rounded-md bg-slate-950/80 px-2 py-1 backdrop-blur-sm">
-          <p className="text-sm font-bold text-white">{formatSol(listing.priceInSol)} SOL</p>
+        <div className="absolute bottom-2 left-2 rounded-md bg-black/80 px-2 py-1 backdrop-blur-sm">
+          <p className="text-sm font-bold text-[#00FF41]">{formatSol(listing.priceInSol)} SOL</p>
         </div>
       </div>
 
       <CardContent className="space-y-3 p-3">
         {/* Name and Rarity */}
         <div>
-          <h3 className="truncate text-sm font-semibold text-white">{listing.nftName}</h3>
+          <h3 className="truncate text-sm font-semibold text-[#00FF41]">{listing.nftName}</h3>
           <div className="mt-1 flex items-center gap-2">
             <Badge
               variant="outline"
-              className={`text-[10px] capitalize ${rarityColors[listing.nftRarity] || 'text-slate-400'}`}
+              className={`text-[10px] capitalize ${rarityColors[listing.nftRarity] || 'text-[#00AA2A]'}`}
             >
               {listing.nftRarity}
             </Badge>
@@ -76,7 +76,7 @@ export function ListingCard({ listing, onBuy }: ListingCardProps) {
           {Object.entries(listing.traits).map(([key, value]) => (
             <span
               key={key}
-              className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-400"
+              className="rounded bg-[#111318] px-1.5 py-0.5 text-[10px] text-[#00AA2A]"
             >
               {value}
             </span>
@@ -85,13 +85,13 @@ export function ListingCard({ listing, onBuy }: ListingCardProps) {
 
         {/* Seller */}
         <div className="flex items-center justify-between text-xs">
-          <span className="text-slate-500">Seller</span>
-          <span className="font-mono text-slate-400">{truncatedSeller}</span>
+          <span className="text-[#1A6B35]">Seller</span>
+          <span className="font-mono text-[#00AA2A]">{truncatedSeller}</span>
         </div>
 
         {/* Time remaining */}
         {listing.expiresAt && (
-          <div className="flex items-center gap-1 text-xs text-slate-400">
+          <div className="flex items-center gap-1 text-xs text-[#00AA2A]">
             <Clock className="h-3 w-3" />
             {timeRemaining}
           </div>
@@ -100,7 +100,7 @@ export function ListingCard({ listing, onBuy }: ListingCardProps) {
         {/* Buy button */}
         <Button
           onClick={() => onBuy(listing)}
-          className="w-full bg-purple-600 hover:bg-purple-700"
+          className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
           size="sm"
         >
           <ShoppingCart className="mr-1 h-3.5 w-3.5" />

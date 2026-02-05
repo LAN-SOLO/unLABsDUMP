@@ -124,11 +124,11 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
   if (!nft) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h2 className="text-xl font-semibold text-white mb-2">NFT Not Found</h2>
-        <p className="text-slate-400 mb-4">
+        <h2 className="text-xl font-semibold text-[#00FF41] mb-2">NFT Not Found</h2>
+        <p className="text-[#00AA2A] mb-4">
           The NFT you are looking for does not exist or has been removed.
         </p>
-        <Button asChild variant="outline" className="border-slate-700">
+        <Button asChild variant="outline" className="border-[#1A3A2A]">
           <Link href="/browse">
             <ArrowLeft className="size-4 mr-2" />
             Back to Browse
@@ -144,18 +144,18 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
   return (
     <div className="space-y-8">
       {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-sm text-slate-500">
-        <Link href="/browse" className="hover:text-slate-300 transition-colors">
+      <nav className="flex items-center gap-2 text-sm text-[#1A6B35]">
+        <Link href="/browse" className="hover:text-[#00FF41] transition-colors">
           Browse
         </Link>
         <span>/</span>
-        <span className="text-slate-300 truncate">{nft.name}</span>
+        <span className="text-[#00CC33] truncate">{nft.name}</span>
       </nav>
 
       {/* Back link */}
       <Link
         href="/browse"
-        className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-[#00AA2A] hover:text-[#00FF41] transition-colors"
       >
         <ArrowLeft className="size-4" />
         Back to Browse
@@ -174,16 +174,16 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
           <div>
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2">
-                <h1 className="text-2xl font-bold text-white">{nft.name}</h1>
+                <h1 className="text-2xl font-bold text-[#00FF41]">{nft.name}</h1>
                 <div className="flex items-center gap-2">
                   <Badge className={cn('text-xs', tierColor)}>Tier {nft.tier}</Badge>
-                  <span className="text-slate-400 text-sm">{TIER_LABELS[nft.tier as NFTTier]}</span>
+                  <span className="text-[#00AA2A] text-sm">{TIER_LABELS[nft.tier as NFTTier]}</span>
                   <div
                     className="w-3 h-3 rounded-full border border-white/20"
                     style={{ backgroundColor: colorHex }}
                     title={`${nft.color} wavelength`}
                   />
-                  <span className="text-slate-500 text-xs">{nft.color}</span>
+                  <span className="text-[#1A6B35] text-xs">{nft.color}</span>
                 </div>
               </div>
 
@@ -192,14 +192,14 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                  className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] h-8 w-8"
                   onClick={() => setFavorited((prev) => !prev)}
                   aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
                 >
                   <Heart
                     className={cn(
                       'size-4 transition-colors',
-                      favorited && 'fill-red-500 text-red-500'
+                      favorited && 'fill-[#FF3333] text-[#FF3333]'
                     )}
                   />
                 </Button>
@@ -210,11 +210,11 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                      className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] h-8 w-8"
                       aria-label="Share"
                     >
                       {copied ? (
-                        <Check className="size-4 text-green-400" />
+                        <Check className="size-4 text-[#00FF41]" />
                       ) : (
                         <Share2 className="size-4" />
                       )}
@@ -222,17 +222,17 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent
                     align="end"
-                    className="bg-slate-900 border-slate-700 text-slate-200"
+                    className="bg-[#0D1117] border-[#1A3A2A] text-[#00FF41]"
                   >
                     <DropdownMenuItem
-                      className="cursor-pointer hover:bg-slate-800 focus:bg-slate-800"
+                      className="cursor-pointer hover:bg-[#0D3B1E]/20 focus:bg-[#0D3B1E]/20"
                       onClick={handleShare}
                     >
                       <Link2 className="size-4 mr-2" />
                       Copy Link
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="cursor-pointer hover:bg-slate-800 focus:bg-slate-800"
+                      className="cursor-pointer hover:bg-[#0D3B1E]/20 focus:bg-[#0D3B1E]/20"
                       onClick={() => {
                         const url = `${window.location.origin}/nft/${id}`
                         const text = `Check out this NFT: ${nft.name}`
@@ -255,21 +255,23 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                     <Button
                       variant="outline"
                       size="icon"
-                      className="border-slate-700 text-slate-400 hover:text-white h-8 w-8"
+                      className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] h-8 w-8"
                       aria-label="Report"
                     >
                       <Flag className="size-4" />
                     </Button>
                   </AlertDialogTrigger>
-                  <AlertDialogContent className="bg-slate-900 border-slate-700 text-slate-200">
+                  <AlertDialogContent className="bg-[#0D1117] border-[#1A3A2A] text-[#00FF41]">
                     <AlertDialogHeader>
-                      <AlertDialogTitle className="text-white">Report Submitted</AlertDialogTitle>
-                      <AlertDialogDescription className="text-slate-400">
+                      <AlertDialogTitle className="text-[#00FF41]">
+                        Report Submitted
+                      </AlertDialogTitle>
+                      <AlertDialogDescription className="text-[#00AA2A]">
                         Report submitted. Thank you for helping us maintain quality.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogAction className="bg-purple-600 hover:bg-purple-500 text-white">
+                      <AlertDialogAction className="bg-[#00FF41] text-black hover:bg-[#00CC33] text-black">
                         OK
                       </AlertDialogAction>
                     </AlertDialogFooter>
@@ -279,27 +281,27 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
             </div>
 
             {nft.description && (
-              <p className="text-slate-400 text-sm mt-3 leading-relaxed">{nft.description}</p>
+              <p className="text-[#00AA2A] text-sm mt-3 leading-relaxed">{nft.description}</p>
             )}
           </div>
 
-          <Separator className="bg-slate-800" />
+          <Separator className="bg-[#0D3B1E]" />
 
           {/* Actions based on status */}
           <div className="space-y-3">
-            <h3 className="text-sm font-semibold text-white">Status</h3>
+            <h3 className="text-sm font-semibold text-[#00FF41]">Status</h3>
             {nft.status === 'ready' && (
-              <div className="bg-slate-900 rounded-lg border border-slate-800 p-4">
+              <div className="bg-[#0D1117] rounded-sm border border-[#0D3B1E] p-4">
                 <div className="flex items-center gap-3">
-                  <Clock className="size-5 text-slate-500" />
+                  <Clock className="size-5 text-[#1A6B35]" />
                   <div>
-                    <p className="text-sm text-slate-300">Coming Soon</p>
-                    <p className="text-xs text-slate-500">This NFT has not been minted yet.</p>
+                    <p className="text-sm text-[#00CC33]">Coming Soon</p>
+                    <p className="text-xs text-[#1A6B35]">This NFT has not been minted yet.</p>
                   </div>
                 </div>
                 <Button
                   disabled
-                  className="mt-3 w-full bg-slate-800 text-slate-500 cursor-not-allowed"
+                  className="mt-3 w-full bg-[#111318] text-[#1A6B35] cursor-not-allowed"
                 >
                   Coming Soon
                 </Button>
@@ -307,16 +309,19 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
             )}
 
             {nft.status === 'minted' && (
-              <div className="bg-slate-900 rounded-lg border border-cyan-500/20 p-4">
+              <div className="bg-[#0D1117] rounded-sm border border-[#00FFFF]/20 p-4">
                 <div className="flex items-center gap-3">
-                  <Package className="size-5 text-cyan-400" />
+                  <Package className="size-5 text-[#00FFFF]" />
                   <div>
-                    <p className="text-sm text-cyan-300">Available</p>
-                    <p className="text-xs text-slate-500">This NFT is minted and available.</p>
+                    <p className="text-sm text-[#00FFFF]">Available</p>
+                    <p className="text-xs text-[#1A6B35]">This NFT is minted and available.</p>
                   </div>
                 </div>
                 {nft.package_id && (
-                  <Button asChild className="mt-3 w-full bg-cyan-600 hover:bg-cyan-700 text-white">
+                  <Button
+                    asChild
+                    className="mt-3 w-full bg-[#00FFFF] hover:bg-[#00FFFF]/80 text-black"
+                  >
                     <Link href={`/packages/${nft.package_id}`}>
                       <Package className="size-4 mr-2" />
                       View Package
@@ -327,14 +332,14 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
             )}
 
             {nft.status === 'delivered' && (
-              <div className="bg-slate-900 rounded-lg border border-purple-500/20 p-4">
+              <div className="bg-[#0D1117] rounded-sm border border-[#00FF41]/20 p-4">
                 <div className="flex items-center gap-3">
-                  <ExternalLink className="size-5 text-purple-400" />
+                  <ExternalLink className="size-5 text-[#00FF41]" />
                   <div>
-                    <p className="text-sm text-purple-300">Delivered</p>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-sm text-[#00CC33]">Delivered</p>
+                    <p className="text-xs text-[#1A6B35]">
                       Owned by{' '}
-                      <span className="text-slate-400 font-mono">
+                      <span className="text-[#00AA2A] font-mono">
                         {nft.owner_display_name ||
                           (nft.owner_wallet
                             ? `${nft.owner_wallet.slice(0, 6)}...${nft.owner_wallet.slice(-4)}`
@@ -349,7 +354,7 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-slate-700 text-slate-300"
+                      className="flex-1 border-[#1A3A2A] text-[#00CC33]"
                     >
                       <a
                         href={`https://solscan.io/account/${nft.owner_wallet}`}
@@ -366,7 +371,7 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
             )}
           </div>
 
-          <Separator className="bg-slate-800" />
+          <Separator className="bg-[#0D3B1E]" />
 
           {/* Metadata table */}
           <NFTMetadata nft={nft} />
@@ -374,19 +379,19 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
       </div>
 
       {/* Ownership History */}
-      <Separator className="bg-slate-800" />
+      <Separator className="bg-[#0D3B1E]" />
       <NFTHistory history={history} loading={historyLoading} />
 
       {/* Related NFTs */}
       {relatedNfts.length > 0 && (
         <>
-          <Separator className="bg-slate-800" />
+          <Separator className="bg-[#0D3B1E]" />
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-white">Related NFTs</h3>
+              <h3 className="text-lg font-semibold text-[#00FF41]">Related NFTs</h3>
               <Link
                 href={`/browse?color=${nft.color}&tier=${nft.tier}`}
-                className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                className="text-sm text-[#00FF41] hover:text-[#00CC33] transition-colors"
               >
                 View all
               </Link>
@@ -408,7 +413,7 @@ function NFTDetailSkeleton() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Image skeleton */}
-        <Skeleton className="aspect-square rounded-lg" />
+        <Skeleton className="aspect-square rounded-sm" />
 
         {/* Details skeleton */}
         <div className="space-y-6">
@@ -425,7 +430,7 @@ function NFTDetailSkeleton() {
 
           <div className="space-y-3">
             <Skeleton className="h-4 w-16" />
-            <Skeleton className="h-24 w-full rounded-lg" />
+            <Skeleton className="h-24 w-full rounded-sm" />
           </div>
 
           <Skeleton className="h-px w-full" />

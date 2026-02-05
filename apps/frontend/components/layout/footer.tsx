@@ -14,18 +14,24 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-          {/* Left: brand + links */}
+    <footer className="border-t border-[#0D3B1E] bg-black">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        {/* Status bar style */}
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+          {/* Left: system status + links */}
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
-            <span className="text-gradient font-bold text-sm">UnstableLabs</span>
+            <div className="flex items-center gap-2 text-xs font-mono">
+              <span className="led-online" />
+              <span className="text-[#00FF41] uppercase tracking-wider">[Network: Mainnet]</span>
+              <span className="text-[#1A6B35]">|</span>
+              <span className="text-[#00AA2A] uppercase tracking-wider">[Status: Online]</span>
+            </div>
             <nav className="flex flex-wrap items-center gap-4">
               {footerLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-xs text-slate-400 transition-colors hover:text-slate-200"
+                  className="text-xs text-[#00AA2A] transition-colors hover:text-[#00FF41] uppercase tracking-wider"
                 >
                   {link.label}
                 </Link>
@@ -41,7 +47,7 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-slate-400 transition-colors hover:text-slate-200"
+                className="text-xs text-[#00AA2A] transition-colors hover:text-[#00FF41] uppercase tracking-wider"
               >
                 {link.label}
               </a>
@@ -49,9 +55,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-6 border-t border-slate-800/50 pt-4 text-center">
-          <p className="text-xs text-slate-500">&copy; 2026 UnstableLabs. All rights reserved.</p>
+        {/* System metrics bar */}
+        <div className="mt-4 border-t border-[#0D3B1E]/50 pt-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <div className="flex items-center gap-4 text-[10px] text-[#1A6B35] font-mono uppercase tracking-widest">
+            <span>MEM: 64.2MB</span>
+            <span>CPU: 0.3%</span>
+            <span>UPTIME: 99.9%</span>
+          </div>
+          <p className="text-[10px] text-[#1A6B35] font-mono uppercase tracking-widest">
+            &copy; 2026 _unOS. Built on Solana.
+          </p>
         </div>
       </div>
     </footer>

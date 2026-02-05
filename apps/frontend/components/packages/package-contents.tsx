@@ -36,17 +36,17 @@ function getTierColor(metadata: Record<string, unknown>): string {
   const tier = metadata?.tier
   switch (tier) {
     case 1:
-      return 'bg-slate-600 text-slate-200'
+      return 'bg-[#1A3A2A] text-[#00FF41]'
     case 2:
-      return 'bg-green-600/30 text-green-400 border-green-500/30'
+      return 'bg-[#0D3B1E]/30 text-[#00FF41] border-[#00FF41]/30'
     case 3:
-      return 'bg-blue-600/30 text-blue-400 border-blue-500/30'
+      return 'bg-[#00FFFF]/20 text-[#00FFFF] border-[#00FFFF]/30'
     case 4:
-      return 'bg-purple-600/30 text-purple-400 border-purple-500/30'
+      return 'bg-[#0D3B1E]/30 text-[#00FF41] border-[#00FF41]/30'
     case 5:
-      return 'bg-amber-600/30 text-amber-400 border-amber-500/30'
+      return 'bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30'
     default:
-      return 'bg-slate-600 text-slate-200'
+      return 'bg-[#1A3A2A] text-[#00FF41]'
   }
 }
 
@@ -55,29 +55,29 @@ export function PackageContents({ unscAmount, nfts }: PackageContentsProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-white">Package Contents</h3>
+      <h3 className="text-lg font-semibold text-[#00FF41]">Package Contents</h3>
 
       {/* _unSC tokens line */}
       {unscNum > 0 && (
         <>
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 border border-slate-700">
-            <div className="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center shrink-0">
-              <Coins className="size-5 text-cyan-400" />
+          <div className="flex items-center gap-3 p-3 rounded-sm bg-[#0D3B1E]/20 border border-[#1A3A2A]">
+            <div className="w-10 h-10 rounded-full bg-[#00FFFF]/20 flex items-center justify-center shrink-0">
+              <Coins className="size-5 text-[#00FFFF]" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-medium">_unSC Tokens</p>
-              <p className="text-sm text-slate-400">In-platform utility token</p>
+              <p className="text-[#00FF41] font-medium">_unSC Tokens</p>
+              <p className="text-sm text-[#00AA2A]">In-platform utility token</p>
             </div>
-            <p className="text-lg font-bold text-cyan-400">{Number(unscNum).toLocaleString()}</p>
+            <p className="text-lg font-bold text-[#00FFFF]">{Number(unscNum).toLocaleString()}</p>
           </div>
-          {nfts.length > 0 && <Separator className="bg-slate-700" />}
+          {nfts.length > 0 && <Separator className="bg-[#1A3A2A]" />}
         </>
       )}
 
       {/* NFT items */}
       {nfts.length > 0 && (
         <div className="space-y-3">
-          <p className="text-sm text-slate-400 font-medium">NFTs ({nfts.length})</p>
+          <p className="text-sm text-[#00AA2A] font-medium">NFTs ({nfts.length})</p>
           {nfts.map((nft) => {
             const tierLabel = getTierLabel(nft.metadata)
             const tierColor = getTierColor(nft.metadata)
@@ -85,10 +85,10 @@ export function PackageContents({ unscAmount, nfts }: PackageContentsProps) {
             return (
               <div
                 key={nft.id}
-                className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/50 border border-slate-700 hover:border-slate-600 transition-colors"
+                className="flex items-center gap-3 p-3 rounded-sm bg-[#0D3B1E]/20 border border-[#1A3A2A] hover:border-[#0D3B1E] transition-colors"
               >
                 {/* Thumbnail */}
-                <div className="w-12 h-12 rounded-lg overflow-hidden border border-slate-700 shrink-0">
+                <div className="w-12 h-12 rounded-sm overflow-hidden border border-[#1A3A2A] shrink-0">
                   {nft.thumbnail_url || nft.image_url ? (
                     <img
                       src={nft.thumbnail_url || nft.image_url || ''}
@@ -96,17 +96,17 @@ export function PackageContents({ unscAmount, nfts }: PackageContentsProps) {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-slate-700 flex items-center justify-center">
-                      <ImageIcon className="size-5 text-slate-500" />
+                    <div className="w-full h-full bg-[#1A3A2A] flex items-center justify-center">
+                      <ImageIcon className="size-5 text-[#1A6B35]" />
                     </div>
                   )}
                 </div>
 
                 {/* NFT info */}
                 <div className="flex-1 min-w-0">
-                  <p className="text-white font-medium truncate">{nft.name}</p>
+                  <p className="text-[#00FF41] font-medium truncate">{nft.name}</p>
                   {nft.description && (
-                    <p className="text-xs text-slate-400 truncate">{nft.description}</p>
+                    <p className="text-xs text-[#00AA2A] truncate">{nft.description}</p>
                   )}
                 </div>
 
@@ -123,7 +123,7 @@ export function PackageContents({ unscAmount, nfts }: PackageContentsProps) {
       )}
 
       {nfts.length === 0 && unscNum <= 0 && (
-        <p className="text-slate-500 text-sm">No contents listed.</p>
+        <p className="text-[#1A6B35] text-sm">No contents listed.</p>
       )}
     </div>
   )

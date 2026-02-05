@@ -39,7 +39,7 @@ export function SignInButton() {
 
   if (isLoading) {
     return (
-      <Button disabled className="bg-purple-600 hover:bg-purple-700 text-white">
+      <Button disabled className="bg-[#00FF41] text-black hover:bg-[#00CC33]">
         <Loader2 className="h-4 w-4 animate-spin" />
         Loading...
       </Button>
@@ -51,11 +51,11 @@ export function SignInButton() {
 
     return (
       <div className="flex items-center gap-3">
-        <span className="text-sm text-slate-400 font-mono">{shortAddress}</span>
+        <span className="text-sm text-[#00AA2A] font-mono">{shortAddress}</span>
         <Button
           onClick={handleClick}
           variant="outline"
-          className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white"
+          className="border-[#1A3A2A] text-[#00CC33] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]"
         >
           <LogOut className="h-4 w-4" />
           Sign Out
@@ -68,12 +68,12 @@ export function SignInButton() {
     <div className="flex flex-col items-center gap-2">
       <Button
         onClick={handleClick}
-        className="bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white font-medium px-6"
+        className="bg-[#00FF41] text-black hover:bg-[#00CC33] font-medium px-6"
       >
         <Wallet className="h-4 w-4" />
         {connected ? 'Sign In with Wallet' : 'Connect Wallet'}
       </Button>
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p className="text-sm text-[#FF3333]">{error}</p>}
     </div>
   )
 }

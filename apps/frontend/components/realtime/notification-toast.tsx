@@ -22,12 +22,12 @@ const TOAST_ICONS: Record<NotificationType, typeof Package> = {
 }
 
 const TOAST_COLORS: Record<NotificationType, string> = {
-  delivery_complete: 'text-green-400',
-  trade_sold: 'text-cyan-400',
-  trade_offer: 'text-purple-400',
-  purchase_confirmed: 'text-green-400',
-  price_drop: 'text-yellow-400',
-  new_nft_available: 'text-purple-400',
+  delivery_complete: 'text-[#00FF41]',
+  trade_sold: 'text-[#00FFFF]',
+  trade_offer: 'text-[#00FF41]',
+  purchase_confirmed: 'text-[#00FF41]',
+  price_drop: 'text-[#FFB000]',
+  new_nft_available: 'text-[#00FF41]',
 }
 
 export function showNotificationToast(notification: Notification): void {
@@ -38,7 +38,7 @@ export function showNotificationToast(notification: Notification): void {
     description: notification.message,
     icon: createElement(Icon, { className: `size-5 ${colorClass}` }),
     duration: 5000,
-    className: 'bg-slate-900 border-slate-700 text-white [&_[data-description]]:text-slate-300',
+    className: 'bg-[#0D1117] border-[#1A3A2A] text-[#00FF41] [&_[data-description]]:text-[#00CC33]',
   })
 }
 
@@ -46,7 +46,7 @@ export function showSuccessToast(title: string, message?: string): void {
   toast.success(title, {
     description: message,
     duration: 3000,
-    className: 'bg-slate-900 border-slate-700 text-white [&_[data-description]]:text-slate-300',
+    className: 'bg-[#0D1117] border-[#1A3A2A] text-[#00FF41] [&_[data-description]]:text-[#00CC33]',
   })
 }
 
@@ -54,6 +54,6 @@ export function showErrorToast(title: string, message?: string): void {
   toast.error(title, {
     description: message,
     duration: 5000,
-    className: 'bg-slate-900 border-red-800 text-white [&_[data-description]]:text-slate-300',
+    className: 'bg-[#0D1117] border-[#FF3333] text-[#00FF41] [&_[data-description]]:text-[#00CC33]',
   })
 }

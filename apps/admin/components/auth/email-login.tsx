@@ -78,9 +78,9 @@ export function EmailLogin({ onSuccess, onRequires2FA }: EmailLoginProps) {
           type="email"
           placeholder="admin@unstablelabs.io"
           {...register('email')}
-          className="bg-slate-800 border-slate-700"
+          className="bg-[#111318] border-[#1A3A2A]"
         />
-        {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+        {errors.email && <p className="text-sm text-[#FF3333]">{errors.email.message}</p>}
       </div>
 
       <div className="space-y-2">
@@ -90,15 +90,15 @@ export function EmailLogin({ onSuccess, onRequires2FA }: EmailLoginProps) {
           type="password"
           placeholder="********"
           {...register('password')}
-          className="bg-slate-800 border-slate-700"
+          className="bg-[#111318] border-[#1A3A2A]"
         />
-        {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+        {errors.password && <p className="text-sm text-[#FF3333]">{errors.password.message}</p>}
       </div>
 
       <Button
         type="submit"
         disabled={isLoading}
-        className="w-full bg-purple-600 hover:bg-purple-700"
+        className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
       >
         {isLoading ? (
           <>

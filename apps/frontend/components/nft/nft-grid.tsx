@@ -33,9 +33,9 @@ export function NFTGrid({
   if (nfts.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4">
-        <PackageOpen className="size-16 text-slate-600 mb-4" />
-        <h3 className="text-lg font-medium text-slate-300 mb-2">No NFTs Found</h3>
-        <p className="text-slate-500 text-sm text-center max-w-md">{emptyMessage}</p>
+        <PackageOpen className="size-16 text-[#1A6B35] mb-4" />
+        <h3 className="text-lg font-medium text-[#00CC33] mb-2">No NFTs Found</h3>
+        <p className="text-[#1A6B35] text-sm text-center max-w-md">{emptyMessage}</p>
       </div>
     )
   }

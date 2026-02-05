@@ -46,12 +46,12 @@ export function BalanceDisplay() {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {[1, 2, 3].map((i) => (
-          <Card key={i} className="bg-slate-900 border-slate-800">
+          <Card key={i} className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader className="pb-2">
-              <Skeleton className="h-4 w-20 bg-slate-800" />
+              <Skeleton className="h-4 w-20 bg-[#111318]" />
             </CardHeader>
             <CardContent>
-              <Skeleton className="h-8 w-32 bg-slate-800" />
+              <Skeleton className="h-8 w-32 bg-[#111318]" />
             </CardContent>
           </Card>
         ))}
@@ -62,13 +62,13 @@ export function BalanceDisplay() {
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-slate-400 uppercase tracking-wider">Balances</h3>
+        <h3 className="text-sm font-medium text-[#00AA2A] uppercase tracking-wider">Balances</h3>
         <Button
           variant="ghost"
           size="icon-xs"
           onClick={handleRefresh}
           disabled={isRefreshing}
-          className="text-slate-400 hover:text-white hover:bg-slate-800"
+          className="text-[#00AA2A] hover:text-[#00FF41] hover:bg-[#0D3B1E]/20"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
         </Button>
@@ -76,32 +76,32 @@ export function BalanceDisplay() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* SOL Balance */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-slate-400 flex items-center gap-1.5">
-              <div className="h-4 w-4 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center">
-                <span className="text-[8px] font-bold text-white">S</span>
+            <CardTitle className="text-xs font-medium text-[#00AA2A] flex items-center gap-1.5">
+              <div className="h-4 w-4 rounded-full bg-[#00FF41] flex items-center justify-center">
+                <span className="text-[8px] font-bold text-black">S</span>
               </div>
               SOL
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-white">
+            <p className="text-2xl font-bold text-[#00FF41]">
               {balance?.solBalance?.toFixed(4) ?? '0.0000'}
             </p>
           </CardContent>
         </Card>
 
         {/* _unSC Token Balance */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-slate-400 flex items-center gap-1.5">
-              <Coins className="h-4 w-4 text-cyan-500" />
+            <CardTitle className="text-xs font-medium text-[#00AA2A] flex items-center gap-1.5">
+              <Coins className="h-4 w-4 text-[#00FFFF]" />
               _unSC
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-white">
+            <p className="text-2xl font-bold text-[#00FF41]">
               {balance?.tokenBalance?.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
@@ -111,15 +111,15 @@ export function BalanceDisplay() {
         </Card>
 
         {/* NFT Count */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-slate-400 flex items-center gap-1.5">
-              <Image className="h-4 w-4 text-purple-500" />
+            <CardTitle className="text-xs font-medium text-[#00AA2A] flex items-center gap-1.5">
+              <Image className="h-4 w-4 text-[#00FF41]" />
               NFTs
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-2xl font-bold text-white">{balance?.nftCount ?? 0}</p>
+            <p className="text-2xl font-bold text-[#00FF41]">{balance?.nftCount ?? 0}</p>
           </CardContent>
         </Card>
       </div>

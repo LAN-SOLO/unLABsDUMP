@@ -98,14 +98,14 @@ export function PackageCard({
     <Card
       className={`group relative overflow-hidden border transition-all duration-300 py-0 gap-0 ${
         showBestValue
-          ? 'border-amber-500/50 glow-purple'
-          : 'border-slate-800 hover:border-purple-500/50'
-      } bg-slate-900 ${isSoldOut ? 'opacity-75 pointer-events-none' : 'hover:shadow-lg hover:shadow-purple-500/10'}`}
+          ? 'border-[#FFB000]/50 glow-green'
+          : 'border-[#0D3B1E] hover:border-[#00FF41]/50'
+      } bg-[#0D1117] ${isSoldOut ? 'opacity-75 pointer-events-none' : 'hover:shadow-lg hover:shadow-[#00FF41]/10'}`}
     >
       {/* Best Value badge */}
       {showBestValue && (
         <div className="absolute top-3 left-3 z-10">
-          <Badge className="bg-amber-500 text-black border-0 gap-1 font-semibold shadow-lg">
+          <Badge className="bg-[#FFB000] text-black border-0 gap-1 font-semibold shadow-lg">
             <Sparkles className="size-3" />
             Best Value
           </Badge>
@@ -114,20 +114,22 @@ export function PackageCard({
 
       {/* Sold Out overlay */}
       {isSoldOut && (
-        <div className="absolute inset-0 z-20 bg-slate-900/70 flex items-center justify-center rounded-lg">
-          <span className="text-xl font-bold text-red-400 tracking-wider uppercase">Sold Out</span>
+        <div className="absolute inset-0 z-20 bg-[#0D1117]/70 flex items-center justify-center rounded-sm">
+          <span className="text-xl font-bold text-[#FF3333] tracking-wider uppercase">
+            Sold Out
+          </span>
         </div>
       )}
 
       {/* Image / Icon area */}
-      <div className="relative h-40 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden">
+      <div className="relative h-40 bg-gradient-to-br from-[#111318] to-[#0D1117] flex items-center justify-center overflow-hidden">
         {/* NFT Thumbnails */}
         {nft_previews.length > 0 ? (
           <div className="flex items-center justify-center gap-2 p-4">
             {nft_previews.map((nft, i) => (
               <div
                 key={nft.id}
-                className={`relative rounded-lg overflow-hidden border border-slate-700 ${
+                className={`relative rounded-sm overflow-hidden border border-[#1A3A2A] ${
                   i === 0 ? 'w-20 h-20' : 'w-16 h-16 opacity-75'
                 } transition-transform group-hover:scale-105`}
               >
@@ -138,46 +140,46 @@ export function PackageCard({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-slate-700 flex items-center justify-center">
-                    <ImageIcon className="size-6 text-slate-500" />
+                  <div className="w-full h-full bg-[#1A3A2A] flex items-center justify-center">
+                    <ImageIcon className="size-6 text-[#1A6B35]" />
                   </div>
                 )}
               </div>
             ))}
             {nft_count > 3 && (
-              <div className="w-16 h-16 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center">
-                <span className="text-sm text-slate-400">+{nft_count - 3}</span>
+              <div className="w-16 h-16 rounded-sm bg-[#111318] border border-[#1A3A2A] flex items-center justify-center">
+                <span className="text-sm text-[#00AA2A]">+{nft_count - 3}</span>
               </div>
             )}
           </div>
         ) : (
-          <Package className="size-16 text-slate-600 group-hover:text-purple-500/50 transition-colors" />
+          <Package className="size-16 text-[#1A6B35] group-hover:text-[#00FF41]/50 transition-colors" />
         )}
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1117] to-transparent opacity-60" />
       </div>
 
       <CardContent className="p-4 flex flex-col gap-3 flex-1">
         {/* Package name */}
-        <h3 className="text-lg font-semibold text-white truncate">{name}</h3>
+        <h3 className="text-lg font-semibold text-[#00FF41] truncate">{name}</h3>
 
         {/* Description */}
-        {description && <p className="text-sm text-slate-400 line-clamp-2">{description}</p>}
+        {description && <p className="text-sm text-[#00AA2A] line-clamp-2">{description}</p>}
 
         {/* Contents summary */}
         <div className="flex items-center gap-3 text-sm">
           {nft_count > 0 && (
-            <div className="flex items-center gap-1 text-slate-300">
-              <ImageIcon className="size-4 text-purple-400" />
+            <div className="flex items-center gap-1 text-[#00CC33]">
+              <ImageIcon className="size-4 text-[#00FF41]" />
               <span>
                 {nft_count} NFT{nft_count !== 1 ? 's' : ''}
               </span>
             </div>
           )}
           {unscNum > 0 && (
-            <div className="flex items-center gap-1 text-slate-300">
-              <Coins className="size-4 text-cyan-400" />
+            <div className="flex items-center gap-1 text-[#00CC33]">
+              <Coins className="size-4 text-[#00FFFF]" />
               <span>{Number(unscNum).toLocaleString()} _unSC</span>
             </div>
           )}
@@ -187,13 +189,13 @@ export function PackageCard({
         {isSoldOut && (
           <Badge
             variant="destructive"
-            className="w-fit bg-red-500/20 text-red-400 border-red-500/30"
+            className="w-fit bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30"
           >
             Sold Out
           </Badge>
         )}
         {isLowStock && (
-          <div className="flex items-center gap-1 text-amber-400 text-sm">
+          <div className="flex items-center gap-1 text-[#FFB000] text-sm">
             <AlertTriangle className="size-3.5" />
             <span>{computedStock} remaining</span>
           </div>
@@ -201,26 +203,26 @@ export function PackageCard({
 
         {/* Sale countdown */}
         {sale_ends_at && countdown && countdown !== 'Ended' && (
-          <div className="flex items-center gap-1.5 text-sm text-cyan-400">
+          <div className="flex items-center gap-1.5 text-sm text-[#00FFFF]">
             <Clock className="size-3.5" />
             <span>Sale ends in {countdown}</span>
           </div>
         )}
         {sale_ends_at && countdown === 'Ended' && (
-          <Badge variant="secondary" className="w-fit bg-slate-800 text-slate-500 border-slate-700">
+          <Badge variant="secondary" className="w-fit bg-[#111318] text-[#1A6B35] border-[#1A3A2A]">
             Sale Ended
           </Badge>
         )}
 
         {/* Price section */}
-        <div className="mt-auto pt-3 border-t border-slate-800">
+        <div className="mt-auto pt-3 border-t border-[#0D3B1E]">
           <div className="flex items-end justify-between">
             <div>
-              <p className="text-2xl font-bold text-white">
+              <p className="text-2xl font-bold text-[#00FF41]">
                 {formatSol(priceNum)}{' '}
-                <span className="text-base font-normal text-slate-400">SOL</span>
+                <span className="text-base font-normal text-[#00AA2A]">SOL</span>
               </p>
-              <p className="text-xs text-slate-500">~${usdEstimate} USD</p>
+              <p className="text-xs text-[#1A6B35]">~${usdEstimate} USD</p>
             </div>
 
             <Button
@@ -230,7 +232,7 @@ export function PackageCard({
               className={
                 isSoldOut
                   ? 'opacity-50 cursor-not-allowed'
-                  : 'bg-purple-600 hover:bg-purple-500 text-white'
+                  : 'bg-[#00FF41] text-black hover:bg-[#00CC33] text-black'
               }
             >
               <Link href={`/packages/${id}`}>View Details</Link>

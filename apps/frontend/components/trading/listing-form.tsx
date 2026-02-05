@@ -75,20 +75,20 @@ export function ListingForm({ nftId, onSuccess, onError }: ListingFormProps) {
 
       {/* Duration */}
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-200">Listing Duration</label>
+        <label className="text-sm font-medium text-[#00FF41]">Listing Duration</label>
         <Select
           value={durationDays.toString()}
           onValueChange={(val) => setDurationDays(parseInt(val, 10))}
         >
-          <SelectTrigger className="border-slate-700 bg-slate-800 text-slate-200">
+          <SelectTrigger className="border-[#1A3A2A] bg-[#111318] text-[#00FF41]">
             <SelectValue placeholder="Select duration" />
           </SelectTrigger>
-          <SelectContent className="border-slate-700 bg-slate-800">
+          <SelectContent className="border-[#1A3A2A] bg-[#111318]">
             {LISTING_DURATIONS.map((d) => (
               <SelectItem
                 key={d.value}
                 value={d.value.toString()}
-                className="text-slate-200 focus:bg-slate-700 focus:text-white"
+                className="text-[#00FF41] focus:bg-[#1A3A2A] focus:text-[#00FF41]"
               >
                 {d.label}
               </SelectItem>
@@ -103,9 +103,9 @@ export function ListingForm({ nftId, onSuccess, onError }: ListingFormProps) {
           id="terms"
           checked={agreedToTerms}
           onCheckedChange={(checked) => setAgreedToTerms(checked === true)}
-          className="mt-0.5 border-slate-600 data-[state=checked]:bg-purple-600 data-[state=checked]:border-purple-600"
+          className="mt-0.5 border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
         />
-        <label htmlFor="terms" className="text-xs leading-relaxed text-slate-400 cursor-pointer">
+        <label htmlFor="terms" className="text-xs leading-relaxed text-[#00AA2A] cursor-pointer">
           I understand that by listing this NFT for sale, a 2.5% marketplace fee will be deducted
           from the sale price. Listings can be cancelled at any time before purchase.
         </label>
@@ -115,7 +115,7 @@ export function ListingForm({ nftId, onSuccess, onError }: ListingFormProps) {
       <Button
         onClick={handleSubmit}
         disabled={isSubmitting || priceInSol === null || priceInSol <= 0 || !agreedToTerms}
-        className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+        className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33] disabled:opacity-50"
         size="lg"
       >
         {isSubmitting ? (

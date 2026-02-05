@@ -59,17 +59,17 @@ export default function PackagesPage() {
   const regularPackages = packages.filter((p) => !p.featured || p.id !== featuredPackage?.id)
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Page header */}
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-              <Package className="size-5 text-purple-400" />
+            <div className="w-10 h-10 rounded-sm bg-[#0D3B1E]/20 flex items-center justify-center">
+              <Package className="size-5 text-[#00FF41]" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-white">Package Store</h1>
-              <p className="text-slate-400 text-sm">
+              <h1 className="text-3xl font-bold text-[#00FF41]">Package Store</h1>
+              <p className="text-[#00AA2A] text-sm">
                 Browse and purchase NFT packages, token bundles, and exclusive collector editions.
               </p>
             </div>

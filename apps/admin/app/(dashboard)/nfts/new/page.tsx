@@ -139,8 +139,8 @@ export default function CreateNFTPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-white">Create NFT</h1>
-          <p className="text-slate-400 mt-1">Add a new NFT to your collection</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Create NFT</h1>
+          <p className="text-[#00AA2A] mt-1">Add a new NFT to your collection</p>
         </div>
       </div>
 
@@ -150,18 +150,18 @@ export default function CreateNFTPage() {
           <div key={step} className="flex items-center gap-2 flex-1">
             <button
               onClick={() => index < currentStep && setCurrentStep(index)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors w-full ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-sm text-sm font-medium transition-colors w-full ${
                 index === currentStep
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-[#00FF41] text-black'
                   : index < currentStep
-                    ? 'bg-slate-800 text-purple-400 cursor-pointer hover:bg-slate-700'
-                    : 'bg-slate-800/50 text-slate-500'
+                    ? 'bg-[#111318] text-[#00FF41] cursor-pointer hover:bg-[#1A3A2A]'
+                    : 'bg-[#111318]/50 text-[#1A6B35]'
               }`}
               disabled={index > currentStep}
             >
               <span
                 className={`flex items-center justify-center h-6 w-6 rounded-full text-xs ${
-                  index < currentStep ? 'bg-purple-500 text-white' : 'bg-slate-700 text-slate-400'
+                  index < currentStep ? 'bg-[#00CC33] text-black' : 'bg-[#1A3A2A] text-[#00AA2A]'
                 }`}
               >
                 {index < currentStep ? <Check className="h-3 w-3" /> : index + 1}
@@ -170,7 +170,7 @@ export default function CreateNFTPage() {
             </button>
             {index < STEPS.length - 1 && (
               <div
-                className={`h-px flex-1 min-w-4 ${index < currentStep ? 'bg-purple-500' : 'bg-slate-700'}`}
+                className={`h-px flex-1 min-w-4 ${index < currentStep ? 'bg-[#00CC33]' : 'bg-[#1A3A2A]'}`}
               />
             )}
           </div>
@@ -187,9 +187,9 @@ export default function CreateNFTPage() {
       {currentStep === 0 && (
         <div className="grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Basic Information</CardTitle>
+                <CardTitle className="text-[#00FF41]">Basic Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -199,7 +199,7 @@ export default function CreateNFTPage() {
                     value={formData.name}
                     onChange={(e) => handleChange('name', e.target.value)}
                     placeholder="Enter NFT name"
-                    className="bg-slate-800 border-slate-700"
+                    className="bg-[#111318] border-[#1A3A2A]"
                     required
                   />
                 </div>
@@ -211,7 +211,7 @@ export default function CreateNFTPage() {
                     value={formData.description}
                     onChange={(e) => handleChange('description', e.target.value)}
                     placeholder="Enter NFT description"
-                    className="bg-slate-800 border-slate-700 min-h-[100px]"
+                    className="bg-[#111318] border-[#1A3A2A] min-h-[100px]"
                   />
                 </div>
 
@@ -222,7 +222,7 @@ export default function CreateNFTPage() {
                     value={formData.collection}
                     onChange={(e) => handleChange('collection', e.target.value)}
                     placeholder="Collection name"
-                    className="bg-slate-800 border-slate-700"
+                    className="bg-[#111318] border-[#1A3A2A]"
                   />
                 </div>
               </CardContent>
@@ -230,9 +230,9 @@ export default function CreateNFTPage() {
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Image</CardTitle>
+                <CardTitle className="text-[#00FF41]">Image</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -241,7 +241,7 @@ export default function CreateNFTPage() {
                       <img
                         src={formData.image_url}
                         alt="NFT Preview"
-                        className="w-full aspect-square object-cover rounded-lg"
+                        className="w-full aspect-square object-cover rounded-sm"
                       />
                       <Button
                         type="button"
@@ -255,10 +255,10 @@ export default function CreateNFTPage() {
                     </div>
                   ) : (
                     <div
-                      className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                      className={`relative border-2 border-dashed rounded-sm p-8 text-center transition-colors ${
                         isDragging
-                          ? 'border-purple-500 bg-purple-500/10'
-                          : 'border-slate-700 hover:border-slate-600'
+                          ? 'border-[#00FF41] bg-[#0D3B1E]/20'
+                          : 'border-[#1A3A2A] hover:border-[#1A3A2A]'
                       }`}
                       onDragOver={(e) => {
                         e.preventDefault()
@@ -269,16 +269,16 @@ export default function CreateNFTPage() {
                     >
                       {isUploading ? (
                         <div className="space-y-2">
-                          <Loader2 className="mx-auto h-8 w-8 animate-spin text-purple-500" />
-                          <p className="text-sm text-slate-400">Uploading...</p>
+                          <Loader2 className="mx-auto h-8 w-8 animate-spin text-[#00FF41]" />
+                          <p className="text-sm text-[#00AA2A]">Uploading...</p>
                         </div>
                       ) : (
                         <>
-                          <Upload className="mx-auto h-12 w-12 text-slate-500" />
-                          <p className="mt-2 text-sm text-slate-400">
+                          <Upload className="mx-auto h-12 w-12 text-[#1A6B35]" />
+                          <p className="mt-2 text-sm text-[#00AA2A]">
                             Drag and drop or click to upload
                           </p>
-                          <p className="text-xs text-slate-500">PNG, JPG, GIF, WebP up to 10MB</p>
+                          <p className="text-xs text-[#1A6B35]">PNG, JPG, GIF, WebP up to 10MB</p>
                         </>
                       )}
                       <input
@@ -298,23 +298,23 @@ export default function CreateNFTPage() {
                       value={formData.image_url}
                       onChange={(e) => handleChange('image_url', e.target.value)}
                       placeholder="https://..."
-                      className="bg-slate-800 border-slate-700"
+                      className="bg-[#111318] border-[#1A3A2A]"
                     />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Status</CardTitle>
+                <CardTitle className="text-[#00FF41]">Status</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select
                   value={formData.status}
                   onValueChange={(value) => handleChange('status', value)}
                 >
-                  <SelectTrigger className="bg-slate-800 border-slate-700">
+                  <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -331,30 +331,30 @@ export default function CreateNFTPage() {
       {/* Step 2: Metadata */}
       {currentStep === 1 && (
         <div className="grid gap-6 lg:grid-cols-2">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">UnstableLabs Traits</CardTitle>
+              <CardTitle className="text-[#00FF41]">UnstableLabs Traits</CardTitle>
             </CardHeader>
             <CardContent>
               <MetadataForm metadata={metadata} onChange={setMetadata} />
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Preview</CardTitle>
+              <CardTitle className="text-[#00FF41]">Preview</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {formData.image_url && (
                 <img
                   src={formData.image_url}
                   alt="NFT Preview"
-                  className="w-full max-w-xs mx-auto aspect-square object-cover rounded-lg"
+                  className="w-full max-w-xs mx-auto aspect-square object-cover rounded-sm"
                 />
               )}
               <div className="space-y-2 text-sm">
-                <h3 className="text-lg font-bold text-white">{formData.name}</h3>
-                {formData.description && <p className="text-slate-400">{formData.description}</p>}
+                <h3 className="text-lg font-bold text-[#00FF41]">{formData.name}</h3>
+                {formData.description && <p className="text-[#00AA2A]">{formData.description}</p>}
               </div>
             </CardContent>
           </Card>
@@ -364,120 +364,122 @@ export default function CreateNFTPage() {
       {/* Step 3: Review & Create */}
       {currentStep === 2 && (
         <div className="grid gap-6 lg:grid-cols-2">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Review NFT Details</CardTitle>
+              <CardTitle className="text-[#00FF41]">Review NFT Details</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {formData.image_url && (
                 <img
                   src={formData.image_url}
                   alt="NFT Preview"
-                  className="w-full max-w-sm mx-auto aspect-square object-cover rounded-lg"
+                  className="w-full max-w-sm mx-auto aspect-square object-cover rounded-sm"
                 />
               )}
 
               <div className="space-y-3">
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">Name</span>
-                  <span className="text-white font-medium">{formData.name}</span>
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">Name</span>
+                  <span className="text-[#00FF41] font-medium">{formData.name}</span>
                 </div>
                 {formData.description && (
-                  <div className="p-2 bg-slate-800 rounded">
-                    <span className="text-slate-400 text-sm">Description</span>
-                    <p className="text-white text-sm mt-1">{formData.description}</p>
+                  <div className="p-2 bg-[#111318] rounded">
+                    <span className="text-[#00AA2A] text-sm">Description</span>
+                    <p className="text-[#00FF41] text-sm mt-1">{formData.description}</p>
                   </div>
                 )}
                 {formData.collection && (
-                  <div className="flex justify-between p-2 bg-slate-800 rounded">
-                    <span className="text-slate-400">Collection</span>
-                    <span className="text-white">{formData.collection}</span>
+                  <div className="flex justify-between p-2 bg-[#111318] rounded">
+                    <span className="text-[#00AA2A]">Collection</span>
+                    <span className="text-[#00FF41]">{formData.collection}</span>
                   </div>
                 )}
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">Status</span>
-                  <Badge className="bg-slate-600 text-white capitalize">{formData.status}</Badge>
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">Status</span>
+                  <Badge className="bg-[#1A6B35] text-[#00FF41] capitalize">
+                    {formData.status}
+                  </Badge>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Traits Summary</CardTitle>
+              <CardTitle className="text-[#00FF41]">Traits Summary</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between p-2 bg-slate-800 rounded">
-                <span className="text-slate-400">Rarity</span>
+              <div className="flex justify-between p-2 bg-[#111318] rounded">
+                <span className="text-[#00AA2A]">Rarity</span>
                 <Badge
                   className={`${
                     rarityLabel === 'Legendary'
-                      ? 'bg-yellow-500'
+                      ? 'bg-[#FFB000]'
                       : rarityLabel === 'Epic'
-                        ? 'bg-purple-500'
+                        ? 'bg-[#00CC33]'
                         : rarityLabel === 'Rare'
-                          ? 'bg-blue-500'
+                          ? 'bg-[#00FFFF]'
                           : rarityLabel === 'Uncommon'
-                            ? 'bg-green-500'
-                            : 'bg-slate-500'
-                  } text-white`}
+                            ? 'bg-[#00FF41]'
+                            : 'bg-[#1A6B35]'
+                  } text-[#00FF41]`}
                 >
                   {rarityLabel} ({rarityScore})
                 </Badge>
               </div>
 
               {metadata._capture && (
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">_capture</span>
-                  <span className="text-white font-mono text-sm">{metadata._capture}</span>
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">_capture</span>
+                  <span className="text-[#00FF41] font-mono text-sm">{metadata._capture}</span>
                 </div>
               )}
 
               {metadata._color && (
-                <div className="flex justify-between items-center p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">_color</span>
+                <div className="flex justify-between items-center p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">_color</span>
                   <div className="flex items-center gap-2">
                     <div
                       className="h-3 w-3 rounded-full"
                       style={{ backgroundColor: COLOR_HEX[metadata._color] }}
                     />
-                    <span className="text-white">{metadata._color}</span>
+                    <span className="text-[#00FF41]">{metadata._color}</span>
                   </div>
                 </div>
               )}
 
               {metadata._io && (
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">_I/O</span>
-                  <span className="text-white">
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">_I/O</span>
+                  <span className="text-[#00FF41]">
                     {metadata._io === 'CW' ? 'Clockwise' : 'Counter-Clockwise'}
                   </span>
                 </div>
               )}
 
               {metadata.tier && (
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">Tier</span>
-                  <span className="text-white">
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">Tier</span>
+                  <span className="text-[#00FF41]">
                     Tier {metadata.tier} - {TIER_LABELS[metadata.tier]}
                   </span>
                 </div>
               )}
 
               {metadata.bit && (
-                <div className="flex justify-between p-2 bg-slate-800 rounded">
-                  <span className="text-slate-400">Era</span>
-                  <span className="text-white">{metadata.bit}</span>
+                <div className="flex justify-between p-2 bg-[#111318] rounded">
+                  <span className="text-[#00AA2A]">Era</span>
+                  <span className="text-[#00FF41]">{metadata.bit}</span>
                 </div>
               )}
 
               {metadata.custom_spec && Object.keys(metadata.custom_spec).length > 0 && (
-                <div className="p-2 bg-slate-800 rounded space-y-1">
-                  <span className="text-slate-400 text-sm">Custom Specs</span>
+                <div className="p-2 bg-[#111318] rounded space-y-1">
+                  <span className="text-[#00AA2A] text-sm">Custom Specs</span>
                   {Object.entries(metadata.custom_spec).map(([key, value]) => (
                     <div key={key} className="flex justify-between text-sm">
-                      <span className="text-purple-400 font-mono">{key}</span>
-                      <span className="text-white">{value}</span>
+                      <span className="text-[#00FF41] font-mono">{key}</span>
+                      <span className="text-[#00FF41]">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -488,7 +490,7 @@ export default function CreateNFTPage() {
                 !metadata._io &&
                 !metadata.tier &&
                 !metadata.bit && (
-                  <p className="text-slate-500 text-sm text-center py-4">No traits configured</p>
+                  <p className="text-[#1A6B35] text-sm text-center py-4">No traits configured</p>
                 )}
             </CardContent>
           </Card>
@@ -511,7 +513,7 @@ export default function CreateNFTPage() {
           <Button
             onClick={() => setCurrentStep(currentStep + 1)}
             disabled={!canProceed()}
-            className="bg-purple-600 hover:bg-purple-700"
+            className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
           >
             Next
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -520,7 +522,7 @@ export default function CreateNFTPage() {
           <Button
             onClick={handleSubmit}
             disabled={isLoading || !formData.name}
-            className="bg-purple-600 hover:bg-purple-700"
+            className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
           >
             {isLoading ? (
               <>

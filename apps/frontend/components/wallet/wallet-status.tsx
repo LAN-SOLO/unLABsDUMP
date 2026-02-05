@@ -58,7 +58,7 @@ export function WalletStatus() {
 
   if (!connected || !publicKey) {
     return (
-      <div className="flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2 text-sm text-muted-foreground">
+      <div className="flex items-center gap-2 rounded-sm border border-[#0D3B1E] bg-[#0D1117]/50 px-3 py-2 text-sm text-muted-foreground">
         <Wallet className="size-4" />
         <span>No wallet connected</span>
       </div>
@@ -66,10 +66,10 @@ export function WalletStatus() {
   }
 
   return (
-    <div className="flex flex-col gap-2 rounded-lg border border-slate-800 bg-slate-900/50 p-3">
+    <div className="flex flex-col gap-2 rounded-sm border border-[#0D3B1E] bg-[#0D1117]/50 p-3">
       <div className="flex items-center gap-2">
-        <div className="size-2 rounded-full bg-green-500 animate-pulse" />
-        <span className="font-mono text-xs text-slate-300">
+        <div className="size-2 rounded-full bg-[#00FF41] animate-pulse" />
+        <span className="font-mono text-xs text-[#00CC33]">
           {publicKey.toBase58().slice(0, 4)}...{publicKey.toBase58().slice(-4)}
         </span>
       </div>
@@ -81,12 +81,12 @@ export function WalletStatus() {
       ) : balances ? (
         <div className="flex gap-4 text-xs">
           <div className="flex items-center gap-1.5">
-            <Coins className="size-3.5 text-purple-400" />
-            <span className="text-slate-300">{balances.sol.toFixed(4)} SOL</span>
+            <Coins className="size-3.5 text-[#00FF41]" />
+            <span className="text-[#00CC33]">{balances.sol.toFixed(4)} SOL</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Coins className="size-3.5 text-cyan-400" />
-            <span className="text-slate-300">{balances.unsc.toLocaleString()} _unSC</span>
+            <Coins className="size-3.5 text-[#00FFFF]" />
+            <span className="text-[#00CC33]">{balances.unsc.toLocaleString()} _unSC</span>
           </div>
         </div>
       ) : null}

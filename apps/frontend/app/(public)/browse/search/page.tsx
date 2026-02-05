@@ -16,8 +16,8 @@ export default function AdvancedSearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-          <div className="animate-pulse text-slate-400">Loading search...</div>
+        <div className="min-h-screen bg-black flex items-center justify-center">
+          <div className="animate-pulse text-[#00AA2A]">Loading search...</div>
         </div>
       }
     >
@@ -96,12 +96,12 @@ function AdvancedSearchContent() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back link */}
         <Link
           href="/browse"
-          className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-white transition-colors mb-6"
+          className="inline-flex items-center gap-1.5 text-sm text-[#00AA2A] hover:text-[#00FF41] transition-colors mb-6"
         >
           <ArrowLeft className="size-4" />
           Back to Browse
@@ -109,15 +109,15 @@ function AdvancedSearchContent() {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Advanced Search</h1>
-          <p className="text-slate-400">
+          <h1 className="text-3xl font-bold text-[#00FF41] mb-2">Advanced Search</h1>
+          <p className="text-[#00AA2A]">
             Search across multiple fields and filter by specific traits to find exactly what you are
             looking for.
           </p>
         </div>
 
         {/* Search Form */}
-        <div className="bg-slate-900 rounded-lg border border-slate-800 p-6 mb-8">
+        <div className="bg-[#0D1117] rounded-sm border border-[#0D3B1E] p-6 mb-8">
           <AdvancedSearchForm
             initialValues={initialValues}
             onSearch={performSearch}
@@ -125,7 +125,7 @@ function AdvancedSearchContent() {
           />
         </div>
 
-        <Separator className="bg-slate-800 mb-8" />
+        <Separator className="bg-[#111318] mb-8" />
 
         {/* Results */}
         <SearchResults

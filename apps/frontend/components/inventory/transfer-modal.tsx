@@ -89,15 +89,15 @@ export function TransferModal({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="border-slate-700 bg-slate-900 sm:max-w-md">
+      <DialogContent className="border-[#1A3A2A] bg-[#0D1117] sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-white">
+          <DialogTitle className="text-[#00FF41]">
             {step === 'address' && 'Transfer NFT'}
             {step === 'confirm' && 'Confirm Transfer'}
             {step === 'signing' && 'Signing Transaction'}
             {step === 'result' && (transferSuccess ? 'Transfer Complete' : 'Transfer Failed')}
           </DialogTitle>
-          <DialogDescription className="text-slate-400">
+          <DialogDescription className="text-[#00AA2A]">
             {step === 'address' && 'Enter the recipient wallet address'}
             {step === 'confirm' && 'Review the transfer details carefully'}
             {step === 'signing' && 'Please approve the transaction in your wallet'}
@@ -111,8 +111,8 @@ export function TransferModal({
         {/* Step 1: Address Input */}
         {step === 'address' && (
           <div className="space-y-4">
-            <div className="flex items-center gap-3 rounded-lg bg-slate-800/50 p-3">
-              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-slate-700">
+            <div className="flex items-center gap-3 rounded-sm bg-[#0D3B1E]/20 p-3">
+              <div className="h-12 w-12 shrink-0 overflow-hidden rounded-sm bg-[#1A3A2A]">
                 <img
                   src={nft.image || '/placeholder-nft.png'}
                   alt={nft.name}
@@ -120,8 +120,8 @@ export function TransferModal({
                 />
               </div>
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-white">{nft.name}</p>
-                <Badge variant="outline" className="mt-0.5 text-[10px] capitalize text-slate-300">
+                <p className="truncate text-sm font-semibold text-[#00FF41]">{nft.name}</p>
+                <Badge variant="outline" className="mt-0.5 text-[10px] capitalize text-[#00CC33]">
                   {nft.rarity}
                 </Badge>
               </div>
@@ -134,9 +134,9 @@ export function TransferModal({
               onValidation={setIsAddressValid}
             />
 
-            <div className="flex items-start gap-2 rounded-lg border border-amber-800/50 bg-amber-950/30 p-3">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-              <p className="text-xs text-amber-300/80">
+            <div className="flex items-start gap-2 rounded-sm border border-[#FFB000]/30 bg-[#FFB000]/10 p-3">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB000]" />
+              <p className="text-xs text-[#FFB000]/80">
                 Transfers cannot be undone. Make sure the recipient address is correct before
                 proceeding.
               </p>
@@ -147,44 +147,44 @@ export function TransferModal({
         {/* Step 2: Confirm */}
         {step === 'confirm' && (
           <div className="space-y-4">
-            <div className="rounded-lg bg-slate-800/50 p-4">
+            <div className="rounded-sm bg-[#0D3B1E]/20 p-4">
               <div className="flex items-center justify-between">
                 <div className="text-center">
-                  <p className="text-xs text-slate-400">From (You)</p>
-                  <p className="mt-1 font-mono text-xs text-slate-200">
+                  <p className="text-xs text-[#00AA2A]">From (You)</p>
+                  <p className="mt-1 font-mono text-xs text-[#00FF41]">
                     {senderAddress.slice(0, 6)}...{senderAddress.slice(-4)}
                   </p>
                 </div>
-                <ArrowRight className="mx-3 h-5 w-5 text-purple-400" />
+                <ArrowRight className="mx-3 h-5 w-5 text-[#00FF41]" />
                 <div className="text-center">
-                  <p className="text-xs text-slate-400">To</p>
-                  <p className="mt-1 font-mono text-xs text-slate-200">{truncatedRecipient}</p>
+                  <p className="text-xs text-[#00AA2A]">To</p>
+                  <p className="mt-1 font-mono text-xs text-[#00FF41]">{truncatedRecipient}</p>
                 </div>
               </div>
             </div>
 
-            <Separator className="bg-slate-700" />
+            <Separator className="bg-[#1A3A2A]" />
 
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">NFT</span>
-                <span className="font-medium text-white">{nft.name}</span>
+                <span className="text-[#00AA2A]">NFT</span>
+                <span className="font-medium text-[#00FF41]">{nft.name}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Rarity</span>
-                <span className="capitalize text-slate-200">{nft.rarity}</span>
+                <span className="text-[#00AA2A]">Rarity</span>
+                <span className="capitalize text-[#00FF41]">{nft.rarity}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Mint</span>
-                <span className="font-mono text-xs text-slate-300">
+                <span className="text-[#00AA2A]">Mint</span>
+                <span className="font-mono text-xs text-[#00CC33]">
                   {nft.mintAddress.slice(0, 8)}...{nft.mintAddress.slice(-4)}
                 </span>
               </div>
             </div>
 
-            <div className="flex items-start gap-2 rounded-lg border border-red-800/50 bg-red-950/30 p-3">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-red-500" />
-              <p className="text-xs text-red-300/80">
+            <div className="flex items-start gap-2 rounded-sm border border-[#FF3333]/30 bg-[#FF3333]/10 p-3">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF3333]" />
+              <p className="text-xs text-[#FF3333]/80">
                 This action is irreversible. Once confirmed, the NFT will be permanently transferred
                 to the recipient.
               </p>
@@ -195,9 +195,9 @@ export function TransferModal({
         {/* Step 3: Signing */}
         {step === 'signing' && (
           <div className="flex flex-col items-center justify-center py-8">
-            <Loader2 className="mb-4 h-10 w-10 animate-spin text-purple-500" />
-            <p className="text-sm text-slate-300">Waiting for wallet approval...</p>
-            <p className="mt-1 text-xs text-slate-500">
+            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#00FF41]" />
+            <p className="text-sm text-[#00CC33]">Waiting for wallet approval...</p>
+            <p className="mt-1 text-xs text-[#1A6B35]">
               Please confirm the transaction in your wallet
             </p>
           </div>
@@ -208,21 +208,21 @@ export function TransferModal({
           <div className="flex flex-col items-center justify-center py-8">
             {transferSuccess ? (
               <>
-                <div className="mb-4 rounded-full bg-green-900/30 p-3">
-                  <CheckCircle className="h-8 w-8 text-green-500" />
+                <div className="mb-4 rounded-full bg-[#0D3B1E]/30 p-3">
+                  <CheckCircle className="h-8 w-8 text-[#00FF41]" />
                 </div>
-                <p className="text-sm font-medium text-white">Transfer Successful</p>
-                <p className="mt-1 text-center text-xs text-slate-400">
+                <p className="text-sm font-medium text-[#00FF41]">Transfer Successful</p>
+                <p className="mt-1 text-center text-xs text-[#00AA2A]">
                   {nft.name} has been transferred to {truncatedRecipient}
                 </p>
               </>
             ) : (
               <>
-                <div className="mb-4 rounded-full bg-red-900/30 p-3">
-                  <XCircle className="h-8 w-8 text-red-500" />
+                <div className="mb-4 rounded-full bg-[#FF3333]/10 p-3">
+                  <XCircle className="h-8 w-8 text-[#FF3333]" />
                 </div>
-                <p className="text-sm font-medium text-white">Transfer Failed</p>
-                <p className="mt-1 text-center text-xs text-red-400">
+                <p className="text-sm font-medium text-[#00FF41]">Transfer Failed</p>
+                <p className="mt-1 text-center text-xs text-[#FF3333]">
                   {transferError || 'An error occurred during the transfer'}
                 </p>
               </>
@@ -236,14 +236,14 @@ export function TransferModal({
               <Button
                 variant="outline"
                 onClick={() => handleOpenChange(false)}
-                className="border-slate-700 text-slate-300"
+                className="border-[#1A3A2A] text-[#00CC33]"
               >
                 Cancel
               </Button>
               <Button
                 onClick={handleConfirm}
                 disabled={!isAddressValid}
-                className="bg-purple-600 hover:bg-purple-700"
+                className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
               >
                 <ArrowRight className="mr-1 h-4 w-4" />
                 Continue
@@ -255,11 +255,11 @@ export function TransferModal({
               <Button
                 variant="outline"
                 onClick={() => setStep('address')}
-                className="border-slate-700 text-slate-300"
+                className="border-[#1A3A2A] text-[#00CC33]"
               >
                 Back
               </Button>
-              <Button onClick={handleSign} className="bg-red-600 hover:bg-red-700">
+              <Button onClick={handleSign} className="bg-[#FF3333] hover:bg-[#FF3333]/80">
                 <Send className="mr-1 h-4 w-4" />
                 Confirm Transfer
               </Button>
@@ -268,7 +268,7 @@ export function TransferModal({
           {step === 'result' && (
             <Button
               onClick={() => handleOpenChange(false)}
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               {transferSuccess ? 'Done' : 'Close'}
             </Button>

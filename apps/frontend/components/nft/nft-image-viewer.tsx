@@ -49,21 +49,21 @@ export function NFTImageViewer({ src, alt, open, onOpenChange }: NFTImageViewerP
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="bg-slate-950 border-slate-800 max-w-4xl w-[95vw] max-h-[95vh] p-0 gap-0">
-        <DialogHeader className="p-4 border-b border-slate-800">
+      <DialogContent className="bg-black border-[#0D3B1E] max-w-4xl w-[95vw] max-h-[95vh] p-0 gap-0">
+        <DialogHeader className="p-4 border-b border-[#0D3B1E]">
           <div className="flex items-center justify-between">
-            <DialogTitle className="text-white text-sm truncate pr-8">{alt}</DialogTitle>
+            <DialogTitle className="text-[#00FF41] text-sm truncate pr-8">{alt}</DialogTitle>
             <div className="flex items-center gap-1">
               <Button
                 variant="ghost"
                 size="icon-sm"
                 onClick={handleZoomOut}
                 disabled={zoom <= 0.5}
-                className="text-slate-400 hover:text-white"
+                className="text-[#00AA2A] hover:text-[#00FF41]"
               >
                 <ZoomOut className="size-4" />
               </Button>
-              <span className="text-slate-500 text-xs w-12 text-center">
+              <span className="text-[#1A6B35] text-xs w-12 text-center">
                 {Math.round(zoom * 100)}%
               </span>
               <Button
@@ -71,7 +71,7 @@ export function NFTImageViewer({ src, alt, open, onOpenChange }: NFTImageViewerP
                 size="icon-sm"
                 onClick={handleZoomIn}
                 disabled={zoom >= 3}
-                className="text-slate-400 hover:text-white"
+                className="text-[#00AA2A] hover:text-[#00FF41]"
               >
                 <ZoomIn className="size-4" />
               </Button>
@@ -79,7 +79,7 @@ export function NFTImageViewer({ src, alt, open, onOpenChange }: NFTImageViewerP
                 variant="ghost"
                 size="icon-sm"
                 onClick={handleRotate}
-                className="text-slate-400 hover:text-white"
+                className="text-[#00AA2A] hover:text-[#00FF41]"
               >
                 <RotateCw className="size-4" />
               </Button>
@@ -87,7 +87,7 @@ export function NFTImageViewer({ src, alt, open, onOpenChange }: NFTImageViewerP
                 variant="ghost"
                 size="icon-sm"
                 onClick={handleReset}
-                className="text-slate-400 hover:text-white text-xs"
+                className="text-[#00AA2A] hover:text-[#00FF41] text-xs"
               >
                 Reset
               </Button>
@@ -96,8 +96,8 @@ export function NFTImageViewer({ src, alt, open, onOpenChange }: NFTImageViewerP
         </DialogHeader>
 
         {/* Image display */}
-        <div className="relative overflow-auto flex items-center justify-center min-h-[400px] max-h-[calc(95vh-80px)] bg-slate-950">
-          {!loaded && <Skeleton className="absolute inset-8 rounded-lg" />}
+        <div className="relative overflow-auto flex items-center justify-center min-h-[400px] max-h-[calc(95vh-80px)] bg-black">
+          {!loaded && <Skeleton className="absolute inset-8 rounded-sm" />}
           <div
             className="transition-transform duration-200 ease-out"
             style={{
@@ -139,7 +139,7 @@ export function ClickableNFTImage({ src, alt, fallbackColor, className }: Clicka
     return (
       <div
         className={cn(
-          'relative aspect-square bg-slate-800 rounded-lg flex items-center justify-center',
+          'relative aspect-square bg-[#111318] rounded-sm flex items-center justify-center',
           className
         )}
       >
@@ -148,7 +148,7 @@ export function ClickableNFTImage({ src, alt, fallbackColor, className }: Clicka
             className="w-20 h-20 rounded-full mx-auto mb-3 opacity-40"
             style={{ backgroundColor: fallbackColor || '#8B5CF6' }}
           />
-          <span className="text-slate-500 text-sm">No Image Available</span>
+          <span className="text-[#1A6B35] text-sm">No Image Available</span>
         </div>
       </div>
     )
@@ -158,12 +158,12 @@ export function ClickableNFTImage({ src, alt, fallbackColor, className }: Clicka
     <>
       <div
         className={cn(
-          'relative aspect-square bg-slate-800 rounded-lg overflow-hidden cursor-zoom-in group',
+          'relative aspect-square bg-[#111318] rounded-sm overflow-hidden cursor-zoom-in group',
           className
         )}
         onClick={() => setViewerOpen(true)}
       >
-        {!imageLoaded && <Skeleton className="absolute inset-0 rounded-lg" />}
+        {!imageLoaded && <Skeleton className="absolute inset-0 rounded-sm" />}
         <Image
           src={src}
           alt={alt}
@@ -178,7 +178,7 @@ export function ClickableNFTImage({ src, alt, fallbackColor, className }: Clicka
           priority
         />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
-          <ZoomIn className="size-8 text-white drop-shadow-lg" />
+          <ZoomIn className="size-8 text-[#00FF41] drop-shadow-lg" />
         </div>
       </div>
 

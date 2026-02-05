@@ -38,9 +38,9 @@ export function NotificationBell({ unreadCount, className }: NotificationBellPro
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'relative flex size-10 items-center justify-center rounded-lg transition-colors',
-          'text-slate-400 hover:bg-slate-800 hover:text-white',
-          isOpen && 'bg-slate-800 text-white'
+          'relative flex size-10 items-center justify-center rounded-sm transition-colors',
+          'text-[#00AA2A] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]',
+          isOpen && 'bg-[#0D3B1E]/20 text-[#00FF41]'
         )}
         aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ''}`}
       >
@@ -48,7 +48,7 @@ export function NotificationBell({ unreadCount, className }: NotificationBellPro
 
         {/* Unread count badge */}
         {unreadCount > 0 && (
-          <span className="absolute -right-0.5 -top-0.5 flex min-w-[18px] items-center justify-center rounded-full bg-red-500 px-1 py-0.5 text-[10px] font-bold leading-none text-white">
+          <span className="absolute -right-0.5 -top-0.5 flex min-w-[18px] items-center justify-center rounded-full bg-[#FF3333] px-1 py-0.5 text-[10px] font-bold leading-none text-[#00FF41]">
             {displayCount}
           </span>
         )}

@@ -64,18 +64,18 @@ interface Pagination {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'bg-slate-500',
-  uncommon: 'bg-green-500',
-  rare: 'bg-blue-500',
-  epic: 'bg-purple-500',
-  legendary: 'bg-yellow-500',
+  common: 'bg-[#1A6B35]',
+  uncommon: 'bg-[#00FF41]',
+  rare: 'bg-[#00FFFF]',
+  epic: 'bg-[#00FF41]',
+  legendary: 'bg-[#FFB000]',
 }
 
 const statusColors: Record<string, string> = {
-  draft: 'bg-slate-500',
-  active: 'bg-green-500',
-  burned: 'bg-red-500',
-  transferred: 'bg-cyan-500',
+  draft: 'bg-[#1A6B35]',
+  active: 'bg-[#00FF41]',
+  burned: 'bg-[#FF3333]',
+  transferred: 'bg-[#00FFFF]',
 }
 
 export default function NFTsPage() {
@@ -202,8 +202,8 @@ export default function NFTsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">NFTs</h1>
-          <p className="text-slate-400 mt-1">Manage your NFT collection</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">NFTs</h1>
+          <p className="text-[#00AA2A] mt-1">Manage your NFT collection</p>
         </div>
         <div className="flex gap-3">
           <DropdownMenu>
@@ -226,7 +226,7 @@ export default function NFTsPage() {
               Import
             </Link>
           </Button>
-          <Button asChild className="bg-purple-600 hover:bg-purple-700">
+          <Button asChild className="bg-[#00FF41] text-black hover:bg-[#00CC33]">
             <Link href="/nfts/new">
               <Plus className="mr-2 h-4 w-4" />
               Create NFT
@@ -236,23 +236,23 @@ export default function NFTsPage() {
       </div>
 
       {/* Filters */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="pt-6">
           <form onSubmit={handleSearch} className="flex flex-wrap gap-4">
             <div className="flex-1 min-w-[200px]">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#00AA2A]" />
                 <Input
                   placeholder="Search NFTs..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-slate-800 border-slate-700"
+                  className="pl-10 bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
             </div>
 
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[150px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[150px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -265,7 +265,7 @@ export default function NFTsPage() {
             </Select>
 
             <Select value={rarityFilter} onValueChange={setRarityFilter}>
-              <SelectTrigger className="w-[150px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[150px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Rarity" />
               </SelectTrigger>
               <SelectContent>
@@ -287,11 +287,11 @@ export default function NFTsPage() {
 
       {/* Bulk Actions */}
       {selectedIds.length > 0 && (
-        <Card className="bg-purple-900/30 border-purple-500/50">
+        <Card className="bg-[#0D3B1E]/30 border-[#00FF41]/50">
           <CardContent className="py-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CheckSquare className="h-5 w-5 text-purple-400" />
-              <span className="text-purple-200">{selectedIds.length} selected</span>
+              <CheckSquare className="h-5 w-5 text-[#00FF41]" />
+              <span className="text-[#00FF41]">{selectedIds.length} selected</span>
             </div>
             <div className="flex gap-2">
               <DropdownMenu>
@@ -331,22 +331,22 @@ export default function NFTsPage() {
       )}
 
       {/* Table */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
-          <CardTitle className="text-white">
+          <CardTitle className="text-[#00FF41]">
             {pagination.total} NFT{pagination.total !== 1 ? 's' : ''} found
           </CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
             </div>
           ) : nfts.length === 0 ? (
             <div className="text-center py-12">
-              <ImageIcon className="mx-auto h-12 w-12 text-slate-600" />
-              <p className="mt-4 text-slate-400">No NFTs found</p>
-              <Button asChild className="mt-4 bg-purple-600 hover:bg-purple-700">
+              <ImageIcon className="mx-auto h-12 w-12 text-[#1A6B35]" />
+              <p className="mt-4 text-[#00AA2A]">No NFTs found</p>
+              <Button asChild className="mt-4 bg-[#00FF41] text-black hover:bg-[#00CC33]">
                 <Link href="/nfts/new">Create your first NFT</Link>
               </Button>
             </div>
@@ -354,24 +354,24 @@ export default function NFTsPage() {
             <>
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-800">
+                  <TableRow className="border-[#0D3B1E]">
                     <TableHead className="w-12">
                       <Checkbox
                         checked={selectedIds.length === nfts.length && nfts.length > 0}
                         onCheckedChange={toggleSelectAll}
                       />
                     </TableHead>
-                    <TableHead className="text-slate-400">NFT</TableHead>
-                    <TableHead className="text-slate-400">Rarity</TableHead>
-                    <TableHead className="text-slate-400">Collection</TableHead>
-                    <TableHead className="text-slate-400">Status</TableHead>
-                    <TableHead className="text-slate-400">Created</TableHead>
-                    <TableHead className="text-slate-400 text-right">Actions</TableHead>
+                    <TableHead className="text-[#00AA2A]">NFT</TableHead>
+                    <TableHead className="text-[#00AA2A]">Rarity</TableHead>
+                    <TableHead className="text-[#00AA2A]">Collection</TableHead>
+                    <TableHead className="text-[#00AA2A]">Status</TableHead>
+                    <TableHead className="text-[#00AA2A]">Created</TableHead>
+                    <TableHead className="text-[#00AA2A] text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {nfts.map((nft) => (
-                    <TableRow key={nft.id} className="border-slate-800">
+                    <TableRow key={nft.id} className="border-[#0D3B1E]">
                       <TableCell>
                         <Checkbox
                           checked={selectedIds.includes(nft.id)}
@@ -380,7 +380,7 @@ export default function NFTsPage() {
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden">
+                          <div className="h-10 w-10 rounded-sm bg-[#111318] flex items-center justify-center overflow-hidden">
                             {nft.image_url ? (
                               <img
                                 src={nft.image_url}
@@ -388,13 +388,13 @@ export default function NFTsPage() {
                                 className="h-full w-full object-cover"
                               />
                             ) : (
-                              <ImageIcon className="h-5 w-5 text-slate-500" />
+                              <ImageIcon className="h-5 w-5 text-[#1A6B35]" />
                             )}
                           </div>
                           <div>
-                            <p className="font-medium text-white">{nft.name}</p>
+                            <p className="font-medium text-[#00FF41]">{nft.name}</p>
                             {nft.description && (
-                              <p className="text-sm text-slate-400 truncate max-w-[200px]">
+                              <p className="text-sm text-[#00AA2A] truncate max-w-[200px]">
                                 {nft.description}
                               </p>
                             )}
@@ -403,18 +403,20 @@ export default function NFTsPage() {
                       </TableCell>
                       <TableCell>
                         {nft.rarity && (
-                          <Badge className={`${rarityColors[nft.rarity]} text-white capitalize`}>
+                          <Badge
+                            className={`${rarityColors[nft.rarity]} text-[#00FF41] capitalize`}
+                          >
                             {nft.rarity}
                           </Badge>
                         )}
                       </TableCell>
-                      <TableCell className="text-slate-300">{nft.collection || '-'}</TableCell>
+                      <TableCell className="text-[#00CC33]">{nft.collection || '-'}</TableCell>
                       <TableCell>
-                        <Badge className={`${statusColors[nft.status]} text-white capitalize`}>
+                        <Badge className={`${statusColors[nft.status]} text-[#00FF41] capitalize`}>
                           {nft.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-slate-300">
+                      <TableCell className="text-[#00CC33]">
                         {new Date(nft.created_at).toLocaleDateString()}
                       </TableCell>
                       <TableCell className="text-right">
@@ -435,7 +437,7 @@ export default function NFTsPage() {
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => handleDelete(nft.id)}
-                              className="text-red-400"
+                              className="text-[#FF3333]"
                             >
                               <Trash2 className="mr-2 h-4 w-4" />
                               Delete
@@ -450,8 +452,8 @@ export default function NFTsPage() {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-800">
-                  <p className="text-sm text-slate-400">
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#0D3B1E]">
+                  <p className="text-sm text-[#00AA2A]">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{' '}
                     {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                     {pagination.total} results

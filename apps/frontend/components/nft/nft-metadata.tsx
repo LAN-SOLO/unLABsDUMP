@@ -19,12 +19,12 @@ interface NFTMetadataProps {
 }
 
 function getRarityLabel(score: number): { label: string; color: string } {
-  if (score >= 90) return { label: 'Mythic', color: 'text-yellow-400' }
-  if (score >= 75) return { label: 'Legendary', color: 'text-purple-400' }
-  if (score >= 60) return { label: 'Epic', color: 'text-blue-400' }
-  if (score >= 40) return { label: 'Rare', color: 'text-green-400' }
-  if (score >= 20) return { label: 'Uncommon', color: 'text-cyan-400' }
-  return { label: 'Common', color: 'text-slate-400' }
+  if (score >= 90) return { label: 'Mythic', color: 'text-[#FFB000]' }
+  if (score >= 75) return { label: 'Legendary', color: 'text-[#00FF41]' }
+  if (score >= 60) return { label: 'Epic', color: 'text-[#00FFFF]' }
+  if (score >= 40) return { label: 'Rare', color: 'text-[#00FF41]' }
+  if (score >= 20) return { label: 'Uncommon', color: 'text-[#00FFFF]' }
+  return { label: 'Common', color: 'text-[#00AA2A]' }
 }
 
 export function NFTMetadata({ nft, className }: NFTMetadataProps) {
@@ -35,16 +35,16 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
 
   return (
     <div className={cn('space-y-1', className)}>
-      <h3 className="text-sm font-semibold text-white mb-3">Traits & Metadata</h3>
+      <h3 className="text-sm font-semibold text-[#00FF41] mb-3">Traits & Metadata</h3>
 
-      <div className="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
+      <div className="bg-[#0D1117] rounded-sm border border-[#0D3B1E] overflow-hidden">
         <table className="w-full text-sm">
-          <tbody className="divide-y divide-slate-800">
+          <tbody className="divide-y divide-[#0D3B1E]">
             {/* _capture */}
             <MetadataRow
               label="_capture"
               value={
-                <code className="text-xs font-mono text-cyan-400 bg-slate-800 px-2 py-0.5 rounded break-all">
+                <code className="text-xs font-mono text-[#00FFFF] bg-[#111318] px-2 py-0.5 rounded break-all">
                   {nft.capture}
                 </code>
               }
@@ -59,7 +59,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
                     className="w-4 h-4 rounded-full border border-white/20 shrink-0"
                     style={{ backgroundColor: colorHex }}
                   />
-                  <span className="text-slate-200">{nft.color}</span>
+                  <span className="text-[#00FF41]">{nft.color}</span>
                 </div>
               }
             />
@@ -68,7 +68,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
             <MetadataRow
               label="_I/O"
               value={
-                <span className="text-slate-200">
+                <span className="text-[#00FF41]">
                   {nft.rotation} ({ROTATION_LABELS[nft.rotation]})
                 </span>
               }
@@ -80,7 +80,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
               value={
                 <div className="flex items-center gap-2">
                   <Badge className={cn('text-xs', tierColor)}>T{nft.tier}</Badge>
-                  <span className="text-slate-400">{tierLabel}</span>
+                  <span className="text-[#00AA2A]">{tierLabel}</span>
                 </div>
               }
             />
@@ -88,7 +88,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
             {/* bit (era) */}
             <MetadataRow
               label="bit"
-              value={<span className="text-slate-200 font-mono">{nft.era}</span>}
+              value={<span className="text-[#00FF41] font-mono">{nft.era}</span>}
             />
 
             {/* Rarity Score */}
@@ -97,9 +97,9 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
                 label="Rarity"
                 value={
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="flex-1 h-2 bg-[#111318] rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-purple-600 to-cyan-500"
+                        className="h-full rounded-full bg-[#00FF41]"
                         style={{ width: `${nft.rarity_score}%` }}
                       />
                     </div>
@@ -115,7 +115,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
             <MetadataRow
               label="_unSC mint"
               value={
-                <code className="text-xs font-mono text-slate-400 bg-slate-800 px-2 py-0.5 rounded break-all">
+                <code className="text-xs font-mono text-[#00AA2A] bg-[#111318] px-2 py-0.5 rounded break-all">
                   7Z7RcZQ...n7dkzT
                 </code>
               }
@@ -126,7 +126,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
               <MetadataRow
                 label="Mint Address"
                 value={
-                  <code className="text-xs font-mono text-purple-400 bg-slate-800 px-2 py-0.5 rounded break-all">
+                  <code className="text-xs font-mono text-[#00FF41] bg-[#111318] px-2 py-0.5 rounded break-all">
                     {nft.mint_address}
                   </code>
                 }
@@ -139,18 +139,18 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
       {/* Custom spec fields */}
       {nft.custom_specs && Object.keys(nft.custom_specs).length > 0 && (
         <>
-          <Separator className="bg-slate-800 my-4" />
-          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+          <Separator className="bg-[#0D3B1E] my-4" />
+          <h4 className="text-xs font-semibold text-[#00AA2A] uppercase tracking-wider mb-2">
             Custom Specs
           </h4>
-          <div className="bg-slate-900 rounded-lg border border-slate-800 overflow-hidden">
+          <div className="bg-[#0D1117] rounded-sm border border-[#0D3B1E] overflow-hidden">
             <table className="w-full text-sm">
-              <tbody className="divide-y divide-slate-800">
+              <tbody className="divide-y divide-[#0D3B1E]">
                 {Object.entries(nft.custom_specs).map(([key, value]) => (
                   <MetadataRow
                     key={key}
                     label={key}
-                    value={<span className="text-slate-200">{value}</span>}
+                    value={<span className="text-[#00FF41]">{value}</span>}
                   />
                 ))}
               </tbody>
@@ -165,7 +165,7 @@ export function NFTMetadata({ nft, className }: NFTMetadataProps) {
 function MetadataRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <tr>
-      <td className="py-2.5 px-4 text-slate-500 font-medium whitespace-nowrap w-32 align-top">
+      <td className="py-2.5 px-4 text-[#1A6B35] font-medium whitespace-nowrap w-32 align-top">
         {label}
       </td>
       <td className="py-2.5 px-4">{value}</td>

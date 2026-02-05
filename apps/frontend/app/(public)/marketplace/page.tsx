@@ -150,15 +150,15 @@ export default function MarketplacePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-white">
-            <Store className="h-6 w-6 text-cyan-500" />
+          <h1 className="flex items-center gap-2 text-2xl font-bold text-[#00FF41]">
+            <Store className="h-6 w-6 text-[#00FFFF]" />
             Marketplace
           </h1>
-          <p className="mt-1 text-sm text-slate-400">Browse and purchase NFTs from other players</p>
+          <p className="mt-1 text-sm text-[#00AA2A]">Browse and purchase NFTs from other players</p>
         </div>
 
         {/* Filters */}
@@ -170,11 +170,11 @@ export default function MarketplacePage() {
           />
         </div>
 
-        <Separator className="mb-6 bg-slate-800" />
+        <Separator className="mb-6 bg-[#111318]" />
 
         {/* Results count */}
         {!isLoading && (
-          <p className="mb-4 text-xs text-slate-500">
+          <p className="mb-4 text-xs text-[#1A6B35]">
             {filteredListings.length} {filteredListings.length === 1 ? 'listing' : 'listings'} found
           </p>
         )}
@@ -185,7 +185,7 @@ export default function MarketplacePage() {
             {Array.from({ length: 10 }).map((_, i) => (
               <div
                 key={i}
-                className="overflow-hidden rounded-xl border border-slate-800 bg-slate-900"
+                className="overflow-hidden rounded-sm border border-[#0D3B1E] bg-[#0D1117]"
               >
                 <Skeleton className="aspect-square w-full" />
                 <div className="space-y-2 p-3">
@@ -197,12 +197,12 @@ export default function MarketplacePage() {
             ))}
           </div>
         ) : filteredListings.length === 0 ? (
-          <div className="flex min-h-[300px] flex-col items-center justify-center rounded-xl border border-dashed border-slate-700 bg-slate-900/50 px-6 py-12">
-            <div className="mb-4 rounded-full bg-slate-800 p-4">
-              <ShoppingBag className="h-8 w-8 text-slate-500" />
+          <div className="flex min-h-[300px] flex-col items-center justify-center rounded-sm border border-dashed border-[#1A3A2A] bg-[#0D1117]/50 px-6 py-12">
+            <div className="mb-4 rounded-full bg-[#111318] p-4">
+              <ShoppingBag className="h-8 w-8 text-[#1A6B35]" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-white">No Listings Found</h3>
-            <p className="max-w-sm text-center text-sm text-slate-400">
+            <h3 className="mb-2 text-lg font-semibold text-[#00FF41]">No Listings Found</h3>
+            <p className="max-w-sm text-center text-sm text-[#00AA2A]">
               {listings.length === 0
                 ? 'There are currently no NFTs listed for sale. Check back later!'
                 : 'No listings match your current filters. Try adjusting your search criteria.'}
@@ -218,7 +218,7 @@ export default function MarketplacePage() {
 
         {/* Recent Sales */}
         <div className="mt-12">
-          <Separator className="mb-6 bg-slate-800" />
+          <Separator className="mb-6 bg-[#111318]" />
           <RecentSales sales={recentSales} isLoading={isSalesLoading} />
         </div>
 

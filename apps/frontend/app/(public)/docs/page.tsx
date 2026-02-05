@@ -24,12 +24,12 @@ export default function DocsPage() {
   const [activeSection, setActiveSection] = useState('getting-started')
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="mx-auto flex max-w-7xl gap-8 px-4 py-8">
         {/* Sidebar Navigation */}
         <nav className="sticky top-8 hidden h-fit w-64 shrink-0 lg:block">
-          <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
-            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+          <div className="rounded-sm border border-[#0D3B1E] bg-[#0D1117]/50 p-4">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#00AA2A]">
               API Reference
             </h2>
             <ul className="space-y-1">
@@ -41,10 +41,10 @@ export default function DocsPage() {
                       href={`#${section.id}`}
                       onClick={() => setActiveSection(section.id)}
                       className={cn(
-                        'flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors',
+                        'flex items-center gap-2.5 rounded-sm px-3 py-2 text-sm transition-colors',
                         activeSection === section.id
-                          ? 'bg-purple-600/10 text-purple-400'
-                          : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                          ? 'bg-[#0D3B1E]/20 text-[#00FF41]'
+                          : 'text-[#00AA2A] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]'
                       )}
                     >
                       <Icon className="size-4" />
@@ -61,13 +61,13 @@ export default function DocsPage() {
         <main className="min-w-0 flex-1">
           {/* Hero */}
           <div className="mb-12">
-            <Badge className="mb-4 bg-purple-600/20 text-purple-400 border-purple-600/30">
+            <Badge className="mb-4 bg-[#0D3B1E]/30 text-[#00FF41] border-[#0D3B1E]/50">
               API v1.0
             </Badge>
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-4xl font-bold text-[#00FF41]">
               UnstableLabs <span className="text-gradient">Game API</span>
             </h1>
-            <p className="mt-3 max-w-2xl text-lg text-slate-400">
+            <p className="mt-3 max-w-2xl text-lg text-[#00AA2A]">
               Integrate NFT data into your game. Verify ownership, fetch player inventories, and
               receive real-time updates via WebSocket.
             </p>
@@ -75,17 +75,17 @@ export default function DocsPage() {
 
           {/* Getting Started */}
           <section id="getting-started" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">Getting Started</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">Getting Started</h2>
+            <p className="mb-6 text-[#00AA2A]">
               The UnstableLabs Game API provides programmatic access to NFT data for game
               integration. All API requests are authenticated via API key and return JSON responses.
             </p>
 
-            <Card className="border-slate-800 bg-slate-900/50 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-white">Base URL</h3>
+            <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Base URL</h3>
               <CodeBlock code={`https://your-domain.com/api/game`} language="text" />
 
-              <h3 className="mb-3 mt-6 text-lg font-semibold text-white">Quick Start</h3>
+              <h3 className="mb-3 mt-6 text-lg font-semibold text-[#00FF41]">Quick Start</h3>
               <CodeBlock
                 code={`// Fetch player NFTs
 const response = await fetch(
@@ -104,14 +104,14 @@ console.log(data.data.nfts);`}
             </Card>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* Authentication */}
           <section id="authentication" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">Authentication</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">Authentication</h2>
+            <p className="mb-6 text-[#00AA2A]">
               All Game API requests require an API key passed via the{' '}
-              <code className="rounded bg-slate-800 px-1.5 py-0.5 text-purple-400">X-API-Key</code>{' '}
+              <code className="rounded bg-[#111318] px-1.5 py-0.5 text-[#00FF41]">X-API-Key</code>{' '}
               header. Contact the UnstableLabs team to obtain your key.
             </p>
 
@@ -178,11 +178,11 @@ const api = new UnstableLabsAPI(
             />
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* NFT Endpoints */}
           <section id="nft-endpoints" className="mb-16">
-            <h2 className="mb-6 text-2xl font-bold text-white">NFT Endpoints</h2>
+            <h2 className="mb-6 text-2xl font-bold text-[#00FF41]">NFT Endpoints</h2>
 
             <div className="space-y-8">
               {/* Get Player NFTs */}
@@ -289,12 +289,12 @@ const api = new UnstableLabsAPI(
             </div>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* Ownership Verification */}
           <section id="ownership" className="mb-16">
-            <h2 className="mb-6 text-2xl font-bold text-white">Ownership Verification</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-6 text-2xl font-bold text-[#00FF41]">Ownership Verification</h2>
+            <p className="mb-6 text-[#00AA2A]">
               Verify whether a player owns a specific NFT. Useful for gating in-game content or
               features behind NFT ownership.
             </p>
@@ -350,9 +350,11 @@ const api = new UnstableLabsAPI(
 }`}
             />
 
-            <Card className="mt-8 border-slate-800 bg-slate-900/50 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-white">Game Integration Example</h3>
-              <p className="mb-4 text-sm text-slate-400">
+            <Card className="mt-8 border-[#0D3B1E] bg-[#0D1117]/50 p-6">
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">
+                Game Integration Example
+              </h3>
+              <p className="mb-4 text-sm text-[#00AA2A]">
                 Here is how you might gate content in a game server based on NFT ownership.
               </p>
               <CodeBlock
@@ -394,51 +396,53 @@ app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
             </Card>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* WebSocket Events */}
           <section id="websocket" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">WebSocket Events</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">WebSocket Events</h2>
+            <p className="mb-6 text-[#00AA2A]">
               Subscribe to real-time updates using Supabase Realtime channels. Listen for changes to
               purchases, NFTs, and trades scoped to specific players.
             </p>
 
-            <Card className="border-slate-800 bg-slate-900/50 p-6">
-              <h3 className="mb-3 text-lg font-semibold text-white">Available Channels</h3>
+            <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Available Channels</h3>
               <div className="space-y-4">
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4">
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-green-600/20 text-green-400 border-green-600/30">
+                    <Badge className="bg-[#00FF41]/20 text-[#00FF41] border-[#00FF41]/30">
                       purchases
                     </Badge>
-                    <span className="text-sm text-slate-400">
+                    <span className="text-sm text-[#00AA2A]">
                       WHERE buyer_wallet = currentWallet
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-[#00CC33]">
                     Fired when a purchase is created or updated for the player.
                   </p>
                 </div>
 
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4">
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-blue-600/20 text-blue-400 border-blue-600/30">nfts</Badge>
-                    <span className="text-sm text-slate-400">WHERE owner_id = currentPlayer</span>
+                    <Badge className="bg-[#00FFFF]/20 text-[#00FFFF] border-[#00FFFF]/30">
+                      nfts
+                    </Badge>
+                    <span className="text-sm text-[#00AA2A]">WHERE owner_id = currentPlayer</span>
                   </div>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-[#00CC33]">
                     Fired when an NFT is added, updated, or removed from the player's inventory.
                   </p>
                 </div>
 
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4">
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4">
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-purple-600/20 text-purple-400 border-purple-600/30">
+                    <Badge className="bg-[#0D3B1E]/30 text-[#00FF41] border-[#0D3B1E]/50">
                       trades
                     </Badge>
-                    <span className="text-sm text-slate-400">WHERE seller_id = currentPlayer</span>
+                    <span className="text-sm text-[#00AA2A]">WHERE seller_id = currentPlayer</span>
                   </div>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-[#00CC33]">
                     Fired when a trade offer is received or a sale is completed.
                   </p>
                 </div>
@@ -446,7 +450,7 @@ app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
             </Card>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Subscribing to Events</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Subscribing to Events</h3>
               <CodeBlock
                 code={`import { createClient } from '@supabase/supabase-js';
 
@@ -489,7 +493,7 @@ channel.unsubscribe();`}
             </div>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Event Payload Format</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Event Payload Format</h3>
               <CodeBlock
                 code={`{
   "eventType": "INSERT" | "UPDATE" | "DELETE",
@@ -511,14 +515,14 @@ channel.unsubscribe();`}
             </div>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* Error Handling */}
           <section id="errors" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">Error Handling</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">Error Handling</h2>
+            <p className="mb-6 text-[#00AA2A]">
               All error responses follow a consistent format with a{' '}
-              <code className="rounded bg-slate-800 px-1.5 py-0.5 text-purple-400">
+              <code className="rounded bg-[#111318] px-1.5 py-0.5 text-[#00FF41]">
                 success: false
               </code>{' '}
               flag and structured error details.
@@ -536,88 +540,94 @@ channel.unsubscribe();`}
               language="json"
             />
 
-            <Card className="mt-8 border-slate-800 bg-slate-900/50 p-6">
-              <h3 className="mb-4 text-lg font-semibold text-white">Error Codes</h3>
+            <Card className="mt-8 border-[#0D3B1E] bg-[#0D1117]/50 p-6">
+              <h3 className="mb-4 text-lg font-semibold text-[#00FF41]">Error Codes</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="pb-3 pr-4 text-left font-medium text-slate-400">
+                    <tr className="border-b border-[#1A3A2A]">
+                      <th className="pb-3 pr-4 text-left font-medium text-[#00AA2A]">
                         HTTP Status
                       </th>
-                      <th className="pb-3 pr-4 text-left font-medium text-slate-400">Code</th>
-                      <th className="pb-3 text-left font-medium text-slate-400">Description</th>
+                      <th className="pb-3 pr-4 text-left font-medium text-[#00AA2A]">Code</th>
+                      <th className="pb-3 text-left font-medium text-[#00AA2A]">Description</th>
                     </tr>
                   </thead>
-                  <tbody className="text-slate-300">
-                    <tr className="border-b border-slate-800">
+                  <tbody className="text-[#00CC33]">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-yellow-600/20 text-yellow-400 border-yellow-600/30">
+                        <Badge className="bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30">
                           400
                         </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">INVALID_WALLET</code>
+                        <code className="text-[#FF3333]">INVALID_WALLET</code>
                       </td>
                       <td className="py-2.5">Invalid wallet address format</td>
                     </tr>
-                    <tr className="border-b border-slate-800">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-yellow-600/20 text-yellow-400 border-yellow-600/30">
+                        <Badge className="bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30">
                           400
                         </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">VALIDATION_ERROR</code>
+                        <code className="text-[#FF3333]">VALIDATION_ERROR</code>
                       </td>
                       <td className="py-2.5">Request body validation failed</td>
                     </tr>
-                    <tr className="border-b border-slate-800">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-red-600/20 text-red-400 border-red-600/30">401</Badge>
+                        <Badge className="bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30">
+                          401
+                        </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">MISSING_API_KEY</code>
+                        <code className="text-[#FF3333]">MISSING_API_KEY</code>
                       </td>
                       <td className="py-2.5">X-API-Key header not provided</td>
                     </tr>
-                    <tr className="border-b border-slate-800">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-red-600/20 text-red-400 border-red-600/30">403</Badge>
+                        <Badge className="bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30">
+                          403
+                        </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">INVALID_API_KEY</code>
+                        <code className="text-[#FF3333]">INVALID_API_KEY</code>
                       </td>
                       <td className="py-2.5">The provided API key is invalid</td>
                     </tr>
-                    <tr className="border-b border-slate-800">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-yellow-600/20 text-yellow-400 border-yellow-600/30">
+                        <Badge className="bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30">
                           404
                         </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">NFT_NOT_FOUND</code>
+                        <code className="text-[#FF3333]">NFT_NOT_FOUND</code>
                       </td>
                       <td className="py-2.5">Requested NFT does not exist</td>
                     </tr>
-                    <tr className="border-b border-slate-800">
+                    <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-orange-600/20 text-orange-400 border-orange-600/30">
+                        <Badge className="bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30">
                           429
                         </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">RATE_LIMIT_EXCEEDED</code>
+                        <code className="text-[#FF3333]">RATE_LIMIT_EXCEEDED</code>
                       </td>
                       <td className="py-2.5">Too many requests, retry after cooldown</td>
                     </tr>
                     <tr>
                       <td className="py-2.5 pr-4">
-                        <Badge className="bg-red-600/20 text-red-400 border-red-600/30">500</Badge>
+                        <Badge className="bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30">
+                          500
+                        </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-red-400">INTERNAL_ERROR</code>
+                        <code className="text-[#FF3333]">INTERNAL_ERROR</code>
                       </td>
                       <td className="py-2.5">Unexpected server error occurred</td>
                     </tr>
@@ -627,7 +637,7 @@ channel.unsubscribe();`}
             </Card>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Handling Errors in Code</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Handling Errors in Code</h3>
               <CodeBlock
                 code={`async function fetchWithErrorHandling(url: string, apiKey: string) {
   const response = await fetch(url, {
@@ -661,36 +671,36 @@ channel.unsubscribe();`}
             </div>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* Rate Limits */}
           <section id="rate-limits" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">Rate Limits</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">Rate Limits</h2>
+            <p className="mb-6 text-[#00AA2A]">
               The Game API enforces rate limits to ensure fair usage and platform stability. Limits
               are applied per API key.
             </p>
 
-            <Card className="border-slate-800 bg-slate-900/50 p-6">
+            <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
               <div className="grid gap-6 sm:grid-cols-3">
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4 text-center">
-                  <p className="text-3xl font-bold text-purple-400">60</p>
-                  <p className="mt-1 text-sm text-slate-400">Requests per minute</p>
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4 text-center">
+                  <p className="text-3xl font-bold text-[#00FF41]">60</p>
+                  <p className="mt-1 text-sm text-[#00AA2A]">Requests per minute</p>
                 </div>
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4 text-center">
-                  <p className="text-3xl font-bold text-cyan-400">60s</p>
-                  <p className="mt-1 text-sm text-slate-400">Cache TTL (GET endpoints)</p>
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4 text-center">
+                  <p className="text-3xl font-bold text-[#00FFFF]">60s</p>
+                  <p className="mt-1 text-sm text-[#00AA2A]">Cache TTL (GET endpoints)</p>
                 </div>
-                <div className="rounded-lg border border-slate-800 bg-slate-950 p-4 text-center">
-                  <p className="text-3xl font-bold text-green-400">200</p>
-                  <p className="mt-1 text-sm text-slate-400">Max NFTs per response</p>
+                <div className="rounded-sm border border-[#0D3B1E] bg-black p-4 text-center">
+                  <p className="text-3xl font-bold text-[#00FF41]">200</p>
+                  <p className="mt-1 text-sm text-[#00AA2A]">Max NFTs per response</p>
                 </div>
               </div>
             </Card>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Rate Limit Headers</h3>
-              <p className="mb-4 text-sm text-slate-400">
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Rate Limit Headers</h3>
+              <p className="mb-4 text-sm text-[#00AA2A]">
                 When rate limited, the response includes headers to help you implement proper retry
                 logic.
               </p>
@@ -704,7 +714,7 @@ Retry-After: 45`}
             </div>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Retry Strategy</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">Retry Strategy</h3>
               <CodeBlock
                 code={`async function fetchWithRetry(
   url: string,
@@ -737,25 +747,25 @@ Retry-After: 45`}
             </div>
           </section>
 
-          <Separator className="my-12 bg-slate-800" />
+          <Separator className="my-12 bg-[#111318]" />
 
           {/* SDK & Downloads */}
           <section id="sdk" className="mb-16">
-            <h2 className="mb-4 text-2xl font-bold text-white">SDK & Downloads</h2>
-            <p className="mb-6 text-slate-400">
+            <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">SDK & Downloads</h2>
+            <p className="mb-6 text-[#00AA2A]">
               Download the OpenAPI specification to generate client SDKs in any language, or use our
               pre-built TypeScript SDK for quick integration.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <Card className="border-slate-800 bg-slate-900/50 p-6">
+              <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-purple-600/20">
-                    <Download className="size-5 text-purple-400" />
+                  <div className="flex size-10 items-center justify-center rounded-sm bg-[#0D3B1E]/30">
+                    <Download className="size-5 text-[#00FF41]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-semibold text-white">OpenAPI Spec</h3>
-                    <p className="mt-1 text-sm text-slate-400">
+                    <h3 className="text-base font-semibold text-[#00FF41]">OpenAPI Spec</h3>
+                    <p className="mt-1 text-sm text-[#00AA2A]">
                       Download the OpenAPI 3.0.3 specification file. Use it to auto-generate client
                       SDKs with tools like openapi-generator.
                     </p>
@@ -763,7 +773,7 @@ Retry-After: 45`}
                       href="/api/docs"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 rounded-lg bg-slate-800 px-3 py-1.5 text-sm font-medium text-purple-400 transition-colors hover:bg-slate-700 hover:text-purple-300"
+                      className="mt-3 inline-flex items-center gap-1.5 rounded-sm bg-[#111318] px-3 py-1.5 text-sm font-medium text-[#00FF41] transition-colors hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]"
                     >
                       <Download className="size-3.5" />
                       Download JSON
@@ -772,14 +782,14 @@ Retry-After: 45`}
                 </div>
               </Card>
 
-              <Card className="border-slate-800 bg-slate-900/50 p-6">
+              <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex size-10 items-center justify-center rounded-lg bg-cyan-600/20">
-                    <Box className="size-5 text-cyan-400" />
+                  <div className="flex size-10 items-center justify-center rounded-sm bg-[#00FFFF]/20">
+                    <Box className="size-5 text-[#00FFFF]" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-semibold text-white">TypeScript SDK</h3>
-                    <p className="mt-1 text-sm text-slate-400">
+                    <h3 className="text-base font-semibold text-[#00FF41]">TypeScript SDK</h3>
+                    <p className="mt-1 text-sm text-[#00AA2A]">
                       Type-safe client with built-in retry logic and error handling. Install via
                       npm.
                     </p>
@@ -790,7 +800,9 @@ Retry-After: 45`}
             </div>
 
             <div className="mt-8">
-              <h3 className="mb-3 text-lg font-semibold text-white">Generate SDK from OpenAPI</h3>
+              <h3 className="mb-3 text-lg font-semibold text-[#00FF41]">
+                Generate SDK from OpenAPI
+              </h3>
               <CodeBlock
                 code={`# Install the OpenAPI generator
 npm install -g @openapitools/openapi-generator-cli

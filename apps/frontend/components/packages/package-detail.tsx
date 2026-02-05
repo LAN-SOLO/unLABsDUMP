@@ -78,7 +78,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
         {/* Back link */}
         <Link
           href="/packages"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm"
+          className="inline-flex items-center gap-2 text-[#00AA2A] hover:text-[#00FF41] transition-colors text-sm"
         >
           <ArrowLeft className="size-4" />
           Back to Packages
@@ -89,14 +89,14 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
           {/* Left: Image / Visual */}
           <div className="relative">
             {packageData.featured && (
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-xl opacity-30 blur-sm" />
+              <div className="absolute -inset-0.5 bg-[#00FF41] rounded-sm opacity-30 blur-sm" />
             )}
             <div
-              className={`relative rounded-xl overflow-hidden bg-slate-900 border ${
-                packageData.featured ? 'border-purple-500/50' : 'border-slate-800'
+              className={`relative rounded-sm overflow-hidden bg-[#0D1117] border ${
+                packageData.featured ? 'border-[#00FF41]/50' : 'border-[#0D3B1E]'
               }`}
             >
-              <div className="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
+              <div className="aspect-square bg-gradient-to-br from-[#111318] to-[#0D1117] flex items-center justify-center">
                 {packageData.nfts.length > 0 && packageData.nfts[0].image_url ? (
                   <img
                     src={packageData.nfts[0].image_url}
@@ -104,14 +104,14 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <Package className="size-32 text-slate-600" />
+                  <Package className="size-32 text-[#1A6B35]" />
                 )}
               </div>
 
               {/* Badges */}
               <div className="absolute top-4 left-4 flex flex-col gap-2">
                 {packageData.featured && (
-                  <Badge className="bg-gradient-to-r from-purple-600 to-cyan-500 text-white border-0 gap-1">
+                  <Badge className="bg-[#00FF41] text-black border-0 gap-1">
                     <Sparkles className="size-3" />
                     Best Value
                   </Badge>
@@ -119,7 +119,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
                 {packageData.category && (
                   <Badge
                     variant="secondary"
-                    className="bg-slate-800/80 text-slate-300 backdrop-blur-sm"
+                    className="bg-[#111318]/80 text-[#00CC33] backdrop-blur-sm"
                   >
                     {packageData.category.replace(/_/g, ' ')}
                   </Badge>
@@ -131,20 +131,20 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
           {/* Right: Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">{packageData.name}</h1>
+              <h1 className="text-3xl font-bold text-[#00FF41] mb-2">{packageData.name}</h1>
               {packageData.description && (
-                <p className="text-slate-400 leading-relaxed">{packageData.description}</p>
+                <p className="text-[#00AA2A] leading-relaxed">{packageData.description}</p>
               )}
             </div>
 
             {/* Price */}
-            <div className="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
-              <p className="text-sm text-slate-400 mb-1">Price</p>
-              <p className="text-4xl font-bold text-white">
+            <div className="p-4 rounded-sm bg-[#0D3B1E]/20 border border-[#1A3A2A]">
+              <p className="text-sm text-[#00AA2A] mb-1">Price</p>
+              <p className="text-4xl font-bold text-[#00FF41]">
                 {formatSol(priceNum)}{' '}
-                <span className="text-xl font-normal text-slate-400">SOL</span>
+                <span className="text-xl font-normal text-[#00AA2A]">SOL</span>
               </p>
-              <p className="text-sm text-slate-500 mt-1">~${usdEstimate} USD</p>
+              <p className="text-sm text-[#1A6B35] mt-1">~${usdEstimate} USD</p>
             </div>
 
             {/* Availability */}
@@ -152,7 +152,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
               {packageData.is_sold_out && (
                 <Badge
                   variant="destructive"
-                  className="bg-red-500/20 text-red-400 border-red-500/30 text-sm px-3 py-1"
+                  className="bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30 text-sm px-3 py-1"
                 >
                   Sold Out
                 </Badge>
@@ -160,7 +160,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
               {isLowStock && (
                 <Badge
                   variant="outline"
-                  className="border-amber-500/30 text-amber-400 gap-1 text-sm px-3 py-1"
+                  className="border-[#FFB000]/30 text-[#FFB000] gap-1 text-sm px-3 py-1"
                 >
                   <AlertTriangle className="size-3.5" />
                   {packageData.remaining} remaining
@@ -169,7 +169,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
               {packageData.total_supply != null && !packageData.is_sold_out && !isLowStock && (
                 <Badge
                   variant="outline"
-                  className="border-slate-600 text-slate-300 gap-1 text-sm px-3 py-1"
+                  className="border-[#1A3A2A] text-[#00CC33] gap-1 text-sm px-3 py-1"
                 >
                   <TrendingUp className="size-3.5" />
                   {packageData.remaining} of {packageData.total_supply} available
@@ -178,7 +178,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
               {packageData.sale_ends_at && (
                 <Badge
                   variant="outline"
-                  className="border-slate-600 text-slate-300 gap-1 text-sm px-3 py-1"
+                  className="border-[#1A3A2A] text-[#00CC33] gap-1 text-sm px-3 py-1"
                 >
                   <Clock className="size-3.5" />
                   Sale ends {new Date(packageData.sale_ends_at).toLocaleDateString()}
@@ -187,7 +187,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
               {packageData.sold_count > 0 && (
                 <Badge
                   variant="secondary"
-                  className="bg-slate-800 text-slate-400 text-sm px-3 py-1"
+                  className="bg-[#111318] text-[#00AA2A] text-sm px-3 py-1"
                 >
                   {packageData.sold_count} sold
                 </Badge>
@@ -204,7 +204,7 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
           </div>
         </div>
 
-        <Separator className="bg-slate-800" />
+        <Separator className="bg-[#0D3B1E]" />
 
         {/* Contents breakdown */}
         <PackageContents unscAmount={packageData.unsc_amount} nfts={packageData.nfts} />
@@ -212,9 +212,9 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
         {/* Related packages */}
         {packageData.related_packages.length > 0 && (
           <>
-            <Separator className="bg-slate-800" />
+            <Separator className="bg-[#0D3B1E]" />
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white">Related Packages</h3>
+              <h3 className="text-lg font-semibold text-[#00FF41]">Related Packages</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {packageData.related_packages.map((rp) => (
                   <PackageCard

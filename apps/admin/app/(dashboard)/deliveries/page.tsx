@@ -78,10 +78,10 @@ interface Pagination {
 }
 
 const statusConfig: Record<string, { color: string; icon: React.ElementType }> = {
-  pending: { color: 'bg-yellow-500', icon: Clock },
-  processing: { color: 'bg-blue-500', icon: RefreshCw },
-  completed: { color: 'bg-green-500', icon: CheckCircle },
-  failed: { color: 'bg-red-500', icon: XCircle },
+  pending: { color: 'bg-[#FFB000]', icon: Clock },
+  processing: { color: 'bg-[#00FFFF]', icon: RefreshCw },
+  completed: { color: 'bg-[#00FF41]', icon: CheckCircle },
+  failed: { color: 'bg-[#FF3333]', icon: XCircle },
 }
 
 export default function DeliveriesPage() {
@@ -173,64 +173,64 @@ export default function DeliveriesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-white">Deliveries</h1>
-        <p className="text-slate-400 mt-1">Manage NFT deliveries to players</p>
+        <h1 className="text-3xl font-bold text-[#00FF41]">Deliveries</h1>
+        <p className="text-[#00AA2A] mt-1">Manage NFT deliveries to players</p>
       </div>
 
       {/* Stats Cards */}
       {stats && (
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-yellow-600/20 flex items-center justify-center">
-                  <Clock className="h-5 w-5 text-yellow-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#FFB000]/20 flex items-center justify-center">
+                  <Clock className="h-5 w-5 text-[#FFB000]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Pending</p>
-                  <p className="text-2xl font-bold text-white">{stats.pending}</p>
+                  <p className="text-sm text-[#00AA2A]">Pending</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.pending}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-blue-600/20 flex items-center justify-center">
-                  <RefreshCw className="h-5 w-5 text-blue-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#00FFFF]/20 flex items-center justify-center">
+                  <RefreshCw className="h-5 w-5 text-[#00FFFF]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Processing</p>
-                  <p className="text-2xl font-bold text-white">{stats.processing}</p>
+                  <p className="text-sm text-[#00AA2A]">Processing</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.processing}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-green-600/20 flex items-center justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#00FF41]/20 flex items-center justify-center">
+                  <CheckCircle className="h-5 w-5 text-[#00FF41]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Completed</p>
-                  <p className="text-2xl font-bold text-white">{stats.completed}</p>
+                  <p className="text-sm text-[#00AA2A]">Completed</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.completed}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-red-600/20 flex items-center justify-center">
-                  <XCircle className="h-5 w-5 text-red-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#FF3333]/20 flex items-center justify-center">
+                  <XCircle className="h-5 w-5 text-[#FF3333]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Failed</p>
-                  <p className="text-2xl font-bold text-white">{stats.failed}</p>
+                  <p className="text-sm text-[#00AA2A]">Failed</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.failed}</p>
                 </div>
               </div>
             </CardContent>
@@ -239,11 +239,11 @@ export default function DeliveriesPage() {
       )}
 
       {/* Filters */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="pt-6">
           <div className="flex flex-wrap gap-4 items-center justify-between">
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[180px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[180px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Filter by status" />
               </SelectTrigger>
               <SelectContent>
@@ -270,51 +270,51 @@ export default function DeliveriesPage() {
       </Card>
 
       {/* Table */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
-          <CardTitle className="text-white">
+          <CardTitle className="text-[#00FF41]">
             {pagination.total} Deliver{pagination.total !== 1 ? 'ies' : 'y'} found
           </CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
             </div>
           ) : deliveries.length === 0 ? (
             <div className="text-center py-12">
-              <Truck className="mx-auto h-12 w-12 text-slate-600" />
-              <p className="mt-4 text-slate-400">No deliveries found</p>
+              <Truck className="mx-auto h-12 w-12 text-[#1A6B35]" />
+              <p className="mt-4 text-[#00AA2A]">No deliveries found</p>
             </div>
           ) : (
             <>
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-800">
-                    <TableHead className="text-slate-400">Player</TableHead>
-                    <TableHead className="text-slate-400">NFTs</TableHead>
-                    <TableHead className="text-slate-400">Type</TableHead>
-                    <TableHead className="text-slate-400">Status</TableHead>
-                    <TableHead className="text-slate-400">Created</TableHead>
-                    <TableHead className="text-slate-400 text-right">Actions</TableHead>
+                  <TableRow className="border-[#0D3B1E]">
+                    <TableHead className="text-[#00AA2A]">Player</TableHead>
+                    <TableHead className="text-[#00AA2A]">NFTs</TableHead>
+                    <TableHead className="text-[#00AA2A]">Type</TableHead>
+                    <TableHead className="text-[#00AA2A]">Status</TableHead>
+                    <TableHead className="text-[#00AA2A]">Created</TableHead>
+                    <TableHead className="text-[#00AA2A] text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {deliveries.map((delivery) => {
                     const StatusIcon = statusConfig[delivery.status]?.icon || AlertCircle
                     return (
-                      <TableRow key={delivery.id} className="border-slate-800">
+                      <TableRow key={delivery.id} className="border-[#0D3B1E]">
                         <TableCell>
                           <div>
-                            <p className="text-white font-medium">
+                            <p className="text-[#00FF41] font-medium">
                               {delivery.player?.username || 'Unknown'}
                             </p>
-                            <p className="text-sm text-slate-400 font-mono">
+                            <p className="text-sm text-[#00AA2A] font-mono">
                               {delivery.player?.wallet_address?.slice(0, 8)}...
                             </p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-slate-300">
+                        <TableCell className="text-[#00CC33]">
                           {delivery.nfts?.length || 0} NFT
                           {(delivery.nfts?.length || 0) !== 1 ? 's' : ''}
                         </TableCell>
@@ -325,18 +325,18 @@ export default function DeliveriesPage() {
                         </TableCell>
                         <TableCell>
                           <Badge
-                            className={`${statusConfig[delivery.status]?.color || 'bg-slate-500'} text-white capitalize`}
+                            className={`${statusConfig[delivery.status]?.color || 'bg-[#1A6B35]'} text-[#00FF41] capitalize`}
                           >
                             <StatusIcon className="mr-1 h-3 w-3" />
                             {delivery.status}
                           </Badge>
                           {delivery.error_message && (
-                            <p className="text-xs text-red-400 mt-1 max-w-[150px] truncate">
+                            <p className="text-xs text-[#FF3333] mt-1 max-w-[150px] truncate">
                               {delivery.error_message}
                             </p>
                           )}
                         </TableCell>
-                        <TableCell className="text-slate-300">
+                        <TableCell className="text-[#00CC33]">
                           {new Date(delivery.created_at).toLocaleDateString()}
                         </TableCell>
                         <TableCell className="text-right">
@@ -383,8 +383,8 @@ export default function DeliveriesPage() {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-800">
-                  <p className="text-sm text-slate-400">
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#0D3B1E]">
+                  <p className="text-sm text-[#00AA2A]">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{' '}
                     {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                     {pagination.total} results

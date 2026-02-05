@@ -202,16 +202,16 @@ export default function InventoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="flex items-center gap-2 text-2xl font-bold text-white">
-              <Package className="h-6 w-6 text-purple-500" />
+            <h1 className="flex items-center gap-2 text-2xl font-bold text-[#00FF41]">
+              <Package className="h-6 w-6 text-[#00FF41]" />
               Inventory
             </h1>
-            <p className="mt-1 text-sm text-slate-400">Manage your NFT collection</p>
+            <p className="mt-1 text-sm text-[#00AA2A]">Manage your NFT collection</p>
           </div>
 
           <div className="flex items-center gap-2">
@@ -220,7 +220,9 @@ export default function InventoryPage() {
               size="sm"
               onClick={toggleSelectMode}
               className={
-                selectMode ? 'bg-purple-600 hover:bg-purple-700' : 'border-slate-700 text-slate-300'
+                selectMode
+                  ? 'bg-[#00FF41] text-black hover:bg-[#00CC33]'
+                  : 'border-[#1A3A2A] text-[#00CC33]'
               }
             >
               {selectMode ? (
@@ -242,12 +244,12 @@ export default function InventoryPage() {
                   size="sm"
                   variant="outline"
                   onClick={handleBulkTransfer}
-                  className="border-slate-700 text-slate-300"
+                  className="border-[#1A3A2A] text-[#00CC33]"
                 >
                   <Send className="mr-1 h-3.5 w-3.5" />
                   Transfer ({selectedIds.size})
                 </Button>
-                <Button size="sm" variant="outline" className="border-slate-700 text-slate-300">
+                <Button size="sm" variant="outline" className="border-[#1A3A2A] text-[#00CC33]">
                   <Tag className="mr-1 h-3.5 w-3.5" />
                   List ({selectedIds.size})
                 </Button>
@@ -261,7 +263,7 @@ export default function InventoryPage() {
           <InventoryStats stats={stats} isLoading={isStatsLoading} />
         </div>
 
-        <Separator className="mb-6 bg-slate-800" />
+        <Separator className="mb-6 bg-[#111318]" />
 
         {/* Filters */}
         <div className="mb-6">
@@ -274,7 +276,7 @@ export default function InventoryPage() {
 
         {/* Results count */}
         {!isLoading && nfts.length > 0 && (
-          <p className="mb-4 text-xs text-slate-500">
+          <p className="mb-4 text-xs text-[#1A6B35]">
             Showing {filteredNfts.length} of {nfts.length} NFTs
           </p>
         )}

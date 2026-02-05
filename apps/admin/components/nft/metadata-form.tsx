@@ -68,25 +68,25 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
     <TooltipProvider>
       <div className="space-y-6">
         {/* Rarity Preview */}
-        <div className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
-          <span className="text-sm text-slate-400">Calculated Rarity</span>
+        <div className="flex items-center justify-between p-3 bg-[#111318] rounded-sm">
+          <span className="text-sm text-[#00AA2A]">Calculated Rarity</span>
           <div className="flex items-center gap-2">
             <Badge
               className={`${
                 rarityLabel === 'Legendary'
-                  ? 'bg-yellow-500'
+                  ? 'bg-[#FFB000]'
                   : rarityLabel === 'Epic'
-                    ? 'bg-purple-500'
+                    ? 'bg-[#00FF41]'
                     : rarityLabel === 'Rare'
-                      ? 'bg-blue-500'
+                      ? 'bg-[#00FFFF]'
                       : rarityLabel === 'Uncommon'
-                        ? 'bg-green-500'
-                        : 'bg-slate-500'
-              } text-white`}
+                        ? 'bg-[#00FF41]'
+                        : 'bg-[#1A6B35]'
+              } text-[#00FF41]`}
             >
               {rarityLabel}
             </Badge>
-            <span className="text-xs text-slate-500 font-mono">Score: {rarityScore}</span>
+            <span className="text-xs text-[#1A6B35] font-mono">Score: {rarityScore}</span>
           </div>
         </div>
 
@@ -96,7 +96,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label htmlFor="capture">_capture</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Blockchain source identifier for this NFT</p>
@@ -108,7 +108,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             value={metadata._capture || ''}
             onChange={(e) => handleChange('_capture', e.target.value || undefined)}
             placeholder="Blockchain source"
-            className="bg-slate-800 border-slate-700"
+            className="bg-[#111318] border-[#1A3A2A]"
             disabled={disabled}
           />
         </div>
@@ -119,7 +119,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label htmlFor="color">_color</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Wavelength spectrum classification (Infrared to Gamma)</p>
@@ -131,7 +131,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             onValueChange={(value) => handleChange('_color', value || undefined)}
             disabled={disabled}
           >
-            <SelectTrigger className="bg-slate-800 border-slate-700">
+            <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
               <SelectValue placeholder="Select wavelength" />
             </SelectTrigger>
             <SelectContent>
@@ -139,7 +139,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
                 <SelectItem key={color} value={color}>
                   <div className="flex items-center gap-2">
                     <div
-                      className="h-3 w-3 rounded-full border border-slate-600"
+                      className="h-3 w-3 rounded-full border border-[#1A3A2A]"
                       style={{ backgroundColor: COLOR_HEX[color] }}
                     />
                     {color}
@@ -156,7 +156,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label htmlFor="io">_I/O</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Rotation direction: Clockwise (CW) or Counter-Clockwise (CCW)</p>
@@ -168,7 +168,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             onValueChange={(value) => handleChange('_io', value || undefined)}
             disabled={disabled}
           >
-            <SelectTrigger className="bg-slate-800 border-slate-700">
+            <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
               <SelectValue placeholder="Select rotation" />
             </SelectTrigger>
             <SelectContent>
@@ -187,7 +187,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label htmlFor="tier">Tier</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Rarity tier from 1 (Common) to 5 (Legendary)</p>
@@ -199,7 +199,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             onValueChange={(value) => handleChange('tier', value ? parseInt(value) : undefined)}
             disabled={disabled}
           >
-            <SelectTrigger className="bg-slate-800 border-slate-700">
+            <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
               <SelectValue placeholder="Select tier" />
             </SelectTrigger>
             <SelectContent>
@@ -220,7 +220,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label htmlFor="bit">Era (Bit Depth)</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Processing era classification</p>
@@ -232,7 +232,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             onValueChange={(value) => handleChange('bit', value || undefined)}
             disabled={disabled}
           >
-            <SelectTrigger className="bg-slate-800 border-slate-700">
+            <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
               <SelectValue placeholder="Select era" />
             </SelectTrigger>
             <SelectContent>
@@ -251,7 +251,7 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
             <Label>Custom Specifications</Label>
             <Tooltip>
               <TooltipTrigger>
-                <HelpCircle className="h-3.5 w-3.5 text-slate-500" />
+                <HelpCircle className="h-3.5 w-3.5 text-[#1A6B35]" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Additional custom key-value attributes</p>
@@ -261,10 +261,10 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
 
           {metadata.custom_spec &&
             Object.entries(metadata.custom_spec).map(([key, value]) => (
-              <div key={key} className="flex items-center gap-2 p-2 bg-slate-800 rounded">
-                <span className="text-sm text-purple-400 font-mono">{key}</span>
-                <span className="text-slate-500">=</span>
-                <span className="text-sm text-white flex-1">{value}</span>
+              <div key={key} className="flex items-center gap-2 p-2 bg-[#111318] rounded">
+                <span className="text-sm text-[#00FF41] font-mono">{key}</span>
+                <span className="text-[#1A6B35]">=</span>
+                <span className="text-sm text-[#00FF41] flex-1">{value}</span>
                 {!disabled && (
                   <Button
                     type="button"
@@ -285,13 +285,13 @@ export function MetadataForm({ metadata, onChange, disabled }: MetadataFormProps
                 value={newSpecKey}
                 onChange={(e) => setNewSpecKey(e.target.value)}
                 placeholder="Key"
-                className="bg-slate-800 border-slate-700 flex-1"
+                className="bg-[#111318] border-[#1A3A2A] flex-1"
               />
               <Input
                 value={newSpecValue}
                 onChange={(e) => setNewSpecValue(e.target.value)}
                 placeholder="Value"
-                className="bg-slate-800 border-slate-700 flex-1"
+                className="bg-[#111318] border-[#1A3A2A] flex-1"
                 onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addCustomSpec())}
               />
               <Button

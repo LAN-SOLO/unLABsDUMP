@@ -228,7 +228,7 @@ export default function SettingsPage() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -236,8 +236,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-white">Settings</h1>
-        <p className="text-slate-400 mt-2">Manage your account settings and security</p>
+        <h1 className="text-3xl font-bold text-[#00FF41]">Settings</h1>
+        <p className="text-[#00AA2A] mt-2">Manage your account settings and security</p>
       </div>
 
       {error && (
@@ -247,34 +247,36 @@ export default function SettingsPage() {
       )}
 
       {success && (
-        <Alert className="border-green-600/50 bg-green-600/10">
-          <Check className="h-4 w-4 text-green-500" />
-          <AlertDescription className="text-green-200">{success}</AlertDescription>
+        <Alert className="border-[#00FF41]/50 bg-[#00FF41]/10">
+          <Check className="h-4 w-4 text-[#00FF41]" />
+          <AlertDescription className="text-[#00FF41]">{success}</AlertDescription>
         </Alert>
       )}
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Profile Information */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <User className="h-5 w-5 text-purple-500" />
-              <CardTitle className="text-white">Profile Information</CardTitle>
+              <User className="h-5 w-5 text-[#00FF41]" />
+              <CardTitle className="text-[#00FF41]">Profile Information</CardTitle>
             </div>
-            <CardDescription className="text-slate-400">
+            <CardDescription className="text-[#00AA2A]">
               Update your account details
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label className="text-slate-400">Role</Label>
-              <div className="text-white font-medium capitalize">{profile?.role || 'Admin'}</div>
+              <Label className="text-[#00AA2A]">Role</Label>
+              <div className="text-[#00FF41] font-medium capitalize">
+                {profile?.role || 'Admin'}
+              </div>
             </div>
 
             {profile?.wallet_address && (
               <div className="space-y-2">
-                <Label className="text-slate-400">Wallet Address</Label>
-                <div className="text-white font-mono text-sm bg-slate-800 p-2 rounded">
+                <Label className="text-[#00AA2A]">Wallet Address</Label>
+                <div className="text-[#00FF41] font-mono text-sm bg-[#111318] p-2 rounded">
                   {profile.wallet_address}
                 </div>
               </div>
@@ -288,14 +290,14 @@ export default function SettingsPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-slate-800 border-slate-700"
+                  className="bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isUpdatingEmail || email === profile?.email}
-                className="bg-purple-600 hover:bg-purple-700"
+                className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
               >
                 {isUpdatingEmail ? (
                   <>
@@ -311,13 +313,13 @@ export default function SettingsPage() {
         </Card>
 
         {/* Password */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Key className="h-5 w-5 text-purple-500" />
-              <CardTitle className="text-white">Change Password</CardTitle>
+              <Key className="h-5 w-5 text-[#00FF41]" />
+              <CardTitle className="text-[#00FF41]">Change Password</CardTitle>
             </div>
-            <CardDescription className="text-slate-400">Update your password</CardDescription>
+            <CardDescription className="text-[#00AA2A]">Update your password</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleUpdatePassword} className="space-y-4">
@@ -328,7 +330,7 @@ export default function SettingsPage() {
                   type="password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="bg-slate-800 border-slate-700"
+                  className="bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
 
@@ -339,7 +341,7 @@ export default function SettingsPage() {
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="bg-slate-800 border-slate-700"
+                  className="bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
 
@@ -350,14 +352,14 @@ export default function SettingsPage() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="bg-slate-800 border-slate-700"
+                  className="bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isUpdatingPassword || !currentPassword || !newPassword}
-                className="bg-purple-600 hover:bg-purple-700"
+                className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
               >
                 {isUpdatingPassword ? (
                   <>
@@ -373,42 +375,42 @@ export default function SettingsPage() {
         </Card>
 
         {/* Two-Factor Authentication */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-purple-500" />
-              <CardTitle className="text-white">Two-Factor Authentication</CardTitle>
+              <Shield className="h-5 w-5 text-[#00FF41]" />
+              <CardTitle className="text-[#00FF41]">Two-Factor Authentication</CardTitle>
             </div>
-            <CardDescription className="text-slate-400">
+            <CardDescription className="text-[#00AA2A]">
               Add an extra layer of security
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-white font-medium">Status</p>
+                <p className="text-[#00FF41] font-medium">Status</p>
                 <p
-                  className={`text-sm ${profile?.two_factor_enabled ? 'text-green-400' : 'text-slate-400'}`}
+                  className={`text-sm ${profile?.two_factor_enabled ? 'text-[#00FF41]' : 'text-[#00AA2A]'}`}
                 >
                   {profile?.two_factor_enabled ? 'Enabled' : 'Disabled'}
                 </p>
               </div>
               {profile?.two_factor_enabled ? (
-                <div className="h-8 w-8 rounded-full bg-green-600/20 flex items-center justify-center">
-                  <Check className="h-4 w-4 text-green-500" />
+                <div className="h-8 w-8 rounded-full bg-[#00FF41]/20 flex items-center justify-center">
+                  <Check className="h-4 w-4 text-[#00FF41]" />
                 </div>
               ) : (
-                <div className="h-8 w-8 rounded-full bg-yellow-600/20 flex items-center justify-center">
-                  <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                <div className="h-8 w-8 rounded-full bg-[#FFB000]/20 flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-[#FFB000]" />
                 </div>
               )}
             </div>
 
-            <Separator className="bg-slate-700" />
+            <Separator className="bg-[#1A3A2A]" />
 
             {profile?.two_factor_enabled ? (
               <div className="space-y-4">
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#00AA2A]">
                   Enter a code from your authenticator app to disable 2FA.
                 </p>
                 <Input
@@ -418,7 +420,7 @@ export default function SettingsPage() {
                   placeholder="000000"
                   value={disable2FAToken}
                   onChange={(e) => setDisable2FAToken(e.target.value.replace(/\D/g, ''))}
-                  className="bg-slate-800 border-slate-700"
+                  className="bg-[#111318] border-[#1A3A2A]"
                 />
                 <Button
                   variant="destructive"
@@ -438,7 +440,7 @@ export default function SettingsPage() {
             ) : (
               <Button
                 onClick={() => router.push('/2fa/setup')}
-                className="w-full bg-purple-600 hover:bg-purple-700"
+                className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
               >
                 <Shield className="mr-2 h-4 w-4" />
                 Enable 2FA
@@ -448,19 +450,19 @@ export default function SettingsPage() {
         </Card>
 
         {/* Active Sessions */}
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
             <div className="flex items-center gap-2">
-              <LogOut className="h-5 w-5 text-purple-500" />
-              <CardTitle className="text-white">Active Sessions</CardTitle>
+              <LogOut className="h-5 w-5 text-[#00FF41]" />
+              <CardTitle className="text-[#00FF41]">Active Sessions</CardTitle>
             </div>
-            <CardDescription className="text-slate-400">
+            <CardDescription className="text-[#00AA2A]">
               Manage your active sessions
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {sessions.length === 0 ? (
-              <p className="text-slate-400 text-sm">No active sessions found</p>
+              <p className="text-[#00AA2A] text-sm">No active sessions found</p>
             ) : (
               <div className="space-y-3">
                 {sessions.map((session) => {
@@ -468,19 +470,19 @@ export default function SettingsPage() {
                   return (
                     <div
                       key={session.id}
-                      className="flex items-center justify-between p-3 bg-slate-800 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-[#111318] rounded-sm"
                     >
                       <div className="flex items-center gap-3">
                         {type === 'Mobile' ? (
-                          <Smartphone className="h-5 w-5 text-slate-400" />
+                          <Smartphone className="h-5 w-5 text-[#00AA2A]" />
                         ) : (
-                          <Laptop className="h-5 w-5 text-slate-400" />
+                          <Laptop className="h-5 w-5 text-[#00AA2A]" />
                         )}
                         <div>
-                          <p className="text-white text-sm font-medium">
+                          <p className="text-[#00FF41] text-sm font-medium">
                             {browser} on {type}
                           </p>
-                          <p className="text-slate-500 text-xs">
+                          <p className="text-[#1A6B35] text-xs">
                             {session.ip_address || 'Unknown IP'} •{' '}
                             {session.last_active
                               ? new Date(session.last_active).toLocaleDateString()
@@ -492,7 +494,7 @@ export default function SettingsPage() {
                         variant="ghost"
                         size="sm"
                         onClick={() => handleRevokeSession(session.id)}
-                        className="text-red-400 hover:text-red-300"
+                        className="text-[#FF3333] hover:text-[#FF3333]"
                       >
                         Revoke
                       </Button>
@@ -502,7 +504,7 @@ export default function SettingsPage() {
               </div>
             )}
 
-            <Separator className="bg-slate-700" />
+            <Separator className="bg-[#1A3A2A]" />
 
             <Button variant="destructive" onClick={handleRevokeAllSessions} className="w-full">
               <LogOut className="mr-2 h-4 w-4" />

@@ -74,14 +74,14 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="border-slate-700 bg-slate-900 sm:max-w-md">
+      <DialogContent className="border-[#1A3A2A] bg-[#0D1117] sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-white">
+          <DialogTitle className="text-[#00FF41]">
             {step === 'confirm' && 'Confirm Purchase'}
             {step === 'signing' && 'Signing Transaction'}
             {step === 'result' && (purchaseSuccess ? 'Purchase Complete' : 'Purchase Failed')}
           </DialogTitle>
-          <DialogDescription className="text-slate-400">
+          <DialogDescription className="text-[#00AA2A]">
             {step === 'confirm' && 'Review the purchase details'}
             {step === 'signing' && 'Please approve the transaction in your wallet'}
             {step === 'result' &&
@@ -93,8 +93,8 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
         {step === 'confirm' && (
           <div className="space-y-4">
             {/* NFT Info */}
-            <div className="flex items-center gap-3 rounded-lg bg-slate-800/50 p-3">
-              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-700">
+            <div className="flex items-center gap-3 rounded-sm bg-[#0D3B1E]/20 p-3">
+              <div className="h-16 w-16 shrink-0 overflow-hidden rounded-sm bg-[#1A3A2A]">
                 <img
                   src={listing.nftImage || '/placeholder-nft.png'}
                   alt={listing.nftName}
@@ -102,15 +102,15 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
                 />
               </div>
               <div className="min-w-0">
-                <h3 className="truncate text-sm font-semibold text-white">{listing.nftName}</h3>
-                <Badge variant="outline" className="mt-1 text-[10px] capitalize text-slate-300">
+                <h3 className="truncate text-sm font-semibold text-[#00FF41]">{listing.nftName}</h3>
+                <Badge variant="outline" className="mt-1 text-[10px] capitalize text-[#00CC33]">
                   {listing.nftRarity}
                 </Badge>
                 <div className="mt-1 flex flex-wrap gap-1">
                   {Object.values(listing.traits).map((trait) => (
                     <span
                       key={trait}
-                      className="rounded bg-slate-700 px-1 py-0.5 text-[9px] text-slate-400"
+                      className="rounded bg-[#1A3A2A] px-1 py-0.5 text-[9px] text-[#00AA2A]"
                     >
                       {trait}
                     </span>
@@ -120,26 +120,26 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
             </div>
 
             {/* Price Breakdown */}
-            <div className="space-y-2 rounded-lg bg-slate-800/30 p-3">
+            <div className="space-y-2 rounded-sm bg-[#0D3B1E]/10 p-3">
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">NFT Price</span>
-                <span className="text-white">{formatSol(listing.priceInSol)} SOL</span>
+                <span className="text-[#00AA2A]">NFT Price</span>
+                <span className="text-[#00FF41]">{formatSol(listing.priceInSol)} SOL</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Marketplace Fee ({MARKETPLACE_FEE_PERCENT}%)</span>
-                <span className="text-slate-300">{formatSol(fee)} SOL</span>
+                <span className="text-[#00AA2A]">Marketplace Fee ({MARKETPLACE_FEE_PERCENT}%)</span>
+                <span className="text-[#00CC33]">{formatSol(fee)} SOL</span>
               </div>
-              <Separator className="bg-slate-700" />
+              <Separator className="bg-[#1A3A2A]" />
               <div className="flex justify-between text-sm font-semibold">
-                <span className="text-slate-200">Total Cost</span>
-                <span className="text-purple-400">{formatSol(total)} SOL</span>
+                <span className="text-[#00FF41]">Total Cost</span>
+                <span className="text-[#00FF41]">{formatSol(total)} SOL</span>
               </div>
             </div>
 
             {/* Warning */}
-            <div className="flex items-start gap-2 rounded-lg border border-amber-800/50 bg-amber-950/30 p-3">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" />
-              <p className="text-xs text-amber-300/80">
+            <div className="flex items-start gap-2 rounded-sm border border-[#FFB000]/30 bg-[#FFB000]/10 p-3">
+              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#FFB000]" />
+              <p className="text-xs text-[#FFB000]/80">
                 Purchases are final. Ensure you have sufficient SOL balance before confirming.
               </p>
             </div>
@@ -149,9 +149,9 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
         {/* Signing step */}
         {step === 'signing' && (
           <div className="flex flex-col items-center justify-center py-8">
-            <Loader2 className="mb-4 h-10 w-10 animate-spin text-purple-500" />
-            <p className="text-sm text-slate-300">Waiting for wallet approval...</p>
-            <p className="mt-1 text-xs text-slate-500">
+            <Loader2 className="mb-4 h-10 w-10 animate-spin text-[#00FF41]" />
+            <p className="text-sm text-[#00CC33]">Waiting for wallet approval...</p>
+            <p className="mt-1 text-xs text-[#1A6B35]">
               Confirm the transaction of {formatSol(total)} SOL
             </p>
           </div>
@@ -162,21 +162,21 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
           <div className="flex flex-col items-center justify-center py-8">
             {purchaseSuccess ? (
               <>
-                <div className="mb-4 rounded-full bg-green-900/30 p-3">
-                  <CheckCircle className="h-8 w-8 text-green-500" />
+                <div className="mb-4 rounded-full bg-[#0D3B1E]/30 p-3">
+                  <CheckCircle className="h-8 w-8 text-[#00FF41]" />
                 </div>
-                <p className="text-sm font-medium text-white">Purchase Successful</p>
-                <p className="mt-1 text-center text-xs text-slate-400">
+                <p className="text-sm font-medium text-[#00FF41]">Purchase Successful</p>
+                <p className="mt-1 text-center text-xs text-[#00AA2A]">
                   {listing.nftName} has been added to your inventory
                 </p>
               </>
             ) : (
               <>
-                <div className="mb-4 rounded-full bg-red-900/30 p-3">
-                  <XCircle className="h-8 w-8 text-red-500" />
+                <div className="mb-4 rounded-full bg-[#FF3333]/10 p-3">
+                  <XCircle className="h-8 w-8 text-[#FF3333]" />
                 </div>
-                <p className="text-sm font-medium text-white">Purchase Failed</p>
-                <p className="mt-1 text-center text-xs text-red-400">
+                <p className="text-sm font-medium text-[#00FF41]">Purchase Failed</p>
+                <p className="mt-1 text-center text-xs text-[#FF3333]">
                   {purchaseError || 'An error occurred during the purchase'}
                 </p>
               </>
@@ -190,11 +190,11 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
               <Button
                 variant="outline"
                 onClick={() => handleOpenChange(false)}
-                className="border-slate-700 text-slate-300"
+                className="border-[#1A3A2A] text-[#00CC33]"
               >
                 Cancel
               </Button>
-              <Button onClick={handleBuy} className="bg-purple-600 hover:bg-purple-700">
+              <Button onClick={handleBuy} className="bg-[#00FF41] text-black hover:bg-[#00CC33]">
                 <ShoppingCart className="mr-1 h-4 w-4" />
                 Buy for {formatSol(total)} SOL
               </Button>
@@ -203,7 +203,7 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
           {step === 'result' && (
             <Button
               onClick={() => handleOpenChange(false)}
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               {purchaseSuccess ? 'View Inventory' : 'Close'}
             </Button>

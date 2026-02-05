@@ -2,20 +2,19 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ChevronRight, Home } from 'lucide-react'
 
 const ROUTE_LABELS: Record<string, string> = {
-  nfts: 'NFTs',
-  packages: 'Packages',
-  deliveries: 'Deliveries',
-  burns: 'Burns',
-  audit: 'Audit Logs',
-  alerts: 'Security Alerts',
-  reports: 'Reports',
-  settings: 'Settings',
-  new: 'Create',
-  edit: 'Edit',
-  import: 'Import',
+  nfts: 'nfts',
+  packages: 'packages',
+  deliveries: 'deliveries',
+  burns: 'burns',
+  audit: 'audit',
+  alerts: 'alerts',
+  reports: 'reports',
+  settings: 'settings',
+  new: 'new',
+  edit: 'edit',
+  import: 'import',
 }
 
 export function Breadcrumbs() {
@@ -31,34 +30,33 @@ export function Breadcrumbs() {
 
     // Check if segment is a UUID
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(segment)
-    const label = isUuid
-      ? `${segment.slice(0, 8)}...`
-      : ROUTE_LABELS[segment] || segment.charAt(0).toUpperCase() + segment.slice(1)
+    const label = isUuid ? `${segment.slice(0, 8)}` : ROUTE_LABELS[segment] || segment
 
     return { href, label, isLast }
   })
 
   return (
-    <nav className="flex items-center gap-1 text-sm mb-4">
-      <Link href="/" className="text-slate-500 hover:text-slate-300 transition-colors">
-        <Home className="h-4 w-4" />
+    <nav className="flex items-center gap-1 text-sm mb-4 font-mono">
+      <Link href="/" className="text-[#1A6B35] hover:text-[#00FF41] transition-colors">
+        ~
       </Link>
 
       {crumbs.map((crumb) => (
         <div key={crumb.href} className="flex items-center gap-1">
-          <ChevronRight className="h-3 w-3 text-slate-600" />
+          <span className="text-[#1A6B35]">/</span>
           {crumb.isLast ? (
-            <span className="text-slate-300 font-medium">{crumb.label}</span>
+            <span className="text-[#00FF41] font-medium">{crumb.label}</span>
           ) : (
             <Link
               href={crumb.href}
-              className="text-slate-500 hover:text-slate-300 transition-colors"
+              className="text-[#1A6B35] hover:text-[#00FF41] transition-colors"
             >
               {crumb.label}
             </Link>
           )}
         </div>
       ))}
+      <span className="text-[#00FF41] animate-cursor-blink ml-1">_</span>
     </nav>
   )
 }

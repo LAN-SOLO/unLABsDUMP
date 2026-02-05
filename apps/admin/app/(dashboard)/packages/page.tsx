@@ -136,10 +136,10 @@ export default function PackagesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Packages</h1>
-          <p className="text-slate-400 mt-1">Manage NFT packages and bundles</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Packages</h1>
+          <p className="text-[#00AA2A] mt-1">Manage NFT packages and bundles</p>
         </div>
-        <Button asChild className="bg-purple-600 hover:bg-purple-700">
+        <Button asChild className="bg-[#00FF41] text-black hover:bg-[#00CC33]">
           <Link href="/packages/new">
             <Plus className="mr-2 h-4 w-4" />
             Create Package
@@ -148,23 +148,23 @@ export default function PackagesPage() {
       </div>
 
       {/* Filters */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="pt-6">
           <form onSubmit={handleSearch} className="flex flex-wrap gap-4">
             <div className="flex-1 min-w-[200px]">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#00AA2A]" />
                 <Input
                   placeholder="Search packages..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-slate-800 border-slate-700"
+                  className="pl-10 bg-[#111318] border-[#1A3A2A]"
                 />
               </div>
             </div>
 
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-[150px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[150px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
               <SelectContent>
@@ -175,7 +175,7 @@ export default function PackagesPage() {
             </Select>
 
             <Select value={featuredFilter} onValueChange={setFeaturedFilter}>
-              <SelectTrigger className="w-[150px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[150px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Featured" />
               </SelectTrigger>
               <SelectContent>
@@ -193,22 +193,22 @@ export default function PackagesPage() {
       </Card>
 
       {/* Table */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
-          <CardTitle className="text-white">
+          <CardTitle className="text-[#00FF41]">
             {pagination.total} Package{pagination.total !== 1 ? 's' : ''} found
           </CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
             </div>
           ) : packages.length === 0 ? (
             <div className="text-center py-12">
-              <PackageIcon className="mx-auto h-12 w-12 text-slate-600" />
-              <p className="mt-4 text-slate-400">No packages found</p>
-              <Button asChild className="mt-4 bg-purple-600 hover:bg-purple-700">
+              <PackageIcon className="mx-auto h-12 w-12 text-[#1A6B35]" />
+              <p className="mt-4 text-[#00AA2A]">No packages found</p>
+              <Button asChild className="mt-4 bg-[#00FF41] text-black hover:bg-[#00CC33]">
                 <Link href="/packages/new">Create your first package</Link>
               </Button>
             </div>
@@ -216,53 +216,55 @@ export default function PackagesPage() {
             <>
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-800">
-                    <TableHead className="text-slate-400">Package</TableHead>
-                    <TableHead className="text-slate-400">Price</TableHead>
-                    <TableHead className="text-slate-400">NFTs</TableHead>
-                    <TableHead className="text-slate-400">Sales</TableHead>
-                    <TableHead className="text-slate-400">Status</TableHead>
-                    <TableHead className="text-slate-400 text-right">Actions</TableHead>
+                  <TableRow className="border-[#0D3B1E]">
+                    <TableHead className="text-[#00AA2A]">Package</TableHead>
+                    <TableHead className="text-[#00AA2A]">Price</TableHead>
+                    <TableHead className="text-[#00AA2A]">NFTs</TableHead>
+                    <TableHead className="text-[#00AA2A]">Sales</TableHead>
+                    <TableHead className="text-[#00AA2A]">Status</TableHead>
+                    <TableHead className="text-[#00AA2A] text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {packages.map((pkg) => (
-                    <TableRow key={pkg.id} className="border-slate-800">
+                    <TableRow key={pkg.id} className="border-[#0D3B1E]">
                       <TableCell>
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center">
-                            <PackageIcon className="h-5 w-5 text-white" />
+                          <div className="h-10 w-10 rounded-sm bg-[#00FF41] flex items-center justify-center">
+                            <PackageIcon className="h-5 w-5 text-[#00FF41]" />
                           </div>
                           <div>
                             <div className="flex items-center gap-2">
-                              <p className="font-medium text-white">{pkg.name}</p>
+                              <p className="font-medium text-[#00FF41]">{pkg.name}</p>
                               {pkg.is_featured && (
-                                <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                                <Star className="h-4 w-4 text-[#FFB000] fill-[#FFB000]" />
                               )}
                             </div>
                             {pkg.description && (
-                              <p className="text-sm text-slate-400 truncate max-w-[200px]">
+                              <p className="text-sm text-[#00AA2A] truncate max-w-[200px]">
                                 {pkg.description}
                               </p>
                             )}
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-white font-medium">
+                      <TableCell className="text-[#00FF41] font-medium">
                         {formatPrice(pkg.price, pkg.currency)}
                       </TableCell>
-                      <TableCell className="text-slate-300">
+                      <TableCell className="text-[#00CC33]">
                         {pkg.package_nfts?.length || 0} NFT
                         {(pkg.package_nfts?.length || 0) !== 1 ? 's' : ''}
                       </TableCell>
-                      <TableCell className="text-slate-300">
+                      <TableCell className="text-[#00CC33]">
                         {pkg.sold_count || 0}
                         {pkg.max_supply && ` / ${pkg.max_supply}`}
                       </TableCell>
                       <TableCell>
                         <Badge
                           className={
-                            pkg.is_active ? 'bg-green-500 text-white' : 'bg-slate-500 text-white'
+                            pkg.is_active
+                              ? 'bg-[#00FF41] text-[#00FF41]'
+                              : 'bg-[#1A6B35] text-[#00FF41]'
                           }
                         >
                           {pkg.is_active ? 'Active' : 'Inactive'}
@@ -288,7 +290,7 @@ export default function PackagesPage() {
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => handleDelete(pkg.id)}
-                              className="text-red-400"
+                              className="text-[#FF3333]"
                             >
                               <Trash2 className="mr-2 h-4 w-4" />
                               Delete
@@ -303,8 +305,8 @@ export default function PackagesPage() {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-800">
-                  <p className="text-sm text-slate-400">
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#0D3B1E]">
+                  <p className="text-sm text-[#00AA2A]">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{' '}
                     {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                     {pagination.total} results

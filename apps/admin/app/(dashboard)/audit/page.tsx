@@ -63,20 +63,20 @@ interface Pagination {
 }
 
 const actionColors: Record<string, string> = {
-  created: 'bg-green-500',
-  updated: 'bg-blue-500',
-  deleted: 'bg-red-500',
-  processed: 'bg-purple-500',
-  failed: 'bg-red-600',
-  exported: 'bg-cyan-500',
-  imported: 'bg-yellow-500',
+  created: 'bg-[#00FF41]',
+  updated: 'bg-[#00FFFF]',
+  deleted: 'bg-[#FF3333]',
+  processed: 'bg-[#00FF41]',
+  failed: 'bg-[#FF3333]',
+  exported: 'bg-[#00FFFF]',
+  imported: 'bg-[#FFB000]',
 }
 
 const getActionColor = (action: string) => {
   for (const [key, color] of Object.entries(actionColors)) {
     if (action.includes(key)) return color
   }
-  return 'bg-slate-500'
+  return 'bg-[#1A6B35]'
 }
 
 export default function AuditPage() {
@@ -189,8 +189,8 @@ export default function AuditPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Audit Logs</h1>
-          <p className="text-slate-400 mt-1">Track all admin actions in the system</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Audit Logs</h1>
+          <p className="text-[#00AA2A] mt-1">Track all admin actions in the system</p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline" onClick={handleExport}>
@@ -205,11 +205,11 @@ export default function AuditPage() {
       </div>
 
       {/* Filters */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardContent className="pt-6">
           <div className="flex flex-wrap gap-4">
             <Select value={actionFilter} onValueChange={setActionFilter}>
-              <SelectTrigger className="w-[200px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[200px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Action" />
               </SelectTrigger>
               <SelectContent>
@@ -223,7 +223,7 @@ export default function AuditPage() {
             </Select>
 
             <Select value={entityTypeFilter} onValueChange={setEntityTypeFilter}>
-              <SelectTrigger className="w-[180px] bg-slate-800 border-slate-700">
+              <SelectTrigger className="w-[180px] bg-[#111318] border-[#1A3A2A]">
                 <SelectValue placeholder="Entity Type" />
               </SelectTrigger>
               <SelectContent>
@@ -237,20 +237,20 @@ export default function AuditPage() {
             </Select>
 
             <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-slate-400" />
+              <Calendar className="h-4 w-4 text-[#00AA2A]" />
               <Input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-[150px] bg-slate-800 border-slate-700"
+                className="w-[150px] bg-[#111318] border-[#1A3A2A]"
                 placeholder="Start Date"
               />
-              <span className="text-slate-400">to</span>
+              <span className="text-[#00AA2A]">to</span>
               <Input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-[150px] bg-slate-800 border-slate-700"
+                className="w-[150px] bg-[#111318] border-[#1A3A2A]"
                 placeholder="End Date"
               />
             </div>
@@ -273,43 +273,43 @@ export default function AuditPage() {
       </Card>
 
       {/* Table */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
-          <CardTitle className="text-white">
+          <CardTitle className="text-[#00FF41]">
             {pagination.total} Log Entr{pagination.total !== 1 ? 'ies' : 'y'}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
             </div>
           ) : logs.length === 0 ? (
             <div className="text-center py-12">
-              <FileText className="mx-auto h-12 w-12 text-slate-600" />
-              <p className="mt-4 text-slate-400">No audit logs found</p>
+              <FileText className="mx-auto h-12 w-12 text-[#1A6B35]" />
+              <p className="mt-4 text-[#00AA2A]">No audit logs found</p>
             </div>
           ) : (
             <>
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-800">
-                    <TableHead className="text-slate-400">Timestamp</TableHead>
-                    <TableHead className="text-slate-400">Admin</TableHead>
-                    <TableHead className="text-slate-400">Action</TableHead>
-                    <TableHead className="text-slate-400">Entity</TableHead>
-                    <TableHead className="text-slate-400 text-right">Details</TableHead>
+                  <TableRow className="border-[#0D3B1E]">
+                    <TableHead className="text-[#00AA2A]">Timestamp</TableHead>
+                    <TableHead className="text-[#00AA2A]">Admin</TableHead>
+                    <TableHead className="text-[#00AA2A]">Action</TableHead>
+                    <TableHead className="text-[#00AA2A]">Entity</TableHead>
+                    <TableHead className="text-[#00AA2A] text-right">Details</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {logs.map((log) => (
-                    <TableRow key={log.id} className="border-slate-800">
-                      <TableCell className="text-slate-300 whitespace-nowrap">
+                    <TableRow key={log.id} className="border-[#0D3B1E]">
+                      <TableCell className="text-[#00CC33] whitespace-nowrap">
                         {new Date(log.created_at).toLocaleString()}
                       </TableCell>
                       <TableCell>
                         <div>
-                          <p className="text-white text-sm">
+                          <p className="text-[#00FF41] text-sm">
                             {log.admin?.email ||
                               log.admin?.wallet_address?.slice(0, 8) + '...' ||
                               'System'}
@@ -317,15 +317,15 @@ export default function AuditPage() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge className={`${getActionColor(log.action)} text-white`}>
+                        <Badge className={`${getActionColor(log.action)} text-[#00FF41]`}>
                           {formatAction(log.action)}
                         </Badge>
                       </TableCell>
                       <TableCell>
                         <div className="text-sm">
-                          <p className="text-slate-300 capitalize">{log.entity_type || '-'}</p>
+                          <p className="text-[#00CC33] capitalize">{log.entity_type || '-'}</p>
                           {log.entity_id && (
-                            <p className="text-slate-500 font-mono text-xs">
+                            <p className="text-[#1A6B35] font-mono text-xs">
                               {log.entity_id.slice(0, 8)}...
                             </p>
                           )}
@@ -338,61 +338,63 @@ export default function AuditPage() {
                               <Eye className="h-4 w-4" />
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="bg-slate-900 border-slate-800 max-w-2xl">
+                          <DialogContent className="bg-[#0D1117] border-[#0D3B1E] max-w-2xl">
                             <DialogHeader>
-                              <DialogTitle className="text-white">Audit Log Details</DialogTitle>
+                              <DialogTitle className="text-[#00FF41]">
+                                Audit Log Details
+                              </DialogTitle>
                             </DialogHeader>
                             {selectedLog && (
                               <div className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                   <div>
-                                    <p className="text-sm text-slate-400">Timestamp</p>
-                                    <p className="text-white">
+                                    <p className="text-sm text-[#00AA2A]">Timestamp</p>
+                                    <p className="text-[#00FF41]">
                                       {new Date(selectedLog.created_at).toLocaleString()}
                                     </p>
                                   </div>
                                   <div>
-                                    <p className="text-sm text-slate-400">Action</p>
+                                    <p className="text-sm text-[#00AA2A]">Action</p>
                                     <Badge
-                                      className={`${getActionColor(selectedLog.action)} text-white mt-1`}
+                                      className={`${getActionColor(selectedLog.action)} text-[#00FF41] mt-1`}
                                     >
                                       {formatAction(selectedLog.action)}
                                     </Badge>
                                   </div>
                                   <div>
-                                    <p className="text-sm text-slate-400">Admin</p>
-                                    <p className="text-white">
+                                    <p className="text-sm text-[#00AA2A]">Admin</p>
+                                    <p className="text-[#00FF41]">
                                       {selectedLog.admin?.email ||
                                         selectedLog.admin?.wallet_address ||
                                         'System'}
                                     </p>
                                   </div>
                                   <div>
-                                    <p className="text-sm text-slate-400">Entity</p>
-                                    <p className="text-white capitalize">
+                                    <p className="text-sm text-[#00AA2A]">Entity</p>
+                                    <p className="text-[#00FF41] capitalize">
                                       {selectedLog.entity_type || '-'}
                                     </p>
                                   </div>
                                   {selectedLog.entity_id && (
                                     <div className="col-span-2">
-                                      <p className="text-sm text-slate-400">Entity ID</p>
-                                      <p className="text-white font-mono text-sm">
+                                      <p className="text-sm text-[#00AA2A]">Entity ID</p>
+                                      <p className="text-[#00FF41] font-mono text-sm">
                                         {selectedLog.entity_id}
                                       </p>
                                     </div>
                                   )}
                                   {selectedLog.ip_address && (
                                     <div>
-                                      <p className="text-sm text-slate-400">IP Address</p>
-                                      <p className="text-white">{selectedLog.ip_address}</p>
+                                      <p className="text-sm text-[#00AA2A]">IP Address</p>
+                                      <p className="text-[#00FF41]">{selectedLog.ip_address}</p>
                                     </div>
                                   )}
                                 </div>
                                 {selectedLog.details &&
                                   Object.keys(selectedLog.details).length > 0 && (
                                     <div>
-                                      <p className="text-sm text-slate-400 mb-2">Details</p>
-                                      <pre className="text-sm text-slate-300 bg-slate-800 p-4 rounded-lg overflow-auto max-h-60">
+                                      <p className="text-sm text-[#00AA2A] mb-2">Details</p>
+                                      <pre className="text-sm text-[#00CC33] bg-[#111318] p-4 rounded-sm overflow-auto max-h-60">
                                         {JSON.stringify(selectedLog.details, null, 2)}
                                       </pre>
                                     </div>
@@ -409,8 +411,8 @@ export default function AuditPage() {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-800">
-                  <p className="text-sm text-slate-400">
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#0D3B1E]">
+                  <p className="text-sm text-[#00AA2A]">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{' '}
                     {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                     {pagination.total} results

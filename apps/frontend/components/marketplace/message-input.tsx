@@ -64,12 +64,12 @@ export function MessageInput({
   return (
     <div className={cn('space-y-2', className)}>
       <div className="flex items-center justify-between">
-        <label className="text-xs font-medium text-slate-400">Message</label>
+        <label className="text-xs font-medium text-[#00AA2A]">Message</label>
         {!message && (
           <button
             type="button"
             onClick={handleUseTemplate}
-            className="text-[10px] text-purple-400 hover:text-purple-300 transition-colors"
+            className="text-[10px] text-[#00FF41] hover:text-[#00FF41] transition-colors"
           >
             Use template
           </button>
@@ -80,10 +80,10 @@ export function MessageInput({
         onChange={handleChange}
         rows={4}
         placeholder={placeholder}
-        className="w-full resize-none rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus-visible:border-purple-500 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-purple-500/20"
+        className="w-full resize-none rounded-md border border-[#1A3A2A] bg-[#111318] px-3 py-2 text-sm text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[#00FF41]/20"
       />
       <div className="flex items-center justify-end">
-        <span className={cn('text-[10px]', isNearLimit ? 'text-amber-400' : 'text-slate-600')}>
+        <span className={cn('text-[10px]', isNearLimit ? 'text-[#FFB000]' : 'text-[#1A6B35]')}>
           {message.length}/{MAX_CHARS}
         </span>
       </div>

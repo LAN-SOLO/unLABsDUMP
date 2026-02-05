@@ -125,8 +125,8 @@ export default function BurnsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Burns</h1>
-          <p className="text-slate-400 mt-1">Track _unSC token burn events</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Burns</h1>
+          <p className="text-[#00AA2A] mt-1">Track _unSC token burn events</p>
         </div>
         <Button
           variant="outline"
@@ -143,32 +143,32 @@ export default function BurnsPage() {
       {/* Stats Cards */}
       {stats && (
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="bg-gradient-to-br from-purple-900/50 to-slate-900 border-purple-500/30">
+          <Card className="bg-gradient-to-br from-[#0D3B1E]/50 to-[#0D1117] border-[#00FF41]/30">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-12 w-12 rounded-lg bg-purple-600/30 flex items-center justify-center">
-                  <Flame className="h-6 w-6 text-purple-400" />
+                <div className="h-12 w-12 rounded-sm bg-[#0D3B1E]/30 flex items-center justify-center">
+                  <Flame className="h-6 w-6 text-[#00FF41]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Total Burned</p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-sm text-[#00AA2A]">Total Burned</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">
                     {formatNumber(stats.totalBurned)}{' '}
-                    <span className="text-purple-400 text-lg">_unSC</span>
+                    <span className="text-[#00FF41] text-lg">_unSC</span>
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-cyan-600/20 flex items-center justify-center">
-                  <TrendingUp className="h-5 w-5 text-cyan-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#00FFFF]/20 flex items-center justify-center">
+                  <TrendingUp className="h-5 w-5 text-[#00FFFF]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">This Month</p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-sm text-[#00AA2A]">This Month</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">
                     {formatNumber(stats.thisMonthBurned)}
                   </p>
                 </div>
@@ -176,29 +176,29 @@ export default function BurnsPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-green-600/20 flex items-center justify-center">
-                  <Calendar className="h-5 w-5 text-green-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#00FF41]/20 flex items-center justify-center">
+                  <Calendar className="h-5 w-5 text-[#00FF41]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Burn Events</p>
-                  <p className="text-2xl font-bold text-white">{stats.completedBurns}</p>
+                  <p className="text-sm text-[#00AA2A]">Burn Events</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.completedBurns}</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-yellow-600/20 flex items-center justify-center">
-                  <Users className="h-5 w-5 text-yellow-500" />
+                <div className="h-10 w-10 rounded-sm bg-[#FFB000]/20 flex items-center justify-center">
+                  <Users className="h-5 w-5 text-[#FFB000]" />
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Unique Burners</p>
-                  <p className="text-2xl font-bold text-white">{stats.uniqueBurners}</p>
+                  <p className="text-sm text-[#00AA2A]">Unique Burners</p>
+                  <p className="text-2xl font-bold text-[#00FF41]">{stats.uniqueBurners}</p>
                 </div>
               </div>
             </CardContent>
@@ -208,9 +208,9 @@ export default function BurnsPage() {
 
       {/* 7-Day Chart */}
       {stats && stats.last7Days && (
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader>
-            <CardTitle className="text-white">Last 7 Days</CardTitle>
+            <CardTitle className="text-[#00FF41]">Last 7 Days</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-end gap-2 h-32">
@@ -220,10 +220,10 @@ export default function BurnsPage() {
                 return (
                   <div key={day.date} className="flex-1 flex flex-col items-center gap-2">
                     <div
-                      className="w-full bg-purple-600 rounded-t transition-all"
+                      className="w-full bg-[#00FF41] rounded-t transition-all"
                       style={{ height: `${Math.max(height, 4)}%` }}
                     />
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-[#00AA2A]">
                       {new Date(day.date).toLocaleDateString('en', { weekday: 'short' })}
                     </span>
                   </div>
@@ -235,71 +235,71 @@ export default function BurnsPage() {
       )}
 
       {/* Table */}
-      <Card className="bg-slate-900 border-slate-800">
+      <Card className="bg-[#0D1117] border-[#0D3B1E]">
         <CardHeader>
-          <CardTitle className="text-white">
+          <CardTitle className="text-[#00FF41]">
             {pagination.total} Burn Event{pagination.total !== 1 ? 's' : ''}
           </CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
             <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
             </div>
           ) : burns.length === 0 ? (
             <div className="text-center py-12">
-              <Flame className="mx-auto h-12 w-12 text-slate-600" />
-              <p className="mt-4 text-slate-400">No burn events found</p>
+              <Flame className="mx-auto h-12 w-12 text-[#1A6B35]" />
+              <p className="mt-4 text-[#00AA2A]">No burn events found</p>
             </div>
           ) : (
             <>
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-800">
-                    <TableHead className="text-slate-400">Player</TableHead>
-                    <TableHead className="text-slate-400">Amount</TableHead>
-                    <TableHead className="text-slate-400">Reason</TableHead>
-                    <TableHead className="text-slate-400">Status</TableHead>
-                    <TableHead className="text-slate-400">Date</TableHead>
-                    <TableHead className="text-slate-400 text-right">Actions</TableHead>
+                  <TableRow className="border-[#0D3B1E]">
+                    <TableHead className="text-[#00AA2A]">Player</TableHead>
+                    <TableHead className="text-[#00AA2A]">Amount</TableHead>
+                    <TableHead className="text-[#00AA2A]">Reason</TableHead>
+                    <TableHead className="text-[#00AA2A]">Status</TableHead>
+                    <TableHead className="text-[#00AA2A]">Date</TableHead>
+                    <TableHead className="text-[#00AA2A] text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {burns.map((burn) => (
-                    <TableRow key={burn.id} className="border-slate-800">
+                    <TableRow key={burn.id} className="border-[#0D3B1E]">
                       <TableCell>
                         <div>
-                          <p className="text-white font-medium">
+                          <p className="text-[#00FF41] font-medium">
                             {burn.player?.username || 'Unknown'}
                           </p>
-                          <p className="text-sm text-slate-400 font-mono">
+                          <p className="text-sm text-[#00AA2A] font-mono">
                             {burn.player?.wallet_address?.slice(0, 8)}...
                           </p>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center gap-2">
-                          <Flame className="h-4 w-4 text-purple-400" />
-                          <span className="text-white font-medium">
+                          <Flame className="h-4 w-4 text-[#00FF41]" />
+                          <span className="text-[#00FF41] font-medium">
                             {formatNumber(burn.amount)} {burn.token_type}
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-slate-300 max-w-[200px] truncate">
+                      <TableCell className="text-[#00CC33] max-w-[200px] truncate">
                         {burn.reason || '-'}
                       </TableCell>
                       <TableCell>
                         <Badge
                           className={
                             burn.status === 'completed'
-                              ? 'bg-green-500 text-white'
-                              : 'bg-yellow-500 text-white'
+                              ? 'bg-[#00FF41] text-[#00FF41]'
+                              : 'bg-[#FFB000] text-[#00FF41]'
                           }
                         >
                           {burn.status}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-slate-300">
+                      <TableCell className="text-[#00CC33]">
                         {new Date(burn.created_at).toLocaleDateString()}
                       </TableCell>
                       <TableCell className="text-right">
@@ -336,8 +336,8 @@ export default function BurnsPage() {
 
               {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-800">
-                  <p className="text-sm text-slate-400">
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-[#0D3B1E]">
+                  <p className="text-sm text-[#00AA2A]">
                     Showing {(pagination.page - 1) * pagination.limit + 1} to{' '}
                     {Math.min(pagination.page * pagination.limit, pagination.total)} of{' '}
                     {pagination.total} results

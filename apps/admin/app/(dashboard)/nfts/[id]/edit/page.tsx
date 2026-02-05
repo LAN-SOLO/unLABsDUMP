@@ -145,7 +145,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -159,8 +159,8 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
           </Link>
         </Button>
         <div>
-          <h1 className="text-3xl font-bold text-white">Edit NFT</h1>
-          <p className="text-slate-400 mt-1">Update NFT details</p>
+          <h1 className="text-3xl font-bold text-[#00FF41]">Edit NFT</h1>
+          <p className="text-[#00AA2A] mt-1">Update NFT details</p>
         </div>
       </div>
 
@@ -168,9 +168,9 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
         <div className="grid gap-6 lg:grid-cols-3">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Basic Information</CardTitle>
+                <CardTitle className="text-[#00FF41]">Basic Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {error && (
@@ -186,7 +186,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                     value={formData.name}
                     onChange={(e) => handleChange('name', e.target.value)}
                     placeholder="Enter NFT name"
-                    className="bg-slate-800 border-slate-700"
+                    className="bg-[#111318] border-[#1A3A2A]"
                     required
                   />
                 </div>
@@ -198,7 +198,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                     value={formData.description}
                     onChange={(e) => handleChange('description', e.target.value)}
                     placeholder="Enter NFT description"
-                    className="bg-slate-800 border-slate-700 min-h-[100px]"
+                    className="bg-[#111318] border-[#1A3A2A] min-h-[100px]"
                   />
                 </div>
 
@@ -210,7 +210,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                       value={formData.collection}
                       onChange={(e) => handleChange('collection', e.target.value)}
                       placeholder="Collection name"
-                      className="bg-slate-800 border-slate-700"
+                      className="bg-[#111318] border-[#1A3A2A]"
                     />
                   </div>
 
@@ -220,7 +220,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                       value={formData.rarity}
                       onValueChange={(value) => handleChange('rarity', value)}
                     >
-                      <SelectTrigger className="bg-slate-800 border-slate-700">
+                      <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
                         <SelectValue placeholder="Select rarity" />
                       </SelectTrigger>
                       <SelectContent>
@@ -241,7 +241,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                     value={formData.mint_address}
                     onChange={(e) => handleChange('mint_address', e.target.value)}
                     placeholder="Solana mint address"
-                    className="bg-slate-800 border-slate-700 font-mono"
+                    className="bg-[#111318] border-[#1A3A2A] font-mono"
                   />
                 </div>
               </CardContent>
@@ -251,9 +251,9 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Image Upload */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Image</CardTitle>
+                <CardTitle className="text-[#00FF41]">Image</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
@@ -262,7 +262,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                       <img
                         src={formData.image_url}
                         alt="NFT Preview"
-                        className="w-full aspect-square object-cover rounded-lg"
+                        className="w-full aspect-square object-cover rounded-sm"
                       />
                       <Button
                         type="button"
@@ -275,16 +275,16 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                       </Button>
                     </div>
                   ) : (
-                    <div className="relative border-2 border-dashed border-slate-700 rounded-lg p-6 text-center">
+                    <div className="relative border-2 border-dashed border-[#1A3A2A] rounded-sm p-6 text-center">
                       {isUploading ? (
-                        <Loader2 className="mx-auto h-8 w-8 animate-spin text-purple-500" />
+                        <Loader2 className="mx-auto h-8 w-8 animate-spin text-[#00FF41]" />
                       ) : (
                         <>
-                          <ImageIcon className="mx-auto h-12 w-12 text-slate-500" />
-                          <p className="mt-2 text-sm text-slate-400">
+                          <ImageIcon className="mx-auto h-12 w-12 text-[#1A6B35]" />
+                          <p className="mt-2 text-sm text-[#00AA2A]">
                             Drag and drop or click to upload
                           </p>
-                          <p className="text-xs text-slate-500">PNG, JPG, GIF, WebP up to 5MB</p>
+                          <p className="text-xs text-[#1A6B35]">PNG, JPG, GIF, WebP up to 5MB</p>
                         </>
                       )}
                       <input
@@ -304,7 +304,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
                       value={formData.image_url}
                       onChange={(e) => handleChange('image_url', e.target.value)}
                       placeholder="https://..."
-                      className="bg-slate-800 border-slate-700"
+                      className="bg-[#111318] border-[#1A3A2A]"
                     />
                   </div>
                 </div>
@@ -312,16 +312,16 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
             </Card>
 
             {/* Status */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Status</CardTitle>
+                <CardTitle className="text-[#00FF41]">Status</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select
                   value={formData.status}
                   onValueChange={(value) => handleChange('status', value)}
                 >
-                  <SelectTrigger className="bg-slate-800 border-slate-700">
+                  <SelectTrigger className="bg-[#111318] border-[#1A3A2A]">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -346,7 +346,7 @@ export default function EditNFTPage({ params }: { params: Promise<{ id: string }
               </Button>
               <Button
                 type="submit"
-                className="flex-1 bg-purple-600 hover:bg-purple-700"
+                className="flex-1 bg-[#00FF41] text-black hover:bg-[#00CC33]"
                 disabled={isSaving || !formData.name}
               >
                 {isSaving ? (

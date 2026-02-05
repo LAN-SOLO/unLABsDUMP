@@ -35,16 +35,16 @@ const STATUS_FILTERS = [
 
 function PurchaseRowSkeleton() {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800">
+    <div className="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-sm bg-[#0D1117] border border-[#0D3B1E]">
       <div className="flex-1 space-y-2">
         <div className="flex items-center gap-2">
-          <Skeleton className="h-5 w-40 bg-slate-800" />
-          <Skeleton className="h-5 w-20 rounded-full bg-slate-800" />
+          <Skeleton className="h-5 w-40 bg-[#111318]" />
+          <Skeleton className="h-5 w-20 rounded-full bg-[#111318]" />
         </div>
-        <Skeleton className="h-4 w-48 bg-slate-800" />
+        <Skeleton className="h-4 w-48 bg-[#111318]" />
       </div>
-      <Skeleton className="h-6 w-24 bg-slate-800" />
-      <Skeleton className="h-8 w-20 rounded-md bg-slate-800" />
+      <Skeleton className="h-6 w-24 bg-[#111318]" />
+      <Skeleton className="h-8 w-20 rounded-md bg-[#111318]" />
     </div>
   )
 }
@@ -117,12 +117,12 @@ export function PurchaseList() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Status filter tabs */}
         <Tabs value={statusFilter} onValueChange={setStatusFilter}>
-          <TabsList className="bg-slate-800/60 border border-slate-700 h-auto flex-wrap">
+          <TabsList className="bg-[#111318]/60 border border-[#1A3A2A] h-auto flex-wrap">
             {STATUS_FILTERS.map((f) => (
               <TabsTrigger
                 key={f.value}
                 value={f.value}
-                className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-slate-400 hover:text-white text-sm px-3 py-1.5"
+                className="data-[state=active]:bg-[#00FF41] data-[state=active]:text-black text-[#00AA2A] hover:text-[#00FF41] text-sm px-3 py-1.5"
               >
                 {f.label}
               </TabsTrigger>
@@ -133,19 +133,19 @@ export function PurchaseList() {
         {/* Search and sort */}
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-slate-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-[#1A6B35]" />
             <Input
               placeholder="Search packages..."
               value={search}
               onChange={handleSearchChange}
-              className="pl-9 w-56 bg-slate-800/60 border-slate-700 text-white placeholder:text-slate-500"
+              className="pl-9 w-56 bg-[#111318]/60 border-[#1A3A2A] text-[#00FF41] placeholder:text-[#1A6B35]"
             />
           </div>
           <Button
             variant="outline"
             size="sm"
             onClick={() => setSortOrder((s) => (s === 'newest' ? 'oldest' : 'newest'))}
-            className="border-slate-700 text-slate-300 hover:text-white gap-1.5"
+            className="border-[#1A3A2A] text-[#00CC33] hover:text-[#00FF41] gap-1.5"
           >
             <SlidersHorizontal className="size-4" />
             {sortOrder === 'newest' ? 'Newest' : 'Oldest'}
@@ -155,7 +155,7 @@ export function PurchaseList() {
 
       {/* Results count */}
       {!isLoading && (
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-[#00AA2A]">
           {total} purchase{total !== 1 ? 's' : ''} found
         </p>
       )}
@@ -177,7 +177,7 @@ export function PurchaseList() {
                   variant="outline"
                   onClick={() => setPage((p) => p + 1)}
                   disabled={isLoading}
-                  className="border-slate-700 text-slate-300 hover:text-white"
+                  className="border-[#1A3A2A] text-[#00CC33] hover:text-[#00FF41]"
                 >
                   {isLoading ? <Loader2 className="size-4 mr-2 animate-spin" /> : null}
                   Load More
@@ -187,11 +187,11 @@ export function PurchaseList() {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mb-4">
-              <ShoppingBag className="size-8 text-slate-500" />
+            <div className="w-16 h-16 rounded-full bg-[#111318] flex items-center justify-center mb-4">
+              <ShoppingBag className="size-8 text-[#1A6B35]" />
             </div>
-            <h3 className="text-lg font-semibold text-white mb-1">No purchases found</h3>
-            <p className="text-slate-400 text-sm max-w-md">
+            <h3 className="text-lg font-semibold text-[#00FF41] mb-1">No purchases found</h3>
+            <p className="text-[#00AA2A] text-sm max-w-md">
               {search || statusFilter !== 'all'
                 ? 'Try adjusting your filters or search terms.'
                 : 'Your purchase history will appear here once you buy a package.'}

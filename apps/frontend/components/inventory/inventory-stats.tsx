@@ -22,11 +22,11 @@ interface InventoryStatsProps {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'text-slate-400',
-  uncommon: 'text-green-400',
-  rare: 'text-blue-400',
-  epic: 'text-purple-400',
-  legendary: 'text-amber-400',
+  common: 'text-[#00AA2A]',
+  uncommon: 'text-[#00FF41]',
+  rare: 'text-[#00FFFF]',
+  epic: 'text-[#00FF41]',
+  legendary: 'text-[#FFB000]',
 }
 
 export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
@@ -34,7 +34,7 @@ export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
     return (
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
-          <Card key={i} className="border-slate-800 bg-slate-900">
+          <Card key={i} className="border-[#0D3B1E] bg-[#0D1117]">
             <CardContent className="p-4">
               <Skeleton className="mb-2 h-4 w-20" />
               <Skeleton className="h-7 w-16" />
@@ -52,7 +52,7 @@ export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
       label: 'Total NFTs',
       value: stats.totalNfts,
       icon: Package,
-      color: 'text-cyan-500',
+      color: 'text-[#00FFFF]',
     },
     {
       label: 'Rarest',
@@ -65,19 +65,19 @@ export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
               ? `${stats.rarityBreakdown.rare} Rare`
               : 'None',
       icon: Gem,
-      color: 'text-purple-400',
+      color: 'text-[#00FF41]',
     },
     {
       label: 'Collection Value',
       value: `${stats.estimatedValue.toFixed(2)} SOL`,
       icon: TrendingUp,
-      color: 'text-green-400',
+      color: 'text-[#00FF41]',
     },
     {
       label: 'Rarity Breakdown',
       value: null,
       icon: Star,
-      color: 'text-amber-400',
+      color: 'text-[#FFB000]',
       breakdown: true,
     },
   ]
@@ -87,29 +87,29 @@ export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
       {statItems.map((item) => (
         <Card
           key={item.label}
-          className="border-slate-800 bg-slate-900 transition-colors hover:border-slate-700"
+          className="border-[#0D3B1E] bg-[#0D1117] transition-colors hover:border-[#1A3A2A]"
         >
           <CardContent className="p-4">
             <div className="mb-1 flex items-center gap-2">
               <item.icon className={`h-4 w-4 ${item.color}`} />
-              <span className="text-xs text-slate-400">{item.label}</span>
+              <span className="text-xs text-[#00AA2A]">{item.label}</span>
             </div>
             {item.breakdown ? (
               <div className="flex flex-wrap gap-x-3 gap-y-0.5 text-xs">
                 {Object.entries(stats.rarityBreakdown).map(
                   ([rarity, count]) =>
                     count > 0 && (
-                      <span key={rarity} className={rarityColors[rarity] || 'text-slate-400'}>
+                      <span key={rarity} className={rarityColors[rarity] || 'text-[#00AA2A]'}>
                         {count} {rarity.charAt(0).toUpperCase() + rarity.slice(1)}
                       </span>
                     )
                 )}
                 {Object.values(stats.rarityBreakdown).every((c) => c === 0) && (
-                  <span className="text-slate-500">--</span>
+                  <span className="text-[#1A6B35]">--</span>
                 )}
               </div>
             ) : (
-              <p className="text-lg font-semibold text-white">{item.value}</p>
+              <p className="text-lg font-semibold text-[#00FF41]">{item.value}</p>
             )}
           </CardContent>
         </Card>

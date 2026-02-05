@@ -22,12 +22,12 @@ const TYPE_ICONS: Record<NotificationType, typeof Package> = {
 }
 
 const TYPE_COLORS: Record<NotificationType, string> = {
-  delivery_complete: 'text-green-400 bg-green-400/10',
-  trade_sold: 'text-cyan-400 bg-cyan-400/10',
-  trade_offer: 'text-purple-400 bg-purple-400/10',
-  purchase_confirmed: 'text-green-400 bg-green-400/10',
-  price_drop: 'text-yellow-400 bg-yellow-400/10',
-  new_nft_available: 'text-purple-400 bg-purple-400/10',
+  delivery_complete: 'text-[#00FF41] bg-[#00FF41]/10',
+  trade_sold: 'text-[#00FFFF] bg-[#00FFFF]/10',
+  trade_offer: 'text-[#00FF41] bg-[#00FF41]/10',
+  purchase_confirmed: 'text-[#00FF41] bg-[#00FF41]/10',
+  price_drop: 'text-[#FFB000] bg-[#FFB000]/10',
+  new_nft_available: 'text-[#00FF41] bg-[#00FF41]/10',
 }
 
 interface NotificationItemProps {
@@ -52,16 +52,16 @@ export function NotificationItem({
         }
       }}
       className={cn(
-        'flex w-full items-start gap-3 rounded-lg p-3 text-left transition-colors',
-        'hover:bg-slate-800/50',
-        !notification.read && 'bg-slate-800/30',
+        'flex w-full items-start gap-3 rounded-sm p-3 text-left transition-colors',
+        'hover:bg-[#0D3B1E]/20',
+        !notification.read && 'bg-[#0D3B1E]/10',
         compact && 'p-2'
       )}
     >
       {/* Icon */}
       <div
         className={cn(
-          'flex shrink-0 items-center justify-center rounded-lg',
+          'flex shrink-0 items-center justify-center rounded-sm',
           colorClass,
           compact ? 'size-8' : 'size-10'
         )}
@@ -76,22 +76,22 @@ export function NotificationItem({
             className={cn(
               'truncate font-medium',
               compact ? 'text-sm' : 'text-sm',
-              notification.read ? 'text-slate-300' : 'text-white'
+              notification.read ? 'text-[#00CC33]' : 'text-[#00FF41]'
             )}
           >
             {notification.title}
           </p>
           <div className="flex shrink-0 items-center gap-2">
-            <span className="whitespace-nowrap text-xs text-slate-500">
+            <span className="whitespace-nowrap text-xs text-[#1A6B35]">
               {formatTimeAgo(notification.created_at)}
             </span>
-            {!notification.read && <span className="size-2 shrink-0 rounded-full bg-purple-500" />}
+            {!notification.read && <span className="size-2 shrink-0 rounded-full bg-[#00FF41]" />}
           </div>
         </div>
         <p
           className={cn(
             'mt-0.5 line-clamp-2 text-sm',
-            notification.read ? 'text-slate-500' : 'text-slate-400'
+            notification.read ? 'text-[#1A6B35]' : 'text-[#00AA2A]'
           )}
         >
           {notification.message}

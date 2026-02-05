@@ -81,7 +81,7 @@ export function WalletButton() {
     return (
       <Button
         onClick={handleConnect}
-        className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white glow-button"
+        className="bg-[#00FF41] text-black hover:bg-[#00CC33] glow-button"
         size="sm"
       >
         <Wallet className="size-4" />
@@ -97,9 +97,9 @@ export function WalletButton() {
         <Button
           variant="outline"
           size="sm"
-          className="gap-2 border-purple-600/30 bg-purple-600/10 hover:bg-purple-600/20 text-slate-200"
+          className="gap-2 border-[#0D3B1E]/30 bg-[#0D3B1E]/20 hover:bg-[#0D3B1E]/30 text-[#00FF41]"
         >
-          <div className="size-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="size-2 rounded-full bg-[#00FF41] animate-pulse" />
           <span className="font-mono text-xs">{truncateAddress(publicKey.toBase58())}</span>
           {balance !== null && (
             <span className="text-xs text-muted-foreground">{balance.toFixed(2)} SOL</span>

@@ -33,16 +33,17 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent
-        side="left"
-        className="w-72 bg-slate-950 border-slate-800"
-        showCloseButton={false}
-      >
-        <SheetHeader className="border-b border-slate-800">
+      <SheetContent side="left" className="w-72 bg-black border-[#0D3B1E]" showCloseButton={false}>
+        <SheetHeader className="border-b border-[#0D3B1E]">
           <div className="flex items-center justify-between">
-            <SheetTitle className="text-gradient font-bold text-lg">UnstableLabs</SheetTitle>
+            <SheetTitle
+              className="text-[#00FF41] font-bold text-lg"
+              style={{ textShadow: '0 0 5px #00FF41' }}
+            >
+              _unOS
+            </SheetTitle>
             <SheetClose className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100">
-              <X className="size-4" />
+              <X className="size-4 text-[#00FF41]" />
               <span className="sr-only">Close</span>
             </SheetClose>
           </div>
@@ -55,31 +56,33 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
               href={link.href}
               onClick={() => onOpenChange(false)}
               className={cn(
-                'flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
+                'flex items-center rounded-sm px-3 py-2.5 text-sm font-medium transition-colors uppercase tracking-wider',
                 pathname === link.href
-                  ? 'bg-purple-600/15 text-purple-400'
-                  : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+                  ? 'bg-[#0D3B1E]/30 text-[#00FF41]'
+                  : 'text-[#00AA2A] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]'
               )}
             >
+              {pathname === link.href && <span className="mr-1">&gt;</span>}
               {link.label}
             </Link>
           ))}
 
           {isAuthenticated && (
             <>
-              <Separator className="my-2 bg-slate-800" />
+              <Separator className="my-2 bg-[#0D3B1E]" />
               {authenticatedLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => onOpenChange(false)}
                   className={cn(
-                    'flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
+                    'flex items-center rounded-sm px-3 py-2.5 text-sm font-medium transition-colors uppercase tracking-wider',
                     pathname === link.href
-                      ? 'bg-purple-600/15 text-purple-400'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+                      ? 'bg-[#0D3B1E]/30 text-[#00FF41]'
+                      : 'text-[#00AA2A] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]'
                   )}
                 >
+                  {pathname === link.href && <span className="mr-1">&gt;</span>}
                   {link.label}
                 </Link>
               ))}
@@ -87,7 +90,7 @@ export function MobileNav({ open, onOpenChange }: MobileNavProps) {
           )}
         </nav>
 
-        <div className="mt-auto border-t border-slate-800 p-4 flex flex-col gap-3">
+        <div className="mt-auto border-t border-[#0D3B1E] p-4 flex flex-col gap-3">
           <WalletStatus />
           <WalletButton />
         </div>

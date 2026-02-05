@@ -20,7 +20,7 @@ function StatusIndicator({ status, owner }: { status: NFT['status']; owner?: str
   switch (status) {
     case 'ready':
       return (
-        <Badge variant="secondary" className="bg-slate-700 text-slate-300 text-xs">
+        <Badge variant="secondary" className="bg-[#1A3A2A] text-[#00CC33] text-xs">
           Not Minted
         </Badge>
       )
@@ -28,7 +28,7 @@ function StatusIndicator({ status, owner }: { status: NFT['status']; owner?: str
       return (
         <Badge
           variant="secondary"
-          className="bg-cyan-900/50 text-cyan-400 border border-cyan-500/30 text-xs"
+          className="bg-[#00FFFF]/10 text-[#00FFFF] border border-[#00FFFF]/30 text-xs"
         >
           Available
         </Badge>
@@ -37,7 +37,7 @@ function StatusIndicator({ status, owner }: { status: NFT['status']; owner?: str
       return (
         <Badge
           variant="secondary"
-          className="bg-purple-900/50 text-purple-400 border border-purple-500/30 text-xs"
+          className="bg-[#0D3B1E]/30 text-[#00FF41] border border-[#00FF41]/30 text-xs"
         >
           {owner ? `Owned` : 'Delivered'}
         </Badge>
@@ -56,13 +56,13 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
 
   return (
     <Link href={`/nft/${nft.id}`} className="group block">
-      <Card className="bg-slate-900 border-slate-800 hover:border-purple-500/50 transition-all duration-300 overflow-hidden py-0 gap-0">
+      <Card className="bg-[#0D1117] border-[#0D3B1E] hover:border-[#00FF41]/50 transition-all duration-300 overflow-hidden py-0 gap-0">
         {/* Image container */}
-        <div className="relative aspect-square overflow-hidden bg-slate-800">
+        <div className="relative aspect-square overflow-hidden bg-[#111318]">
           {/* Ready status blur overlay */}
           {nft.status === 'ready' && (
-            <div className="absolute inset-0 z-10 backdrop-blur-md bg-slate-900/40 flex items-center justify-center">
-              <span className="text-slate-400 text-sm font-medium">Not Minted</span>
+            <div className="absolute inset-0 z-10 backdrop-blur-md bg-[#0D1117]/40 flex items-center justify-center">
+              <span className="text-[#00AA2A] text-sm font-medium">Not Minted</span>
             </div>
           )}
 
@@ -85,13 +85,13 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
               />
             </>
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-slate-800">
+            <div className="absolute inset-0 flex items-center justify-center bg-[#111318]">
               <div className="text-center">
                 <div
                   className="w-12 h-12 rounded-full mx-auto mb-2 opacity-40"
                   style={{ backgroundColor: colorHex }}
                 />
-                <span className="text-slate-500 text-xs">No Image</span>
+                <span className="text-[#1A6B35] text-xs">No Image</span>
               </div>
             </div>
           )}
@@ -101,7 +101,7 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
             <Button
               variant="secondary"
               size="sm"
-              className="bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700"
+              className="bg-[#0D1117]/80 hover:bg-[#0D1117] text-[#00FF41] border border-[#1A3A2A]"
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
@@ -126,13 +126,13 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
         {/* Card info */}
         <CardContent className="p-3 space-y-2">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="text-white font-medium text-sm truncate flex-1">{nft.name}</h3>
+            <h3 className="text-[#00FF41] font-medium text-sm truncate flex-1">{nft.name}</h3>
             <Badge className={cn('text-[10px] px-1.5 py-0 shrink-0', tierColor)}>T{nft.tier}</Badge>
           </div>
 
           <div className="flex items-center justify-between">
             <StatusIndicator status={nft.status} owner={nft.owner_display_name} />
-            <span className="text-slate-500 text-xs">{tierLabel}</span>
+            <span className="text-[#1A6B35] text-xs">{tierLabel}</span>
           </div>
         </CardContent>
       </Card>
@@ -142,7 +142,7 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
 
 export function NFTCardSkeleton() {
   return (
-    <Card className="bg-slate-900 border-slate-800 overflow-hidden py-0 gap-0">
+    <Card className="bg-[#0D1117] border-[#0D3B1E] overflow-hidden py-0 gap-0">
       <Skeleton className="aspect-square rounded-none" />
       <div className="p-3 space-y-2">
         <div className="flex items-center justify-between">

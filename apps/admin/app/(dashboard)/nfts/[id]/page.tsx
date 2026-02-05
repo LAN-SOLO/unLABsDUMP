@@ -40,18 +40,18 @@ interface NFT {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'bg-slate-500',
-  uncommon: 'bg-green-500',
-  rare: 'bg-blue-500',
-  epic: 'bg-purple-500',
-  legendary: 'bg-yellow-500',
+  common: 'bg-[#1A6B35]',
+  uncommon: 'bg-[#00FF41]',
+  rare: 'bg-[#00FFFF]',
+  epic: 'bg-[#00CC33] text-black',
+  legendary: 'bg-[#FFB000]',
 }
 
 const statusColors: Record<string, string> = {
-  draft: 'bg-slate-500',
-  active: 'bg-green-500',
-  burned: 'bg-red-500',
-  transferred: 'bg-cyan-500',
+  draft: 'bg-[#1A6B35]',
+  active: 'bg-[#00FF41]',
+  burned: 'bg-[#FF3333]',
+  transferred: 'bg-[#00FFFF]',
 }
 
 export default function NFTDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -104,7 +104,7 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -123,8 +123,8 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
             </Link>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-white">{nft.name}</h1>
-            <p className="text-slate-400 mt-1">NFT Details</p>
+            <h1 className="text-3xl font-bold text-[#00FF41]">{nft.name}</h1>
+            <p className="text-[#00AA2A] mt-1">NFT Details</p>
           </div>
         </div>
         <div className="flex gap-3">
@@ -144,45 +144,45 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Basic Information</CardTitle>
+              <CardTitle className="text-[#00FF41]">Basic Information</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <p className="text-sm text-slate-400">Name</p>
-                  <p className="text-white font-medium">{nft.name}</p>
+                  <p className="text-sm text-[#00AA2A]">Name</p>
+                  <p className="text-[#00FF41] font-medium">{nft.name}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Collection</p>
-                  <p className="text-white font-medium">{nft.collection || '-'}</p>
+                  <p className="text-sm text-[#00AA2A]">Collection</p>
+                  <p className="text-[#00FF41] font-medium">{nft.collection || '-'}</p>
                 </div>
               </div>
 
-              <Separator className="bg-slate-800" />
+              <Separator className="bg-[#111318]" />
 
               <div>
-                <p className="text-sm text-slate-400">Description</p>
-                <p className="text-white mt-1">{nft.description || 'No description'}</p>
+                <p className="text-sm text-[#00AA2A]">Description</p>
+                <p className="text-[#00FF41] mt-1">{nft.description || 'No description'}</p>
               </div>
 
-              <Separator className="bg-slate-800" />
+              <Separator className="bg-[#111318]" />
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <p className="text-sm text-slate-400">Rarity</p>
+                  <p className="text-sm text-[#00AA2A]">Rarity</p>
                   {nft.rarity ? (
-                    <Badge className={`${rarityColors[nft.rarity]} text-white capitalize mt-1`}>
+                    <Badge className={`${rarityColors[nft.rarity]} text-[#00FF41] capitalize mt-1`}>
                       {nft.rarity}
                     </Badge>
                   ) : (
-                    <p className="text-white">-</p>
+                    <p className="text-[#00FF41]">-</p>
                   )}
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Status</p>
-                  <Badge className={`${statusColors[nft.status]} text-white capitalize mt-1`}>
+                  <p className="text-sm text-[#00AA2A]">Status</p>
+                  <Badge className={`${statusColors[nft.status]} text-[#00FF41] capitalize mt-1`}>
                     {nft.status}
                   </Badge>
                 </div>
@@ -190,11 +190,11 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
 
               {nft.mint_address && (
                 <>
-                  <Separator className="bg-slate-800" />
+                  <Separator className="bg-[#111318]" />
                   <div>
-                    <p className="text-sm text-slate-400">Mint Address</p>
+                    <p className="text-sm text-[#00AA2A]">Mint Address</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <code className="text-white text-sm bg-slate-800 px-2 py-1 rounded flex-1 truncate">
+                      <code className="text-[#00FF41] text-sm bg-[#111318] px-2 py-1 rounded flex-1 truncate">
                         {nft.mint_address}
                       </code>
                       <Button
@@ -203,7 +203,7 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
                         onClick={() => copyToClipboard(nft.mint_address!)}
                       >
                         {copied ? (
-                          <Check className="h-4 w-4 text-green-500" />
+                          <Check className="h-4 w-4 text-[#00FF41]" />
                         ) : (
                           <Copy className="h-4 w-4" />
                         )}
@@ -226,12 +226,12 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
 
           {/* Metadata */}
           {nft.metadata && Object.keys(nft.metadata).length > 0 && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Metadata</CardTitle>
+                <CardTitle className="text-[#00FF41]">Metadata</CardTitle>
               </CardHeader>
               <CardContent>
-                <pre className="text-sm text-slate-300 bg-slate-800 p-4 rounded-lg overflow-auto">
+                <pre className="text-sm text-[#00CC33] bg-[#111318] p-4 rounded-sm overflow-auto">
                   {JSON.stringify(nft.metadata, null, 2)}
                 </pre>
               </CardContent>
@@ -240,29 +240,29 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
 
           {/* Ownership History */}
           {nft.nft_ownership_history && nft.nft_ownership_history.length > 0 && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Ownership History</CardTitle>
+                <CardTitle className="text-[#00FF41]">Ownership History</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {nft.nft_ownership_history.map((history) => (
                     <div
                       key={history.id}
-                      className="flex items-center justify-between p-3 bg-slate-800 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-[#111318] rounded-sm"
                     >
                       <div>
-                        <p className="text-white text-sm">Player: {history.player_id}</p>
-                        <p className="text-xs text-slate-400 capitalize">
+                        <p className="text-[#00FF41] text-sm">Player: {history.player_id}</p>
+                        <p className="text-xs text-[#00AA2A] capitalize">
                           {history.acquisition_type}
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-slate-300">
+                        <p className="text-sm text-[#00CC33]">
                           {new Date(history.acquired_at).toLocaleDateString()}
                         </p>
                         {history.released_at && (
-                          <p className="text-xs text-slate-400">
+                          <p className="text-xs text-[#00AA2A]">
                             Released: {new Date(history.released_at).toLocaleDateString()}
                           </p>
                         )}
@@ -278,35 +278,35 @@ export default function NFTDetailPage({ params }: { params: Promise<{ id: string
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Image */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Image</CardTitle>
+              <CardTitle className="text-[#00FF41]">Image</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="aspect-square rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden">
+              <div className="aspect-square rounded-sm bg-[#111318] flex items-center justify-center overflow-hidden">
                 {nft.image_url ? (
                   <img src={nft.image_url} alt={nft.name} className="w-full h-full object-cover" />
                 ) : (
-                  <ImageIcon className="h-16 w-16 text-slate-500" />
+                  <ImageIcon className="h-16 w-16 text-[#1A6B35]" />
                 )}
               </div>
             </CardContent>
           </Card>
 
           {/* Timestamps */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Activity</CardTitle>
+              <CardTitle className="text-[#00FF41]">Activity</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-slate-400">Created</p>
-                <p className="text-white">{new Date(nft.created_at).toLocaleString()}</p>
+                <p className="text-sm text-[#00AA2A]">Created</p>
+                <p className="text-[#00FF41]">{new Date(nft.created_at).toLocaleString()}</p>
               </div>
               {nft.updated_at && (
                 <div>
-                  <p className="text-sm text-slate-400">Last Updated</p>
-                  <p className="text-white">{new Date(nft.updated_at).toLocaleString()}</p>
+                  <p className="text-sm text-[#00AA2A]">Last Updated</p>
+                  <p className="text-[#00FF41]">{new Date(nft.updated_at).toLocaleString()}</p>
                 </div>
               )}
             </CardContent>

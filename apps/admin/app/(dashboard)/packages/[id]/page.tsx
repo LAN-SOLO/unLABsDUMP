@@ -48,11 +48,11 @@ interface Package {
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'bg-slate-500',
-  uncommon: 'bg-green-500',
-  rare: 'bg-blue-500',
-  epic: 'bg-purple-500',
-  legendary: 'bg-yellow-500',
+  common: 'bg-[#1A6B35]',
+  uncommon: 'bg-[#00FF41]',
+  rare: 'bg-[#00FFFF]',
+  epic: 'bg-[#00FF41]',
+  legendary: 'bg-[#FFB000]',
 }
 
 export default function PackageDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -104,7 +104,7 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -126,10 +126,10 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
           </Button>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold text-white">{pkg.name}</h1>
-              {pkg.is_featured && <Star className="h-6 w-6 text-yellow-500 fill-yellow-500" />}
+              <h1 className="text-3xl font-bold text-[#00FF41]">{pkg.name}</h1>
+              {pkg.is_featured && <Star className="h-6 w-6 text-[#FFB000] fill-[#FFB000]" />}
             </div>
-            <p className="text-slate-400 mt-1">Package Details</p>
+            <p className="text-[#00AA2A] mt-1">Package Details</p>
           </div>
         </div>
         <div className="flex gap-3">
@@ -148,15 +148,15 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
 
       {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-green-600/20 flex items-center justify-center">
-                <DollarSign className="h-5 w-5 text-green-500" />
+              <div className="h-10 w-10 rounded-sm bg-[#00FF41]/20 flex items-center justify-center">
+                <DollarSign className="h-5 w-5 text-[#00FF41]" />
               </div>
               <div>
-                <p className="text-sm text-slate-400">Price</p>
-                <p className="text-xl font-bold text-white">
+                <p className="text-sm text-[#00AA2A]">Price</p>
+                <p className="text-xl font-bold text-[#00FF41]">
                   {formatPrice(pkg.price, pkg.currency)}
                 </p>
               </div>
@@ -164,32 +164,32 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-purple-600/20 flex items-center justify-center">
-                <PackageIcon className="h-5 w-5 text-purple-500" />
+              <div className="h-10 w-10 rounded-sm bg-[#0D3B1E]/30 flex items-center justify-center">
+                <PackageIcon className="h-5 w-5 text-[#00FF41]" />
               </div>
               <div>
-                <p className="text-sm text-slate-400">NFTs Included</p>
-                <p className="text-xl font-bold text-white">{pkg.package_nfts?.length || 0}</p>
+                <p className="text-sm text-[#00AA2A]">NFTs Included</p>
+                <p className="text-xl font-bold text-[#00FF41]">{pkg.package_nfts?.length || 0}</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-cyan-600/20 flex items-center justify-center">
-                <Users className="h-5 w-5 text-cyan-500" />
+              <div className="h-10 w-10 rounded-sm bg-[#00FFFF]/20 flex items-center justify-center">
+                <Users className="h-5 w-5 text-[#00FFFF]" />
               </div>
               <div>
-                <p className="text-sm text-slate-400">Sales</p>
-                <p className="text-xl font-bold text-white">
+                <p className="text-sm text-[#00AA2A]">Sales</p>
+                <p className="text-xl font-bold text-[#00FF41]">
                   {pkg.sold_count || 0}
                   {pkg.max_supply && (
-                    <span className="text-slate-400 text-sm"> / {pkg.max_supply}</span>
+                    <span className="text-[#00AA2A] text-sm"> / {pkg.max_supply}</span>
                   )}
                 </p>
               </div>
@@ -197,15 +197,17 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900 border-slate-800">
+        <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-yellow-600/20 flex items-center justify-center">
-                <DollarSign className="h-5 w-5 text-yellow-500" />
+              <div className="h-10 w-10 rounded-sm bg-[#FFB000]/20 flex items-center justify-center">
+                <DollarSign className="h-5 w-5 text-[#FFB000]" />
               </div>
               <div>
-                <p className="text-sm text-slate-400">Revenue</p>
-                <p className="text-xl font-bold text-white">{formatPrice(revenue, pkg.currency)}</p>
+                <p className="text-sm text-[#00AA2A]">Revenue</p>
+                <p className="text-xl font-bold text-[#00FF41]">
+                  {formatPrice(revenue, pkg.currency)}
+                </p>
               </div>
             </div>
           </CardContent>
@@ -216,26 +218,26 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Description */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Description</CardTitle>
+              <CardTitle className="text-[#00FF41]">Description</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-300">{pkg.description || 'No description'}</p>
+              <p className="text-[#00CC33]">{pkg.description || 'No description'}</p>
             </CardContent>
           </Card>
 
           {/* NFTs */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">NFTs in Package</CardTitle>
+              <CardTitle className="text-[#00FF41]">NFTs in Package</CardTitle>
             </CardHeader>
             <CardContent>
               {pkg.package_nfts && pkg.package_nfts.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                   {pkg.package_nfts.map((nft) => (
                     <Link key={nft.id} href={`/nfts/${nft.id}`} className="group">
-                      <div className="aspect-square rounded-lg bg-slate-800 overflow-hidden mb-2">
+                      <div className="aspect-square rounded-sm bg-[#111318] overflow-hidden mb-2">
                         {nft.image_url ? (
                           <img
                             src={nft.image_url}
@@ -244,16 +246,16 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <ImageIcon className="h-8 w-8 text-slate-500" />
+                            <ImageIcon className="h-8 w-8 text-[#1A6B35]" />
                           </div>
                         )}
                       </div>
-                      <p className="text-sm text-white font-medium truncate group-hover:text-purple-400">
+                      <p className="text-sm text-[#00FF41] font-medium truncate group-hover:text-[#00FF41]">
                         {nft.name}
                       </p>
                       {nft.rarity && (
                         <Badge
-                          className={`${rarityColors[nft.rarity]} text-white text-xs capitalize mt-1`}
+                          className={`${rarityColors[nft.rarity]} text-[#00FF41] text-xs capitalize mt-1`}
                         >
                           {nft.rarity}
                         </Badge>
@@ -262,15 +264,15 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
                   ))}
                 </div>
               ) : (
-                <p className="text-slate-400 text-center py-8">No NFTs in this package</p>
+                <p className="text-[#00AA2A] text-center py-8">No NFTs in this package</p>
               )}
             </CardContent>
           </Card>
 
           {/* Recent Purchases */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Recent Purchases</CardTitle>
+              <CardTitle className="text-[#00FF41]">Recent Purchases</CardTitle>
             </CardHeader>
             <CardContent>
               {pkg.purchases && pkg.purchases.length > 0 ? (
@@ -278,21 +280,21 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
                   {pkg.purchases.slice(0, 10).map((purchase) => (
                     <div
                       key={purchase.id}
-                      className="flex items-center justify-between p-3 bg-slate-800 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-[#111318] rounded-sm"
                     >
                       <div>
-                        <p className="text-sm text-white">
+                        <p className="text-sm text-[#00FF41]">
                           Player: {purchase.player_id.slice(0, 8)}...
                         </p>
                       </div>
-                      <p className="text-sm text-slate-400">
+                      <p className="text-sm text-[#00AA2A]">
                         {new Date(purchase.created_at).toLocaleDateString()}
                       </p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-slate-400 text-center py-8">No purchases yet</p>
+                <p className="text-[#00AA2A] text-center py-8">No purchases yet</p>
               )}
             </CardContent>
           </Card>
@@ -301,20 +303,20 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Status */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Status</CardTitle>
+              <CardTitle className="text-[#00FF41]">Status</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Visibility</span>
-                <Badge className={pkg.is_active ? 'bg-green-500' : 'bg-slate-500'}>
+                <span className="text-[#00AA2A]">Visibility</span>
+                <Badge className={pkg.is_active ? 'bg-[#00FF41]' : 'bg-[#1A6B35]'}>
                   {pkg.is_active ? 'Active' : 'Inactive'}
                 </Badge>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Featured</span>
-                <Badge className={pkg.is_featured ? 'bg-yellow-500' : 'bg-slate-500'}>
+                <span className="text-[#00AA2A]">Featured</span>
+                <Badge className={pkg.is_featured ? 'bg-[#FFB000]' : 'bg-[#1A6B35]'}>
                   {pkg.is_featured ? 'Yes' : 'No'}
                 </Badge>
               </div>
@@ -323,17 +325,17 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
 
           {/* Schedule */}
           {(pkg.start_date || pkg.end_date) && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Schedule</CardTitle>
+                <CardTitle className="text-[#00FF41]">Schedule</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {pkg.start_date && (
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-slate-400" />
+                    <Calendar className="h-4 w-4 text-[#00AA2A]" />
                     <div>
-                      <p className="text-xs text-slate-400">Start</p>
-                      <p className="text-sm text-white">
+                      <p className="text-xs text-[#00AA2A]">Start</p>
+                      <p className="text-sm text-[#00FF41]">
                         {new Date(pkg.start_date).toLocaleString()}
                       </p>
                     </div>
@@ -341,10 +343,10 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
                 )}
                 {pkg.end_date && (
                   <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-slate-400" />
+                    <Calendar className="h-4 w-4 text-[#00AA2A]" />
                     <div>
-                      <p className="text-xs text-slate-400">End</p>
-                      <p className="text-sm text-white">
+                      <p className="text-xs text-[#00AA2A]">End</p>
+                      <p className="text-sm text-[#00FF41]">
                         {new Date(pkg.end_date).toLocaleString()}
                       </p>
                     </div>
@@ -355,19 +357,19 @@ export default function PackageDetailPage({ params }: { params: Promise<{ id: st
           )}
 
           {/* Timestamps */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Activity</CardTitle>
+              <CardTitle className="text-[#00FF41]">Activity</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-slate-400">Created</p>
-                <p className="text-white">{new Date(pkg.created_at).toLocaleString()}</p>
+                <p className="text-sm text-[#00AA2A]">Created</p>
+                <p className="text-[#00FF41]">{new Date(pkg.created_at).toLocaleString()}</p>
               </div>
               {pkg.updated_at && (
                 <div>
-                  <p className="text-sm text-slate-400">Last Updated</p>
-                  <p className="text-white">{new Date(pkg.updated_at).toLocaleString()}</p>
+                  <p className="text-sm text-[#00AA2A]">Last Updated</p>
+                  <p className="text-[#00FF41]">{new Date(pkg.updated_at).toLocaleString()}</p>
                 </div>
               )}
             </CardContent>

@@ -24,15 +24,15 @@ export function CodeBlock({ code, language = 'typescript', className }: CodeBloc
   }
 
   return (
-    <div className={cn('group relative rounded-lg', className)}>
+    <div className={cn('group relative rounded-sm', className)}>
       {/* Header */}
-      <div className="flex items-center justify-between rounded-t-lg border border-b-0 border-slate-700 bg-slate-800/50 px-4 py-2">
-        <span className="text-xs font-medium text-slate-400">{language}</span>
+      <div className="flex items-center justify-between rounded-t-sm border border-b-0 border-[#1A3A2A] bg-[#0D3B1E]/20 px-4 py-2">
+        <span className="text-xs font-medium text-[#00AA2A]">{language}</span>
         <button
           onClick={handleCopy}
           className={cn(
             'flex items-center gap-1.5 rounded-md px-2 py-1 text-xs transition-colors',
-            copied ? 'text-green-400' : 'text-slate-400 hover:bg-slate-700 hover:text-white'
+            copied ? 'text-[#00FF41]' : 'text-[#00AA2A] hover:bg-[#1A3A2A] hover:text-[#00FF41]'
           )}
         >
           {copied ? (
@@ -50,9 +50,9 @@ export function CodeBlock({ code, language = 'typescript', className }: CodeBloc
       </div>
 
       {/* Code */}
-      <div className="overflow-x-auto rounded-b-lg border border-slate-700 bg-slate-950 p-4">
+      <div className="overflow-x-auto rounded-b-sm border border-[#1A3A2A] bg-black p-4">
         <pre className="text-sm leading-relaxed">
-          <code className="font-mono text-slate-200">{code}</code>
+          <code className="font-mono text-[#00FF41]">{code}</code>
         </pre>
       </div>
     </div>

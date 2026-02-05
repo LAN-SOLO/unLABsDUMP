@@ -22,12 +22,12 @@ export function SearchResults({
       {/* Results count */}
       {searchPerformed && !loading && (
         <div className="flex items-center justify-between">
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-[#00AA2A]">
             {totalCount === 0 ? (
               'No results found'
             ) : (
               <>
-                Found <span className="text-white font-medium">{totalCount}</span>{' '}
+                Found <span className="text-[#00FF41] font-medium">{totalCount}</span>{' '}
                 {totalCount === 1 ? 'result' : 'results'}
               </>
             )}

@@ -22,11 +22,11 @@ const TIER_LABELS: Record<number, string> = {
 }
 
 const TIER_COLORS: Record<number, string> = {
-  1: 'bg-slate-600 text-slate-200',
-  2: 'bg-green-600/30 text-green-400 border-green-500/30',
-  3: 'bg-blue-600/30 text-blue-400 border-blue-500/30',
-  4: 'bg-purple-600/30 text-purple-400 border-purple-500/30',
-  5: 'bg-amber-600/30 text-amber-400 border-amber-500/30',
+  1: 'bg-[#1A3A2A] text-[#00FF41]',
+  2: 'bg-[#0D3B1E]/30 text-[#00FF41] border-[#00FF41]/30',
+  3: 'bg-[#00FFFF]/20 text-[#00FFFF] border-[#00FFFF]/30',
+  4: 'bg-[#0D3B1E]/30 text-[#00FF41] border-[#00FF41]/30',
+  5: 'bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30',
 }
 
 interface NftPreviewGalleryProps {
@@ -41,7 +41,7 @@ export function NftPreviewGallery({ nfts, totalCount, className }: NftPreviewGal
 
   return (
     <div className={cn('space-y-3', className)}>
-      <p className="text-sm font-medium text-slate-400">
+      <p className="text-sm font-medium text-[#00AA2A]">
         {displayCount} NFT{displayCount !== 1 ? 's' : ''} included
       </p>
 
@@ -62,8 +62,8 @@ export function NftPreviewGallery({ nfts, totalCount, className }: NftPreviewGal
               {/* Thumbnail */}
               <div
                 className={cn(
-                  'aspect-square rounded-lg overflow-hidden border transition-all cursor-pointer',
-                  'bg-slate-800 border-slate-700 hover:border-slate-600 hover:shadow-lg hover:shadow-purple-500/10'
+                  'aspect-square rounded-sm overflow-hidden border transition-all cursor-pointer',
+                  'bg-[#111318] border-[#1A3A2A] hover:border-[#0D3B1E] hover:shadow-lg hover:shadow-[#00FF41]/10'
                 )}
               >
                 {src ? (
@@ -74,7 +74,7 @@ export function NftPreviewGallery({ nfts, totalCount, className }: NftPreviewGal
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <ImageIcon className="size-5 text-slate-500" />
+                    <ImageIcon className="size-5 text-[#1A6B35]" />
                   </div>
                 )}
               </div>
@@ -94,18 +94,18 @@ export function NftPreviewGallery({ nfts, totalCount, className }: NftPreviewGal
               {/* Hover tooltip - enlarged */}
               {isHovered && (
                 <div className="absolute z-20 bottom-full left-1/2 -translate-x-1/2 mb-2 pointer-events-none">
-                  <div className="rounded-lg overflow-hidden border border-slate-700 bg-slate-900 shadow-xl shadow-black/40 w-40">
+                  <div className="rounded-sm overflow-hidden border border-[#1A3A2A] bg-[#0D1117] shadow-xl shadow-black/40 w-40">
                     <div className="aspect-square w-full overflow-hidden">
                       {src ? (
                         <img src={src} alt={nft.name} className="w-full h-full object-cover" />
                       ) : (
-                        <div className="w-full h-full bg-slate-800 flex items-center justify-center">
-                          <ImageIcon className="size-8 text-slate-600" />
+                        <div className="w-full h-full bg-[#111318] flex items-center justify-center">
+                          <ImageIcon className="size-8 text-[#1A6B35]" />
                         </div>
                       )}
                     </div>
                     <div className="p-2">
-                      <p className="text-xs font-medium text-white truncate">{nft.name}</p>
+                      <p className="text-xs font-medium text-[#00FF41] truncate">{nft.name}</p>
                       {tierLabel && (
                         <Badge
                           variant="outline"

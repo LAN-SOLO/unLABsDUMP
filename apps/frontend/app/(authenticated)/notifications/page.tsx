@@ -67,12 +67,12 @@ export default function NotificationsPage() {
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg bg-purple-600/20">
-            <Bell className="size-5 text-purple-400" />
+          <div className="flex size-10 items-center justify-center rounded-sm bg-[#0D3B1E]/30">
+            <Bell className="size-5 text-[#00FF41]" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Notifications</h1>
-            <p className="text-sm text-slate-400">
+            <h1 className="text-2xl font-bold text-[#00FF41]">Notifications</h1>
+            <p className="text-sm text-[#00AA2A]">
               {unreadCount > 0
                 ? `${unreadCount} unread notification${unreadCount === 1 ? '' : 's'}`
                 : 'All caught up'}
@@ -86,7 +86,7 @@ export default function NotificationsPage() {
               variant="outline"
               size="sm"
               onClick={handleMarkAllAsRead}
-              className="gap-1.5 border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white"
+              className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]"
             >
               <CheckCheck className="size-4" />
               Mark all read
@@ -97,7 +97,7 @@ export default function NotificationsPage() {
               variant="outline"
               size="sm"
               onClick={handleClearAll}
-              className="gap-1.5 border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-red-900/50 hover:text-red-300 hover:border-red-800"
+              className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#FF3333]/15 hover:text-[#FF3333] hover:border-[#FF3333]/50"
             >
               <Trash2 className="size-4" />
               Clear all
@@ -107,26 +107,26 @@ export default function NotificationsPage() {
       </div>
 
       {/* Tabs */}
-      <Card className="border-slate-800 bg-slate-900/50">
+      <Card className="border-[#0D3B1E] bg-[#0D1117]/50">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'all' | 'unread')}>
-          <div className="border-b border-slate-800 px-4 pt-3">
-            <TabsList className="bg-slate-800/50">
+          <div className="border-b border-[#0D3B1E] px-4 pt-3">
+            <TabsList className="bg-[#0D3B1E]/20">
               <TabsTrigger
                 value="all"
-                className="text-slate-400 data-[state=active]:bg-slate-700 data-[state=active]:text-white"
+                className="text-[#00AA2A] data-[state=active]:bg-[#1A3A2A] data-[state=active]:text-[#00FF41]"
               >
                 All
-                <span className="ml-1.5 rounded-full bg-slate-700 px-1.5 py-0.5 text-xs text-slate-300">
+                <span className="ml-1.5 rounded-full bg-[#1A3A2A] px-1.5 py-0.5 text-xs text-[#00CC33]">
                   {notifications.length}
                 </span>
               </TabsTrigger>
               <TabsTrigger
                 value="unread"
-                className="text-slate-400 data-[state=active]:bg-slate-700 data-[state=active]:text-white"
+                className="text-[#00AA2A] data-[state=active]:bg-[#1A3A2A] data-[state=active]:text-[#00FF41]"
               >
                 Unread
                 {unreadCount > 0 && (
-                  <span className="ml-1.5 rounded-full bg-purple-600/30 px-1.5 py-0.5 text-xs text-purple-300">
+                  <span className="ml-1.5 rounded-full bg-[#0D3B1E]/30 px-1.5 py-0.5 text-xs text-[#00CC33]">
                     {unreadCount}
                   </span>
                 )}
@@ -135,13 +135,13 @@ export default function NotificationsPage() {
           </div>
 
           {/* Type filter */}
-          <div className="flex flex-wrap gap-1.5 border-b border-slate-800 px-4 pb-3">
+          <div className="flex flex-wrap gap-1.5 border-b border-[#0D3B1E] px-4 pb-3">
             <button
               onClick={() => setTypeFilter('all')}
               className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
                 typeFilter === 'all'
-                  ? 'bg-purple-600/20 text-purple-400'
-                  : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800'
+                  ? 'bg-[#0D3B1E]/30 text-[#00FF41]'
+                  : 'text-[#1A6B35] hover:text-[#00CC33] hover:bg-[#0D3B1E]/20'
               }`}
             >
               All Types
@@ -153,8 +153,8 @@ export default function NotificationsPage() {
                   onClick={() => setTypeFilter(type)}
                   className={`rounded-full px-2.5 py-1 text-xs font-medium transition-colors ${
                     typeFilter === type
-                      ? 'bg-purple-600/20 text-purple-400'
-                      : 'text-slate-500 hover:text-slate-300 hover:bg-slate-800'
+                      ? 'bg-[#0D3B1E]/30 text-[#00FF41]'
+                      : 'text-[#1A6B35] hover:text-[#00CC33] hover:bg-[#0D3B1E]/20'
                   }`}
                 >
                   {label}
@@ -163,7 +163,7 @@ export default function NotificationsPage() {
             )}
           </div>
 
-          <Separator className="bg-slate-800" />
+          <Separator className="bg-[#111318]" />
 
           <TabsContent value="all" className="m-0">
             <NotificationList

@@ -82,7 +82,7 @@ export function WalletLogin({ onSuccess, onRequires2FA }: WalletLoginProps) {
       )}
 
       <div className="flex flex-col items-center gap-4">
-        <WalletMultiButton className="!bg-purple-600 hover:!bg-purple-700" />
+        <WalletMultiButton className="!bg-[#00FF41] !text-black hover:!bg-[#00CC33]" />
 
         {connected && publicKey && (
           <>
@@ -93,7 +93,7 @@ export function WalletLogin({ onSuccess, onRequires2FA }: WalletLoginProps) {
             <Button
               onClick={handleLogin}
               disabled={isLoading}
-              className="w-full bg-cyan-600 hover:bg-cyan-700"
+              className="w-full bg-[#00FFFF] hover:bg-[#00FFFF]/80"
             >
               {isLoading ? (
                 <>

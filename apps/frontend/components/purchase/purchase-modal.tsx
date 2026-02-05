@@ -148,12 +148,12 @@ export function PurchaseModal({
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className="bg-slate-900 border-slate-800 sm:max-w-md"
+        className="bg-[#0D1117] border-[#0D3B1E] sm:max-w-md"
         showCloseButton={step !== 'signing' && step !== 'processing'}
       >
         <DialogHeader>
-          <DialogTitle className="text-white">{STEP_LABELS[step]}</DialogTitle>
-          <DialogDescription className="text-slate-400">
+          <DialogTitle className="text-[#00FF41]">{STEP_LABELS[step]}</DialogTitle>
+          <DialogDescription className="text-[#00AA2A]">
             {step === 'review' && 'Review your order before purchasing.'}
             {step === 'signing' && 'Please confirm the transaction in your wallet.'}
             {step === 'processing' && 'Your transaction is being processed.'}
@@ -171,22 +171,20 @@ export function PurchaseModal({
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
                     i <= stepIndex
                       ? i === stepIndex
-                        ? 'bg-purple-500 ring-2 ring-purple-500/30'
-                        : 'bg-purple-500'
-                      : 'bg-slate-700'
+                        ? 'bg-[#00FF41] ring-2 ring-[#00FF41]/30'
+                        : 'bg-[#00FF41]'
+                      : 'bg-[#1A3A2A]'
                   }`}
                 />
                 {i < 3 && (
-                  <div
-                    className={`w-8 h-0.5 ${i < stepIndex ? 'bg-purple-500' : 'bg-slate-700'}`}
-                  />
+                  <div className={`w-8 h-0.5 ${i < stepIndex ? 'bg-[#00FF41]' : 'bg-[#1A3A2A]'}`} />
                 )}
               </div>
             ))}
           </div>
         )}
 
-        <Separator className="bg-slate-800" />
+        <Separator className="bg-[#0D3B1E]" />
 
         {/* Step content */}
         {step === 'review' && (
@@ -199,7 +197,7 @@ export function PurchaseModal({
             />
             <Button
               onClick={handlePurchase}
-              className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold h-11 glow-button"
+              className="w-full bg-[#00FF41] hover:bg-[#00CC33] text-black font-semibold h-11 glow-button"
             >
               Confirm Purchase
               <ArrowRight className="size-4 ml-2" />
@@ -209,34 +207,34 @@ export function PurchaseModal({
 
         {step === 'signing' && (
           <div className="text-center space-y-4 py-6">
-            <div className="mx-auto w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center">
-              <Wallet className="size-8 text-purple-400 animate-pulse" />
+            <div className="mx-auto w-16 h-16 bg-[#00FF41]/20 rounded-full flex items-center justify-center">
+              <Wallet className="size-8 text-[#00FF41] animate-pulse" />
             </div>
             <div>
-              <p className="text-white font-medium mb-1">Waiting for Wallet Confirmation</p>
-              <p className="text-sm text-slate-400">
+              <p className="text-[#00FF41] font-medium mb-1">Waiting for Wallet Confirmation</p>
+              <p className="text-sm text-[#00AA2A]">
                 Please approve the transaction in your wallet extension.
               </p>
             </div>
-            <Loader2 className="size-5 text-purple-400 animate-spin mx-auto" />
+            <Loader2 className="size-5 text-[#00FF41] animate-spin mx-auto" />
           </div>
         )}
 
         {step === 'processing' && (
           <div className="text-center space-y-4 py-6">
-            <div className="mx-auto w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center">
-              <Loader2 className="size-8 text-cyan-400 animate-spin" />
+            <div className="mx-auto w-16 h-16 bg-[#00FFFF]/20 rounded-full flex items-center justify-center">
+              <Loader2 className="size-8 text-[#00FFFF] animate-spin" />
             </div>
             <div>
-              <p className="text-white font-medium mb-1">Transaction Submitted</p>
-              <p className="text-sm text-slate-400">
+              <p className="text-[#00FF41] font-medium mb-1">Transaction Submitted</p>
+              <p className="text-sm text-[#00AA2A]">
                 Waiting for on-chain confirmation. This may take a few seconds.
               </p>
             </div>
             <div className="flex items-center justify-center gap-1">
-              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:0ms]" />
-              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:150ms]" />
-              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce [animation-delay:300ms]" />
+              <div className="w-2 h-2 bg-[#00FFFF] rounded-full animate-bounce [animation-delay:0ms]" />
+              <div className="w-2 h-2 bg-[#00FFFF] rounded-full animate-bounce [animation-delay:150ms]" />
+              <div className="w-2 h-2 bg-[#00FFFF] rounded-full animate-bounce [animation-delay:300ms]" />
             </div>
           </div>
         )}

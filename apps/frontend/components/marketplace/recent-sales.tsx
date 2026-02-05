@@ -32,18 +32,18 @@ function TrendIndicator({ sales }: { sales: RecentSale[] }) {
 
   if (Math.abs(diff) < 0.001) {
     return (
-      <span className="flex items-center gap-1 text-xs text-slate-500">
+      <span className="flex items-center gap-1 text-xs text-[#1A6B35]">
         <Minus className="h-3 w-3" /> Stable
       </span>
     )
   }
 
   return diff > 0 ? (
-    <span className="flex items-center gap-1 text-xs text-green-400">
+    <span className="flex items-center gap-1 text-xs text-[#00FF41]">
       <TrendingUp className="h-3 w-3" /> +{pct}%
     </span>
   ) : (
-    <span className="flex items-center gap-1 text-xs text-red-400">
+    <span className="flex items-center gap-1 text-xs text-[#FF3333]">
       <TrendingDown className="h-3 w-3" /> {pct}%
     </span>
   )
@@ -63,9 +63,9 @@ function timeAgo(dateStr: string): string {
 export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) {
   if (isLoading) {
     return (
-      <Card className="border-slate-800 bg-slate-900">
+      <Card className="border-[#0D3B1E] bg-[#0D1117]">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-sm text-slate-300">
+          <CardTitle className="flex items-center gap-2 text-sm text-[#00CC33]">
             <History className="h-4 w-4" />
             Recent Sales
           </CardTitle>
@@ -73,7 +73,7 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
         <CardContent className="space-y-3">
           {Array.from({ length: 5 }).map((_, i) => (
             <div key={i} className="flex items-center gap-3">
-              <Skeleton className="h-10 w-10 rounded-lg" />
+              <Skeleton className="h-10 w-10 rounded-sm" />
               <div className="flex-1 space-y-1">
                 <Skeleton className="h-3 w-24" />
                 <Skeleton className="h-3 w-16" />
@@ -88,24 +88,24 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
 
   if (sales.length === 0) {
     return (
-      <Card className="border-slate-800 bg-slate-900">
+      <Card className="border-[#0D3B1E] bg-[#0D1117]">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-sm text-slate-300">
+          <CardTitle className="flex items-center gap-2 text-sm text-[#00CC33]">
             <History className="h-4 w-4" />
             Recent Sales
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-center text-sm text-slate-500">No recent sales</p>
+          <p className="text-center text-sm text-[#1A6B35]">No recent sales</p>
         </CardContent>
       </Card>
     )
   }
 
   return (
-    <Card className="border-slate-800 bg-slate-900">
+    <Card className="border-[#0D3B1E] bg-[#0D1117]">
       <CardHeader>
-        <CardTitle className="flex items-center justify-between text-sm text-slate-300">
+        <CardTitle className="flex items-center justify-between text-sm text-[#00CC33]">
           <span className="flex items-center gap-2">
             <History className="h-4 w-4" />
             Recent Sales
@@ -113,8 +113,8 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
           <TrendIndicator sales={sales} />
         </CardTitle>
         {floorPrice !== undefined && (
-          <p className="text-xs text-slate-500">
-            Floor: <span className="font-semibold text-slate-400">{formatSol(floorPrice)} SOL</span>
+          <p className="text-xs text-[#1A6B35]">
+            Floor: <span className="font-semibold text-[#00AA2A]">{formatSol(floorPrice)} SOL</span>
           </p>
         )}
       </CardHeader>
@@ -123,7 +123,7 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
           <div key={sale.id}>
             <div className="flex items-center gap-3 py-2.5">
               {/* NFT thumbnail */}
-              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg bg-slate-800">
+              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-sm bg-[#111318]">
                 <img
                   src={sale.nftImage || '/placeholder-nft.png'}
                   alt={sale.nftName}
@@ -133,8 +133,8 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
 
               {/* Info */}
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-white">{sale.nftName}</p>
-                <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                <p className="truncate text-sm font-medium text-[#00FF41]">{sale.nftName}</p>
+                <div className="flex items-center gap-2 text-[10px] text-[#1A6B35]">
                   <span className="font-mono">{sale.sellerAddress.slice(0, 4)}...</span>
                   <ArrowRight className="h-2.5 w-2.5" />
                   <span className="font-mono">{sale.buyerAddress.slice(0, 4)}...</span>
@@ -143,12 +143,14 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
 
               {/* Price and time */}
               <div className="text-right">
-                <p className="text-sm font-semibold text-white">{formatSol(sale.priceInSol)} SOL</p>
+                <p className="text-sm font-semibold text-[#00FF41]">
+                  {formatSol(sale.priceInSol)} SOL
+                </p>
                 <div className="flex items-center justify-end gap-1">
-                  <p className="text-[10px] text-slate-500">{timeAgo(sale.completedAt)}</p>
+                  <p className="text-[10px] text-[#1A6B35]">{timeAgo(sale.completedAt)}</p>
                   {floorPrice !== undefined && floorPrice > 0 && (
                     <span
-                      className={`text-[10px] ${sale.priceInSol >= floorPrice ? 'text-green-500' : 'text-red-400'}`}
+                      className={`text-[10px] ${sale.priceInSol >= floorPrice ? 'text-[#00FF41]' : 'text-[#FF3333]'}`}
                     >
                       {sale.priceInSol >= floorPrice ? '+' : ''}
                       {(((sale.priceInSol - floorPrice) / floorPrice) * 100).toFixed(0)}%
@@ -157,7 +159,7 @@ export function RecentSales({ sales, isLoading, floorPrice }: RecentSalesProps) 
                 </div>
               </div>
             </div>
-            {index < sales.length - 1 && <Separator className="bg-slate-800" />}
+            {index < sales.length - 1 && <Separator className="bg-[#111318]" />}
           </div>
         ))}
       </CardContent>

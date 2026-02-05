@@ -29,11 +29,11 @@ const categoryIcons: Record<string, typeof BarChart3> = {
 }
 
 const categoryColors: Record<string, string> = {
-  sales: 'bg-green-500/10 border-green-800/50 text-green-400',
-  inventory: 'bg-blue-500/10 border-blue-800/50 text-blue-400',
-  burn: 'bg-purple-500/10 border-purple-800/50 text-purple-400',
-  delivery: 'bg-cyan-500/10 border-cyan-800/50 text-cyan-400',
-  admin: 'bg-yellow-500/10 border-yellow-800/50 text-yellow-400',
+  sales: 'bg-[#00FF41]/10 border-[#0D3B1E]/50 text-[#00FF41]',
+  inventory: 'bg-[#00FFFF]/10 border-[#00FFFF]/30 text-[#00FFFF]',
+  burn: 'bg-[#00FF41]/10 border-[#0D3B1E]/50 text-[#00FF41]',
+  delivery: 'bg-[#00FFFF]/10 border-[#00FFFF]/50 text-[#00FFFF]',
+  admin: 'bg-[#FFB000]/10 border-[#FFB000]/30 text-[#FFB000]',
 }
 
 interface ReportResult {
@@ -98,8 +98,8 @@ export default function ReportsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-white">Reports</h1>
-        <p className="text-slate-400 mt-1">Generate and export platform reports</p>
+        <h1 className="text-3xl font-bold text-[#00FF41]">Reports</h1>
+        <p className="text-[#00AA2A] mt-1">Generate and export platform reports</p>
       </div>
 
       {/* Category Filter */}
@@ -110,7 +110,7 @@ export default function ReportsPage() {
             variant={categoryFilter === cat ? 'default' : 'outline'}
             size="sm"
             onClick={() => setCategoryFilter(cat)}
-            className={categoryFilter === cat ? 'bg-purple-600 hover:bg-purple-700' : ''}
+            className={categoryFilter === cat ? 'bg-[#00FF41] text-black hover:bg-[#00CC33]' : ''}
           >
             {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </Button>
@@ -120,7 +120,7 @@ export default function ReportsPage() {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Template Selection */}
         <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-medium text-white">Report Templates</h2>
+          <h2 className="text-lg font-medium text-[#00FF41]">Report Templates</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {filteredTemplates.map((template) => {
               const Icon = categoryIcons[template.category] || FileText
@@ -132,20 +132,20 @@ export default function ReportsPage() {
                   key={template.id}
                   className={`cursor-pointer transition-all border ${
                     isSelected
-                      ? 'bg-purple-900/30 border-purple-500'
-                      : 'bg-slate-900 border-slate-800 hover:border-slate-700'
+                      ? 'bg-[#0D3B1E]/30 border-[#00FF41]'
+                      : 'bg-[#0D1117] border-[#0D3B1E] hover:border-[#1A3A2A]'
                   }`}
                   onClick={() => setSelectedTemplate(template)}
                 >
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <div className={`p-2 rounded-lg border ${colorClass}`}>
+                      <div className={`p-2 rounded-sm border ${colorClass}`}>
                         <Icon className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-white font-medium text-sm">{template.name}</h3>
-                        <p className="text-slate-400 text-xs mt-1">{template.description}</p>
-                        <Badge className="mt-2 bg-slate-800 text-slate-400 text-xs capitalize">
+                        <h3 className="text-[#00FF41] font-medium text-sm">{template.name}</h3>
+                        <p className="text-[#00AA2A] text-xs mt-1">{template.description}</p>
+                        <Badge className="mt-2 bg-[#111318] text-[#00AA2A] text-xs capitalize">
                           {template.category}
                         </Badge>
                       </div>
@@ -159,16 +159,16 @@ export default function ReportsPage() {
 
         {/* Report Generator */}
         <div className="space-y-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white text-base">Generate Report</CardTitle>
+              <CardTitle className="text-[#00FF41] text-base">Generate Report</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {selectedTemplate ? (
                 <>
-                  <div className="p-3 bg-slate-800 rounded-lg">
-                    <p className="text-white font-medium text-sm">{selectedTemplate.name}</p>
-                    <p className="text-slate-400 text-xs mt-1">{selectedTemplate.description}</p>
+                  <div className="p-3 bg-[#111318] rounded-sm">
+                    <p className="text-[#00FF41] font-medium text-sm">{selectedTemplate.name}</p>
+                    <p className="text-[#00AA2A] text-xs mt-1">{selectedTemplate.description}</p>
                   </div>
 
                   <div className="space-y-3">
@@ -180,7 +180,7 @@ export default function ReportsPage() {
                         type="date"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="bg-slate-800 border-slate-700"
+                        className="bg-[#111318] border-[#1A3A2A]"
                       />
                     </div>
                     <div className="space-y-2">
@@ -191,7 +191,7 @@ export default function ReportsPage() {
                         type="date"
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="bg-slate-800 border-slate-700"
+                        className="bg-[#111318] border-[#1A3A2A]"
                       />
                     </div>
                   </div>
@@ -200,7 +200,7 @@ export default function ReportsPage() {
                     <Button
                       onClick={() => generateReport('json')}
                       disabled={isGenerating}
-                      className="flex-1 bg-purple-600 hover:bg-purple-700"
+                      className="flex-1 bg-[#00FF41] text-black hover:bg-[#00CC33]"
                     >
                       {isGenerating ? (
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -220,8 +220,8 @@ export default function ReportsPage() {
                 </>
               ) : (
                 <div className="text-center py-6">
-                  <FileText className="mx-auto h-8 w-8 text-slate-600" />
-                  <p className="mt-2 text-sm text-slate-400">Select a template to get started</p>
+                  <FileText className="mx-auto h-8 w-8 text-[#1A6B35]" />
+                  <p className="mt-2 text-sm text-[#00AA2A]">Select a template to get started</p>
                 </div>
               )}
             </CardContent>
@@ -229,21 +229,21 @@ export default function ReportsPage() {
 
           {/* Report Preview */}
           {report && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white text-base">{report.title}</CardTitle>
+                <CardTitle className="text-[#00FF41] text-base">{report.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 text-sm">
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-[#1A6B35] text-xs">
                     Generated: {new Date(report.generatedAt).toLocaleString()}
                   </p>
                   {Object.entries(report.data).map(([key, value]) => {
                     if (typeof value === 'object') return null
                     return (
-                      <div key={key} className="flex justify-between p-2 bg-slate-800 rounded">
-                        <span className="text-slate-400 capitalize">{key.replace(/_/g, ' ')}</span>
-                        <span className="text-white font-mono">
+                      <div key={key} className="flex justify-between p-2 bg-[#111318] rounded">
+                        <span className="text-[#00AA2A] capitalize">{key.replace(/_/g, ' ')}</span>
+                        <span className="text-[#00FF41] font-mono">
                           {typeof value === 'number' ? value.toLocaleString() : String(value)}
                         </span>
                       </div>

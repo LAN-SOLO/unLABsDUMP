@@ -100,12 +100,12 @@ export default function BrowsePage() {
     filters.rotations.length
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Browse NFTs</h1>
-          <p className="text-slate-400">
+          <h1 className="text-3xl font-bold text-[#00FF41] mb-2">Browse NFTs</h1>
+          <p className="text-[#00AA2A]">
             Explore the UnstableLabs NFT collection across wavelengths, tiers, and eras.
           </p>
         </div>
@@ -121,15 +121,15 @@ export default function BrowsePage() {
           <div className="flex gap-2">
             {/* Sort dropdown */}
             <Select value={filters.sortBy} onValueChange={handleSortChange}>
-              <SelectTrigger className="w-36 bg-slate-900 border-slate-700 text-slate-300">
+              <SelectTrigger className="w-36 bg-[#0D1117] border-[#1A3A2A] text-[#00CC33]">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
-              <SelectContent className="bg-slate-900 border-slate-700">
+              <SelectContent className="bg-[#0D1117] border-[#1A3A2A]">
                 {SORT_OPTIONS.map((option) => (
                   <SelectItem
                     key={option.value}
                     value={option.value}
-                    className="text-slate-300 focus:bg-slate-800 focus:text-white"
+                    className="text-[#00CC33] focus:bg-[#111318] focus:text-[#00FF41]"
                   >
                     {option.label}
                   </SelectItem>
@@ -142,7 +142,7 @@ export default function BrowsePage() {
               asChild
               variant="outline"
               size="default"
-              className="border-slate-700 text-slate-400 hover:text-white hidden sm:inline-flex"
+              className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] hidden sm:inline-flex"
             >
               <Link href="/browse/search">
                 <Search className="size-4 mr-1.5" />
@@ -155,23 +155,20 @@ export default function BrowsePage() {
               <SheetTrigger asChild>
                 <Button
                   variant="outline"
-                  className="lg:hidden border-slate-700 text-slate-400 hover:text-white relative"
+                  className="lg:hidden border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] relative"
                 >
                   <SlidersHorizontal className="size-4 mr-1.5" />
                   Filters
                   {activeFilterCount > 0 && (
-                    <Badge className="absolute -top-2 -right-2 bg-purple-600 text-white text-xs size-5 flex items-center justify-center p-0">
+                    <Badge className="absolute -top-2 -right-2 bg-[#00FF41] text-black text-xs size-5 flex items-center justify-center p-0">
                       {activeFilterCount}
                     </Badge>
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent
-                side="left"
-                className="bg-slate-950 border-slate-800 w-80 overflow-y-auto"
-              >
+              <SheetContent side="left" className="bg-black border-[#0D3B1E] w-80 overflow-y-auto">
                 <SheetHeader>
-                  <SheetTitle className="text-white">Filters</SheetTitle>
+                  <SheetTitle className="text-[#00FF41]">Filters</SheetTitle>
                 </SheetHeader>
                 <div className="px-4 pb-6">
                   <NFTFiltersPanel
@@ -189,9 +186,9 @@ export default function BrowsePage() {
 
         {/* Results count */}
         {!loading && (
-          <div className="mb-4 text-sm text-slate-500">
-            Showing <span className="text-slate-300">{nfts.length}</span> of{' '}
-            <span className="text-slate-300">{totalCount}</span> NFTs
+          <div className="mb-4 text-sm text-[#1A6B35]">
+            Showing <span className="text-[#00CC33]">{nfts.length}</span> of{' '}
+            <span className="text-[#00CC33]">{totalCount}</span> NFTs
           </div>
         )}
 
@@ -221,7 +218,7 @@ export default function BrowsePage() {
                   size="icon-sm"
                   disabled={filters.page <= 1}
                   onClick={() => handlePageChange(filters.page - 1)}
-                  className="border-slate-700 text-slate-400 hover:text-white disabled:opacity-30"
+                  className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] disabled:opacity-30"
                 >
                   <ChevronLeft className="size-4" />
                 </Button>
@@ -229,7 +226,7 @@ export default function BrowsePage() {
                 {generatePageNumbers(filters.page, totalPages).map((pageNum, idx) => {
                   if (pageNum === -1) {
                     return (
-                      <span key={`ellipsis-${idx}`} className="text-slate-600 px-1">
+                      <span key={`ellipsis-${idx}`} className="text-[#1A6B35] px-1">
                         ...
                       </span>
                     )
@@ -242,8 +239,8 @@ export default function BrowsePage() {
                       onClick={() => handlePageChange(pageNum)}
                       className={
                         pageNum === filters.page
-                          ? 'bg-purple-600 text-white hover:bg-purple-700'
-                          : 'border-slate-700 text-slate-400 hover:text-white'
+                          ? 'bg-[#00FF41] text-black hover:bg-[#00CC33]'
+                          : 'border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41]'
                       }
                     >
                       {pageNum}
@@ -256,7 +253,7 @@ export default function BrowsePage() {
                   size="icon-sm"
                   disabled={filters.page >= totalPages}
                   onClick={() => handlePageChange(filters.page + 1)}
-                  className="border-slate-700 text-slate-400 hover:text-white disabled:opacity-30"
+                  className="border-[#1A3A2A] text-[#00AA2A] hover:text-[#00FF41] disabled:opacity-30"
                 >
                   <ChevronRight className="size-4" />
                 </Button>

@@ -43,8 +43,8 @@ const ENDPOINTS = [
 ]
 
 const METHOD_COLORS: Record<string, string> = {
-  GET: 'bg-green-600/20 text-green-400 border-green-600/30',
-  POST: 'bg-blue-600/20 text-blue-400 border-blue-600/30',
+  GET: 'bg-[#00FF41]/20 text-[#00FF41] border-[#00FF41]/30',
+  POST: 'bg-[#00FFFF]/20 text-[#00FFFF] border-[#00FFFF]/30',
 }
 
 interface TryItProps {
@@ -145,13 +145,13 @@ export function TryIt({ className }: TryItProps) {
   }, [response])
 
   return (
-    <Card className={cn('border-slate-800 bg-slate-900 p-6', className)}>
-      <h3 className="text-lg font-semibold text-white mb-4">API Tester</h3>
+    <Card className={cn('border-[#0D3B1E] bg-[#0D1117] p-6', className)}>
+      <h3 className="text-lg font-semibold text-[#00FF41] mb-4">API Tester</h3>
 
       <div className="space-y-4">
         {/* API Key */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-400 flex items-center gap-1.5">
+          <label className="text-xs font-medium text-[#00AA2A] flex items-center gap-1.5">
             <Key className="size-3" />
             API Key
           </label>
@@ -160,13 +160,13 @@ export function TryIt({ className }: TryItProps) {
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="X-API-Key header value..."
-            className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 font-mono text-xs focus-visible:border-purple-500"
+            className="bg-[#111318] border-[#1A3A2A] text-[#00FF41] placeholder:text-[#1A6B35] font-mono text-xs focus-visible:border-[#00FF41]"
           />
         </div>
 
         {/* Endpoint selector */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-slate-400">Endpoint</label>
+          <label className="text-xs font-medium text-[#00AA2A]">Endpoint</label>
           <select
             value={selectedEndpoint}
             onChange={(e) => {
@@ -175,7 +175,7 @@ export function TryIt({ className }: TryItProps) {
               setResponse(null)
               setStatusCode(null)
             }}
-            className="w-full rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-purple-500 focus:outline-none focus:ring-[3px] focus:ring-purple-500/20"
+            className="w-full rounded-md border border-[#1A3A2A] bg-[#111318] px-3 py-2 text-sm text-[#00FF41] focus:border-[#00FF41] focus:outline-none focus:ring-[3px] focus:ring-[#00FF41]/20"
           >
             {ENDPOINTS.map((ep) => (
               <option key={ep.id} value={ep.id}>
@@ -193,19 +193,19 @@ export function TryIt({ className }: TryItProps) {
             >
               {endpoint.method}
             </Badge>
-            <code className="text-xs text-slate-300">{endpoint.path}</code>
+            <code className="text-xs text-[#00CC33]">{endpoint.path}</code>
           </div>
         </div>
 
         {/* Parameters */}
         {endpoint.params.map((param) => (
           <div key={param.key} className="space-y-2">
-            <label className="text-xs font-medium text-slate-400">{param.label}</label>
+            <label className="text-xs font-medium text-[#00AA2A]">{param.label}</label>
             <Input
               value={paramValues[param.key] || ''}
               onChange={(e) => handleParamChange(param.key, e.target.value)}
               placeholder={param.placeholder}
-              className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 font-mono text-xs focus-visible:border-purple-500"
+              className="bg-[#111318] border-[#1A3A2A] text-[#00FF41] placeholder:text-[#1A6B35] font-mono text-xs focus-visible:border-[#00FF41]"
             />
           </div>
         ))}
@@ -214,7 +214,7 @@ export function TryIt({ className }: TryItProps) {
         <Button
           onClick={handleSend}
           disabled={loading}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+          className="w-full bg-[#00FF41] text-black hover:bg-[#00CC33]"
         >
           {loading ? (
             <>
@@ -234,16 +234,16 @@ export function TryIt({ className }: TryItProps) {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-slate-400">Response</span>
+                <span className="text-xs font-medium text-[#00AA2A]">Response</span>
                 {statusCode !== null && (
                   <Badge
                     className={cn(
                       'text-[10px] px-1.5 py-0',
                       statusCode >= 200 && statusCode < 300
-                        ? 'bg-green-600/20 text-green-400 border-green-600/30'
+                        ? 'bg-[#00FF41]/20 text-[#00FF41] border-[#00FF41]/30'
                         : statusCode >= 400
-                          ? 'bg-red-600/20 text-red-400 border-red-600/30'
-                          : 'bg-yellow-600/20 text-yellow-400 border-yellow-600/30'
+                          ? 'bg-[#FF3333]/20 text-[#FF3333] border-[#FF3333]/30'
+                          : 'bg-[#FFB000]/20 text-[#FFB000] border-[#FFB000]/30'
                     )}
                   >
                     {statusCode === 0 ? 'Network Error' : statusCode}
@@ -254,7 +254,9 @@ export function TryIt({ className }: TryItProps) {
                 onClick={handleCopyResponse}
                 className={cn(
                   'flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors',
-                  copied ? 'text-green-400' : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                  copied
+                    ? 'text-[#00FF41]'
+                    : 'text-[#00AA2A] hover:bg-[#111318] hover:text-[#00FF41]'
                 )}
               >
                 {copied ? (
@@ -270,9 +272,9 @@ export function TryIt({ className }: TryItProps) {
                 )}
               </button>
             </div>
-            <div className="overflow-x-auto rounded-lg border border-slate-700 bg-slate-950 p-4">
+            <div className="overflow-x-auto rounded-sm border border-[#1A3A2A] bg-black p-4">
               <pre className="text-sm leading-relaxed">
-                <code className="font-mono text-slate-200 whitespace-pre-wrap break-all">
+                <code className="font-mono text-[#00FF41] whitespace-pre-wrap break-all">
                   {response}
                 </code>
               </pre>

@@ -57,18 +57,18 @@ interface Delivery {
 }
 
 const statusConfig: Record<string, { color: string; bgColor: string; icon: React.ElementType }> = {
-  pending: { color: 'text-yellow-500', bgColor: 'bg-yellow-600/20', icon: Clock },
-  processing: { color: 'text-blue-500', bgColor: 'bg-blue-600/20', icon: RefreshCw },
-  completed: { color: 'text-green-500', bgColor: 'bg-green-600/20', icon: CheckCircle },
-  failed: { color: 'text-red-500', bgColor: 'bg-red-600/20', icon: XCircle },
+  pending: { color: 'text-[#FFB000]', bgColor: 'bg-[#FFB000]/20', icon: Clock },
+  processing: { color: 'text-[#00FFFF]', bgColor: 'bg-[#00FFFF]/20', icon: RefreshCw },
+  completed: { color: 'text-[#00FF41]', bgColor: 'bg-[#00FF41]/20', icon: CheckCircle },
+  failed: { color: 'text-[#FF3333]', bgColor: 'bg-[#FF3333]/20', icon: XCircle },
 }
 
 const rarityColors: Record<string, string> = {
-  common: 'bg-slate-500',
-  uncommon: 'bg-green-500',
-  rare: 'bg-blue-500',
-  epic: 'bg-purple-500',
-  legendary: 'bg-yellow-500',
+  common: 'bg-[#1A6B35]',
+  uncommon: 'bg-[#00FF41]',
+  rare: 'bg-[#00FFFF]',
+  epic: 'bg-[#00FF41]',
+  legendary: 'bg-[#FFB000]',
 }
 
 export default function DeliveryDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -135,7 +135,7 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+        <Loader2 className="h-8 w-8 animate-spin text-[#00FF41]" />
       </div>
     )
   }
@@ -156,8 +156,8 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
             </Link>
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-white">Delivery Details</h1>
-            <p className="text-slate-400 mt-1 font-mono text-sm">{delivery.id}</p>
+            <h1 className="text-3xl font-bold text-[#00FF41]">Delivery Details</h1>
+            <p className="text-[#00AA2A] mt-1 font-mono text-sm">{delivery.id}</p>
           </div>
         </div>
         <div className="flex gap-3">
@@ -165,7 +165,7 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
             <Button
               onClick={handleProcess}
               disabled={isProcessing}
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               {isProcessing ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -194,7 +194,7 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
                 {delivery.status}
               </p>
               {delivery.status === 'completed' && delivery.completed_at && (
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#00AA2A]">
                   Completed {new Date(delivery.completed_at).toLocaleString()}
                 </p>
               )}
@@ -215,16 +215,16 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* NFTs */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">NFTs to Deliver</CardTitle>
+              <CardTitle className="text-[#00FF41]">NFTs to Deliver</CardTitle>
             </CardHeader>
             <CardContent>
               {delivery.nfts && delivery.nfts.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                   {delivery.nfts.map(({ nft }) => (
                     <Link key={nft.id} href={`/nfts/${nft.id}`} className="group">
-                      <div className="aspect-square rounded-lg bg-slate-800 overflow-hidden mb-2">
+                      <div className="aspect-square rounded-sm bg-[#111318] overflow-hidden mb-2">
                         {nft.image_url ? (
                           <img
                             src={nft.image_url}
@@ -233,16 +233,16 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <ImageIcon className="h-8 w-8 text-slate-500" />
+                            <ImageIcon className="h-8 w-8 text-[#1A6B35]" />
                           </div>
                         )}
                       </div>
-                      <p className="text-sm text-white font-medium truncate group-hover:text-purple-400">
+                      <p className="text-sm text-[#00FF41] font-medium truncate group-hover:text-[#00FF41]">
                         {nft.name}
                       </p>
                       {nft.rarity && (
                         <Badge
-                          className={`${rarityColors[nft.rarity]} text-white text-xs capitalize mt-1`}
+                          className={`${rarityColors[nft.rarity]} text-[#00FF41] text-xs capitalize mt-1`}
                         >
                           {nft.rarity}
                         </Badge>
@@ -251,20 +251,20 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
                   ))}
                 </div>
               ) : (
-                <p className="text-slate-400 text-center py-8">No NFTs in this delivery</p>
+                <p className="text-[#00AA2A] text-center py-8">No NFTs in this delivery</p>
               )}
             </CardContent>
           </Card>
 
           {/* Transaction */}
           {delivery.transaction_signature && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Transaction</CardTitle>
+                <CardTitle className="text-[#00FF41]">Transaction</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center gap-2">
-                  <code className="flex-1 text-sm text-slate-300 bg-slate-800 p-3 rounded truncate">
+                  <code className="flex-1 text-sm text-[#00CC33] bg-[#111318] p-3 rounded truncate">
                     {delivery.transaction_signature}
                   </code>
                   <Button
@@ -273,7 +273,7 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
                     onClick={() => copyToClipboard(delivery.transaction_signature!)}
                   >
                     {copied ? (
-                      <Check className="h-4 w-4 text-green-500" />
+                      <Check className="h-4 w-4 text-[#00FF41]" />
                     ) : (
                       <Copy className="h-4 w-4" />
                     )}
@@ -294,12 +294,12 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
 
           {/* Notes */}
           {delivery.notes && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white">Notes</CardTitle>
+                <CardTitle className="text-[#00FF41]">Notes</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-slate-300">{delivery.notes}</p>
+                <p className="text-[#00CC33]">{delivery.notes}</p>
               </CardContent>
             </Card>
           )}
@@ -308,9 +308,9 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Player Info */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
+              <CardTitle className="text-[#00FF41] flex items-center gap-2">
                 <User className="h-5 w-5" />
                 Recipient
               </CardTitle>
@@ -319,68 +319,70 @@ export default function DeliveryDetailPage({ params }: { params: Promise<{ id: s
               {delivery.player ? (
                 <>
                   <div>
-                    <p className="text-sm text-slate-400">Username</p>
-                    <p className="text-white">{delivery.player.username || 'Not set'}</p>
+                    <p className="text-sm text-[#00AA2A]">Username</p>
+                    <p className="text-[#00FF41]">{delivery.player.username || 'Not set'}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-slate-400">Wallet</p>
-                    <p className="text-white font-mono text-sm break-all">
+                    <p className="text-sm text-[#00AA2A]">Wallet</p>
+                    <p className="text-[#00FF41] font-mono text-sm break-all">
                       {delivery.player.wallet_address}
                     </p>
                   </div>
                 </>
               ) : (
-                <p className="text-slate-400">Player not found</p>
+                <p className="text-[#00AA2A]">Player not found</p>
               )}
             </CardContent>
           </Card>
 
           {/* Purchase Info */}
           {delivery.purchase?.package && (
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-[#0D1117] border-[#0D3B1E]">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
+                <CardTitle className="text-[#00FF41] flex items-center gap-2">
                   <Package className="h-5 w-5" />
                   Package
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div>
-                  <p className="text-sm text-slate-400">Name</p>
+                  <p className="text-sm text-[#00AA2A]">Name</p>
                   <Link
                     href={`/packages/${delivery.purchase.package.id}`}
-                    className="text-white hover:text-purple-400"
+                    className="text-[#00FF41] hover:text-[#00FF41]"
                   >
                     {delivery.purchase.package.name}
                   </Link>
                 </div>
                 <div>
-                  <p className="text-sm text-slate-400">Price</p>
-                  <p className="text-white">{delivery.purchase.package.price} SOL</p>
+                  <p className="text-sm text-[#00AA2A]">Price</p>
+                  <p className="text-[#00FF41]">{delivery.purchase.package.price} SOL</p>
                 </div>
               </CardContent>
             </Card>
           )}
 
           {/* Timestamps */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-[#0D1117] border-[#0D3B1E]">
             <CardHeader>
-              <CardTitle className="text-white">Activity</CardTitle>
+              <CardTitle className="text-[#00FF41]">Activity</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div>
-                <p className="text-sm text-slate-400">Created</p>
-                <p className="text-white">{new Date(delivery.created_at).toLocaleString()}</p>
+                <p className="text-sm text-[#00AA2A]">Created</p>
+                <p className="text-[#00FF41]">{new Date(delivery.created_at).toLocaleString()}</p>
               </div>
               {delivery.completed_at && (
                 <div>
-                  <p className="text-sm text-slate-400">Completed</p>
-                  <p className="text-white">{new Date(delivery.completed_at).toLocaleString()}</p>
+                  <p className="text-sm text-[#00AA2A]">Completed</p>
+                  <p className="text-[#00FF41]">
+                    {new Date(delivery.completed_at).toLocaleString()}
+                  </p>
                 </div>
               )}
-              <Separator className="bg-slate-700" />
+              <Separator className="bg-[#1A3A2A]" />
               <div>
-                <p className="text-sm text-slate-400">Type</p>
+                <p className="text-sm text-[#00AA2A]">Type</p>
                 <Badge variant="outline" className="capitalize mt-1">
                   {delivery.delivery_type}
                 </Badge>

@@ -69,24 +69,24 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
       {/* Search + Sort */}
       <div className="flex flex-col gap-3 sm:flex-row">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#00AA2A]" />
           <Input
             placeholder="Search listings..."
             value={filters.search}
             onChange={(e) => updateFilter('search', e.target.value)}
-            className="border-slate-700 bg-slate-800 pl-9 text-white placeholder:text-slate-500 focus-visible:border-purple-500 focus-visible:ring-purple-500/20"
+            className="border-[#1A3A2A] bg-[#111318] pl-9 text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20"
           />
         </div>
         <Select value={filters.sort} onValueChange={(value) => updateFilter('sort', value)}>
-          <SelectTrigger className="w-full border-slate-700 bg-slate-800 text-slate-200 sm:w-48">
+          <SelectTrigger className="w-full border-[#1A3A2A] bg-[#111318] text-[#00FF41] sm:w-48">
             <SelectValue placeholder="Sort by..." />
           </SelectTrigger>
-          <SelectContent className="border-slate-700 bg-slate-800">
+          <SelectContent className="border-[#1A3A2A] bg-[#111318]">
             {SORT_OPTIONS.map((opt) => (
               <SelectItem
                 key={opt.value}
                 value={opt.value}
-                className="text-slate-200 focus:bg-slate-700 focus:text-white"
+                className="text-[#00FF41] focus:bg-[#0D3B1E] focus:text-[#00FF41]"
               >
                 {opt.label}
               </SelectItem>
@@ -97,7 +97,7 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
 
       {/* Filter row */}
       <div className="flex flex-wrap items-end gap-3">
-        <SlidersHorizontal className="mb-2 h-4 w-4 text-slate-400" />
+        <SlidersHorizontal className="mb-2 h-4 w-4 text-[#00AA2A]" />
 
         {/* Price Range */}
         <div className="w-48">
@@ -111,17 +111,17 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
 
         {/* Trait filters */}
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-400">Color</label>
+          <label className="text-xs font-medium text-[#00AA2A]">Color</label>
           <Select value={filters.color} onValueChange={(value) => updateFilter('color', value)}>
-            <SelectTrigger className="h-8 w-28 border-slate-700 bg-slate-800 text-xs text-slate-200">
+            <SelectTrigger className="h-8 w-28 border-[#1A3A2A] bg-[#111318] text-xs text-[#00FF41]">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="border-slate-700 bg-slate-800">
+            <SelectContent className="border-[#1A3A2A] bg-[#111318]">
               {COLOR_OPTIONS.map((opt) => (
                 <SelectItem
                   key={opt}
                   value={opt}
-                  className="text-xs text-slate-200 focus:bg-slate-700 focus:text-white"
+                  className="text-xs text-[#00FF41] focus:bg-[#0D3B1E] focus:text-[#00FF41]"
                 >
                   {opt}
                 </SelectItem>
@@ -131,17 +131,17 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-400">Tier</label>
+          <label className="text-xs font-medium text-[#00AA2A]">Tier</label>
           <Select value={filters.tier} onValueChange={(value) => updateFilter('tier', value)}>
-            <SelectTrigger className="h-8 w-28 border-slate-700 bg-slate-800 text-xs text-slate-200">
+            <SelectTrigger className="h-8 w-28 border-[#1A3A2A] bg-[#111318] text-xs text-[#00FF41]">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="border-slate-700 bg-slate-800">
+            <SelectContent className="border-[#1A3A2A] bg-[#111318]">
               {TIER_OPTIONS.map((opt) => (
                 <SelectItem
                   key={opt}
                   value={opt}
-                  className="text-xs text-slate-200 focus:bg-slate-700 focus:text-white"
+                  className="text-xs text-[#00FF41] focus:bg-[#0D3B1E] focus:text-[#00FF41]"
                 >
                   {opt}
                 </SelectItem>
@@ -151,17 +151,17 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-400">Era</label>
+          <label className="text-xs font-medium text-[#00AA2A]">Era</label>
           <Select value={filters.era} onValueChange={(value) => updateFilter('era', value)}>
-            <SelectTrigger className="h-8 w-28 border-slate-700 bg-slate-800 text-xs text-slate-200">
+            <SelectTrigger className="h-8 w-28 border-[#1A3A2A] bg-[#111318] text-xs text-[#00FF41]">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className="border-slate-700 bg-slate-800">
+            <SelectContent className="border-[#1A3A2A] bg-[#111318]">
               {ERA_OPTIONS.map((opt) => (
                 <SelectItem
                   key={opt}
                   value={opt}
-                  className="text-xs text-slate-200 focus:bg-slate-700 focus:text-white"
+                  className="text-xs text-[#00FF41] focus:bg-[#0D3B1E] focus:text-[#00FF41]"
                 >
                   {opt}
                 </SelectItem>
@@ -172,12 +172,12 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
 
         {/* Seller address */}
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-400">Seller</label>
+          <label className="text-xs font-medium text-[#00AA2A]">Seller</label>
           <Input
             placeholder="Wallet address..."
             value={filters.seller}
             onChange={(e) => updateFilter('seller', e.target.value.trim())}
-            className="h-8 w-36 border-slate-700 bg-slate-800 text-xs font-mono text-slate-200 placeholder:text-slate-500 focus-visible:border-purple-500 focus-visible:ring-purple-500/20"
+            className="h-8 w-36 border-[#1A3A2A] bg-[#111318] text-xs font-mono text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20"
           />
         </div>
 
@@ -186,7 +186,7 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
             variant="ghost"
             size="sm"
             onClick={onReset}
-            className="mb-0 h-8 gap-1 text-xs text-slate-400 hover:text-white"
+            className="mb-0 h-8 gap-1 text-xs text-[#00AA2A] hover:text-[#00FF41]"
           >
             <X className="h-3 w-3" />
             Clear

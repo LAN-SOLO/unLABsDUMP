@@ -73,18 +73,18 @@ export function SavedSearches({ currentQuery, onApply, className }: SavedSearche
   const alreadySaved = searches.some((s) => s.query === currentQuery?.trim())
 
   return (
-    <div className={cn('rounded-lg border border-slate-800 bg-slate-900 p-4', className)}>
+    <div className={cn('rounded-sm border border-[#0D3B1E] bg-[#0D1117] p-4', className)}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Bookmark className="size-4 text-purple-400" />
-          <h3 className="text-sm font-semibold text-slate-200">Saved Searches</h3>
+          <Bookmark className="size-4 text-[#00FF41]" />
+          <h3 className="text-sm font-semibold text-[#00FF41]">Saved Searches</h3>
         </div>
         {currentQuery && currentQuery.trim().length > 0 && !alreadySaved && (
           <Button
             variant="ghost"
             size="sm"
             onClick={saveCurrentSearch}
-            className="h-7 text-xs text-purple-400 hover:text-purple-300 hover:bg-slate-800"
+            className="h-7 text-xs text-[#00FF41] hover:text-[#00FF41] hover:bg-[#0D3B1E]/20"
           >
             <Plus className="size-3 mr-1" />
             Save Current
@@ -93,24 +93,24 @@ export function SavedSearches({ currentQuery, onApply, className }: SavedSearche
       </div>
 
       {searches.length === 0 ? (
-        <p className="text-xs text-slate-500 py-2">No saved searches yet.</p>
+        <p className="text-xs text-[#1A6B35] py-2">No saved searches yet.</p>
       ) : (
         <ul className="space-y-1">
           {searches.map((search) => (
             <li
               key={search.id}
-              className="group flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-slate-800 transition-colors"
+              className="group flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-[#0D3B1E]/20 transition-colors"
             >
-              <Search className="size-3.5 text-slate-500 shrink-0" />
+              <Search className="size-3.5 text-[#1A6B35] shrink-0" />
               <button
                 onClick={() => onApply(search.query)}
-                className="flex-1 text-left text-sm text-slate-300 truncate hover:text-white transition-colors"
+                className="flex-1 text-left text-sm text-[#00CC33] truncate hover:text-[#00FF41] transition-colors"
               >
                 {search.query}
               </button>
               <button
                 onClick={() => deleteSearch(search.id)}
-                className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-500 hover:text-red-400 transition-all"
+                className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-[#1A6B35] hover:text-[#FF3333] transition-all"
                 aria-label={`Delete saved search: ${search.query}`}
               >
                 <X className="size-3.5" />

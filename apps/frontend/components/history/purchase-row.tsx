@@ -43,20 +43,20 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
   const nftCount = purchase.nft_ids?.length || 0
 
   return (
-    <div className="group flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-colors">
+    <div className="group flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-sm bg-[#0D1117] border border-[#0D3B1E] hover:border-[#1A3A2A] transition-colors">
       {/* Package info */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">
-          <h4 className="font-semibold text-white truncate">{purchase.package_name}</h4>
+          <h4 className="font-semibold text-[#00FF41] truncate">{purchase.package_name}</h4>
           <StatusBadge status={purchase.status} />
         </div>
-        <div className="flex items-center gap-3 text-sm text-slate-400">
+        <div className="flex items-center gap-3 text-sm text-[#00AA2A]">
           <span>{dateStr}</span>
-          <span className="text-slate-600">&middot;</span>
+          <span className="text-[#1A6B35]">&middot;</span>
           <span>{timeStr}</span>
           {nftCount > 0 && (
             <>
-              <span className="text-slate-600">&middot;</span>
+              <span className="text-[#1A6B35]">&middot;</span>
               <span className="flex items-center gap-1">
                 <ImageIcon className="size-3" />
                 {nftCount} NFT{nftCount !== 1 ? 's' : ''}
@@ -73,8 +73,8 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
 
       {/* Price */}
       <div className="text-right shrink-0">
-        <p className="text-lg font-bold text-white">
-          {formatSol(priceNum)} <span className="text-sm font-normal text-slate-400">SOL</span>
+        <p className="text-lg font-bold text-[#00FF41]">
+          {formatSol(priceNum)} <span className="text-sm font-normal text-[#00AA2A]">SOL</span>
         </p>
       </div>
 
@@ -85,7 +85,7 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
             asChild
             variant="ghost"
             size="icon-sm"
-            className="text-slate-400 hover:text-purple-400"
+            className="text-[#00AA2A] hover:text-[#00FF41]"
             title="View on Explorer"
           >
             <a
@@ -103,7 +103,7 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
             asChild
             variant="outline"
             size="sm"
-            className="border-slate-700 text-slate-300 hover:text-white hover:border-purple-500/50"
+            className="border-[#1A3A2A] text-[#00CC33] hover:text-[#00FF41] hover:border-[#00FF41]/50"
           >
             <Link href={`/profile?tab=nfts`}>View NFTs</Link>
           </Button>

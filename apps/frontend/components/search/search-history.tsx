@@ -83,17 +83,17 @@ export function SearchHistory({ onSelect, className }: SearchHistoryProps) {
   if (history.length === 0) return null
 
   return (
-    <div className={cn('rounded-lg border border-slate-800 bg-slate-900 p-4', className)}>
+    <div className={cn('rounded-sm border border-[#0D3B1E] bg-[#0D1117] p-4', className)}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Clock className="size-4 text-slate-400" />
-          <h3 className="text-sm font-semibold text-slate-200">Recent Searches</h3>
+          <Clock className="size-4 text-[#00AA2A]" />
+          <h3 className="text-sm font-semibold text-[#00FF41]">Recent Searches</h3>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={clearHistory}
-          className="h-7 text-xs text-slate-500 hover:text-red-400 hover:bg-slate-800"
+          className="h-7 text-xs text-[#1A6B35] hover:text-[#FF3333] hover:bg-[#0D3B1E]/20"
         >
           <Trash2 className="size-3 mr-1" />
           Clear
@@ -104,21 +104,21 @@ export function SearchHistory({ onSelect, className }: SearchHistoryProps) {
         {history.map((entry) => (
           <li
             key={entry.query}
-            className="group flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-slate-800 transition-colors"
+            className="group flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-[#0D3B1E]/20 transition-colors"
           >
-            <Search className="size-3.5 text-slate-500 shrink-0" />
+            <Search className="size-3.5 text-[#1A6B35] shrink-0" />
             <button
               onClick={() => onSelect(entry.query)}
-              className="flex-1 text-left text-sm text-slate-300 truncate hover:text-white transition-colors"
+              className="flex-1 text-left text-sm text-[#00CC33] truncate hover:text-[#00FF41] transition-colors"
             >
               {entry.query}
             </button>
-            <span className="text-[10px] text-slate-600 shrink-0">
+            <span className="text-[10px] text-[#1A6B35] shrink-0">
               {formatRelativeTime(entry.timestamp)}
             </span>
             <button
               onClick={() => removeEntry(entry.query)}
-              className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-slate-500 hover:text-red-400 transition-all"
+              className="opacity-0 group-hover:opacity-100 shrink-0 p-0.5 rounded text-[#1A6B35] hover:text-[#FF3333] transition-all"
               aria-label={`Remove search: ${entry.query}`}
             >
               <X className="size-3.5" />

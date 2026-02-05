@@ -58,7 +58,7 @@ export default function SellNftPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-black">
         <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
           <Skeleton className="mb-6 h-8 w-48" />
           <div className="grid gap-6 lg:grid-cols-2">
@@ -72,13 +72,13 @@ export default function SellNftPage() {
 
   if (!nft) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-black">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-24">
-          <h2 className="mb-2 text-xl font-semibold text-white">NFT Not Found</h2>
-          <p className="mb-6 text-sm text-slate-400">This NFT does not exist in your inventory.</p>
+          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">NFT Not Found</h2>
+          <p className="mb-6 text-sm text-[#00AA2A]">This NFT does not exist in your inventory.</p>
           <Button
             onClick={() => router.push('/inventory')}
-            className="bg-purple-600 hover:bg-purple-700"
+            className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Inventory
@@ -90,27 +90,27 @@ export default function SellNftPage() {
 
   if (listingSuccess) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-black">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-24">
-          <div className="mb-6 rounded-full bg-green-900/30 p-4">
-            <CheckCircle className="h-12 w-12 text-green-500" />
+          <div className="mb-6 rounded-full bg-[#0D3B1E]/30 p-4">
+            <CheckCircle className="h-12 w-12 text-[#00FF41]" />
           </div>
-          <h2 className="mb-2 text-xl font-semibold text-white">NFT Listed Successfully</h2>
-          <p className="mb-6 text-center text-sm text-slate-400">
+          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">NFT Listed Successfully</h2>
+          <p className="mb-6 text-center text-sm text-[#00AA2A]">
             {nft.name} is now listed on the marketplace. You will be notified when someone makes a
             purchase.
           </p>
           <div className="flex gap-3">
             <Button
               onClick={() => router.push('/marketplace')}
-              className="bg-purple-600 hover:bg-purple-700"
+              className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
             >
               View Marketplace
             </Button>
             <Button
               onClick={() => router.push('/inventory')}
               variant="outline"
-              className="border-slate-700 text-slate-300"
+              className="border-[#1A3A2A] text-[#00CC33]"
             >
               Back to Inventory
             </Button>
@@ -121,7 +121,7 @@ export default function SellNftPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-black">
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6">
@@ -129,36 +129,36 @@ export default function SellNftPage() {
             variant="ghost"
             size="sm"
             onClick={() => router.push('/inventory')}
-            className="mb-4 text-slate-400 hover:text-white"
+            className="mb-4 text-[#00AA2A] hover:text-[#00FF41]"
           >
             <ArrowLeft className="mr-1 h-4 w-4" />
             Back to Inventory
           </Button>
-          <h1 className="flex items-center gap-2 text-xl font-bold text-white">
-            <Tag className="h-5 w-5 text-purple-500" />
+          <h1 className="flex items-center gap-2 text-xl font-bold text-[#00FF41]">
+            <Tag className="h-5 w-5 text-[#00FF41]" />
             List NFT for Sale
           </h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-[#00AA2A]">
             Set your price and list {nft.name} on the marketplace
           </p>
         </div>
 
         {listingError && (
-          <div className="mb-6 rounded-lg border border-red-800/50 bg-red-950/30 p-3 text-sm text-red-400">
+          <div className="mb-6 rounded-sm border border-[#FF3333]/30 bg-[#FF3333]/10 p-3 text-sm text-[#FF3333]">
             {listingError}
           </div>
         )}
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Left: Form */}
-          <Card className="border-slate-800 bg-slate-900">
+          <Card className="border-[#0D3B1E] bg-[#0D1117]">
             <CardHeader>
-              <CardTitle className="text-base text-white">Listing Details</CardTitle>
+              <CardTitle className="text-base text-[#00FF41]">Listing Details</CardTitle>
             </CardHeader>
             <CardContent>
               {/* NFT Preview Card */}
-              <div className="mb-6 flex items-center gap-3 rounded-lg bg-slate-800/50 p-3">
-                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-700">
+              <div className="mb-6 flex items-center gap-3 rounded-sm bg-[#0D3B1E]/20 p-3">
+                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-sm bg-[#1A3A2A]">
                   <img
                     src={nft.image || '/placeholder-nft.png'}
                     alt={nft.name}
@@ -166,15 +166,15 @@ export default function SellNftPage() {
                   />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="truncate text-sm font-semibold text-white">{nft.name}</h3>
-                  <Badge variant="outline" className="mt-1 text-[10px] capitalize text-slate-300">
+                  <h3 className="truncate text-sm font-semibold text-[#00FF41]">{nft.name}</h3>
+                  <Badge variant="outline" className="mt-1 text-[10px] capitalize text-[#00CC33]">
                     {nft.rarity}
                   </Badge>
                   <div className="mt-1 flex flex-wrap gap-1">
                     {Object.values(nft.traits).map((trait) => (
                       <span
                         key={trait}
-                        className="rounded bg-slate-700 px-1 py-0.5 text-[9px] text-slate-400"
+                        className="rounded bg-[#1A3A2A] px-1 py-0.5 text-[9px] text-[#00AA2A]"
                       >
                         {trait}
                       </span>
@@ -183,7 +183,7 @@ export default function SellNftPage() {
                 </div>
               </div>
 
-              <Separator className="mb-6 bg-slate-800" />
+              <Separator className="mb-6 bg-[#111318]" />
 
               <ListingForm nftId={nftId} onSuccess={handleSuccess} onError={handleError} />
             </CardContent>
