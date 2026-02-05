@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { verifySession } from '@/lib/auth/session'
-import { createClient } from '@/lib/supabase/server'
+import { createSupabaseAdminClient } from '@/lib/supabase/server'
 
 export async function GET(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const roundId = searchParams.get('round_id')
 
-    const supabase = await createClient()
+    const supabase = await createSupabaseAdminClient()
 
     // If no round specified, get current active round
     let targetRoundId = roundId

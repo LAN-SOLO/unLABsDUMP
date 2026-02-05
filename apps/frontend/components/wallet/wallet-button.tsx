@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useWallet, useConnection } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
@@ -15,16 +15,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useAuth } from '@/components/providers/auth-provider'
 
 function truncateAddress(address: string): string {
   return `${address.slice(0, 4)}...${address.slice(-4)}`
 }
 
 export function WalletButton() {
-  const { publicKey, disconnect, connected } = useWallet()
+  const { publicKey, connected } = useWallet()
   const { setVisible } = useWalletModal()
   const { connection } = useConnection()
+  const { isAuthenticated, signIn, signOut } = useAuth()
   const [balance, setBalance] = useState<number | null>(null)
+  const [isSigningIn, setIsSigningIn] = useState(false)
+  const autoSignInAttempted = useRef(false)
 
   useEffect(() => {
     if (!publicKey || !connection) {
@@ -59,10 +63,40 @@ export function WalletButton() {
     setVisible(true)
   }, [setVisible])
 
+  const handleSignIn = useCallback(async () => {
+    setIsSigningIn(true)
+    try {
+      await signIn()
+      toast.success('Signed in successfully')
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Sign in failed')
+    } finally {
+      setIsSigningIn(false)
+    }
+  }, [signIn])
+
+  // Auto sign-in once when wallet connects and not yet authenticated
+  useEffect(() => {
+    if (
+      connected &&
+      publicKey &&
+      !isAuthenticated &&
+      !isSigningIn &&
+      !autoSignInAttempted.current
+    ) {
+      autoSignInAttempted.current = true
+      handleSignIn()
+    }
+    // Reset when wallet disconnects
+    if (!connected) {
+      autoSignInAttempted.current = false
+    }
+  }, [connected, publicKey, isAuthenticated, isSigningIn, handleSignIn])
+
   const handleDisconnect = useCallback(async () => {
-    await disconnect()
+    await signOut()
     toast.success('Wallet disconnected')
-  }, [disconnect])
+  }, [signOut])
 
   const handleCopyAddress = useCallback(() => {
     if (publicKey) {
@@ -108,6 +142,15 @@ export function WalletButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
+        {!isAuthenticated && (
+          <>
+            <DropdownMenuItem onClick={handleSignIn} disabled={isSigningIn}>
+              <Wallet className="size-4" />
+              {isSigningIn ? 'Signing in...' : 'Sign In'}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </>
+        )}
         <DropdownMenuItem onClick={handleCopyAddress}>
           <Copy className="size-4" />
           Copy Address

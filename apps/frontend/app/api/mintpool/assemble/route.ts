@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
 import { verifySession } from '@/lib/auth/session'
-import { createClient } from '@/lib/supabase/server'
+import { createSupabaseAdminClient } from '@/lib/supabase/server'
 import { SLICES_PER_NFT } from '@/lib/mintpool/config'
 
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing nft_id' }, { status: 400 })
     }
 
-    const supabase = await createClient()
+    const supabase = await createSupabaseAdminClient()
 
     // Verify player owns enough slices for this NFT
     const { data: slices } = await supabase

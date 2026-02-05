@@ -14,7 +14,7 @@ export async function GET() {
 
     const { data: player, error } = await supabase
       .from('players')
-      .select('id, wallet_address, created_at, last_login, nft_count, total_purchases')
+      .select('id, wallet_address, created_at, last_activity_at, total_nfts_owned, total_purchases')
       .eq('id', session.playerId)
       .single()
 

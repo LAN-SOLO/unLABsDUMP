@@ -58,10 +58,10 @@ export async function POST(request: NextRequest) {
     if (existingPlayer) {
       playerId = existingPlayer.id
 
-      // Update last login
+      // Update last activity
       await supabase
         .from('players')
-        .update({ last_login: new Date().toISOString() })
+        .update({ last_activity_at: new Date().toISOString() })
         .eq('id', playerId)
     } else {
       // Create new player
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
         .from('players')
         .insert({
           wallet_address: walletAddress,
-          last_login: new Date().toISOString(),
+          last_activity_at: new Date().toISOString(),
         })
         .select('id')
         .single()

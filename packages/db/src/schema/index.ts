@@ -437,7 +437,10 @@ export const mintPoolRounds = pgTable(
     totalHashesSubmitted: integer('total_hashes_submitted').notNull().default(0),
     totalParticipants: integer('total_participants').notNull().default(0),
     totalSlicesAwarded: integer('total_slices_awarded').notNull().default(0),
-    nftPoolIds: uuid('nft_pool_ids').array().notNull().default([]),
+    nftPoolIds: uuid('nft_pool_ids')
+      .array()
+      .notNull()
+      .$defaultFn(() => []),
     startsAt: timestamp('starts_at', { withTimezone: true }),
     endsAt: timestamp('ends_at', { withTimezone: true }),
     completedAt: timestamp('completed_at', { withTimezone: true }),
