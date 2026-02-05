@@ -35,6 +35,7 @@ const STATUS_OPTIONS: { value: NFTStatus | 'all'; label: string }[] = [
   { value: 'ready', label: 'Ready' },
   { value: 'minted', label: 'Minted' },
   { value: 'delivered', label: 'Delivered' },
+  { value: 'hidden', label: 'Hidden' },
 ]
 
 export function NFTFiltersPanel({ filters, onChange, className }: NFTFiltersProps) {

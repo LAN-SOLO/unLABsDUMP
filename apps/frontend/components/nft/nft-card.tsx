@@ -42,6 +42,15 @@ function StatusIndicator({ status, owner }: { status: NFT['status']; owner?: str
           {owner ? `Owned` : 'Delivered'}
         </Badge>
       )
+    case 'hidden':
+      return (
+        <Badge
+          variant="secondary"
+          className="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs"
+        >
+          Pool
+        </Badge>
+      )
     default:
       return null
   }
@@ -66,6 +75,13 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
             </div>
           )}
 
+          {/* Hidden (mint pool) blur overlay */}
+          {nft.status === 'hidden' && (
+            <div className="absolute inset-0 z-10 backdrop-blur-md bg-[#0D1117]/40 flex items-center justify-center">
+              <span className="text-amber-400 text-sm font-medium">In Mint Pool</span>
+            </div>
+          )}
+
           {!imageError && nft.thumbnail_url ? (
             <>
               {!imageLoaded && <Skeleton className="absolute inset-0 rounded-none" />}
@@ -77,7 +93,7 @@ export function NFTCard({ nft, onQuickView }: NFTCardProps) {
                 className={cn(
                   'object-cover transition-transform duration-300 group-hover:scale-105',
                   !imageLoaded && 'opacity-0',
-                  nft.status === 'ready' && 'blur-sm'
+                  (nft.status === 'ready' || nft.status === 'hidden') && 'blur-sm'
                 )}
                 loading="lazy"
                 onLoad={() => setImageLoaded(true)}

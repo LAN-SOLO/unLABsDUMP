@@ -3,7 +3,7 @@
 export const UNSC_TOKEN_MINT = '7Z7RcZQLGUvDZvBschTaTBr3NKA5tSKsRZArdTn7dkzT'
 
 // NFT status enum
-export type NFTStatus = 'ready' | 'minted' | 'delivered'
+export type NFTStatus = 'ready' | 'minted' | 'delivered' | 'hidden'
 
 // Color wavelengths
 export const NFT_COLORS = [

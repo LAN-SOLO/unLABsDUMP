@@ -7,7 +7,7 @@ import { z } from 'zod'
 export const AdminRoleSchema = z.enum(['super_admin', 'admin', 'viewer'])
 export type AdminRole = z.infer<typeof AdminRoleSchema>
 
-export const NftStatusSchema = z.enum(['draft', 'ready', 'minted', 'delivered'])
+export const NftStatusSchema = z.enum(['draft', 'ready', 'minted', 'delivered', 'hidden'])
 export type NftStatus = z.infer<typeof NftStatusSchema>
 
 export const PackageStatusSchema = z.enum(['active', 'inactive', 'archived'])
@@ -249,3 +249,89 @@ export const BurnStatisticsSchema = z.object({
   pending_burns: z.number().int(),
 })
 export type BurnStatistics = z.infer<typeof BurnStatisticsSchema>
+
+// ============================================================================
+// MINT POOL ENUMS
+// ============================================================================
+
+export const MintPoolRoundStatusSchema = z.enum(['pending', 'active', 'computing', 'completed'])
+export type MintPoolRoundStatus = z.infer<typeof MintPoolRoundStatusSchema>
+
+export const SliceEarnedViaSchema = z.enum(['hash', 'click', 'stake_bonus'])
+export type SliceEarnedVia = z.infer<typeof SliceEarnedViaSchema>
+
+export const MintPoolStakeStatusSchema = z.enum(['active', 'withdrawn'])
+export type MintPoolStakeStatus = z.infer<typeof MintPoolStakeStatusSchema>
+
+export const MintPoolAssemblyStatusSchema = z.enum(['pending', 'processing', 'completed', 'failed'])
+export type MintPoolAssemblyStatus = z.infer<typeof MintPoolAssemblyStatusSchema>
+
+// ============================================================================
+// MINT POOL ENTITY SCHEMAS
+// ============================================================================
+
+export const MintPoolRoundSchema = z.object({
+  id: z.string().uuid(),
+  round_number: z.number().int(),
+  status: MintPoolRoundStatusSchema,
+  difficulty: z.number().int(),
+  duration_seconds: z.number().int(),
+  total_hashes_submitted: z.number().int(),
+  total_participants: z.number().int(),
+  total_slices_awarded: z.number().int(),
+  nft_pool_ids: z.array(z.string().uuid()),
+  starts_at: z.string().datetime().nullable(),
+  ends_at: z.string().datetime().nullable(),
+  completed_at: z.string().datetime().nullable(),
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+})
+export type MintPoolRound = z.infer<typeof MintPoolRoundSchema>
+
+export const MintPoolParticipantSchema = z.object({
+  id: z.string().uuid(),
+  round_id: z.string().uuid(),
+  player_id: z.string().uuid(),
+  wallet_address: z.string(),
+  hashes_submitted: z.number().int(),
+  valid_hashes_submitted: z.number().int(),
+  click_mine_count: z.number().int(),
+  staked_unsc: z.string(),
+  hash_rate_multiplier: z.string(),
+  effective_shares: z.string(),
+  slices_earned: z.number().int(),
+  joined_at: z.string().datetime(),
+  last_activity_at: z.string().datetime().nullable(),
+  created_at: z.string().datetime(),
+})
+export type MintPoolParticipant = z.infer<typeof MintPoolParticipantSchema>
+
+export const MintPoolSliceSchema = z.object({
+  id: z.string().uuid(),
+  player_id: z.string().uuid(),
+  round_id: z.string().uuid(),
+  nft_id: z.string().uuid(),
+  slice_index: z.number().int(),
+  total_slices_required: z.number().int(),
+  earned_via: SliceEarnedViaSchema,
+  created_at: z.string().datetime(),
+})
+export type MintPoolSlice = z.infer<typeof MintPoolSliceSchema>
+
+export const HashSubmissionSchema = z.object({
+  round_id: z.string().uuid(),
+  nonce: z.string().min(1),
+  hash: z.string().min(1),
+})
+export type HashSubmission = z.infer<typeof HashSubmissionSchema>
+
+export const MintPoolStatsSchema = z.object({
+  current_round: MintPoolRoundSchema.nullable(),
+  player_stats: MintPoolParticipantSchema.nullable(),
+  pool_nft_count: z.number().int(),
+  miners_online: z.number().int(),
+  total_rounds_completed: z.number().int(),
+  player_total_slices: z.number().int(),
+  player_assemblies: z.number().int(),
+})
+export type MintPoolStats = z.infer<typeof MintPoolStatsSchema>

@@ -22,6 +22,7 @@ const publicLinks = [
 ]
 
 const authenticatedLinks = [
+  { href: '/mintpool', label: 'Mint Pool' },
   { href: '/inventory', label: 'Inventory' },
   { href: '/history', label: 'History' },
   { href: '/profile', label: 'Profile' },

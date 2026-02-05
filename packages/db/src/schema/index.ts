@@ -17,7 +17,13 @@ import {
 // ============================================================================
 
 export const adminRoleEnum = pgEnum('admin_role', ['super_admin', 'admin', 'viewer'])
-export const nftStatusEnum = pgEnum('nft_status', ['draft', 'ready', 'minted', 'delivered'])
+export const nftStatusEnum = pgEnum('nft_status', [
+  'draft',
+  'ready',
+  'minted',
+  'delivered',
+  'hidden',
+])
 export const packageStatusEnum = pgEnum('package_status', ['active', 'inactive', 'archived'])
 export const purchaseStatusEnum = pgEnum('purchase_status', [
   'pending',
@@ -40,6 +46,21 @@ export const burnStatusEnum = pgEnum('burn_status', [
   'failed',
 ])
 export const tradeStatusEnum = pgEnum('trade_status', ['active', 'sold', 'cancelled', 'expired'])
+export const mintPoolRoundStatusEnum = pgEnum('mint_pool_round_status', [
+  'pending',
+  'active',
+  'computing',
+  'completed',
+])
+export const mintPoolStakeStatusEnum = pgEnum('mint_pool_stake_status', ['active', 'withdrawn'])
+export const mintPoolAssemblyStatusEnum = pgEnum('mint_pool_assembly_status', [
+  'pending',
+  'processing',
+  'completed',
+  'failed',
+])
+export const sliceEarnedViaEnum = pgEnum('slice_earned_via', ['hash', 'click', 'stake_bonus'])
+
 export const notificationTypeEnum = pgEnum('notification_type', [
   'delivery_complete',
   'trade_sold',
@@ -398,5 +419,181 @@ export const adminSessions = pgTable(
   (table) => [
     index('idx_sessions_admin').on(table.adminId),
     index('idx_sessions_token').on(table.tokenHash),
+  ]
+)
+
+// ============================================================================
+// 13. MINT POOL ROUNDS TABLE
+// ============================================================================
+
+export const mintPoolRounds = pgTable(
+  'mint_pool_rounds',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    roundNumber: integer('round_number').notNull().unique(),
+    status: mintPoolRoundStatusEnum('status').notNull().default('pending'),
+    difficulty: integer('difficulty').notNull().default(4),
+    durationSeconds: integer('duration_seconds').notNull().default(60),
+    totalHashesSubmitted: integer('total_hashes_submitted').notNull().default(0),
+    totalParticipants: integer('total_participants').notNull().default(0),
+    totalSlicesAwarded: integer('total_slices_awarded').notNull().default(0),
+    nftPoolIds: uuid('nft_pool_ids').array().notNull().default([]),
+    startsAt: timestamp('starts_at', { withTimezone: true }),
+    endsAt: timestamp('ends_at', { withTimezone: true }),
+    completedAt: timestamp('completed_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_rounds_status').on(table.status),
+    index('idx_pool_rounds_number').on(table.roundNumber),
+  ]
+)
+
+// ============================================================================
+// 14. MINT POOL PARTICIPANTS TABLE
+// ============================================================================
+
+export const mintPoolParticipants = pgTable(
+  'mint_pool_participants',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    roundId: uuid('round_id')
+      .notNull()
+      .references(() => mintPoolRounds.id, { onDelete: 'cascade' }),
+    playerId: uuid('player_id')
+      .notNull()
+      .references(() => players.id),
+    walletAddress: text('wallet_address').notNull(),
+    hashesSubmitted: integer('hashes_submitted').notNull().default(0),
+    validHashesSubmitted: integer('valid_hashes_submitted').notNull().default(0),
+    clickMineCount: integer('click_mine_count').notNull().default(0),
+    stakedUnsc: numeric('staked_unsc', { precision: 78, scale: 0 }).notNull().default('0'),
+    hashRateMultiplier: decimal('hash_rate_multiplier', { precision: 10, scale: 4 })
+      .notNull()
+      .default('1.0'),
+    effectiveShares: decimal('effective_shares', { precision: 20, scale: 4 })
+      .notNull()
+      .default('0'),
+    slicesEarned: integer('slices_earned').notNull().default(0),
+    joinedAt: timestamp('joined_at', { withTimezone: true }).notNull().defaultNow(),
+    lastActivityAt: timestamp('last_activity_at', { withTimezone: true }).defaultNow(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_participants_round').on(table.roundId),
+    index('idx_pool_participants_player').on(table.playerId),
+  ]
+)
+
+// ============================================================================
+// 15. MINT POOL SLICES TABLE
+// ============================================================================
+
+export const mintPoolSlices = pgTable(
+  'mint_pool_slices',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    playerId: uuid('player_id')
+      .notNull()
+      .references(() => players.id),
+    roundId: uuid('round_id')
+      .notNull()
+      .references(() => mintPoolRounds.id, { onDelete: 'cascade' }),
+    nftId: uuid('nft_id')
+      .notNull()
+      .references(() => nfts.id),
+    sliceIndex: integer('slice_index').notNull(),
+    totalSlicesRequired: integer('total_slices_required').notNull().default(10),
+    earnedVia: sliceEarnedViaEnum('earned_via').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_slices_player').on(table.playerId),
+    index('idx_pool_slices_nft').on(table.nftId),
+    index('idx_pool_slices_round').on(table.roundId),
+  ]
+)
+
+// ============================================================================
+// 16. MINT POOL HASH SUBMISSIONS TABLE
+// ============================================================================
+
+export const mintPoolHashSubmissions = pgTable(
+  'mint_pool_hash_submissions',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    roundId: uuid('round_id')
+      .notNull()
+      .references(() => mintPoolRounds.id, { onDelete: 'cascade' }),
+    playerId: uuid('player_id')
+      .notNull()
+      .references(() => players.id),
+    nonce: text('nonce').notNull(),
+    hash: text('hash').notNull(),
+    leadingZeros: integer('leading_zeros').notNull(),
+    isValid: boolean('is_valid').notNull().default(false),
+    submittedAt: timestamp('submitted_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_hashes_round').on(table.roundId),
+    index('idx_pool_hashes_player').on(table.playerId),
+  ]
+)
+
+// ============================================================================
+// 17. MINT POOL STAKES TABLE
+// ============================================================================
+
+export const mintPoolStakes = pgTable(
+  'mint_pool_stakes',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    playerId: uuid('player_id')
+      .notNull()
+      .references(() => players.id),
+    walletAddress: text('wallet_address').notNull(),
+    amount: numeric('amount', { precision: 78, scale: 0 }).notNull(),
+    multiplier: decimal('multiplier', { precision: 10, scale: 4 }).notNull().default('1.0'),
+    status: mintPoolStakeStatusEnum('status').notNull().default('active'),
+    stakeTransaction: text('stake_transaction'),
+    withdrawTransaction: text('withdraw_transaction'),
+    stakedAt: timestamp('staked_at', { withTimezone: true }).notNull().defaultNow(),
+    withdrawnAt: timestamp('withdrawn_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_stakes_player').on(table.playerId),
+    index('idx_pool_stakes_status').on(table.status),
+  ]
+)
+
+// ============================================================================
+// 18. MINT POOL ASSEMBLIES TABLE
+// ============================================================================
+
+export const mintPoolAssemblies = pgTable(
+  'mint_pool_assemblies',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    playerId: uuid('player_id')
+      .notNull()
+      .references(() => players.id),
+    nftId: uuid('nft_id')
+      .notNull()
+      .references(() => nfts.id),
+    sliceIds: uuid('slice_ids').array().notNull(),
+    status: mintPoolAssemblyStatusEnum('status').notNull().default('pending'),
+    transferTransaction: text('transfer_transaction'),
+    completedAt: timestamp('completed_at', { withTimezone: true }),
+    errorMessage: text('error_message'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_pool_assemblies_player').on(table.playerId),
+    index('idx_pool_assemblies_nft').on(table.nftId),
+    index('idx_pool_assemblies_status').on(table.status),
   ]
 )
