@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator'
 import { CodeBlock } from '@/components/docs/code-block'
 import { EndpointCard } from '@/components/docs/endpoint-card'
 import { cn } from '@/lib/utils'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 const SECTIONS = [
   { id: 'getting-started', label: 'Getting Started', icon: Book },
@@ -61,16 +62,29 @@ export default function DocsPage() {
         <main className="min-w-0 flex-1">
           {/* Hero */}
           <div className="mb-12">
-            <Badge className="mb-4 bg-[#0D3B1E]/30 text-[#00FF41] border-[#0D3B1E]/50">
-              API v1.0
-            </Badge>
-            <h1 className="text-4xl font-bold text-[#00FF41]">
-              UnstableLabs <span className="text-gradient">Game API</span>
-            </h1>
-            <p className="mt-3 max-w-2xl text-lg text-[#00AA2A]">
-              Integrate NFT data into your game. Verify ownership, fetch player inventories, and
-              receive real-time updates via WebSocket.
-            </p>
+            <TerminalFrame
+              title="DOCS.api"
+              pid="080"
+              accent="cyan"
+              borderStyle="single"
+              status="SPEC: v1.0"
+              statusLabel="DOCUMENTED"
+            >
+              <div className="px-4 py-6">
+                <Badge className="mb-4 bg-[#0D3B1E]/30 text-[#00FF41] border-[#0D3B1E]/50 glitch-badge">
+                  API v1.0
+                </Badge>
+                <h1 className="text-4xl font-bold text-[#00FF41]">
+                  _unstablecoins <span className="text-gradient">Game API</span>
+                </h1>
+                <div className="mt-3 border-l border-dashed border-[#00FFFF]/20 pl-4">
+                  <p className="max-w-2xl text-lg text-[#00AA2A]">
+                    Integrate NFT data into your game. Verify ownership, fetch player inventories,
+                    and receive real-time updates via WebSocket.
+                  </p>
+                </div>
+              </div>
+            </TerminalFrame>
           </div>
 
           {/* Getting Started */}

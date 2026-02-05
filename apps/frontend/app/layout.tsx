@@ -28,7 +28,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${jetbrainsMono.variable} antialiased`}>
         <Providers>
-          {children}
+          <div className="crt">{children}</div>
+          <div className="crt-line" aria-hidden="true" />
           <Toaster position="bottom-right" />
         </Providers>
       </body>

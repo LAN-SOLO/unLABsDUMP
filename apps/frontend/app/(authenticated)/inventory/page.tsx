@@ -15,6 +15,7 @@ import { InventoryStats, type InventoryStatsData } from '@/components/inventory/
 import { TransferModal } from '@/components/inventory/transfer-modal'
 import type { NftItem } from '@/components/inventory/inventory-card'
 import { Package, CheckSquare, X, Send, Tag } from 'lucide-react'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 const RARITY_ORDER: Record<string, number> = {
   common: 0,
@@ -205,57 +206,69 @@ export default function InventoryPage() {
     <div className="min-h-screen bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h1 className="flex items-center gap-2 text-2xl font-bold text-[#00FF41]">
-              <Package className="h-6 w-6 text-[#00FF41]" />
-              Inventory
-            </h1>
-            <p className="mt-1 text-sm text-[#00AA2A]">Manage your NFT collection</p>
-          </div>
+        <div className="mb-6">
+          <TerminalFrame
+            title="INVENTORY.dat"
+            pid="040"
+            status="WALLET: LINKED"
+            statusLabel="SYNCED"
+            borderStyle="double"
+          >
+            <div className="px-4 py-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Package className="h-5 w-5 text-[#00FF41]" />
+                  <h1 className="text-2xl font-bold text-[#00FF41]">Inventory</h1>
+                </div>
+                <div className="ml-7 border-l border-dashed border-[#00FF41]/20 pl-4">
+                  <p className="text-sm text-[#00AA2A]">Manage your NFT collection</p>
+                </div>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <Button
-              variant={selectMode ? 'default' : 'outline'}
-              size="sm"
-              onClick={toggleSelectMode}
-              className={
-                selectMode
-                  ? 'bg-[#00FF41] text-black hover:bg-[#00CC33]'
-                  : 'border-[#1A3A2A] text-[#00CC33]'
-              }
-            >
-              {selectMode ? (
-                <>
-                  <X className="mr-1 h-3.5 w-3.5" />
-                  Cancel ({selectedIds.size})
-                </>
-              ) : (
-                <>
-                  <CheckSquare className="mr-1 h-3.5 w-3.5" />
-                  Select
-                </>
-              )}
-            </Button>
-
-            {selectMode && selectedIds.size > 0 && (
-              <>
+              <div className="flex items-center gap-2">
                 <Button
+                  variant={selectMode ? 'default' : 'outline'}
                   size="sm"
-                  variant="outline"
-                  onClick={handleBulkTransfer}
-                  className="border-[#1A3A2A] text-[#00CC33]"
+                  onClick={toggleSelectMode}
+                  className={
+                    selectMode
+                      ? 'bg-[#00FF41] text-black hover:bg-[#00CC33]'
+                      : 'border-[#1A3A2A] text-[#00CC33]'
+                  }
                 >
-                  <Send className="mr-1 h-3.5 w-3.5" />
-                  Transfer ({selectedIds.size})
+                  {selectMode ? (
+                    <>
+                      <X className="mr-1 h-3.5 w-3.5" />
+                      Cancel ({selectedIds.size})
+                    </>
+                  ) : (
+                    <>
+                      <CheckSquare className="mr-1 h-3.5 w-3.5" />
+                      Select
+                    </>
+                  )}
                 </Button>
-                <Button size="sm" variant="outline" className="border-[#1A3A2A] text-[#00CC33]">
-                  <Tag className="mr-1 h-3.5 w-3.5" />
-                  List ({selectedIds.size})
-                </Button>
-              </>
-            )}
-          </div>
+
+                {selectMode && selectedIds.size > 0 && (
+                  <>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={handleBulkTransfer}
+                      className="border-[#1A3A2A] text-[#00CC33]"
+                    >
+                      <Send className="mr-1 h-3.5 w-3.5" />
+                      Transfer ({selectedIds.size})
+                    </Button>
+                    <Button size="sm" variant="outline" className="border-[#1A3A2A] text-[#00CC33]">
+                      <Tag className="mr-1 h-3.5 w-3.5" />
+                      List ({selectedIds.size})
+                    </Button>
+                  </>
+                )}
+              </div>
+            </div>
+          </TerminalFrame>
         </div>
 
         {/* Stats */}

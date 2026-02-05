@@ -9,6 +9,7 @@ import { Separator } from '@/components/ui/separator'
 import { NotificationList } from '@/components/notifications/notification-list'
 import { useRealtime } from '@/components/realtime/realtime-provider'
 import { type NotificationType, NOTIFICATION_TYPE_LABELS } from '@/lib/notifications/types'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 export default function NotificationsPage() {
   const { notifications, unreadCount, markAsRead, markAllAsRead, clearNotifications } =
@@ -65,45 +66,54 @@ export default function NotificationsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-sm bg-[#0D3B1E]/30">
-            <Bell className="size-5 text-[#00FF41]" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-[#00FF41]">Notifications</h1>
-            <p className="text-sm text-[#00AA2A]">
-              {unreadCount > 0
-                ? `${unreadCount} unread notification${unreadCount === 1 ? '' : 's'}`
-                : 'All caught up'}
-            </p>
-          </div>
-        </div>
+      <div className="mb-6">
+        <TerminalFrame
+          title="NOTIFY.sys"
+          pid="070"
+          accent="cyan"
+          borderStyle="single"
+          status="REALTIME: ON"
+          statusLabel="LISTENING"
+        >
+          <div className="px-4 py-5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Bell className="size-5 text-[#00FFFF]" />
+              <div>
+                <h1 className="text-2xl font-bold text-[#00FF41]">Notifications</h1>
+                <p className="text-sm text-[#00AA2A]">
+                  {unreadCount > 0
+                    ? `${unreadCount} unread notification${unreadCount === 1 ? '' : 's'}`
+                    : 'All caught up'}
+                </p>
+              </div>
+            </div>
 
-        <div className="flex items-center gap-2">
-          {unreadCount > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleMarkAllAsRead}
-              className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]"
-            >
-              <CheckCheck className="size-4" />
-              Mark all read
-            </Button>
-          )}
-          {notifications.length > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleClearAll}
-              className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#FF3333]/15 hover:text-[#FF3333] hover:border-[#FF3333]/50"
-            >
-              <Trash2 className="size-4" />
-              Clear all
-            </Button>
-          )}
-        </div>
+            <div className="flex items-center gap-2">
+              {unreadCount > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleMarkAllAsRead}
+                  className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#0D3B1E]/20 hover:text-[#00FF41]"
+                >
+                  <CheckCheck className="size-4" />
+                  Mark all read
+                </Button>
+              )}
+              {notifications.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleClearAll}
+                  className="gap-1.5 border-[#1A3A2A] bg-[#0D3B1E]/20 text-[#00CC33] hover:bg-[#FF3333]/15 hover:text-[#FF3333] hover:border-[#FF3333]/50"
+                >
+                  <Trash2 className="size-4" />
+                  Clear all
+                </Button>
+              )}
+            </div>
+          </div>
+        </TerminalFrame>
       </div>
 
       {/* Tabs */}

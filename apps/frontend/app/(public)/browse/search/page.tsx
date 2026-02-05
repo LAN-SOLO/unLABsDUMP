@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 import {
   AdvancedSearchForm,
   type AdvancedSearchValues,
@@ -109,11 +110,26 @@ function AdvancedSearchContent() {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#00FF41] mb-2">Advanced Search</h1>
-          <p className="text-[#00AA2A]">
-            Search across multiple fields and filter by specific traits to find exactly what you are
-            looking for.
-          </p>
+          <TerminalFrame
+            title="SEARCH.qry"
+            pid="011"
+            status="INDEX: READY"
+            statusLabel="AWAITING INPUT"
+            borderStyle="mixed"
+          >
+            <div className="px-4 py-5">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[#00FF41]/50">&gt;</span>
+                <h1 className="text-3xl font-bold text-[#00FF41]">Advanced Search</h1>
+              </div>
+              <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
+                <p className="text-sm text-[#00AA2A]">
+                  Search across multiple fields and filter by specific traits to find exactly what
+                  you are looking for.
+                </p>
+              </div>
+            </div>
+          </TerminalFrame>
         </div>
 
         {/* Search Form */}

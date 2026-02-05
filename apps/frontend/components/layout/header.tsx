@@ -38,8 +38,14 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-[#0D3B1E] bg-black/80 backdrop-blur-xl supports-[backdrop-filter]:bg-black/60">
-        <div className="mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+      <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-xl supports-[backdrop-filter]:bg-black/60">
+        {/* Terminal top border */}
+        <div className="flex items-center text-[#00FF41]/20 text-[10px] select-none overflow-hidden font-mono leading-none">
+          <span>╔</span>
+          <span className="flex-1 overflow-hidden whitespace-nowrap">{'═'.repeat(300)}</span>
+          <span>╗</span>
+        </div>
+        <div className="mx-auto flex h-14 max-w-7xl items-center px-4 sm:px-6 lg:px-8 border-b border-[#0D3B1E]">
           {/* Mobile hamburger */}
           <Button
             variant="ghost"

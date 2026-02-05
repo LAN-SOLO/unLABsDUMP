@@ -14,7 +14,13 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#0D3B1E] bg-black">
+    <footer className="bg-black">
+      {/* Terminal border */}
+      <div className="flex items-center text-[#00FF41]/20 text-[10px] select-none overflow-hidden font-mono leading-none">
+        <span>╠</span>
+        <span className="flex-1 overflow-hidden whitespace-nowrap">{'═'.repeat(300)}</span>
+        <span>╣</span>
+      </div>
       <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
         {/* Status bar style */}
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
@@ -66,6 +72,12 @@ export function Footer() {
             &copy; 2026 _unstablecoins. Built on Solana.
           </p>
         </div>
+      </div>
+      {/* Terminal bottom border */}
+      <div className="flex items-center text-[#00FF41]/20 text-[10px] select-none overflow-hidden font-mono leading-none">
+        <span>╚</span>
+        <span className="flex-1 overflow-hidden whitespace-nowrap">{'═'.repeat(300)}</span>
+        <span>╝</span>
       </div>
     </footer>
   )

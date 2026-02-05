@@ -171,21 +171,6 @@
     pointer-events: none;
   }
 
-  /* CRT scan line overlay */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.04) 2px,
-      rgba(0, 0, 0, 0.04) 4px
-    );
-    pointer-events: none;
-  }
 }
 
 /* ── Glow effects ── */
@@ -327,6 +312,156 @@
   opacity: 0;
 }
 
+/* ── Glitch effects ── */
+
+/* Text glitch: chromatic aberration + horizontal shift */
+@keyframes glitch-text {
+  0%, 92%, 100% {
+    transform: none;
+    text-shadow: 0 0 5px #00FF41;
+  }
+  93% {
+    transform: translateX(-2px) skewX(-0.5deg);
+    text-shadow: -2px 0 #00FFFF, 2px 0 #FF3333, 0 0 5px #00FF41;
+  }
+  94% {
+    transform: translateX(2px) skewX(0.5deg);
+    text-shadow: 2px 0 #00FFFF, -2px 0 #FF3333, 0 0 5px #00FF41;
+  }
+  95% {
+    transform: translateX(-1px);
+    text-shadow: -1px 0 #FF3333, 1px 0 #00FFFF, 0 0 5px #00FF41;
+  }
+  96% {
+    transform: none;
+    text-shadow: 0 0 5px #00FF41;
+  }
+}
+
+/* Subtle page flicker */
+@keyframes page-flicker {
+  0%, 97.5%, 100% { opacity: 1; }
+  97.8% { opacity: 0.92; }
+  98% { opacity: 0.97; }
+  98.3% { opacity: 0.93; }
+  98.5% { opacity: 1; }
+}
+
+/* Horizontal interference line */
+@keyframes interference-line {
+  0% { top: -2px; opacity: 0; }
+  5% { opacity: 0; }
+  5.1% { opacity: 1; }
+  10% { opacity: 1; }
+  10.1% { opacity: 0; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Random micro-jitter on elements */
+@keyframes micro-jitter {
+  0%, 96%, 100% { transform: none; }
+  97% { transform: translateX(1px); }
+  98% { transform: translateX(-1px) translateY(0.5px); }
+  99% { transform: translateX(0.5px); }
+}
+
+/* Data corruption flash */
+@keyframes data-corrupt {
+  0%, 95%, 100% { opacity: 1; filter: none; }
+  96% { opacity: 0.8; filter: hue-rotate(90deg) saturate(2); }
+  97% { opacity: 1; filter: none; }
+  98% { clip-path: inset(40% 0 30% 0); }
+  99% { clip-path: none; }
+}
+
+/* Scanline glitch burst */
+@keyframes scanline-burst {
+  0%, 90%, 100% {
+    background-size: 100% 4px;
+    opacity: 0;
+  }
+  91% {
+    opacity: 0.15;
+    background-size: 100% 2px;
+  }
+  95% {
+    opacity: 0.1;
+    background-size: 100% 3px;
+  }
+  96% { opacity: 0; }
+}
+
+/* Auto-apply glitch to h1 headings */
+h1 {
+  animation: glitch-text 8s ease-in-out infinite;
+}
+
+h2 {
+  animation: glitch-text 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Subtle page flicker on main content */
+main, [role="main"], .min-h-screen {
+  animation: page-flicker 15s ease-in-out infinite;
+}
+
+/* Interference line overlay */
+body > div::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00FF41 20%, #00FFFF 50%, #00FF41 80%, transparent 100%);
+  z-index: 9998;
+  pointer-events: none;
+  animation: interference-line 12s linear infinite;
+  opacity: 0;
+}
+
+/* Glitch hover effect for interactive elements */
+.glitch-hover {
+  position: relative;
+}
+
+.glitch-hover:hover {
+  animation: micro-jitter 0.3s ease-in-out;
+}
+
+/* Auto-apply micro-jitter to nav links on hover */
+nav a:hover {
+  animation: micro-jitter 0.4s ease-in-out;
+}
+
+/* Terminal frame headings get data-corrupt on hover */
+.terminal-frame:hover h3 {
+  animation: data-corrupt 2s ease-in-out;
+}
+
+/* Random scanline burst overlay for sections */
+.glitch-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 255, 65, 0.03) 1px,
+    rgba(0, 255, 65, 0.03) 2px
+  );
+  pointer-events: none;
+  animation: scanline-burst 20s linear infinite;
+  z-index: 1;
+}
+
+/* Glitch on badge/tag elements */
+.glitch-badge {
+  animation: micro-jitter 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
 /* ── Custom scrollbar ── */
 ::-webkit-scrollbar {
   width: 8px;
@@ -356,4 +491,229 @@
 ::selection {
   background: rgba(0, 255, 65, 0.3);
   color: #000000;
+}
+
+/* ═══════════════════════════════════════════════════════
+   OLD-SCHOOL CRT MONITOR EFFECT
+   ═══════════════════════════════════════════════════════ */
+
+/* Main CRT wrapper */
+.crt {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Scanlines: tight horizontal lines like a real CRT ── */
+.crt::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 1px,
+    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.15) 2px
+  );
+  pointer-events: none;
+  animation: crt-scanline-roll 8s linear infinite;
+}
+
+/* ── RGB sub-pixel pattern (visible at close range on old CRTs) ── */
+.crt::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03) 0px,
+    rgba(255, 0, 0, 0.03) 1px,
+    rgba(0, 255, 0, 0.03) 1px,
+    rgba(0, 255, 0, 0.03) 2px,
+    rgba(0, 0, 255, 0.03) 2px,
+    rgba(0, 0, 255, 0.03) 3px
+  );
+  pointer-events: none;
+}
+
+/* ── Screen flicker: old CRTs had subtle brightness variation ── */
+@keyframes crt-screen-flicker {
+  0%   { opacity: 1; }
+  2%   { opacity: 0.97; }
+  4%   { opacity: 1; }
+  8%   { opacity: 0.98; }
+  10%  { opacity: 1; }
+  70%  { opacity: 1; }
+  72%  { opacity: 0.96; }
+  73%  { opacity: 0.99; }
+  74%  { opacity: 0.95; }
+  76%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.crt {
+  animation: crt-screen-flicker 4s ease-in-out infinite;
+}
+
+/* ── Scanline roll: the rolling bar you'd see on detuned CRTs ── */
+@keyframes crt-scanline-roll {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100vh; }
+}
+
+/* ── Vignette: darkened corners like a curved CRT screen ── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.25) 75%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Phosphor glow: green text bleeds light on CRT glass ── */
+.crt * {
+  text-rendering: geometricPrecision;
+}
+
+/* ── Screen curvature (barrel distortion) ── */
+body {
+  perspective: 800px;
+}
+
+.crt {
+  transform: perspective(800px) rotateX(0.4deg);
+  transform-origin: center center;
+  border-radius: 8px;
+}
+
+/* ── Horizontal sync glitch: random horizontal tear ── */
+@keyframes hsync-glitch {
+  0%, 89%, 91%, 100% {
+    clip-path: none;
+    transform: perspective(800px) rotateX(0.4deg);
+  }
+  90% {
+    clip-path: polygon(
+      0 0, 100% 0, 100% 45%,
+      2px 45%, 2px 47%,
+      100% 47%, 100% 100%, 0 100%
+    );
+    transform: perspective(800px) rotateX(0.4deg) translateX(3px);
+  }
+  90.5% {
+    clip-path: none;
+    transform: perspective(800px) rotateX(0.4deg) translateX(-2px);
+  }
+}
+
+/* Apply hsync glitch very occasionally */
+.crt {
+  animation:
+    crt-screen-flicker 4s ease-in-out infinite,
+    hsync-glitch 25s steps(1) infinite;
+}
+
+/* ── Warm-up glow: CRTs took a moment to reach full brightness ── */
+@keyframes crt-warmup {
+  0%   { filter: brightness(0.3) saturate(0.5); }
+  30%  { filter: brightness(0.7) saturate(0.8); }
+  100% { filter: brightness(1) saturate(1); }
+}
+
+.crt {
+  animation:
+    crt-warmup 1.5s ease-out forwards,
+    crt-screen-flicker 4s ease-in-out 1.5s infinite,
+    hsync-glitch 25s steps(1) 2s infinite;
+}
+
+/* ── Screen reflection / glare spot ── */
+.crt > *:first-child::before {
+  content: "";
+  position: fixed;
+  top: -20%;
+  left: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 70%
+  );
+  z-index: 9996;
+  pointer-events: none;
+  transform: rotate(-15deg);
+}
+
+/* ── Interlace effect: every other frame shifts slightly ── */
+@keyframes interlace {
+  0%, 100% { background-position: 0 0; }
+  50%      { background-position: 0 1px; }
+}
+
+.crt::before {
+  animation:
+    crt-scanline-roll 8s linear infinite,
+    interlace 0.08s steps(1) infinite;
+}
+
+/* ── Rolling bright line: the signature CRT sweep bar ── */
+@keyframes crt-rolling-line {
+  0%   { top: -4px; }
+  100% { top: 100%; }
+}
+
+.crt-line {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  z-index: 10000;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 65, 0.02) 30%,
+    rgba(0, 255, 65, 0.045) 50%,
+    rgba(0, 255, 65, 0.02) 70%,
+    transparent 100%
+  );
+  filter: blur(4px);
+  animation:
+    crt-rolling-line 23s linear infinite,
+    crt-line-tremble 0.15s ease-in-out infinite;
+}
+
+@keyframes crt-line-tremble {
+  0%, 60%, 100% { transform: translateY(0); opacity: 1; }
+  65%  { transform: translateY(-0.5px); opacity: 0.85; }
+  70%  { transform: translateY(0.3px); opacity: 0.95; }
+  75%  { transform: translateY(-0.2px); }
+  80%  { transform: translateY(0); opacity: 1; }
+}
+
+/* ── Reduce motion: respect user preference ── */
+@media (prefers-reduced-motion: reduce) {
+  .crt,
+  .crt::before,
+  .crt::after,
+  .crt-line,
+  body::after {
+    animation: none !important;
+  }
+  .crt {
+    transform: none;
+    filter: none;
+  }
+  .crt-line {
+    display: none;
+  }
 }

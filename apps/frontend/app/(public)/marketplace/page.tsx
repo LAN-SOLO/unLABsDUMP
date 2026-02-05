@@ -13,6 +13,7 @@ import { BuyModal } from '@/components/marketplace/buy-modal'
 import { ContactSellerModal } from '@/components/marketplace/contact-seller-modal'
 import { RecentSales, type RecentSale } from '@/components/marketplace/recent-sales'
 import { Store, ShoppingBag } from 'lucide-react'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 export default function MarketplacePage() {
   const [listings, setListings] = useState<MarketplaceListing[]>([])
@@ -154,11 +155,26 @@ export default function MarketplacePage() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-6">
-          <h1 className="flex items-center gap-2 text-2xl font-bold text-[#00FF41]">
-            <Store className="h-6 w-6 text-[#00FFFF]" />
-            Marketplace
-          </h1>
-          <p className="mt-1 text-sm text-[#00AA2A]">Browse and purchase NFTs from other players</p>
+          <TerminalFrame
+            title="MARKET.sys"
+            pid="020"
+            accent="cyan"
+            borderStyle="single"
+            status="NET: SOLANA"
+            statusLabel="LIVE"
+          >
+            <div className="px-4 py-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Store className="h-5 w-5 text-[#00FFFF]" />
+                <h1 className="text-2xl font-bold text-[#00FF41]">Marketplace</h1>
+              </div>
+              <div className="ml-5 border-l border-dashed border-[#00FFFF]/20 pl-4">
+                <p className="text-sm text-[#00AA2A]">
+                  Browse and purchase NFTs from other players
+                </p>
+              </div>
+            </div>
+          </TerminalFrame>
         </div>
 
         {/* Filters */}

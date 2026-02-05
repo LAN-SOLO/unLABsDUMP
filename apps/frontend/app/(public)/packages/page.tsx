@@ -5,6 +5,7 @@ import { Package } from 'lucide-react'
 import { PackageGrid } from '@/components/packages/package-grid'
 import { PackageFilters } from '@/components/packages/package-filters'
 import type { PackageCardProps } from '@/components/packages/package-card'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 interface PackageApiItem extends PackageCardProps {
   featured: boolean
@@ -62,19 +63,25 @@ export default function PackagesPage() {
     <div className="min-h-screen bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Page header */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-sm bg-[#0D3B1E]/20 flex items-center justify-center">
+        <TerminalFrame
+          title="STORE.pkg"
+          pid="030"
+          status="INVENTORY: SYNCED"
+          statusLabel="ONLINE"
+          borderStyle="mixed"
+        >
+          <div className="px-4 py-5">
+            <div className="flex items-center gap-2 mb-2">
               <Package className="size-5 text-[#00FF41]" />
-            </div>
-            <div>
               <h1 className="text-3xl font-bold text-[#00FF41]">Package Store</h1>
-              <p className="text-[#00AA2A] text-sm">
+            </div>
+            <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
+              <p className="text-sm text-[#00AA2A]">
                 Browse and purchase NFT packages, token bundles, and exclusive collector editions.
               </p>
             </div>
           </div>
-        </div>
+        </TerminalFrame>
 
         {/* Filters */}
         <PackageFilters

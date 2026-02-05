@@ -17,6 +17,7 @@ import { NFTGrid } from '@/components/nft/nft-grid'
 import { NFTFiltersPanel } from '@/components/nft/nft-filters'
 import { NFTSearch } from '@/components/nft/nft-search'
 import { NFTImageViewer } from '@/components/nft/nft-image-viewer'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 import {
   type NFT,
   type NFTFilters,
@@ -104,10 +105,25 @@ export default function BrowsePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-[#00FF41] mb-2">Browse NFTs</h1>
-          <p className="text-[#00AA2A]">
-            Explore the UnstableLabs NFT collection across wavelengths, tiers, and eras.
-          </p>
+          <TerminalFrame
+            title="BROWSE.exe"
+            pid="010"
+            status="DB: CONNECTED"
+            statusLabel="SCANNING"
+            borderStyle="double"
+          >
+            <div className="px-4 py-5">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-[#00FF41]/50">&gt;</span>
+                <h1 className="text-3xl font-bold text-[#00FF41]">Browse NFTs</h1>
+              </div>
+              <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
+                <p className="text-sm text-[#00AA2A]">
+                  Explore the _unstablecoins NFT collection across wavelengths, tiers, and eras.
+                </p>
+              </div>
+            </div>
+          </TerminalFrame>
         </div>
 
         {/* Top bar: Search + Sort + Mobile filter toggle */}

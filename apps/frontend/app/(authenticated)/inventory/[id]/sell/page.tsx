@@ -11,6 +11,7 @@ import { ListingForm } from '@/components/trading/listing-form'
 import { ListingPreview } from '@/components/trading/listing-preview'
 import type { NftItem } from '@/components/inventory/inventory-card'
 import { ArrowLeft, Tag, CheckCircle } from 'lucide-react'
+import { TerminalFrame } from '@/components/ui/terminal-frame'
 
 export default function SellNftPage() {
   const params = useParams()
@@ -134,13 +135,25 @@ export default function SellNftPage() {
             <ArrowLeft className="mr-1 h-4 w-4" />
             Back to Inventory
           </Button>
-          <h1 className="flex items-center gap-2 text-xl font-bold text-[#00FF41]">
-            <Tag className="h-5 w-5 text-[#00FF41]" />
-            List NFT for Sale
-          </h1>
-          <p className="mt-1 text-sm text-[#00AA2A]">
-            Set your price and list {nft.name} on the marketplace
-          </p>
+          <TerminalFrame
+            title="SELL.trx"
+            pid="041"
+            status="CHAIN: READY"
+            statusLabel="AWAITING"
+            borderStyle="single"
+          >
+            <div className="px-4 py-4">
+              <div className="flex items-center gap-2 mb-1">
+                <Tag className="h-5 w-5 text-[#00FF41]" />
+                <h1 className="text-xl font-bold text-[#00FF41]">List NFT for Sale</h1>
+              </div>
+              <div className="ml-7 border-l border-dashed border-[#00FF41]/20 pl-4">
+                <p className="text-sm text-[#00AA2A]">
+                  Set your price and list {nft.name} on the marketplace
+                </p>
+              </div>
+            </div>
+          </TerminalFrame>
         </div>
 
         {listingError && (
