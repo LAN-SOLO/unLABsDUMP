@@ -700,6 +700,20 @@ body {
   80%  { transform: translateY(0); opacity: 1; }
 }
 
+/* ── Disable CRT perspective/curvature on mobile ── */
+@media (max-width: 768px) {
+  body {
+    perspective: none;
+  }
+  .crt {
+    transform: none;
+    border-radius: 0;
+  }
+  .crt-line {
+    display: none;
+  }
+}
+
 /* ── Reduce motion: respect user preference ── */
 @media (prefers-reduced-motion: reduce) {
   .crt,

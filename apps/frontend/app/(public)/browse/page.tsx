@@ -182,7 +182,10 @@ export default function BrowsePage() {
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="bg-black border-[#0D3B1E] w-80 overflow-y-auto">
+              <SheetContent
+                side="left"
+                className="bg-black border-[#0D3B1E] w-72 sm:w-80 overflow-y-auto"
+              >
                 <SheetHeader>
                   <SheetTitle className="text-[#00FF41]">Filters</SheetTitle>
                 </SheetHeader>

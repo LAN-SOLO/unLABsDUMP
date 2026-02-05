@@ -131,7 +131,9 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
           {/* Right: Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-[#00FF41] mb-2">{packageData.name}</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#00FF41] mb-2">
+                {packageData.name}
+              </h1>
               {packageData.description && (
                 <p className="text-[#00AA2A] leading-relaxed">{packageData.description}</p>
               )}
@@ -140,9 +142,9 @@ export function PackageDetail({ packageData }: PackageDetailProps) {
             {/* Price */}
             <div className="p-4 rounded-sm bg-[#0D3B1E]/20 border border-[#1A3A2A]">
               <p className="text-sm text-[#00AA2A] mb-1">Price</p>
-              <p className="text-4xl font-bold text-[#00FF41]">
+              <p className="text-3xl sm:text-4xl font-bold text-[#00FF41]">
                 {formatSol(priceNum)}{' '}
-                <span className="text-xl font-normal text-[#00AA2A]">SOL</span>
+                <span className="text-lg sm:text-xl font-normal text-[#00AA2A]">SOL</span>
               </p>
               <p className="text-sm text-[#1A6B35] mt-1">~${usdEstimate} USD</p>
             </div>

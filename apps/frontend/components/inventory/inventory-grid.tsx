@@ -19,7 +19,7 @@ interface InventoryGridProps {
 
 function LoadingSkeleton() {
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {Array.from({ length: 8 }).map((_, i) => (
         <div key={i} className="overflow-hidden rounded-sm border border-[#0D3B1E] bg-[#0D1117]">
           <Skeleton className="aspect-square w-full" />
@@ -79,7 +79,7 @@ export function InventoryGrid({
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {nfts.map((nft) => (
         <InventoryCard
           key={nft.id}

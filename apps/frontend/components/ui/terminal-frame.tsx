@@ -55,7 +55,7 @@ export function TerminalFrame({
 
   return (
     <div
-      className={cn('terminal-frame relative font-mono bg-black/80', className)}
+      className={cn('terminal-frame relative font-mono bg-black/80 overflow-hidden', className)}
       style={{ boxShadow: colors.shadow }}
     >
       {/* Top border */}

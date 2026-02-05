@@ -58,7 +58,10 @@ export function Header() {
           </Button>
 
           {/* Traffic light dots + Logo */}
-          <Link href="/" className="mr-6 flex items-center gap-3 font-bold text-lg">
+          <Link
+            href="/"
+            className="mr-4 sm:mr-6 flex items-center gap-2 sm:gap-3 font-bold text-lg"
+          >
             <div className="hidden sm:flex items-center gap-1.5">
               <span className="led-offline" />
               <span className="led-standby" />
@@ -73,7 +76,7 @@ export function Header() {
               className="rounded-sm"
             />
             <span
-              className="text-[#00FF41] font-bold"
+              className="hidden min-[480px]:inline text-[#00FF41] font-bold"
               style={{ textShadow: '0 0 5px #00FF41, 0 0 10px rgba(0,255,65,0.5)' }}
             >
               _unstablecoins
@@ -110,7 +113,7 @@ export function Header() {
           </nav>
 
           {/* Right side actions */}
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1 sm:gap-2">
             {/* Notification bell */}
             <div className="relative">
               <Button

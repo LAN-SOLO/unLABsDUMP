@@ -96,11 +96,11 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
       </div>
 
       {/* Filter row */}
-      <div className="flex flex-wrap items-end gap-3">
+      <div className="flex flex-wrap items-end gap-2 sm:gap-3">
         <SlidersHorizontal className="mb-2 h-4 w-4 text-[#00AA2A]" />
 
         {/* Price Range */}
-        <div className="w-48">
+        <div className="w-full sm:w-48">
           <PriceRangeSlider
             minPrice={filters.minPrice}
             maxPrice={filters.maxPrice}
@@ -171,13 +171,13 @@ export function MarketplaceFilters({ filters, onFilterChange, onReset }: Marketp
         </div>
 
         {/* Seller address */}
-        <div className="space-y-1">
+        <div className="w-full sm:w-auto space-y-1">
           <label className="text-xs font-medium text-[#00AA2A]">Seller</label>
           <Input
             placeholder="Wallet address..."
             value={filters.seller}
             onChange={(e) => updateFilter('seller', e.target.value.trim())}
-            className="h-8 w-36 border-[#1A3A2A] bg-[#111318] text-xs font-mono text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20"
+            className="h-8 w-full sm:w-36 border-[#1A3A2A] bg-[#111318] text-xs font-mono text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20"
           />
         </div>
 

@@ -117,7 +117,7 @@ export function PurchaseList() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         {/* Status filter tabs */}
         <Tabs value={statusFilter} onValueChange={setStatusFilter}>
-          <TabsList className="bg-[#111318]/60 border border-[#1A3A2A] h-auto flex-wrap">
+          <TabsList className="bg-[#111318]/60 border border-[#1A3A2A] h-auto flex-wrap gap-1">
             {STATUS_FILTERS.map((f) => (
               <TabsTrigger
                 key={f.value}
@@ -138,7 +138,7 @@ export function PurchaseList() {
               placeholder="Search packages..."
               value={search}
               onChange={handleSearchChange}
-              className="pl-9 w-56 bg-[#111318]/60 border-[#1A3A2A] text-[#00FF41] placeholder:text-[#1A6B35]"
+              className="pl-9 w-40 sm:w-56 bg-[#111318]/60 border-[#1A3A2A] text-[#00FF41] placeholder:text-[#1A6B35]"
             />
           </div>
           <Button

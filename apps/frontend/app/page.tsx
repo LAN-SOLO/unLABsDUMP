@@ -47,7 +47,7 @@ export default function Home() {
         <section className="relative flex flex-col items-center justify-center px-4 pt-16 pb-20 text-center overflow-hidden">
           {/* Background glow effects */}
           <div
-            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 blur-[120px]"
+            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] rounded-full opacity-15 blur-[120px]"
             style={{
               background:
                 'radial-gradient(circle, rgba(0,255,65,0.5) 0%, rgba(0,255,255,0.3) 50%, transparent 70%)',
@@ -68,11 +68,11 @@ export default function Home() {
               width={256}
               height={256}
               unoptimized
-              className="relative block"
+              className="relative block w-40 h-40 sm:w-64 sm:h-64"
             />
           </div>
 
-          <h1 className="relative text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="relative text-3xl sm:text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
             <span
               className="inline-block text-[#00FF41]"
               style={{
@@ -117,7 +117,7 @@ export default function Home() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {/* ═══ COLLECT Terminal ═══ */}
             <div
-              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              className="group relative font-mono bg-black/80 overflow-hidden transition-all hover:scale-[1.02]"
               style={{
                 boxShadow: '0 0 1px #00FF41, inset 0 0 30px rgba(0,255,65,0.03)',
               }}
@@ -177,7 +177,7 @@ export default function Home() {
 
             {/* ═══ TRADE Terminal ═══ */}
             <div
-              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              className="group relative font-mono bg-black/80 overflow-hidden transition-all hover:scale-[1.02]"
               style={{
                 boxShadow: '0 0 1px #00FFFF, inset 0 0 30px rgba(0,255,255,0.03)',
               }}
@@ -243,7 +243,7 @@ export default function Home() {
 
             {/* ═══ PLAY Terminal ═══ */}
             <div
-              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              className="group relative font-mono bg-black/80 overflow-hidden transition-all hover:scale-[1.02]"
               style={{
                 boxShadow: '0 0 1px #00FF41, inset 0 0 30px rgba(0,255,65,0.03)',
               }}
