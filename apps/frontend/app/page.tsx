@@ -72,7 +72,7 @@ export default function Home() {
             />
           </div>
 
-          <h1 className="relative text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl uppercase">
+          <h1 className="relative text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
             <span
               className="inline-block text-[#00FF41]"
               style={{
@@ -114,135 +114,190 @@ export default function Home() {
 
         {/* Feature Cards Grid */}
         <section className="mx-auto max-w-6xl px-4 py-20">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {/* Collect Card */}
-            <div className="group relative rounded-sm border border-[#0D3B1E] bg-[#0D1117]/60 p-8 transition-all hover:border-[#00FF41]/30 hover:bg-[#0D1117]">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-sm bg-[#0D3B1E]/30">
-                <svg
-                  className="h-6 w-6 text-[#00FF41]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#00FF41] uppercase tracking-wider">Collect</h3>
-              <p className="mt-2 text-[#00AA2A]">
-                Purchase and open NFT card packs to build your collection. Discover common, rare,
-                and legendary cards with unique art and abilities.
-              </p>
-            </div>
-
-            {/* Trade Card */}
-            <div className="group relative rounded-sm border border-[#0D3B1E] bg-[#0D1117]/60 p-8 transition-all hover:border-[#00FFFF]/30 hover:bg-[#0D1117]">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-sm bg-[#00FFFF]/10">
-                <svg
-                  className="h-6 w-6 text-[#00FFFF]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#00FF41] uppercase tracking-wider">Trade</h3>
-              <p className="mt-2 text-[#00AA2A]">
-                List your cards on the marketplace, make offers, and trade with other players. The
-                peer-to-peer marketplace runs entirely on Solana.
-              </p>
-            </div>
-
-            {/* Play Card */}
-            <div className="group relative rounded-sm border border-[#0D3B1E] bg-[#0D1117]/60 p-8 transition-all hover:border-[#00FF41]/30 hover:bg-[#0D1117]">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-sm bg-[#0D3B1E]/30">
-                <svg
-                  className="h-6 w-6 text-[#00FF41]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-[#00FF41] uppercase tracking-wider">Play</h3>
-              <p className="mt-2 text-[#00AA2A]">
-                Use your NFT cards in the _unstablecoins game. Battle other players, complete
-                challenges, and earn rewards through game integration.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="border-t border-[#0D3B1E]/60 bg-black py-20">
-          <div className="mx-auto max-w-4xl px-4">
-            <h2
-              className="mb-12 text-center text-3xl font-bold text-[#00FF41] uppercase tracking-widest"
-              style={{ textShadow: '0 0 10px #00FF41, 0 0 20px rgba(0,255,65,0.3)' }}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {/* ═══ COLLECT Terminal ═══ */}
+            <div
+              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              style={{
+                boxShadow: '0 0 1px #00FF41, inset 0 0 30px rgba(0,255,65,0.03)',
+              }}
             >
-              &gt; Platform Stats
-            </h2>
-            <div className="grid gap-8 sm:grid-cols-3">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="led-online" />
-                </div>
-                <p
-                  className="text-4xl font-bold text-[#00FF41]"
-                  style={{ textShadow: '0 0 5px #00FF41' }}
-                >
-                  12,400+
-                </p>
-                <p className="mt-2 text-sm text-[#00AA2A] uppercase tracking-widest">Total NFTs</p>
+              {/* Top border */}
+              <div className="flex items-center text-[#00FF41]/40 text-xs select-none overflow-hidden">
+                <span>╔</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'═'.repeat(60)}</span>
+                <span>╗</span>
               </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
+              {/* Title bar */}
+              <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#00FF41]/20">
+                <div className="flex items-center gap-2">
                   <span className="led-online" />
+                  <span
+                    className="text-xs font-bold text-[#00FF41] uppercase tracking-widest"
+                    style={{ textShadow: '0 0 8px rgba(0,255,65,0.6)' }}
+                  >
+                    COLLECT.exe
+                  </span>
                 </div>
-                <p
-                  className="text-4xl font-bold text-[#00FFFF]"
-                  style={{ textShadow: '0 0 5px #00FFFF' }}
-                >
-                  3,200+
-                </p>
-                <p className="mt-2 text-sm text-[#00AA2A] uppercase tracking-widest">
-                  Active Traders
-                </p>
+                <span className="text-[10px] text-[#00FF41]/30">[PID 001]</span>
               </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <span className="led-online" />
+              {/* Content */}
+              <div className="px-4 py-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[#00FF41]/50">&gt;</span>
+                  <h3
+                    className="text-xl font-bold text-[#00FF41] uppercase tracking-[0.2em]"
+                    style={{ textShadow: '0 0 10px #00FF41, 0 0 30px rgba(0,255,65,0.3)' }}
+                  >
+                    Collect
+                  </h3>
                 </div>
-                <p
-                  className="text-4xl font-bold text-[#00FF41]"
-                  style={{ textShadow: '0 0 5px #00FF41' }}
-                >
-                  8,750+
-                </p>
-                <p className="mt-2 text-sm text-[#00AA2A] uppercase tracking-widest">
-                  Packs Opened
-                </p>
+                <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
+                  <p className="text-sm text-[#00AA2A] leading-relaxed">
+                    Purchase and open NFT card packs to build your collection. Discover common,
+                    rare, and legendary cards with unique art and abilities.
+                  </p>
+                </div>
+              </div>
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-3 py-1 border-t border-[#00FF41]/20 text-[10px] text-[#00FF41]/30">
+                <span>MEM: 64K</span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="animate-cursor-blink text-[#00FF41]">█</span>
+                  READY
+                </span>
+              </div>
+              {/* Bottom border */}
+              <div className="flex items-center text-[#00FF41]/40 text-xs select-none overflow-hidden">
+                <span>╚</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'═'.repeat(60)}</span>
+                <span>╝</span>
+              </div>
+            </div>
+
+            {/* ═══ TRADE Terminal ═══ */}
+            <div
+              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              style={{
+                boxShadow: '0 0 1px #00FFFF, inset 0 0 30px rgba(0,255,255,0.03)',
+              }}
+            >
+              {/* Top border */}
+              <div className="flex items-center text-[#00FFFF]/40 text-xs select-none overflow-hidden">
+                <span>┌</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'─'.repeat(60)}</span>
+                <span>┐</span>
+              </div>
+              {/* Title bar */}
+              <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#00FFFF]/20">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="led-online"
+                    style={{
+                      background: '#00FFFF',
+                      boxShadow: '0 0 4px #00FFFF, 0 0 8px rgba(0,255,255,0.5)',
+                    }}
+                  />
+                  <span
+                    className="text-xs font-bold text-[#00FFFF] uppercase tracking-widest"
+                    style={{ textShadow: '0 0 8px rgba(0,255,255,0.6)' }}
+                  >
+                    TRADE.sys
+                  </span>
+                </div>
+                <span className="text-[10px] text-[#00FFFF]/30">[PID 002]</span>
+              </div>
+              {/* Content */}
+              <div className="px-4 py-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[#00FFFF]/50">⇄</span>
+                  <h3
+                    className="text-xl font-bold text-[#00FFFF] uppercase tracking-[0.2em]"
+                    style={{ textShadow: '0 0 10px #00FFFF, 0 0 30px rgba(0,255,255,0.3)' }}
+                  >
+                    Trade
+                  </h3>
+                </div>
+                <div className="ml-5 border-l border-dashed border-[#00FFFF]/20 pl-4">
+                  <p className="text-sm text-[#00AA2A] leading-relaxed">
+                    List your cards on the marketplace, make offers, and trade with other players.
+                    The peer-to-peer marketplace runs entirely on Solana.
+                  </p>
+                </div>
+              </div>
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-3 py-1 border-t border-[#00FFFF]/20 text-[10px] text-[#00FFFF]/30">
+                <span>NET: SOLANA</span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="animate-cursor-blink text-[#00FFFF]">█</span>
+                  LISTENING
+                </span>
+              </div>
+              {/* Bottom border */}
+              <div className="flex items-center text-[#00FFFF]/40 text-xs select-none overflow-hidden">
+                <span>└</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'─'.repeat(60)}</span>
+                <span>┘</span>
+              </div>
+            </div>
+
+            {/* ═══ PLAY Terminal ═══ */}
+            <div
+              className="group relative font-mono bg-black/80 transition-all hover:scale-[1.02]"
+              style={{
+                boxShadow: '0 0 1px #00FF41, inset 0 0 30px rgba(0,255,65,0.03)',
+              }}
+            >
+              {/* Top border */}
+              <div className="flex items-center text-[#00FF41]/40 text-xs select-none overflow-hidden">
+                <span>╓</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'─'.repeat(60)}</span>
+                <span>╖</span>
+              </div>
+              {/* Title bar */}
+              <div className="flex items-center justify-between px-3 py-1.5 border-b border-[#00FF41]/20">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#00FF41] text-xs">▶</span>
+                  <span
+                    className="text-xs font-bold text-[#00FF41] uppercase tracking-widest"
+                    style={{ textShadow: '0 0 8px rgba(0,255,65,0.6)' }}
+                  >
+                    PLAY.run
+                  </span>
+                </div>
+                <span className="text-[10px] text-[#00FF41]/30">[PID 003]</span>
+              </div>
+              {/* Content */}
+              <div className="px-4 py-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[#00FF41]/50">▸</span>
+                  <h3
+                    className="text-xl font-bold text-[#00FF41] uppercase tracking-[0.2em]"
+                    style={{ textShadow: '0 0 10px #00FF41, 0 0 30px rgba(0,255,65,0.3)' }}
+                  >
+                    Play
+                  </h3>
+                </div>
+                <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
+                  <p className="text-sm text-[#00AA2A] leading-relaxed">
+                    Use your NFT cards in the _unstablecoins game. Battle other players, complete
+                    challenges, and earn rewards through game integration.
+                  </p>
+                </div>
+              </div>
+              {/* Status bar */}
+              <div className="flex items-center justify-between px-3 py-1 border-t border-[#00FF41]/20 text-[10px] text-[#00FF41]/30">
+                <span>GPU: LOADED</span>
+                <span className="inline-flex items-center gap-1">
+                  <span className="animate-cursor-blink text-[#00FF41]">█</span>
+                  STANDBY
+                </span>
+              </div>
+              {/* Bottom border */}
+              <div className="flex items-center text-[#00FF41]/40 text-xs select-none overflow-hidden">
+                <span>╙</span>
+                <span className="flex-1 overflow-hidden whitespace-nowrap">{'─'.repeat(60)}</span>
+                <span>╜</span>
               </div>
             </div>
           </div>
