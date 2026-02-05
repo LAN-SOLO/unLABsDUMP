@@ -75,8 +75,10 @@ export default function SellNftPage() {
     return (
       <div className="min-h-screen bg-black">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-24">
-          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">NFT Not Found</h2>
-          <p className="mb-6 text-sm text-[#00AA2A]">This NFT does not exist in your inventory.</p>
+          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">_unITM Not Found</h2>
+          <p className="mb-6 text-sm text-[#00AA2A]">
+            This _unITM does not exist in your inventory.
+          </p>
           <Button
             onClick={() => router.push('/inventory')}
             className="bg-[#00FF41] text-black hover:bg-[#00CC33]"
@@ -96,7 +98,7 @@ export default function SellNftPage() {
           <div className="mb-6 rounded-full bg-[#0D3B1E]/30 p-4">
             <CheckCircle className="h-12 w-12 text-[#00FF41]" />
           </div>
-          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">NFT Listed Successfully</h2>
+          <h2 className="mb-2 text-xl font-semibold text-[#00FF41]">_unITM Listed Successfully</h2>
           <p className="mb-6 text-center text-sm text-[#00AA2A]">
             {nft.name} is now listed on the marketplace. You will be notified when someone makes a
             purchase.
@@ -145,7 +147,7 @@ export default function SellNftPage() {
             <div className="px-4 py-4">
               <div className="flex items-center gap-2 mb-1">
                 <Tag className="h-5 w-5 text-[#00FF41]" />
-                <h1 className="text-xl font-bold text-[#00FF41]">List NFT for Sale</h1>
+                <h1 className="text-xl font-bold text-[#00FF41]">List _unITM for Sale</h1>
               </div>
               <div className="ml-7 border-l border-dashed border-[#00FF41]/20 pl-4">
                 <p className="text-sm text-[#00AA2A]">

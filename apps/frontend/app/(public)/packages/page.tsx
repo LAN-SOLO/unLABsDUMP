@@ -77,7 +77,8 @@ export default function PackagesPage() {
             </div>
             <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
               <p className="text-sm text-[#00AA2A]">
-                Browse and purchase NFT packages, token bundles, and exclusive collector editions.
+                Browse and purchase _unITM packages, token bundles, and exclusive collector
+                editions.
               </p>
             </div>
           </div>

@@ -13,7 +13,7 @@ export function SliceProgressBar({ owned, required }: SliceProgressBarProps) {
     <div className="space-y-1">
       <div className="flex justify-between text-[10px]">
         <span className={isFull ? 'text-[#00FF41] font-bold' : 'text-[#00AA2A]'}>
-          {owned}/{required} slices
+          {owned}/{required} _unSLC
         </span>
         <span className="text-[#00AA2A]">{Math.round(percentage)}%</span>
       </div>

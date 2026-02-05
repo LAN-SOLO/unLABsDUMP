@@ -58,7 +58,7 @@ export function PoolStatusBar({ round, participants, poolNftCount }: PoolStatusB
       <div className="w-px h-4 bg-[#0D3B1E]" />
 
       <div className="flex items-center gap-2">
-        <span className="text-[#00AA2A] text-xs">Pool NFTs</span>
+        <span className="text-[#00AA2A] text-xs">Pool _unITM</span>
         <span className="text-[#00FF41] font-mono text-sm">{poolNftCount}</span>
       </div>
     </div>

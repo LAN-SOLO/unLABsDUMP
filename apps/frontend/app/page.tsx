@@ -7,7 +7,7 @@ import Image from 'next/image'
 const bootLines = [
   { text: '[OK] _unstablecoins Terminal v2.0 initialized', delay: 0 },
   { text: '[OK] Solana RPC established', delay: 400 },
-  { text: '[OK] NFT Registry: 12,400 assets loaded', delay: 800 },
+  { text: '[OK] _unITM Registry: 12,400 assets loaded', delay: 800 },
   { text: '> SYSTEM READY', delay: 1200 },
 ]
 
@@ -85,7 +85,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg text-[#00AA2A] sm:text-xl">
-            Collect, trade, and play with unique NFT card packs on the Solana blockchain. Open
+            Collect, trade, and play with unique _unITM card packs on the Solana blockchain. Open
             packs, discover rare cards, and compete in the _unstablecoins gaming ecosystem.
           </p>
 
@@ -95,7 +95,7 @@ export default function Home() {
               href="/browse"
               className="glow-button inline-flex items-center justify-center rounded-sm bg-[#00FF41] px-8 py-3.5 text-base font-bold text-black uppercase tracking-widest transition-all hover:bg-[#00CC33] hover:shadow-[0_0_20px_rgba(0,255,65,0.4)]"
             >
-              [Browse_NFTs]
+              [Browse_unITM]
             </Link>
             <Link
               href="/packages"
@@ -154,7 +154,7 @@ export default function Home() {
                 </div>
                 <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
                   <p className="text-sm text-[#00AA2A] leading-relaxed">
-                    Purchase and open NFT card packs to build your collection. Discover common,
+                    Purchase and open _unITM card packs to build your collection. Discover common,
                     rare, and legendary cards with unique art and abilities.
                   </p>
                 </div>
@@ -280,7 +280,7 @@ export default function Home() {
                 </div>
                 <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
                   <p className="text-sm text-[#00AA2A] leading-relaxed">
-                    Use your NFT cards in the _unstablecoins game. Battle other players, complete
+                    Use your _unITM cards in the _unstablecoins game. Battle other players, complete
                     challenges, and earn rewards through game integration.
                   </p>
                 </div>

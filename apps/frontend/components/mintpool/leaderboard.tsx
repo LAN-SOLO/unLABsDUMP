@@ -61,7 +61,7 @@ export function Leaderboard() {
                 <th className="text-right py-2 pr-2">Shares</th>
                 <th className="text-right py-2 pr-2">Hashes</th>
                 <th className="text-right py-2 pr-2">Clicks</th>
-                <th className="text-right py-2">Slices</th>
+                <th className="text-right py-2">_unSLC</th>
               </tr>
             </thead>
             <tbody>

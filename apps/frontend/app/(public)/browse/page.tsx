@@ -115,11 +115,11 @@ export default function BrowsePage() {
             <div className="px-4 py-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-[#00FF41]/50">&gt;</span>
-                <h1 className="text-3xl font-bold text-[#00FF41]">Browse NFTs</h1>
+                <h1 className="text-3xl font-bold text-[#00FF41]">Browse _unITM</h1>
               </div>
               <div className="ml-5 border-l border-dashed border-[#00FF41]/20 pl-4">
                 <p className="text-sm text-[#00AA2A]">
-                  Explore the _unstablecoins NFT collection across wavelengths, tiers, and eras.
+                  Explore the _unstablecoins _unITM collection across wavelengths, tiers, and eras.
                 </p>
               </div>
             </div>

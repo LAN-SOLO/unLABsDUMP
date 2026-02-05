@@ -90,7 +90,7 @@ export default function MintPoolPage() {
               </div>
               <div className="ml-7 border-l border-dashed border-[#00FFFF]/20 pl-4">
                 <p className="text-sm text-[#00AA2A]">
-                  Mine hashes, earn slices, assemble hidden NFTs
+                  Mine hashes, earn _unSLC, assemble hidden _unITM
                 </p>
               </div>
             </div>
@@ -170,9 +170,9 @@ export default function MintPoolPage() {
               <StakePanel currentStake={currentStake} onStakeChange={handleStakeChange} />
             </TerminalFrame>
 
-            {/* Slice Inventory */}
+            {/* _unSLC Inventory */}
             <TerminalFrame
-              title="SLICES.dat"
+              title="_unSLC.dat"
               pid="083"
               status="FRAGMENTS"
               statusLabel={`${status?.player_total_slices ?? 0} OWNED`}
@@ -182,9 +182,9 @@ export default function MintPoolPage() {
               <SliceInventory onAssemblyComplete={handleAssemblyComplete} />
             </TerminalFrame>
 
-            {/* Pool NFT Preview */}
+            {/* Pool _unITM Preview */}
             <TerminalFrame
-              title="POOL_NFTS.idx"
+              title="POOL_unITM.idx"
               pid="084"
               status="HIDDEN"
               statusLabel={`${status?.pool_nft_count ?? 0} AVAILABLE`}

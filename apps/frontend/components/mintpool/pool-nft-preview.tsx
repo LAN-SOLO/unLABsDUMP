@@ -10,10 +10,10 @@ export function PoolNFTPreview({ nftCount }: PoolNFTPreviewProps) {
 
   return (
     <div className="p-4 space-y-3">
-      <h4 className="text-[#00FFFF] text-xs font-bold uppercase tracking-wider">Pool NFTs</h4>
+      <h4 className="text-[#00FFFF] text-xs font-bold uppercase tracking-wider">Pool _unITM</h4>
 
       {nftCount === 0 ? (
-        <div className="text-[#1A3A2A] text-xs font-mono py-4 text-center">No NFTs in pool</div>
+        <div className="text-[#1A3A2A] text-xs font-mono py-4 text-center">No _unITM in pool</div>
       ) : (
         <>
           <div className="grid grid-cols-3 gap-2">
@@ -36,7 +36,7 @@ export function PoolNFTPreview({ nftCount }: PoolNFTPreviewProps) {
             ))}
           </div>
           <div className="text-[#00AA2A] text-[10px] text-center font-mono">
-            {nftCount} hidden NFT{nftCount !== 1 ? 's' : ''} available
+            {nftCount} hidden _unITM available
           </div>
         </>
       )}

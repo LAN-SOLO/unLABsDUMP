@@ -170,7 +170,7 @@ export default function MarketplacePage() {
               </div>
               <div className="ml-5 border-l border-dashed border-[#00FFFF]/20 pl-4">
                 <p className="text-sm text-[#00AA2A]">
-                  Browse and purchase NFTs from other players
+                  Browse and purchase _unITM from other players
                 </p>
               </div>
             </div>
@@ -220,7 +220,7 @@ export default function MarketplacePage() {
             <h3 className="mb-2 text-lg font-semibold text-[#00FF41]">No Listings Found</h3>
             <p className="max-w-sm text-center text-sm text-[#00AA2A]">
               {listings.length === 0
-                ? 'There are currently no NFTs listed for sale. Check back later!'
+                ? 'There are currently no _unITM listed for sale. Check back later!'
                 : 'No listings match your current filters. Try adjusting your search criteria.'}
             </p>
           </div>

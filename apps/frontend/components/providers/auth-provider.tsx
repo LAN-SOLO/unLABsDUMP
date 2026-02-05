@@ -106,9 +106,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const { message } = await challengeRes.json()
 
-      // Step 2: Sign with wallet
+      // Step 2: Sign with wallet (may throw if user disconnects or rejects)
       const messageBytes = new TextEncoder().encode(message)
-      const signatureBytes = await signMessage(messageBytes)
+      let signatureBytes: Uint8Array
+      try {
+        signatureBytes = await signMessage(messageBytes)
+      } catch (signError) {
+        // Re-throw with clearer message for wallet disconnection
+        if (signError instanceof Error && signError.name === 'WalletDisconnectedError') {
+          throw new Error('Wallet disconnected during signing')
+        }
+        throw signError
+      }
       const signature = bs58.encode(signatureBytes)
 
       // Step 3: Verify signature and get JWT

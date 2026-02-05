@@ -72,9 +72,9 @@ export function AssembleModal({ target, onClose, onComplete }: AssembleModalProp
     <Dialog open={!!target} onOpenChange={handleOpenChange}>
       <DialogContent className="bg-[#0D1117] border-[#0D3B1E] text-[#00FF41]">
         <DialogHeader>
-          <DialogTitle className="text-[#00FF41] font-mono">Assemble NFT</DialogTitle>
+          <DialogTitle className="text-[#00FF41] font-mono">Assemble _unITM</DialogTitle>
           <DialogDescription className="text-[#00AA2A]">
-            Combine all slices to claim this NFT to your inventory.
+            Combine all _unSLC to claim this _unITM to your inventory.
           </DialogDescription>
         </DialogHeader>
 
@@ -85,7 +85,7 @@ export function AssembleModal({ target, onClose, onComplete }: AssembleModalProp
                 {target.nft_name}
               </div>
               <div className="text-[#00AA2A] text-sm">
-                {target.slices_owned}/{target.slices_required} slices collected
+                {target.slices_owned}/{target.slices_required} _unSLC collected
               </div>
             </div>
 
@@ -94,11 +94,11 @@ export function AssembleModal({ target, onClose, onComplete }: AssembleModalProp
                 className="text-center py-4 text-[#00FF41] font-mono font-bold text-lg animate-pulse"
                 style={{ textShadow: '0 0 10px rgba(0,255,65,0.8)' }}
               >
-                NFT ASSEMBLED SUCCESSFULLY!
+                _unITM ASSEMBLED SUCCESSFULLY!
               </div>
             ) : (
               <div className="text-[#00AA2A] text-xs">
-                This will permanently consume your slices and add the NFT to your inventory.
+                This will permanently consume your _unSLC and add the _unITM to your inventory.
               </div>
             )}
 

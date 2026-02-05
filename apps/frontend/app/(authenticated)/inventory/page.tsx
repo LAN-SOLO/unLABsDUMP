@@ -221,7 +221,7 @@ export default function InventoryPage() {
                   <h1 className="text-2xl font-bold text-[#00FF41]">Inventory</h1>
                 </div>
                 <div className="ml-7 border-l border-dashed border-[#00FF41]/20 pl-4">
-                  <p className="text-sm text-[#00AA2A]">Manage your NFT collection</p>
+                  <p className="text-sm text-[#00AA2A]">Manage your _unITM collection</p>
                 </div>
               </div>
 
@@ -290,7 +290,7 @@ export default function InventoryPage() {
         {/* Results count */}
         {!isLoading && nfts.length > 0 && (
           <p className="mb-4 text-xs text-[#1A6B35]">
-            Showing {filteredNfts.length} of {nfts.length} NFTs
+            Showing {filteredNfts.length} of {nfts.length} _unITM
           </p>
         )}
 

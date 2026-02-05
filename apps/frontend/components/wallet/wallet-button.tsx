@@ -69,7 +69,14 @@ export function WalletButton() {
       await signIn()
       toast.success('Signed in successfully')
     } catch (err) {
-      toast.error(err instanceof Error ? err.message : 'Sign in failed')
+      // Handle wallet disconnection during signing gracefully
+      const message = err instanceof Error ? err.message : 'Sign in failed'
+      if (message.includes('disconnected') || message.includes('Disconnected')) {
+        // User disconnected wallet - don't show error, just reset state
+        autoSignInAttempted.current = false
+      } else {
+        toast.error(message)
+      }
     } finally {
       setIsSigningIn(false)
     }

@@ -50,13 +50,15 @@ export function SliceInventory({ onAssemblyComplete }: SliceInventoryProps) {
 
   return (
     <div className="p-4 space-y-3">
-      <h4 className="text-[#00FF41] text-xs font-bold uppercase tracking-wider">Slice Inventory</h4>
+      <h4 className="text-[#00FF41] text-xs font-bold uppercase tracking-wider">
+        _unSLC Inventory
+      </h4>
 
       {isLoading ? (
-        <div className="text-[#1A3A2A] text-xs font-mono">Loading slices...</div>
+        <div className="text-[#1A3A2A] text-xs font-mono">Loading _unSLC...</div>
       ) : slices.length === 0 ? (
         <div className="text-[#1A3A2A] text-xs font-mono py-4 text-center">
-          No slices yet. Start mining to earn slices!
+          No _unSLC yet. Start mining to earn _unSLC!
         </div>
       ) : (
         <div className="space-y-3">
