@@ -1,9 +1,15 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import dynamic from 'next/dynamic'
 import { useWallet } from '@solana/wallet-adapter-react'
-import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import bs58 from 'bs58'
+
+// Dynamic import to avoid SSR hydration mismatch with wallet adapter
+const WalletMultiButton = dynamic(
+  () => import('@solana/wallet-adapter-react-ui').then((mod) => mod.WalletMultiButton),
+  { ssr: false, loading: () => <div className="h-10 w-40 bg-[#00FF41]/20 rounded animate-pulse" /> }
+)
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, Wallet } from 'lucide-react'
