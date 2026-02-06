@@ -169,7 +169,7 @@ export function ProfileCard() {
 
               <div className="space-y-1">
                 <label className="text-xs font-medium text-[#1A6B35] uppercase tracking-wider">
-                  NFTs Owned (on-chain)
+                  _unITM Owned (on-chain)
                 </label>
                 <p className="text-lg font-semibold text-[#00FF41]">{profile.nft_count ?? 0}</p>
               </div>

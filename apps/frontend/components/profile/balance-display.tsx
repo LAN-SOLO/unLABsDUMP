@@ -110,12 +110,12 @@ export function BalanceDisplay() {
           </CardContent>
         </Card>
 
-        {/* NFT Count */}
+        {/* _unITM Count */}
         <Card className="bg-[#0D1117] border-[#0D3B1E]">
           <CardHeader className="pb-2">
             <CardTitle className="text-xs font-medium text-[#00AA2A] flex items-center gap-1.5">
               <Image className="h-4 w-4 text-[#00FF41]" />
-              NFTs
+              _unITM
             </CardTitle>
           </CardHeader>
           <CardContent>

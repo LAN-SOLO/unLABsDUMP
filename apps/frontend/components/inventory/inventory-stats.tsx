@@ -49,7 +49,7 @@ export function InventoryStats({ stats, isLoading }: InventoryStatsProps) {
 
   const statItems = [
     {
-      label: 'Total NFTs',
+      label: 'Total _unITM',
       value: stats.totalNfts,
       icon: Package,
       color: 'text-[#00FFFF]',

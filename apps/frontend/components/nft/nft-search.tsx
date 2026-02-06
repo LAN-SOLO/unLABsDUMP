@@ -17,7 +17,7 @@ interface NFTSearchProps {
 export function NFTSearch({
   value,
   onChange,
-  placeholder = 'Search NFTs by name, capture, or description...',
+  placeholder = 'Search _unITM by name, capture, or description...',
   className,
   debounceMs = 300,
 }: NFTSearchProps) {

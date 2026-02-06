@@ -207,7 +207,7 @@ export default function BrowsePage() {
         {!loading && (
           <div className="mb-4 text-sm text-[#1A6B35]">
             Showing <span className="text-[#00CC33]">{nfts.length}</span> of{' '}
-            <span className="text-[#00CC33]">{totalCount}</span> NFTs
+            <span className="text-[#00CC33]">{totalCount}</span> _unITM
           </div>
         )}
 

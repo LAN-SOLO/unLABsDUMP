@@ -74,10 +74,10 @@ export function PackageContents({ unscAmount, nfts }: PackageContentsProps) {
         </>
       )}
 
-      {/* NFT items */}
+      {/* _unITM items */}
       {nfts.length > 0 && (
         <div className="space-y-3">
-          <p className="text-sm text-[#00AA2A] font-medium">NFTs ({nfts.length})</p>
+          <p className="text-sm text-[#00AA2A] font-medium">_unITM ({nfts.length})</p>
           {nfts.map((nft) => {
             const tierLabel = getTierLabel(nft.metadata)
             const tierColor = getTierColor(nft.metadata)

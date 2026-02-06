@@ -104,8 +104,8 @@ export function AddressInput({ value, onChange, senderAddress, onValidation }: A
           <div>
             <p className="text-xs font-medium text-[#FFB000]">Exchange address detected</p>
             <p className="text-xs text-[#FFB000]/80">
-              Sending NFTs to exchange wallets may result in permanent loss. Exchange wallets
-              typically do not support NFT deposits. Please verify this is the correct address.
+              Sending _unITM to exchange wallets may result in permanent loss. Exchange wallets
+              typically do not support _unITM deposits. Please verify this is the correct address.
             </p>
           </div>
         </div>

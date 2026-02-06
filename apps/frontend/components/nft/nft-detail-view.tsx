@@ -382,13 +382,13 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
       <Separator className="bg-[#0D3B1E]" />
       <NFTHistory history={history} loading={historyLoading} />
 
-      {/* Related NFTs */}
+      {/* Related _unITM */}
       {relatedNfts.length > 0 && (
         <>
           <Separator className="bg-[#0D3B1E]" />
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-[#00FF41]">Related NFTs</h3>
+              <h3 className="text-lg font-semibold text-[#00FF41]">Related _unITM</h3>
               <Link
                 href={`/browse?color=${nft.color}&tier=${nft.tier}`}
                 className="text-sm text-[#00FF41] hover:text-[#00CC33] transition-colors"

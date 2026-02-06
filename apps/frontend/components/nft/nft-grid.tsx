@@ -18,7 +18,7 @@ export function NFTGrid({
   loading = false,
   skeletonCount = 12,
   onQuickView,
-  emptyMessage = 'No NFTs found matching your criteria.',
+  emptyMessage = 'No _unITM found matching your criteria.',
 }: NFTGridProps) {
   if (loading) {
     return (
@@ -34,7 +34,7 @@ export function NFTGrid({
     return (
       <div className="flex flex-col items-center justify-center py-20 px-4">
         <PackageOpen className="size-16 text-[#1A6B35] mb-4" />
-        <h3 className="text-lg font-medium text-[#00CC33] mb-2">No NFTs Found</h3>
+        <h3 className="text-lg font-medium text-[#00CC33] mb-2">No _unITM Found</h3>
         <p className="text-[#1A6B35] text-sm text-center max-w-md">{emptyMessage}</p>
       </div>
     )

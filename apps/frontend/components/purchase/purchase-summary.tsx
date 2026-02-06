@@ -41,7 +41,7 @@ export function PurchaseSummary({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2 text-[#00CC33]">
               <ImageIcon className="size-4 text-[#00FF41]" />
-              <span>NFTs</span>
+              <span>_unITM</span>
             </div>
             <span className="text-[#00FF41]">
               {nftCount} item{nftCount !== 1 ? 's' : ''}

@@ -63,7 +63,7 @@ export function InventoryFilters({ filters, onFilterChange, onReset }: Inventory
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#00AA2A]" />
           <Input
-            placeholder="Search NFTs..."
+            placeholder="Search _unITM..."
             value={filters.search}
             onChange={(e) => updateFilter('search', e.target.value)}
             className="border-[#1A3A2A] bg-[#111318] pl-9 text-[#00FF41] placeholder:text-[#1A6B35] focus-visible:border-[#00FF41] focus-visible:ring-[#00FF41]/20"

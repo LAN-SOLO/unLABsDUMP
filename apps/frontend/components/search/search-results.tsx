@@ -42,8 +42,8 @@ export function SearchResults({
         skeletonCount={8}
         emptyMessage={
           searchPerformed
-            ? 'No NFTs match your search criteria. Try adjusting your filters.'
-            : 'Use the search form above to find NFTs.'
+            ? 'No _unITM match your search criteria. Try adjusting your filters.'
+            : 'Use the search form above to find _unITM.'
         }
       />
     </div>

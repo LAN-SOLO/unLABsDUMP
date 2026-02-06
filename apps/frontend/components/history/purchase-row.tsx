@@ -105,7 +105,7 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
             size="sm"
             className="border-[#1A3A2A] text-[#00CC33] hover:text-[#00FF41] hover:border-[#00FF41]/50"
           >
-            <Link href={`/profile?tab=nfts`}>View NFTs</Link>
+            <Link href={`/profile?tab=nfts`}>View _unITM</Link>
           </Button>
         )}
       </div>
