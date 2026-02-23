@@ -57,24 +57,27 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
-    // Reset failed attempts on successful login
-    await supabase
-      .from('admins')
-      .update({ failed_login_attempts: 0, locked_until: null })
-      .eq('id', admin.id)
-
-    // Check if 2FA is enabled
+    // Check if 2FA is enabled — reset attempts but defer last_login until 2FA passes
     if (admin.totp_enabled) {
+      await supabase
+        .from('admins')
+        .update({ failed_login_attempts: 0, locked_until: null })
+        .eq('id', admin.id)
+
       return NextResponse.json({
         requires2FA: true,
         adminId: admin.id,
       })
     }
 
-    // Update last login
+    // Reset failed attempts + update last login in single query
     await supabase
       .from('admins')
-      .update({ last_login: new Date().toISOString() })
+      .update({
+        failed_login_attempts: 0,
+        locked_until: null,
+        last_login: new Date().toISOString(),
+      })
       .eq('id', admin.id)
 
     // Create session

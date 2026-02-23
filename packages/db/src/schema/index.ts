@@ -71,6 +71,19 @@ export const notificationTypeEnum = pgEnum('notification_type', [
   'system',
 ])
 
+// Dev access log event types
+export const devAccessEventTypeEnum = pgEnum('dev_access_event_type', [
+  'challenge_issued',
+  'signature_verified',
+  'passphrase_verified',
+  'session_created',
+  'access_denied',
+  'session_expired',
+  'session_validated',
+  'logout',
+  'lockout_triggered',
+])
+
 // ============================================================================
 // 1. ADMINS TABLE
 // ============================================================================
@@ -598,5 +611,30 @@ export const mintPoolAssemblies = pgTable(
     index('idx_pool_assemblies_player').on(table.playerId),
     index('idx_pool_assemblies_nft').on(table.nftId),
     index('idx_pool_assemblies_status').on(table.status),
+  ]
+)
+
+// ============================================================================
+// 19. DEV ACCESS LOGS TABLE
+// ============================================================================
+
+export const devAccessLogs = pgTable(
+  'dev_access_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    eventType: devAccessEventTypeEnum('event_type').notNull(),
+    walletAddress: text('wallet_address'),
+    ipAddress: text('ip_address').notNull(),
+    userAgent: text('user_agent'),
+    fingerprintHash: text('fingerprint_hash'),
+    success: boolean('success').notNull(),
+    failureReason: text('failure_reason'),
+    metadata: jsonb('metadata').default({}),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('idx_dev_access_logs_wallet').on(table.walletAddress),
+    index('idx_dev_access_logs_ip').on(table.ipAddress),
+    index('idx_dev_access_logs_created').on(table.createdAt),
   ]
 )

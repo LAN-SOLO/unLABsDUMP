@@ -85,7 +85,7 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
             {step === 'confirm' && 'Review the purchase details'}
             {step === 'signing' && 'Please approve the transaction in your wallet'}
             {step === 'result' &&
-              (purchaseSuccess ? 'You now own this NFT' : 'Something went wrong')}
+              (purchaseSuccess ? 'You now own this _unITM' : 'Something went wrong')}
           </DialogDescription>
         </DialogHeader>
 
@@ -122,7 +122,7 @@ export function BuyModal({ open, onOpenChange, listing, onPurchase }: BuyModalPr
             {/* Price Breakdown */}
             <div className="space-y-2 rounded-sm bg-[#0D3B1E]/10 p-3">
               <div className="flex justify-between text-sm">
-                <span className="text-[#00AA2A]">NFT Price</span>
+                <span className="text-[#00AA2A]">_unITM Price</span>
                 <span className="text-[#00FF41]">{formatSol(listing.priceInSol)} SOL</span>
               </div>
               <div className="flex justify-between text-sm">

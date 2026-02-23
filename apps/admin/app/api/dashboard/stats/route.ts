@@ -13,88 +13,90 @@ export async function GET() {
 
     const supabase = await createClient()
 
-    // Get NFT counts
-    const { count: totalNfts } = await supabase
-      .from('nfts')
-      .select('*', { count: 'exact', head: true })
-      .neq('status', 'deleted')
-
-    const { count: activeNfts } = await supabase
-      .from('nfts')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active')
-
-    // Get package counts
-    const { count: totalPackages } = await supabase
-      .from('packages')
-      .select('*', { count: 'exact', head: true })
-
-    const { count: activePackages } = await supabase
-      .from('packages')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_active', true)
-
-    const { count: featuredPackages } = await supabase
-      .from('packages')
-      .select('*', { count: 'exact', head: true })
-      .eq('is_featured', true)
-
-    // Get delivery counts
-    const { count: pendingDeliveries } = await supabase
-      .from('deliveries')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'pending')
-
-    const { count: processingDeliveries } = await supabase
-      .from('deliveries')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'processing')
-
-    const { count: completedDeliveries } = await supabase
-      .from('deliveries')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'completed')
-
-    // Get burn totals
-    const { data: burnData } = await supabase
-      .from('burn_events')
-      .select('amount')
-      .eq('status', 'completed')
-
-    let totalBurned = 0
-    burnData?.forEach((burn) => {
-      totalBurned += burn.amount
-    })
-
-    // Get this month's burns
     const thisMonth = new Date()
     thisMonth.setDate(1)
     thisMonth.setHours(0, 0, 0, 0)
 
-    const { data: thisMonthBurnData } = await supabase
-      .from('burn_events')
-      .select('amount')
-      .eq('status', 'completed')
-      .gte('created_at', thisMonth.toISOString())
+    const sevenDaysAgo = new Date()
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
+    sevenDaysAgo.setHours(0, 0, 0, 0)
+
+    // Run ALL independent count queries in parallel
+    const [
+      totalNftsResult,
+      activeNftsResult,
+      totalPackagesResult,
+      activePackagesResult,
+      featuredPackagesResult,
+      pendingDeliveriesResult,
+      processingDeliveriesResult,
+      completedDeliveriesResult,
+      burnDataResult,
+      thisMonthBurnResult,
+      totalPlayersResult,
+      recentActivityResult,
+      // Batch: last 7 days of purchases and deliveries
+      recentPurchasesResult,
+      recentCompletedDeliveriesResult,
+      inventoryAlerts,
+    ] = await Promise.all([
+      supabase.from('nfts').select('id', { count: 'exact', head: true }).neq('status', 'deleted'),
+      supabase.from('nfts').select('id', { count: 'exact', head: true }).eq('status', 'active'),
+      supabase.from('packages').select('id', { count: 'exact', head: true }),
+      supabase.from('packages').select('id', { count: 'exact', head: true }).eq('is_active', true),
+      supabase
+        .from('packages')
+        .select('id', { count: 'exact', head: true })
+        .eq('is_featured', true),
+      supabase
+        .from('deliveries')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'pending'),
+      supabase
+        .from('deliveries')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'processing'),
+      supabase
+        .from('deliveries')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'completed'),
+      // Fetch burn amounts (completed only) - single query instead of full table scan
+      supabase.from('burn_events').select('amount, created_at').eq('status', 'completed'),
+      // This month burns - redundant with above but keeps logic clear
+      supabase
+        .from('burn_events')
+        .select('amount')
+        .eq('status', 'completed')
+        .gte('created_at', thisMonth.toISOString()),
+      supabase.from('players').select('id', { count: 'exact', head: true }),
+      supabase
+        .from('audit_logs')
+        .select('id, action, entity_type, created_at, admin:admins(email)')
+        .order('created_at', { ascending: false })
+        .limit(10),
+      // Batch fetch last 7 days: get all purchases in range (just created_at for grouping)
+      supabase.from('purchases').select('created_at').gte('created_at', sevenDaysAgo.toISOString()),
+      // Batch fetch last 7 days: get all completed deliveries in range
+      supabase
+        .from('deliveries')
+        .select('completed_at')
+        .eq('status', 'completed')
+        .gte('completed_at', sevenDaysAgo.toISOString()),
+      getInventoryAlerts(supabase),
+    ])
+
+    // Calculate burn totals from single query
+    let totalBurned = 0
+    burnDataResult.data?.forEach((burn) => {
+      totalBurned += burn.amount
+    })
 
     let thisMonthBurned = 0
-    thisMonthBurnData?.forEach((burn) => {
+    thisMonthBurnResult.data?.forEach((burn) => {
       thisMonthBurned += burn.amount
     })
 
-    // Get player count
-    const { count: totalPlayers } = await supabase
-      .from('players')
-      .select('*', { count: 'exact', head: true })
-
-    // Get recent activity
-    const { data: recentActivity } = await supabase
-      .from('audit_logs')
-      .select('id, action, entity_type, created_at, admin:admins(email)')
-      .order('created_at', { ascending: false })
-      .limit(10)
-
-    // Get sales data for chart (last 7 days)
+    // Build 7-day chart from batch data (client-side grouping instead of 14 queries)
     const last7Days: Array<{ date: string; sales: number; deliveries: number }> = []
     for (let i = 6; i >= 0; i--) {
       const date = new Date()
@@ -104,52 +106,49 @@ export async function GET() {
       const nextDate = new Date(date)
       nextDate.setDate(nextDate.getDate() + 1)
 
-      const { count: daySales } = await supabase
-        .from('purchases')
-        .select('*', { count: 'exact', head: true })
-        .gte('created_at', date.toISOString())
-        .lt('created_at', nextDate.toISOString())
+      const dateStr = date.toISOString()
+      const nextDateStr = nextDate.toISOString()
 
-      const { count: dayDeliveries } = await supabase
-        .from('deliveries')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'completed')
-        .gte('completed_at', date.toISOString())
-        .lt('completed_at', nextDate.toISOString())
+      const daySales =
+        recentPurchasesResult.data?.filter(
+          (p) => p.created_at >= dateStr && p.created_at < nextDateStr
+        ).length || 0
+
+      const dayDeliveries =
+        recentCompletedDeliveriesResult.data?.filter(
+          (d) => d.completed_at && d.completed_at >= dateStr && d.completed_at < nextDateStr
+        ).length || 0
 
       last7Days.push({
         date: date.toISOString().split('T')[0],
-        sales: daySales || 0,
-        deliveries: dayDeliveries || 0,
+        sales: daySales,
+        deliveries: dayDeliveries,
       })
     }
 
-    // Get inventory alerts
-    const inventoryAlerts = await getInventoryAlerts(supabase)
-
     return NextResponse.json({
       nfts: {
-        total: totalNfts || 0,
-        active: activeNfts || 0,
+        total: totalNftsResult.count || 0,
+        active: activeNftsResult.count || 0,
       },
       packages: {
-        total: totalPackages || 0,
-        active: activePackages || 0,
-        featured: featuredPackages || 0,
+        total: totalPackagesResult.count || 0,
+        active: activePackagesResult.count || 0,
+        featured: featuredPackagesResult.count || 0,
       },
       deliveries: {
-        pending: pendingDeliveries || 0,
-        processing: processingDeliveries || 0,
-        completed: completedDeliveries || 0,
+        pending: pendingDeliveriesResult.count || 0,
+        processing: processingDeliveriesResult.count || 0,
+        completed: completedDeliveriesResult.count || 0,
       },
       burns: {
         total: totalBurned,
         thisMonth: thisMonthBurned,
       },
       players: {
-        total: totalPlayers || 0,
+        total: totalPlayersResult.count || 0,
       },
-      recentActivity: recentActivity || [],
+      recentActivity: recentActivityResult.data || [],
       charts: {
         last7Days,
       },

@@ -93,7 +93,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'relative px-3 py-2 text-sm font-medium transition-colors rounded-sm uppercase tracking-wider',
+                    'relative px-3 py-2 text-sm font-medium transition-colors rounded-sm uppercase tracking-wider whitespace-nowrap',
                     isActive
                       ? 'text-[#00FF41]'
                       : 'text-[#00AA2A] hover:text-[#00FF41] hover:bg-[#0D3B1E]/50'

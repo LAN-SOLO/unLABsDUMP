@@ -19,63 +19,73 @@ export async function GET() {
 
     const supabase = await createSupabaseAdminClient()
 
-    // Get current/latest round
+    // Get current/latest round (only needed columns)
     const { data: currentRound } = await supabase
       .from('mint_pool_rounds')
-      .select('*')
+      .select(
+        'id, round_number, status, difficulty, duration_seconds, total_hashes_submitted, total_participants, total_slices_awarded, nft_pool_ids, starts_at, ends_at'
+      )
       .in('status', ['active', 'pending'])
       .order('round_number', { ascending: false })
       .limit(1)
       .single()
 
-    // Get player's participation in current round
-    let playerStats = null
-    if (currentRound) {
-      const { data } = await supabase
-        .from('mint_pool_participants')
-        .select('*')
-        .eq('round_id', currentRound.id)
+    // Run independent count queries in parallel
+    const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString()
+
+    const [
+      playerStatsResult,
+      poolNftCountResult,
+      minersOnlineResult,
+      totalRoundsResult,
+      playerSlicesResult,
+      playerAssembliesResult,
+    ] = await Promise.all([
+      // Player's participation in current round
+      currentRound
+        ? supabase
+            .from('mint_pool_participants')
+            .select(
+              'id, hashes_submitted, valid_hashes_submitted, click_mine_count, staked_unsc, hash_rate_multiplier, effective_shares, slices_earned, last_activity_at'
+            )
+            .eq('round_id', currentRound.id)
+            .eq('player_id', session.playerId)
+            .single()
+        : Promise.resolve({ data: null }),
+      // Count hidden NFTs in pool
+      supabase.from('nfts').select('id', { count: 'exact', head: true }).eq('status', 'hidden'),
+      // Count active miners
+      currentRound
+        ? supabase
+            .from('mint_pool_participants')
+            .select('id', { count: 'exact', head: true })
+            .eq('round_id', currentRound.id)
+            .gte('last_activity_at', fiveMinutesAgo)
+        : Promise.resolve({ count: 0 }),
+      // Count completed rounds
+      supabase
+        .from('mint_pool_rounds')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'completed'),
+      // Count player's total slices
+      supabase
+        .from('mint_pool_slices')
+        .select('id', { count: 'exact', head: true })
+        .eq('player_id', session.playerId),
+      // Count player's assemblies
+      supabase
+        .from('mint_pool_assemblies')
+        .select('id', { count: 'exact', head: true })
         .eq('player_id', session.playerId)
-        .single()
-      playerStats = data
-    }
+        .eq('status', 'completed'),
+    ])
 
-    // Count hidden NFTs in pool
-    const { count: poolNftCount } = await supabase
-      .from('nfts')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'hidden')
-
-    // Count active miners in current round
-    let minersOnline = 0
-    if (currentRound) {
-      const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000).toISOString()
-      const { count } = await supabase
-        .from('mint_pool_participants')
-        .select('*', { count: 'exact', head: true })
-        .eq('round_id', currentRound.id)
-        .gte('last_activity_at', fiveMinutesAgo)
-      minersOnline = count || 0
-    }
-
-    // Count completed rounds
-    const { count: totalRoundsCompleted } = await supabase
-      .from('mint_pool_rounds')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'completed')
-
-    // Count player's total slices
-    const { count: playerTotalSlices } = await supabase
-      .from('mint_pool_slices')
-      .select('*', { count: 'exact', head: true })
-      .eq('player_id', session.playerId)
-
-    // Count player's assemblies
-    const { count: playerAssemblies } = await supabase
-      .from('mint_pool_assemblies')
-      .select('*', { count: 'exact', head: true })
-      .eq('player_id', session.playerId)
-      .eq('status', 'completed')
+    const playerStats = playerStatsResult.data
+    const poolNftCount = poolNftCountResult.count
+    const minersOnline = minersOnlineResult.count || 0
+    const totalRoundsCompleted = totalRoundsResult.count
+    const playerTotalSlices = playerSlicesResult.count
+    const playerAssemblies = playerAssembliesResult.count
 
     return NextResponse.json({
       current_round: currentRound || null,

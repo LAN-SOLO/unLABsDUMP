@@ -27,7 +27,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       .from('deliveries')
       .select(
         `
-        *,
+        id, status, player_id, updated_at,
         player:players(id, wallet_address),
         nfts:delivery_nfts(nft:nfts(id, name, mint_address))
       `
@@ -85,28 +85,30 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         })
         .eq('id', id)
 
-      // Update NFT ownership records
-      for (const deliveryNft of nfts) {
-        const nft = deliveryNft.nft
-        if (nft) {
-          // Create ownership history record
-          await supabase.from('nft_ownership_history').insert({
-            nft_id: nft.id,
+      // Batch update NFT ownership records (instead of per-NFT queries)
+      const now = new Date().toISOString()
+      const nftIds = nfts.map((d) => d.nft?.id).filter(Boolean) as string[]
+
+      if (nftIds.length > 0) {
+        // Batch insert ownership history
+        await supabase.from('nft_ownership_history').insert(
+          nftIds.map((nftId) => ({
+            nft_id: nftId,
             player_id: delivery.player_id,
             acquisition_type: 'delivery',
-            acquired_at: new Date().toISOString(),
-          })
+            acquired_at: now,
+          }))
+        )
 
-          // Update NFT status
-          await supabase
-            .from('nfts')
-            .update({
-              status: 'transferred',
-              current_owner_id: delivery.player_id,
-              updated_at: new Date().toISOString(),
-            })
-            .eq('id', nft.id)
-        }
+        // Batch update NFT statuses
+        await supabase
+          .from('nfts')
+          .update({
+            status: 'transferred',
+            current_owner_id: delivery.player_id,
+            updated_at: now,
+          })
+          .in('id', nftIds)
       }
 
       // Log audit

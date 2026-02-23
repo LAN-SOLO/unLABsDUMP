@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 const MAX_CHARS = 500
-const DEFAULT_TEMPLATE = "Hi, I'm interested in this NFT. Is it still available?"
+const DEFAULT_TEMPLATE = "Hi, I'm interested in this _unITM. Is it still available?"
 
 interface MessageInputProps {
   value?: string
@@ -26,7 +26,7 @@ export function MessageInput({
   // Pre-fill with template when nftName changes
   useEffect(() => {
     if (nftName && !value) {
-      const template = `Hi, I'm interested in your NFT "${nftName}". Is it still available?`
+      const template = `Hi, I'm interested in your _unITM "${nftName}". Is it still available?`
       setMessage(template)
       onChange(template)
     }
@@ -52,7 +52,7 @@ export function MessageInput({
 
   const handleUseTemplate = useCallback(() => {
     const template = nftName
-      ? `Hi, I'm interested in your NFT "${nftName}". Is it still available?`
+      ? `Hi, I'm interested in your _unITM "${nftName}". Is it still available?`
       : DEFAULT_TEMPLATE
     setMessage(template)
     onChange(template)

@@ -21,8 +21,13 @@ export async function GET(request: NextRequest) {
 
     const offset = (page - 1) * limit
 
-    // Build query
-    let query = supabase.from('nfts').select('*', { count: 'exact' })
+    // Build query (explicit columns to avoid over-fetching)
+    let query = supabase
+      .from('nfts')
+      .select(
+        'id, name, description, status, image_url, thumbnail_url, metadata, rarity_score, owner_id, owner_wallet, mint_address, created_at, updated_at',
+        { count: 'exact' }
+      )
 
     // Search filter (name, description, capture)
     if (search) {

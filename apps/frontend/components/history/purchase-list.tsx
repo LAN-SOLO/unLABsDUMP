@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Search, SlidersHorizontal, ShoppingBag, Loader2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -59,8 +59,11 @@ export function PurchaseList() {
   const [hasMore, setHasMore] = useState(false)
   const [total, setTotal] = useState(0)
 
+  const abortRef = useRef<AbortController | null>(null)
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   const fetchPurchases = useCallback(
-    async (reset = false) => {
+    async (reset = false, signal?: AbortSignal) => {
       setIsLoading(true)
       const currentPage = reset ? 1 : page
 
@@ -72,7 +75,7 @@ export function PurchaseList() {
         params.set('page', currentPage.toString())
         params.set('limit', '20')
 
-        const res = await fetch(`/api/purchases?${params.toString()}`)
+        const res = await fetch(`/api/purchases?${params.toString()}`, { signal })
         const data = await res.json()
 
         if (data.success) {
@@ -87,6 +90,7 @@ export function PurchaseList() {
           setTotal(data.data.total)
         }
       } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return
         console.error('Failed to fetch purchases:', error)
       }
 
@@ -95,15 +99,31 @@ export function PurchaseList() {
     [statusFilter, search, sortOrder, page]
   )
 
-  // Reset page on filter/sort/search change
+  // Reset page on filter/sort/search change (debounced)
   useEffect(() => {
-    setPage(1)
-    fetchPurchases(true)
+    abortRef.current?.abort()
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    debounceRef.current = setTimeout(() => {
+      setPage(1)
+      fetchPurchases(true, controller.signal)
+    }, 300)
+
+    return () => {
+      controller.abort()
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
   }, [statusFilter, search, sortOrder])
 
   useEffect(() => {
     if (page > 1) {
-      fetchPurchases()
+      abortRef.current?.abort()
+      const controller = new AbortController()
+      abortRef.current = controller
+      fetchPurchases(false, controller.signal)
     }
   }, [page])
 

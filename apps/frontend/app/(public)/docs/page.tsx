@@ -13,7 +13,7 @@ import { TerminalFrame } from '@/components/ui/terminal-frame'
 const SECTIONS = [
   { id: 'getting-started', label: 'Getting Started', icon: Book },
   { id: 'authentication', label: 'Authentication', icon: Key },
-  { id: 'nft-endpoints', label: 'NFT Endpoints', icon: Box },
+  { id: 'nft-endpoints', label: '_unITM Endpoints', icon: Box },
   { id: 'ownership', label: 'Ownership Verification', icon: Shield },
   { id: 'websocket', label: 'WebSocket Events', icon: Radio },
   { id: 'errors', label: 'Error Handling', icon: AlertTriangle },
@@ -79,8 +79,8 @@ export default function DocsPage() {
                 </h1>
                 <div className="mt-3 border-l border-dashed border-[#00FFFF]/20 pl-4">
                   <p className="max-w-2xl text-lg text-[#00AA2A]">
-                    Integrate NFT data into your game. Verify ownership, fetch player inventories,
-                    and receive real-time updates via WebSocket.
+                    Integrate _unITM data into your game. Verify ownership, fetch player
+                    inventories, and receive real-time updates via WebSocket.
                   </p>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default function DocsPage() {
           <section id="getting-started" className="mb-16">
             <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">Getting Started</h2>
             <p className="mb-6 text-[#00AA2A]">
-              The UnstableLabs Game API provides programmatic access to NFT data for game
+              The UnstableLabs Game API provides programmatic access to _unITM data for game
               integration. All API requests are authenticated via API key and return JSON responses.
             </p>
 
@@ -101,7 +101,7 @@ export default function DocsPage() {
 
               <h3 className="mb-3 mt-6 text-lg font-semibold text-[#00FF41]">Quick Start</h3>
               <CodeBlock
-                code={`// Fetch player NFTs
+                code={`// Fetch player _unITM
 const response = await fetch(
   'https://your-domain.com/api/game/nfts/WALLET_ADDRESS',
   {
@@ -194,16 +194,16 @@ const api = new UnstableLabsAPI(
 
           <Separator className="my-12 bg-[#111318]" />
 
-          {/* NFT Endpoints */}
+          {/* _unITM Endpoints */}
           <section id="nft-endpoints" className="mb-16">
-            <h2 className="mb-6 text-2xl font-bold text-[#00FF41]">NFT Endpoints</h2>
+            <h2 className="mb-6 text-2xl font-bold text-[#00FF41]">_unITM Endpoints</h2>
 
             <div className="space-y-8">
-              {/* Get Player NFTs */}
+              {/* Get Player _unITM */}
               <EndpointCard
                 method="GET"
                 path="/api/game/nfts/{wallet}"
-                description="Retrieve all NFTs owned by a player identified by their Solana wallet address. Results are cached for 60 seconds."
+                description="Retrieve all _unITM owned by a player identified by their Solana wallet address. Results are cached for 60 seconds."
                 parameters={[
                   {
                     name: 'wallet',
@@ -242,7 +242,7 @@ const api = new UnstableLabsAPI(
           "element": "cosmic"
         },
         "collection_id": "weapons-v1",
-        "created_at": "2025-01-15T10:00:00Z"
+        "created_at": "2026-01-15T10:00:00Z"
       }
     ],
     "total": 1,
@@ -251,17 +251,17 @@ const api = new UnstableLabsAPI(
 }`}
               />
 
-              {/* Get Single NFT */}
+              {/* Get Single _unITM */}
               <EndpointCard
                 method="GET"
                 path="/api/game/nft/{id}"
-                description="Retrieve detailed information about a single NFT by its ID. Results are cached for 60 seconds."
+                description="Retrieve detailed information about a single _unITM by its ID. Results are cached for 60 seconds."
                 parameters={[
                   {
                     name: 'id',
                     type: 'string (UUID)',
                     required: true,
-                    description: 'The unique ID of the NFT',
+                    description: 'The unique ID of the _unITM',
                     location: 'path',
                   },
                   {
@@ -294,8 +294,8 @@ const api = new UnstableLabsAPI(
         "element": "cosmic"
       },
       "collection_id": "weapons-v1",
-      "created_at": "2025-01-15T10:00:00Z",
-      "updated_at": "2025-02-01T12:30:00Z"
+      "created_at": "2026-01-15T10:00:00Z",
+      "updated_at": "2026-02-01T12:30:00Z"
     }
   }
 }`}
@@ -309,14 +309,14 @@ const api = new UnstableLabsAPI(
           <section id="ownership" className="mb-16">
             <h2 className="mb-6 text-2xl font-bold text-[#00FF41]">Ownership Verification</h2>
             <p className="mb-6 text-[#00AA2A]">
-              Verify whether a player owns a specific NFT. Useful for gating in-game content or
-              features behind NFT ownership.
+              Verify whether a player owns a specific _unITM. Useful for gating in-game content or
+              features behind _unITM ownership.
             </p>
 
             <EndpointCard
               method="POST"
               path="/api/game/verify-ownership"
-              description="Verify that a given wallet address owns a specific NFT. Returns a boolean ownership result."
+              description="Verify that a given wallet address owns a specific _unITM. Returns a boolean ownership result."
               parameters={[
                 {
                   name: 'X-API-Key',
@@ -336,7 +336,7 @@ const api = new UnstableLabsAPI(
                   name: 'nft_id',
                   type: 'string (UUID)',
                   required: true,
-                  description: 'The NFT ID to check ownership for',
+                  description: 'The _unITM ID to check ownership for',
                   location: 'body',
                 },
               ]}
@@ -369,7 +369,7 @@ const api = new UnstableLabsAPI(
                 Game Integration Example
               </h3>
               <p className="mb-4 text-sm text-[#00AA2A]">
-                Here is how you might gate content in a game server based on NFT ownership.
+                Here is how you might gate content in a game server based on _unITM ownership.
               </p>
               <CodeBlock
                 code={`// Game server middleware example
@@ -395,15 +395,15 @@ async function requireNFT(nftId: string) {
     const data = await response.json();
 
     if (!data.success || !data.data.owns) {
-      throw new Error('Player does not own the required NFT');
+      throw new Error('Player does not own the required _unITM');
     }
 
-    // Player owns the NFT, proceed
+    // Player owns the _unITM, proceed
     return true;
   };
 }
 
-// Usage: Gate a legendary dungeon behind NFT ownership
+// Usage: Gate a legendary dungeon behind _unITM ownership
 app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
                 language="typescript"
               />
@@ -417,7 +417,7 @@ app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
             <h2 className="mb-4 text-2xl font-bold text-[#00FF41]">WebSocket Events</h2>
             <p className="mb-6 text-[#00AA2A]">
               Subscribe to real-time updates using Supabase Realtime channels. Listen for changes to
-              purchases, NFTs, and trades scoped to specific players.
+              purchases, _unITM, and trades scoped to specific players.
             </p>
 
             <Card className="border-[#0D3B1E] bg-[#0D1117]/50 p-6">
@@ -445,7 +445,7 @@ app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
                     <span className="text-sm text-[#00AA2A]">WHERE owner_id = currentPlayer</span>
                   </div>
                   <p className="mt-2 text-sm text-[#00CC33]">
-                    Fired when an NFT is added, updated, or removed from the player's inventory.
+                    Fired when an _unITM is added, updated, or removed from the player's inventory.
                   </p>
                 </div>
 
@@ -470,7 +470,7 @@ app.get('/dungeon/legendary', requireNFT('cosmic-blade-uuid'), handler);`}
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Subscribe to player's NFT changes
+// Subscribe to player's _unITM changes
 const channel = supabase
   .channel('player-nfts')
   .on(
@@ -482,18 +482,18 @@ const channel = supabase
       filter: \`owner_id=eq.\${playerId}\`,
     },
     (payload) => {
-      console.log('NFT change:', payload.eventType);
+      console.log('_unITM change:', payload.eventType);
       console.log('New data:', payload.new);
 
       switch (payload.eventType) {
         case 'INSERT':
-          handleNewNFT(payload.new);
+          handleNewItem(payload.new);
           break;
         case 'UPDATE':
-          handleNFTUpdate(payload.new);
+          handleItemUpdate(payload.new);
           break;
         case 'DELETE':
-          handleNFTRemoved(payload.old);
+          handleItemRemoved(payload.old);
           break;
       }
     }
@@ -512,11 +512,11 @@ channel.unsubscribe();`}
                 code={`{
   "eventType": "INSERT" | "UPDATE" | "DELETE",
   "new": {
-    "id": "nft-uuid",
+    "id": "item-uuid",
     "name": "Cosmic Blade",
     "owner_id": "player-uuid",
     "rarity": "legendary",
-    // ... full NFT record
+    // ... full _unITM record
   },
   "old": {
     // Previous record data (for UPDATE/DELETE)
@@ -619,9 +619,9 @@ channel.unsubscribe();`}
                         </Badge>
                       </td>
                       <td className="py-2.5 pr-4">
-                        <code className="text-[#FF3333]">NFT_NOT_FOUND</code>
+                        <code className="text-[#FF3333]">ITEM_NOT_FOUND</code>
                       </td>
-                      <td className="py-2.5">Requested NFT does not exist</td>
+                      <td className="py-2.5">Requested _unITM does not exist</td>
                     </tr>
                     <tr className="border-b border-[#0D3B1E]">
                       <td className="py-2.5 pr-4">
@@ -669,8 +669,8 @@ channel.unsubscribe();`}
       case 'INVALID_API_KEY':
         console.error('Check your API key configuration');
         break;
-      case 'NFT_NOT_FOUND':
-        console.log('NFT does not exist or has been burned');
+      case 'ITEM_NOT_FOUND':
+        console.log('_unITM does not exist or has been burned');
         break;
       default:
         console.error(\`API error: \${data.error.message}\`);
@@ -707,7 +707,7 @@ channel.unsubscribe();`}
                 </div>
                 <div className="rounded-sm border border-[#0D3B1E] bg-black p-4 text-center">
                   <p className="text-3xl font-bold text-[#00FF41]">200</p>
-                  <p className="mt-1 text-sm text-[#00AA2A]">Max NFTs per response</p>
+                  <p className="mt-1 text-sm text-[#00AA2A]">Max _unITM per response</p>
                 </div>
               </div>
             </Card>
@@ -721,7 +721,7 @@ channel.unsubscribe();`}
               <CodeBlock
                 code={`// Response headers on 429
 X-RateLimit-Remaining: 0
-X-RateLimit-Reset: 2025-06-15T10:01:00.000Z
+X-RateLimit-Reset: 2026-06-15T10:01:00.000Z
 Retry-After: 45`}
                 language="text"
               />

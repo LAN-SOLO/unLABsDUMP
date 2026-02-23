@@ -31,7 +31,7 @@ export function BuySuccess({
       {/* Heading */}
       <div>
         <h3 className="text-xl font-bold text-[#00FF41]">Purchase Complete!</h3>
-        <p className="mt-1 text-sm text-[#00AA2A]">Your NFT has been added to your inventory.</p>
+        <p className="mt-1 text-sm text-[#00AA2A]">Your _unITM has been added to your inventory.</p>
       </div>
 
       {/* Transaction signature */}

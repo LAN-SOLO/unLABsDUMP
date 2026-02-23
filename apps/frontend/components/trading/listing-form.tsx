@@ -106,7 +106,7 @@ export function ListingForm({ nftId, onSuccess, onError }: ListingFormProps) {
           className="mt-0.5 border-[#1A3A2A] data-[state=checked]:bg-[#00FF41] data-[state=checked]:border-[#00FF41]"
         />
         <label htmlFor="terms" className="text-xs leading-relaxed text-[#00AA2A] cursor-pointer">
-          I understand that by listing this NFT for sale, a 2.5% marketplace fee will be deducted
+          I understand that by listing this _unITM for sale, a 2.5% marketplace fee will be deducted
           from the sale price. Listings can be cancelled at any time before purchase.
         </label>
       </div>

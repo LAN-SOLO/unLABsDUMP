@@ -31,8 +31,14 @@ export async function GET(request: NextRequest) {
 
     const supabase = await createClient()
 
-    // Build query for active packages
-    let query = supabase.from('packages').select('*', { count: 'exact' }).eq('status', 'active')
+    // Build query for active packages (only needed columns)
+    let query = supabase
+      .from('packages')
+      .select(
+        'id, name, description, category, price_sol, unsc_amount, nft_ids, total_supply, sold_count, reserved_count, featured, sale_starts_at, sale_ends_at, created_at',
+        { count: 'exact' }
+      )
+      .eq('status', 'active')
 
     // Apply category filter
     if (category && category !== 'all') {
@@ -69,39 +75,47 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Fetch NFT previews for each package (up to 3 per package)
-    const packagesWithPreviews = await Promise.all(
-      (packages || []).map(async (pkg) => {
-        const nftIds = pkg.nft_ids as string[]
-        let nftPreviews: Array<{
-          id: string
-          name: string
-          thumbnail_url: string | null
-          metadata: Record<string, unknown>
-        }> = []
-
-        if (nftIds && nftIds.length > 0) {
-          const previewIds = nftIds.slice(0, 3)
-          const { data: nfts } = await supabase
-            .from('nfts')
-            .select('id, name, thumbnail_url, image_url, metadata')
-            .in('id', previewIds)
-
-          nftPreviews = (nfts || []).map((nft) => ({
-            id: nft.id,
-            name: nft.name,
-            thumbnail_url: nft.thumbnail_url || nft.image_url,
-            metadata: nft.metadata as Record<string, unknown>,
-          }))
+    // Batch-fetch NFT previews (single query instead of per-package)
+    const allPreviewIds = new Set<string>()
+    for (const pkg of packages || []) {
+      const nftIds = pkg.nft_ids as string[]
+      if (nftIds?.length > 0) {
+        for (const id of nftIds.slice(0, 3)) {
+          allPreviewIds.add(id)
         }
+      }
+    }
 
-        return {
-          ...pkg,
-          nft_previews: nftPreviews,
-          nft_count: nftIds ? nftIds.length : 0,
-        }
-      })
-    )
+    const nftMap = new Map<
+      string,
+      { id: string; name: string; thumbnail_url: string | null; metadata: Record<string, unknown> }
+    >()
+
+    if (allPreviewIds.size > 0) {
+      const { data: nfts } = await supabase
+        .from('nfts')
+        .select('id, name, thumbnail_url, image_url, metadata')
+        .in('id', Array.from(allPreviewIds))
+
+      for (const nft of nfts || []) {
+        nftMap.set(nft.id, {
+          id: nft.id,
+          name: nft.name,
+          thumbnail_url: nft.thumbnail_url || nft.image_url,
+          metadata: nft.metadata as Record<string, unknown>,
+        })
+      }
+    }
+
+    const packagesWithPreviews = (packages || []).map((pkg) => {
+      const nftIds = pkg.nft_ids as string[]
+      const previewIds = nftIds?.slice(0, 3) || []
+      return {
+        ...pkg,
+        nft_previews: previewIds.map((id) => nftMap.get(id)).filter(Boolean),
+        nft_count: nftIds ? nftIds.length : 0,
+      }
+    })
 
     return NextResponse.json({
       success: true,

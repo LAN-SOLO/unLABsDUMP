@@ -9,7 +9,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: '_unstablecoins Admin',
+  title: '_untradeADM',
   description: '_unstablecoins NFT Platform Administration',
 }
 
@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${jetbrainsMono.variable} antialiased`}>{children}</body>
+      <body className={`${jetbrainsMono.variable} antialiased`}>
+        <div className="crt">
+          {children}
+          <div className="crt-line" />
+        </div>
+      </body>
     </html>
   )
 }

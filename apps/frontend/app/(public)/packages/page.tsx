@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Package } from 'lucide-react'
 import { PackageGrid } from '@/components/packages/package-grid'
 import { PackageFilters } from '@/components/packages/package-filters'
@@ -17,42 +17,54 @@ export default function PackagesPage() {
   const [category, setCategory] = useState('all')
   const [sort, setSort] = useState('newest')
 
-  const fetchPackages = useCallback(async () => {
-    setIsLoading(true)
-    try {
-      const params = new URLSearchParams()
-      if (category !== 'all') params.set('category', category)
-      params.set('sort', sort)
-      params.set('limit', '50')
+  const abortRef = useRef<AbortController | null>(null)
 
-      const res = await fetch(`/api/packages?${params.toString()}`)
-      const data = await res.json()
+  const fetchPackages = useCallback(
+    async (signal?: AbortSignal) => {
+      setIsLoading(true)
+      try {
+        const params = new URLSearchParams()
+        if (category !== 'all') params.set('category', category)
+        params.set('sort', sort)
+        params.set('limit', '50')
 
-      if (data.success) {
-        setPackages(
-          data.data.items.map((item: Record<string, unknown>) => ({
-            id: item.id as string,
-            name: item.name as string,
-            description: item.description as string | null,
-            price_sol: item.price_sol as string,
-            unsc_amount: item.unsc_amount as string,
-            nft_count: (item.nft_count ?? 0) as number,
-            nft_previews: (item.nft_previews ?? []) as PackageCardProps['nft_previews'],
-            total_supply: item.total_supply as number | null,
-            sold_count: (item.sold_count ?? 0) as number,
-            featured: (item.featured ?? false) as boolean,
-            category: item.category as string | null,
-          }))
-        )
+        const res = await fetch(`/api/packages?${params.toString()}`, { signal })
+        const data = await res.json()
+
+        if (data.success) {
+          setPackages(
+            data.data.items.map((item: Record<string, unknown>) => ({
+              id: item.id as string,
+              name: item.name as string,
+              description: item.description as string | null,
+              price_sol: item.price_sol as string,
+              unsc_amount: item.unsc_amount as string,
+              nft_count: (item.nft_count ?? 0) as number,
+              nft_previews: (item.nft_previews ?? []) as PackageCardProps['nft_previews'],
+              total_supply: item.total_supply as number | null,
+              sold_count: (item.sold_count ?? 0) as number,
+              featured: (item.featured ?? false) as boolean,
+              category: item.category as string | null,
+            }))
+          )
+        }
+      } catch (error) {
+        if (error instanceof DOMException && error.name === 'AbortError') return
+        console.error('Failed to fetch packages:', error)
       }
-    } catch (error) {
-      console.error('Failed to fetch packages:', error)
-    }
-    setIsLoading(false)
-  }, [category, sort])
+      setIsLoading(false)
+    },
+    [category, sort]
+  )
 
   useEffect(() => {
-    fetchPackages()
+    abortRef.current?.abort()
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    fetchPackages(controller.signal)
+
+    return () => controller.abort()
   }, [fetchPackages])
 
   // Separate featured package from the rest

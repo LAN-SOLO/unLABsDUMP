@@ -58,7 +58,12 @@ export async function GET(request: NextRequest) {
     const supabase = await createClient()
 
     // Build query
-    let query = supabase.from('nfts').select('*', { count: 'exact' })
+    let query = supabase
+      .from('nfts')
+      .select(
+        'id, name, description, mint_address, status, image_url, thumbnail_url, metadata, rarity_score, collection, rarity, created_at, updated_at',
+        { count: 'exact' }
+      )
 
     // Apply filters
     if (search) {

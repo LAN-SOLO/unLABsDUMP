@@ -1,6 +1,29 @@
 import { NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth/session'
-import { createClient } from '@/lib/supabase/server'
+
+// Known audit actions and entity types (code-defined constants).
+// Update these when new audit_logs.insert() calls are added.
+const ACTIONS = [
+  'burn_created',
+  'delivery_created',
+  'delivery_failed',
+  'delivery_processed',
+  'delivery_updated',
+  'metadata_updated',
+  'nft_bulk_deleted',
+  'nft_bulk_imported',
+  'nft_bulk_updated',
+  'nft_created',
+  'nft_deleted',
+  'nft_exported',
+  'nft_updated',
+  'package_created',
+  'package_deleted',
+  'package_updated',
+  'report_generated',
+]
+
+const ENTITY_TYPES = ['burn_event', 'delivery', 'nft', 'package', 'report']
 
 export async function GET() {
   try {
@@ -10,35 +33,9 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const supabase = await createClient()
-
-    // Get distinct actions
-    const { data: actionsData, error: actionsError } = await supabase
-      .from('audit_logs')
-      .select('action')
-
-    if (actionsError) {
-      console.error('Actions fetch error:', actionsError)
-      return NextResponse.json({ error: 'Failed to fetch actions' }, { status: 500 })
-    }
-
-    // Get distinct entity types
-    const { data: entityTypesData, error: entityTypesError } = await supabase
-      .from('audit_logs')
-      .select('entity_type')
-
-    if (entityTypesError) {
-      console.error('Entity types fetch error:', entityTypesError)
-      return NextResponse.json({ error: 'Failed to fetch entity types' }, { status: 500 })
-    }
-
-    // Get unique values
-    const actions = [...new Set(actionsData?.map((a) => a.action).filter(Boolean))]
-    const entityTypes = [...new Set(entityTypesData?.map((e) => e.entity_type).filter(Boolean))]
-
     return NextResponse.json({
-      actions,
-      entityTypes,
+      actions: ACTIONS,
+      entityTypes: ENTITY_TYPES,
     })
   } catch (error) {
     console.error('Audit actions error:', error)

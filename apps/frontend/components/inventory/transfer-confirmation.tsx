@@ -78,7 +78,7 @@ export function TransferConfirmation({
       {/* NFT details */}
       <div className="space-y-2">
         <div className="flex justify-between text-sm">
-          <span className="text-[#00AA2A]">NFT</span>
+          <span className="text-[#00AA2A]">_unITM</span>
           <span className="font-medium text-[#00FF41]">{nftName}</span>
         </div>
         {nftRarity && (
@@ -107,7 +107,7 @@ export function TransferConfirmation({
       <div className="flex items-start gap-2 rounded-sm border border-[#FF3333]/30 bg-[#FF3333]/10 p-3">
         <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF3333]" />
         <p className="text-xs text-[#FF3333]/80">
-          This action is irreversible. Once confirmed, the NFT will be permanently transferred to
+          This action is irreversible. Once confirmed, the _unITM will be permanently transferred to
           the recipient. Please double-check the address before proceeding.
         </p>
       </div>

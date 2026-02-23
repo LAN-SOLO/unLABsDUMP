@@ -92,7 +92,7 @@ export function TransferModal({
       <DialogContent className="border-[#1A3A2A] bg-[#0D1117] sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="text-[#00FF41]">
-            {step === 'address' && 'Transfer NFT'}
+            {step === 'address' && 'Transfer _unITM'}
             {step === 'confirm' && 'Confirm Transfer'}
             {step === 'signing' && 'Signing Transaction'}
             {step === 'result' && (transferSuccess ? 'Transfer Complete' : 'Transfer Failed')}
@@ -103,7 +103,7 @@ export function TransferModal({
             {step === 'signing' && 'Please approve the transaction in your wallet'}
             {step === 'result' &&
               (transferSuccess
-                ? 'Your NFT has been transferred successfully'
+                ? 'Your _unITM has been transferred successfully'
                 : 'Something went wrong')}
           </DialogDescription>
         </DialogHeader>
@@ -167,7 +167,7 @@ export function TransferModal({
 
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-[#00AA2A]">NFT</span>
+                <span className="text-[#00AA2A]">_unITM</span>
                 <span className="font-medium text-[#00FF41]">{nft.name}</span>
               </div>
               <div className="flex justify-between text-sm">
@@ -185,8 +185,8 @@ export function TransferModal({
             <div className="flex items-start gap-2 rounded-sm border border-[#FF3333]/30 bg-[#FF3333]/10 p-3">
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF3333]" />
               <p className="text-xs text-[#FF3333]/80">
-                This action is irreversible. Once confirmed, the NFT will be permanently transferred
-                to the recipient.
+                This action is irreversible. Once confirmed, the _unITM will be permanently
+                transferred to the recipient.
               </p>
             </div>
           </div>

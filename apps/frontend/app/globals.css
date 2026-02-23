@@ -584,13 +584,12 @@ body::after {
 }
 
 /* ── Screen curvature (barrel distortion) ── */
+/* NOTE: transform removed from .crt to preserve sticky header positioning */
 body {
   perspective: 800px;
 }
 
 .crt {
-  transform: perspective(800px) rotateX(0.4deg);
-  transform-origin: center center;
   border-radius: 8px;
 }
 
@@ -598,7 +597,6 @@ body {
 @keyframes hsync-glitch {
   0%, 89%, 91%, 100% {
     clip-path: none;
-    transform: perspective(800px) rotateX(0.4deg);
   }
   90% {
     clip-path: polygon(
@@ -606,11 +604,9 @@ body {
       2px 45%, 2px 47%,
       100% 47%, 100% 100%, 0 100%
     );
-    transform: perspective(800px) rotateX(0.4deg) translateX(3px);
   }
   90.5% {
     clip-path: none;
-    transform: perspective(800px) rotateX(0.4deg) translateX(-2px);
   }
 }
 
@@ -688,7 +684,7 @@ body {
   );
   filter: blur(4px);
   animation:
-    crt-rolling-line 23s linear infinite,
+    crt-rolling-line 40s linear infinite,
     crt-line-tremble 0.15s ease-in-out infinite;
 }
 

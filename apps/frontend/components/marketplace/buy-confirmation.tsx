@@ -59,7 +59,7 @@ export function BuyConfirmation({
       {/* Price breakdown */}
       <div className="space-y-2 rounded-sm bg-[#0D3B1E]/10 p-3">
         <div className="flex justify-between text-sm">
-          <span className="text-[#00AA2A]">NFT Price</span>
+          <span className="text-[#00AA2A]">_unITM Price</span>
           <span className="text-[#00FF41]">{formatSol(priceInSol)} SOL</span>
         </div>
         <div className="flex justify-between text-sm">

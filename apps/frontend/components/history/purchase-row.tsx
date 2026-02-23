@@ -59,7 +59,7 @@ export function PurchaseRow({ purchase }: PurchaseRowProps) {
               <span className="text-[#1A6B35]">&middot;</span>
               <span className="flex items-center gap-1">
                 <ImageIcon className="size-3" />
-                {nftCount} NFT{nftCount !== 1 ? 's' : ''}
+                {nftCount} _unITM
               </span>
             </>
           )}

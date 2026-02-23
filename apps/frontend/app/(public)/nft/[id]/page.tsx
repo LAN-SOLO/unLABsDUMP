@@ -20,37 +20,37 @@ export async function generateMetadata({ params }: NFTDetailPageProps): Promise<
 
     if (!nft) {
       return {
-        title: 'NFT Not Found | UnstableLabs',
-        description: 'The requested NFT could not be found.',
+        title: '_unITM Not Found | UnstableLabs',
+        description: 'The requested _unITM could not be found.',
       }
     }
 
     const tierLabel = TIER_LABELS[nft.tier as NFTTier] || `Tier ${nft.tier}`
 
     return {
-      title: `${nft.name} | UnstableLabs NFT`,
+      title: `${nft.name} | UnstableLabs _unITM`,
       description:
         nft.description ||
-        `${nft.name} - ${nft.color} wavelength, ${tierLabel} tier NFT from the UnstableLabs collection.`,
+        `${nft.name} - ${nft.color} wavelength, ${tierLabel} tier _unITM from the UnstableLabs collection.`,
       openGraph: {
-        title: `${nft.name} | UnstableLabs NFT`,
+        title: `${nft.name} | UnstableLabs _unITM`,
         description:
           nft.description ||
-          `${nft.color} wavelength, ${tierLabel} tier NFT from the UnstableLabs collection.`,
+          `${nft.color} wavelength, ${tierLabel} tier _unITM from the UnstableLabs collection.`,
         images: nft.image_url ? [{ url: nft.image_url }] : [],
         type: 'website',
       },
       twitter: {
         card: 'summary_large_image',
-        title: `${nft.name} | UnstableLabs NFT`,
-        description: nft.description || `${nft.color} wavelength, ${tierLabel} tier NFT.`,
+        title: `${nft.name} | UnstableLabs _unITM`,
+        description: nft.description || `${nft.color} wavelength, ${tierLabel} tier _unITM.`,
         images: nft.image_url ? [nft.image_url] : [],
       },
     }
   } catch {
     return {
-      title: 'NFT | UnstableLabs',
-      description: 'View NFT details on UnstableLabs.',
+      title: '_unITM | UnstableLabs',
+      description: 'View _unITM details on UnstableLabs.',
     }
   }
 }

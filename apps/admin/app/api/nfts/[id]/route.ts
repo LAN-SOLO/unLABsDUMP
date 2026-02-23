@@ -36,7 +36,9 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     const { data: nft, error } = await supabase
       .from('nfts')
-      .select('*, nft_ownership_history(*)')
+      .select(
+        '*, nft_ownership_history(id, from_wallet, to_wallet, transfer_type, transaction_signature, price_sol, created_at)'
+      )
       .eq('id', id)
       .single()
 

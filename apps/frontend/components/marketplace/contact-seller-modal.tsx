@@ -25,7 +25,7 @@ export function ContactSellerModal({ open, onOpenChange, listing }: ContactSelle
   const [sent, setSent] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const defaultMessage = listing ? `Hi, I'm interested in your NFT ${listing.nftName}.` : ''
+  const defaultMessage = listing ? `Hi, I'm interested in your _unITM ${listing.nftName}.` : ''
 
   const handleOpenChange = (nextOpen: boolean) => {
     if (!nextOpen) {

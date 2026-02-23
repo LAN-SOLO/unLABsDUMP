@@ -23,9 +23,10 @@ export async function GET() {
     // Get all slices for this player
     const { data: slices, error } = await supabase
       .from('mint_pool_slices')
-      .select('*')
+      .select('id, nft_id, slice_index, total_slices_required, earned_via, created_at')
       .eq('player_id', session.playerId)
       .order('created_at', { ascending: false })
+      .limit(500)
 
     if (error) {
       console.error('Failed to fetch slices:', error)

@@ -8,9 +8,12 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     const { data, error } = await supabase
       .from('nft_ownership_history')
-      .select('*')
+      .select(
+        'id, nft_id, from_wallet, to_wallet, transfer_type, transaction_signature, price_sol, created_at'
+      )
       .eq('nft_id', id)
-      .order('timestamp', { ascending: false })
+      .order('created_at', { ascending: false })
+      .limit(100)
 
     if (error) {
       console.error('Supabase query error:', error)

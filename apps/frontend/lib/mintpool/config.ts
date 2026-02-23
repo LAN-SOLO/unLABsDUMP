@@ -7,7 +7,7 @@ export const CLICK_REWARD_CHANCE = 0.15
 export const HASH_SHARE_WEIGHT = 10
 export const CLICK_SHARE_WEIGHT = 1
 export const DEFAULT_DIFFICULTY = 4
-export const POOL_STATUS_POLL_INTERVAL_MS = 5000
+export const POOL_STATUS_POLL_INTERVAL_MS = 30000
 
 export const STAKE_TIERS = [
   { min: 0, max: 999, multiplier: 1.0, label: 'Base' },

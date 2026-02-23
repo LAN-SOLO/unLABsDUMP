@@ -124,9 +124,9 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
   if (!nft) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center">
-        <h2 className="text-xl font-semibold text-[#00FF41] mb-2">NFT Not Found</h2>
+        <h2 className="text-xl font-semibold text-[#00FF41] mb-2">_unITM Not Found</h2>
         <p className="text-[#00AA2A] mb-4">
-          The NFT you are looking for does not exist or has been removed.
+          The _unITM you are looking for does not exist or has been removed.
         </p>
         <Button asChild variant="outline" className="border-[#1A3A2A]">
           <Link href="/browse">
@@ -296,7 +296,7 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                   <Clock className="size-5 text-[#1A6B35]" />
                   <div>
                     <p className="text-sm text-[#00CC33]">Coming Soon</p>
-                    <p className="text-xs text-[#1A6B35]">This NFT has not been minted yet.</p>
+                    <p className="text-xs text-[#1A6B35]">This _unITM has not been minted yet.</p>
                   </div>
                 </div>
                 <Button
@@ -314,7 +314,7 @@ export function NFTDetailView({ id }: NFTDetailViewProps) {
                   <Package className="size-5 text-[#00FFFF]" />
                   <div>
                     <p className="text-sm text-[#00FFFF]">Available</p>
-                    <p className="text-xs text-[#1A6B35]">This NFT is minted and available.</p>
+                    <p className="text-xs text-[#1A6B35]">This _unITM is minted and available.</p>
                   </div>
                 </div>
                 {nft.package_id && (

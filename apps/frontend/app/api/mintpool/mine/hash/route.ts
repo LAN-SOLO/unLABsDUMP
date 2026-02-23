@@ -27,10 +27,10 @@ export async function POST(request: NextRequest) {
 
     const supabase = await createSupabaseAdminClient()
 
-    // Get active round
+    // Get active round (only needed columns)
     const { data: round } = await supabase
       .from('mint_pool_rounds')
-      .select('*')
+      .select('id, difficulty, total_hashes_submitted')
       .eq('id', round_id)
       .eq('status', 'active')
       .single()
@@ -39,10 +39,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Round not active' }, { status: 400 })
     }
 
-    // Verify participant
+    // Verify participant (only needed columns)
     const { data: participant } = await supabase
       .from('mint_pool_participants')
-      .select('*')
+      .select('id, hashes_submitted, valid_hashes_submitted')
       .eq('round_id', round_id)
       .eq('player_id', session.playerId)
       .single()

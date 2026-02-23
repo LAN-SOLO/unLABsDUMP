@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { SlidersHorizontal, ChevronLeft, ChevronRight, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -37,38 +37,59 @@ export default function BrowsePage() {
   // Quick view state
   const [quickViewNft, setQuickViewNft] = useState<NFT | null>(null)
 
-  const fetchNfts = useCallback(async () => {
-    setLoading(true)
-    try {
-      const params = new URLSearchParams()
-      params.set('page', String(filters.page))
-      params.set('limit', String(filters.limit))
-      params.set('sortBy', filters.sortBy)
-      params.set('sortOrder', filters.sortOrder)
+  const abortRef = useRef<AbortController | null>(null)
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-      if (filters.search) params.set('search', filters.search)
-      if (filters.status !== 'all') params.set('status', filters.status)
-      if (filters.colors.length > 0) params.set('color', filters.colors.join(','))
-      if (filters.tiers.length > 0) params.set('tier', filters.tiers.join(','))
-      if (filters.eras.length > 0) params.set('era', filters.eras.join(','))
-      if (filters.rotations.length > 0) params.set('rotation', filters.rotations.join(','))
+  const fetchNfts = useCallback(
+    async (signal?: AbortSignal) => {
+      setLoading(true)
+      try {
+        const params = new URLSearchParams()
+        params.set('page', String(filters.page))
+        params.set('limit', String(filters.limit))
+        params.set('sortBy', filters.sortBy)
+        params.set('sortOrder', filters.sortOrder)
 
-      const res = await fetch(`/api/nfts?${params.toString()}`)
-      if (res.ok) {
-        const data: NFTListResponse = await res.json()
-        setNfts(data.data)
-        setTotalCount(data.count)
-        setTotalPages(data.totalPages)
+        if (filters.search) params.set('search', filters.search)
+        if (filters.status !== 'all') params.set('status', filters.status)
+        if (filters.colors.length > 0) params.set('color', filters.colors.join(','))
+        if (filters.tiers.length > 0) params.set('tier', filters.tiers.join(','))
+        if (filters.eras.length > 0) params.set('era', filters.eras.join(','))
+        if (filters.rotations.length > 0) params.set('rotation', filters.rotations.join(','))
+
+        const res = await fetch(`/api/nfts?${params.toString()}`, { signal })
+        if (res.ok) {
+          const data: NFTListResponse = await res.json()
+          setNfts(data.data)
+          setTotalCount(data.count)
+          setTotalPages(data.totalPages)
+        }
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') return
+        console.error('Failed to fetch NFTs:', err)
+      } finally {
+        setLoading(false)
       }
-    } catch (err) {
-      console.error('Failed to fetch NFTs:', err)
-    } finally {
-      setLoading(false)
-    }
-  }, [filters])
+    },
+    [filters]
+  )
 
   useEffect(() => {
-    fetchNfts()
+    // Cancel previous request and debounce timer
+    abortRef.current?.abort()
+    if (debounceRef.current) clearTimeout(debounceRef.current)
+
+    const controller = new AbortController()
+    abortRef.current = controller
+
+    debounceRef.current = setTimeout(() => {
+      fetchNfts(controller.signal)
+    }, 300)
+
+    return () => {
+      controller.abort()
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+    }
   }, [fetchNfts])
 
   function handleFilterChange(changes: Partial<NFTFilters>) {

@@ -19,11 +19,12 @@ export async function GET() {
 
     const supabase = await createClient()
 
-    // Fetch all NFTs for counting
+    // Fetch NFTs for counting (with upper bound)
     const { data: nfts, error } = await supabase
       .from('player_nfts')
       .select('id, rarity, listing_price')
       .eq('player_id', session.playerId)
+      .limit(5000)
 
     if (error) {
       console.error('Failed to fetch inventory stats:', error)

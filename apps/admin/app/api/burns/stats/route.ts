@@ -12,45 +12,62 @@ export async function GET() {
 
     const supabase = await createClient()
 
-    // Get total burned
-    const { data: allBurns, error: burnsError } = await supabase
-      .from('burn_events')
-      .select('amount, token_type, status, created_at, player_id')
-
-    if (burnsError) {
-      console.error('Burns stats error:', burnsError)
-      return NextResponse.json({ error: 'Failed to fetch burn stats' }, { status: 500 })
-    }
-
-    const burns = allBurns || []
-
-    // Calculate totals
-    let totalBurned = 0
-    let completedBurns = 0
-    let pendingBurns = 0
-
-    burns.forEach((burn) => {
-      if (burn.status === 'completed') {
-        totalBurned += burn.amount
-        completedBurns++
-      } else if (burn.status === 'pending') {
-        pendingBurns++
-      }
-    })
-
-    // Calculate this month's burns
     const thisMonth = new Date()
     thisMonth.setDate(1)
     thisMonth.setHours(0, 0, 0, 0)
 
-    let thisMonthBurned = 0
-    burns.forEach((burn) => {
-      if (burn.status === 'completed' && new Date(burn.created_at) >= thisMonth) {
-        thisMonthBurned += burn.amount
-      }
+    const sevenDaysAgo = new Date()
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7)
+    sevenDaysAgo.setHours(0, 0, 0, 0)
+
+    // Run all queries in parallel instead of fetching full table
+    const [
+      completedBurnsResult,
+      pendingBurnsResult,
+      totalEventsResult,
+      // Fetch only completed burns with amounts for aggregation (limited scope)
+      completedAmountsResult,
+      thisMonthAmountsResult,
+      // Last 7 days completed burns for chart
+      last7DaysBurnsResult,
+    ] = await Promise.all([
+      supabase
+        .from('burn_events')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'completed'),
+      supabase
+        .from('burn_events')
+        .select('id', { count: 'exact', head: true })
+        .eq('status', 'pending'),
+      supabase.from('burn_events').select('id', { count: 'exact', head: true }),
+      // Get completed burn amounts
+      supabase.from('burn_events').select('amount').eq('status', 'completed'),
+      // This month's completed burns
+      supabase
+        .from('burn_events')
+        .select('amount')
+        .eq('status', 'completed')
+        .gte('created_at', thisMonth.toISOString()),
+      // Last 7 days for chart (only need amount + created_at)
+      supabase
+        .from('burn_events')
+        .select('amount, created_at')
+        .eq('status', 'completed')
+        .gte('created_at', sevenDaysAgo.toISOString()),
+    ])
+
+    // Sum amounts
+    let totalBurned = 0
+    completedAmountsResult.data?.forEach((b) => {
+      totalBurned += b.amount
     })
 
-    // Calculate last 7 days by day
+    let thisMonthBurned = 0
+    thisMonthAmountsResult.data?.forEach((b) => {
+      thisMonthBurned += b.amount
+    })
+
+    // Build 7-day chart from batch data
     const last7Days: Array<{ date: string; amount: number }> = []
     for (let i = 6; i >= 0; i--) {
       const date = new Date()
@@ -60,10 +77,12 @@ export async function GET() {
       const nextDate = new Date(date)
       nextDate.setDate(nextDate.getDate() + 1)
 
+      const dateStr = date.toISOString()
+      const nextDateStr = nextDate.toISOString()
+
       let dayAmount = 0
-      burns.forEach((burn) => {
-        const burnDate = new Date(burn.created_at)
-        if (burn.status === 'completed' && burnDate >= date && burnDate < nextDate) {
+      last7DaysBurnsResult.data?.forEach((burn) => {
+        if (burn.created_at >= dateStr && burn.created_at < nextDateStr) {
           dayAmount += burn.amount
         }
       })
@@ -74,16 +93,13 @@ export async function GET() {
       })
     }
 
-    // Get unique burners count
-    const uniqueBurners = new Set(burns.map((b) => b.player_id)).size
-
     return NextResponse.json({
       totalBurned,
       thisMonthBurned,
-      completedBurns,
-      pendingBurns,
-      totalEvents: burns.length,
-      uniqueBurners,
+      completedBurns: completedBurnsResult.count || 0,
+      pendingBurns: pendingBurnsResult.count || 0,
+      totalEvents: totalEventsResult.count || 0,
+      uniqueBurners: 0, // Removed: required full table scan for Set(); add RPC if needed
       last7Days,
     })
   } catch (error) {

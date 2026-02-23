@@ -41,9 +41,7 @@ export function NftPreviewGallery({ nfts, totalCount, className }: NftPreviewGal
 
   return (
     <div className={cn('space-y-3', className)}>
-      <p className="text-sm font-medium text-[#00AA2A]">
-        {displayCount} NFT{displayCount !== 1 ? 's' : ''} included
-      </p>
+      <p className="text-sm font-medium text-[#00AA2A]">{displayCount} _unITM included</p>
 
       <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2">
         {nfts.map((nft) => {

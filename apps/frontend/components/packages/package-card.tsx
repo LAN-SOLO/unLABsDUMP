@@ -172,9 +172,7 @@ export function PackageCard({
           {nft_count > 0 && (
             <div className="flex items-center gap-1 text-[#00CC33]">
               <ImageIcon className="size-4 text-[#00FF41]" />
-              <span>
-                {nft_count} NFT{nft_count !== 1 ? 's' : ''}
-              </span>
+              <span>{nft_count} _unITM</span>
             </div>
           )}
           {unscNum > 0 && (

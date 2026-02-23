@@ -6,7 +6,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const { id } = await params
     const supabase = await createClient()
 
-    const { data, error } = await supabase.from('nfts').select('*').eq('id', id).single()
+    const { data, error } = await supabase
+      .from('nfts')
+      .select(
+        'id, name, description, mint_address, mint_transaction, minted_at, owner_id, owner_wallet, status, image_url, thumbnail_url, metadata_uri, metadata, rarity_score, created_at, updated_at'
+      )
+      .eq('id', id)
+      .single()
 
     if (error) {
       if (error.code === 'PGRST116') {

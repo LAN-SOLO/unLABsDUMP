@@ -26,7 +26,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // Fetch purchase (must belong to the current player)
     const { data: purchase, error: purchaseError } = await supabase
       .from('purchases')
-      .select('*')
+      .select(
+        'id, package_name, package_price_sol, status, payment_transaction, payment_confirmed_at, error_message, created_at, updated_at'
+      )
       .eq('id', parsed.data)
       .eq('player_id', session.playerId)
       .single()
@@ -38,7 +40,9 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     // Fetch deliveries for this purchase
     const { data: deliveries } = await supabase
       .from('deliveries')
-      .select('*')
+      .select(
+        'id, item_type, nft_id, token_amount, status, transfer_transaction, delivered_at, error_message, created_at'
+      )
       .eq('purchase_id', purchase.id)
       .order('created_at', { ascending: true })
 

@@ -12,25 +12,25 @@ const ENDPOINTS = [
   {
     id: 'get-player-nfts',
     method: 'GET' as const,
-    label: 'Get Player NFTs',
+    label: 'Get Player _unITM',
     path: '/api/game/nfts/{wallet}',
     params: [{ key: 'wallet', label: 'Wallet Address', placeholder: 'Solana wallet address...' }],
   },
   {
     id: 'get-nft-details',
     method: 'GET' as const,
-    label: 'Get NFT Details',
+    label: 'Get _unITM Details',
     path: '/api/game/nft/{id}',
-    params: [{ key: 'id', label: 'NFT ID', placeholder: 'NFT ID...' }],
+    params: [{ key: 'id', label: '_unITM ID', placeholder: '_unITM ID...' }],
   },
   {
     id: 'verify-ownership',
     method: 'POST' as const,
-    label: 'Verify NFT Ownership',
+    label: 'Verify _unITM Ownership',
     path: '/api/game/verify-ownership',
     params: [
       { key: 'wallet', label: 'Wallet Address', placeholder: 'Solana wallet address...' },
-      { key: 'nft_id', label: 'NFT ID', placeholder: 'NFT ID...' },
+      { key: 'nft_id', label: '_unITM ID', placeholder: '_unITM ID...' },
     ],
   },
   {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface LeaderboardEntry {
   rank: number
@@ -17,28 +17,60 @@ function truncateWallet(address: string): string {
   return `${address.slice(0, 4)}...${address.slice(-4)}`
 }
 
+const LEADERBOARD_POLL_MS = 30000
+
 export function Leaderboard() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
+    const controller = new AbortController()
+
     async function fetchLeaderboard() {
       try {
-        const res = await fetch('/api/mintpool/leaderboard')
+        const res = await fetch('/api/mintpool/leaderboard', { signal: controller.signal })
         if (res.ok) {
           const data = await res.json()
           setEntries(data.leaderboard || [])
         }
-      } catch {
-        // Handle silently
+      } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') return
       } finally {
         setIsLoading(false)
       }
     }
 
+    const startPolling = () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      intervalRef.current = setInterval(fetchLeaderboard, LEADERBOARD_POLL_MS)
+    }
+
+    const stopPolling = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
+
+    const handleVisibility = () => {
+      if (document.hidden) {
+        stopPolling()
+      } else {
+        fetchLeaderboard()
+        startPolling()
+      }
+    }
+
     fetchLeaderboard()
-    const interval = setInterval(fetchLeaderboard, 10000)
-    return () => clearInterval(interval)
+    startPolling()
+    document.addEventListener('visibilitychange', handleVisibility)
+
+    return () => {
+      stopPolling()
+      controller.abort()
+      document.removeEventListener('visibilitychange', handleVisibility)
+    }
   }, [])
 
   return (
